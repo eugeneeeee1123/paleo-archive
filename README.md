@@ -13,6 +13,8 @@ A bilingual prehistoric-life archive built with static HTML, CSS, and JavaScript
 
 - `assets/images/originals/`: full-resolution source images used by specimen dossiers
 - `assets/images/thumbs/`: optimized 960 x 540 WebP card images
+- `assets/css/site.css`: shared, page-scoped stylesheet for the entire site
+- `assets/js/site.js`: shared JavaScript entry point with page-specific initialization
 
 ## Run locally
 
