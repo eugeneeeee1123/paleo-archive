@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a custom PALEO ARCHIVE specimen record with taxonomy, geological context, measurements, imagery, and optional simulation metrics.">
+    <meta property="og:title" content="PALEO ARCHIVE | Specimen Builder">
+    <meta property="og:description" content="Build a bilingual prehistoric-life record and preview it in the PALEO ARCHIVE card system.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/originals/trex.jpg">
+    <title>PALEO ARCHIVE | Specimen Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #101215;
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --cls-carnivore: #e74c3c; --cls-herbivore: #27ae60; --cls-pterosaur: #f1c40f; 
+            --cls-amphibian: #00d2d3; --cls-aquatic: #0984e3; --cls-cenozoic: #a29bfe; --cls-hybrid: #d63031; 
+            --text-main: #dfe6e9; --card-bg: rgba(20, 22, 26, 0.9); --star-gold: #f1c40f;
+            --ingen-green: #00c853;
+            --ingen-green-dim: #004d20;
+            --ingen-green-glow: rgba(0,200,83,0.15);
+            --ingen-text: #a8d5a8;
+            --ingen-text-dim: #3a5a3a;
+            --error-red: #d63031;
+            --error-glow: rgba(214, 48, 49, 0.25);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-main);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            min-height: 100vh; overflow-x: hidden;
+            background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* CRT scanlines */
+        body::after {
+            content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
+            background:repeating-linear-gradient(0deg,rgba(0,0,0,0.15) 0,rgba(0,0,0,0.15) 1px,transparent 1px,transparent 3px);
+        }
+        body::before {
+            content:''; position:fixed; inset:0; z-index:9998; pointer-events:none;
+            background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+        }
+
+        /* Theme Tint Modifications */
+        .theme-amber {
+            --ingen-green: #ffb300;
+            --ingen-green-dim: #805900;
+            --ingen-green-glow: rgba(255,179,0,0.15);
+            --ingen-text: #ffe082;
+            --ingen-text-dim: #806000;
+        }
+        .theme-red {
+            --ingen-green: #ff3333;
+            --ingen-green-dim: #800000;
+            --ingen-green-glow: rgba(255,51,51,0.15);
+            --ingen-text: #ff9999;
+            --ingen-text-dim: #801a1a;
+        }
+
+        /* --- Header --- */
+        .console-header { position: sticky; top: 0; z-index: 100; background: rgba(16, 18, 21, 0.98); border-bottom: 2px solid var(--ingen-green); padding: 15px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .back-nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .back-btn { text-decoration: none; color: #666; font-size: 0.8rem; letter-spacing: 2px; border: 1px solid #333; padding: 6px 15px; transition: all 0.3s; display: inline-block; text-transform: uppercase; }
+        .back-btn:hover { color: #fff; border-color: var(--ingen-green); background: var(--ingen-green-glow); }
+        .sys-title { font-size: 1.4rem; letter-spacing: 2px; color: var(--ingen-green); font-family: 'Orbitron', sans-serif; text-shadow: 0 0 12px var(--ingen-green-glow); margin: 5px 0; }
+        .sys-title span { color: #fff; font-weight: normal; }
+
+        /* Layout */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+            padding: 30px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) {
+            .workspace-grid { grid-template-columns: 1fr; gap: 30px; padding: 15px; }
+            .preview-sticky { position: static !important; }
+        }
+
+        /* Form styling */
+        .synthesis-card {
+            background: rgba(20, 22, 26, 0.85);
+            border: 1px solid #333;
+            border-top: 3px solid var(--ingen-green);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .form-section-title {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: #fff;
+            border-bottom: 1px solid var(--ingen-green-dim);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--ingen-text);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            color: #fff;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-input:focus {
+            border-color: var(--ingen-green);
+            box-shadow: 0 0 10px var(--ingen-green-glow);
+        }
+        .form-select {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .form-select:focus { border-color: var(--ingen-green); }
+        .form-textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            color: #fff;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            min-height: 70px;
+            resize: vertical;
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-textarea:focus { border-color: var(--ingen-green); }
+
+        .form-input.input-error, .form-select.input-error, .form-textarea.input-error {
+            border-color: var(--error-red) !important;
+            box-shadow: 0 0 10px var(--error-glow) !important;
+        }
+        .error-lbl {
+            color: var(--error-red);
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            display: none;
+            text-transform: uppercase;
+        }
+
+        /* Button */
+        .action-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--ingen-green);
+            color: var(--ingen-green);
+            padding: 15px;
+            font-family: inherit;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 15px;
+            box-shadow: 0 0 10px var(--ingen-green-glow);
+        }
+        .action-btn:hover {
+            background: var(--ingen-green-glow);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.25);
+        }
+
+        /* Sticky Preview Card container */
+        .preview-sticky {
+            position: sticky;
+            top: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-title {
+            font-size: 0.75rem;
+            color: var(--ingen-text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+            opacity: 0.8;
+            border-bottom: 1px solid var(--ingen-green-dim);
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        /* --- Grid Card Copy --- */
+        .card { 
+            background: var(--card-bg); border: 1px solid #333; height: auto; 
+            display: flex; flex-direction: column; overflow: hidden; position: relative; 
+            width: 100%; transition: all 0.3s;
+        }
+        .card-vis { width: 100%; height: auto; aspect-ratio: 16 / 9; flex: 0 0 auto; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; border-bottom: 4px solid #333; position: relative; }
+        .card-img { display: block; width: 100%; height: 100%; object-fit: contain; }
+        .class-icon { position: absolute; top: 0; left: 0; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; border-bottom: 1px solid #fff; border-right: 1px solid #fff; z-index: 2; }
+        .card-data { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .spec-code { font-size: 0.7rem; color: #666; }
+        .spec-name { font-size: 1.3rem; color: #fff; font-weight: bold; text-transform: uppercase; line-height: 1; margin: 5px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .spec-cn { font-size: 0.85rem; color: #999; }
+        .spec-stats { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-size: 0.7rem; color: #aaa; }
+
+        .containment-badge {
+            display:inline-block; font-size:0.55rem; letter-spacing:1px;
+            padding:2px 7px; border:1px solid; margin-top:5px; border-radius:2px;
+            text-transform: uppercase; width: fit-content;
+        }
+        .ct-open   { color:#27ae60; border-color:#27ae60; background:rgba(39,174,96,0.07); }
+        .ct-fence  { color:#f1c40f; border-color:#f1c40f; background:rgba(241,196,15,0.07); }
+        .ct-bunker { color:#e67e22; border-color:#e67e22; background:rgba(230,126,34,0.07); }
+        .ct-class  { color:#d63031; border-color:#d63031; background:rgba(214,48,49,0.07); animation:classFlicker 3s infinite; }
+        @keyframes classFlicker { 0%,93%,100%{opacity:1} 95%,99%{opacity:0.5} }
+
+        /* DNA scan hover mock */
+        .dna-overlay {
+            position:absolute; bottom:0; left:0; right:0; padding:5px 8px;
+            font-size:0.48rem; color:rgba(0,200,83,0.45); letter-spacing:1px; line-height:1.8;
+            background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+            pointer-events:none; word-break:break-all;
+        }
+
+        /* Class Colors Application */
+        .card[data-class="hybrid"] { border-top: 3px solid var(--cls-hybrid); } .card[data-class="hybrid"] .class-icon { background: var(--cls-hybrid); color: #fff; }
+        .card[data-class="carnivore"] { border-top: 3px solid var(--cls-carnivore); } .card[data-class="carnivore"] .class-icon { background: var(--cls-carnivore); color: #fff; }
+        .card[data-class="herbivore"] { border-top: 3px solid var(--cls-herbivore); } .card[data-class="herbivore"] .class-icon { background: var(--cls-herbivore); color: #fff; }
+        .card[data-class="pterosaur"] { border-top: 3px solid var(--cls-pterosaur); } .card[data-class="pterosaur"] .class-icon { background: var(--cls-pterosaur); color: #000; }
+        .card[data-class="amphibian"] { border-top: 3px solid var(--cls-amphibian); } .card[data-class="amphibian"] .class-icon { background: var(--cls-amphibian); color: #000; }
+        .card[data-class="aquatic"] { border-top: 3px solid var(--cls-aquatic); } .card[data-class="aquatic"] .class-icon { background: var(--cls-aquatic); color: #fff; }
+        .card[data-class="cenozoic"] { border-top: 3px solid var(--cls-cenozoic); } .card[data-class="cenozoic"] .class-icon { background: var(--cls-cenozoic); color: #000; }
+
+        .card[data-containment="class"]  { animation:cardThreat 4s infinite; }
+        @keyframes cardThreat { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 15px rgba(214,48,49,0.18)} }
+
+        /* Image fallbacks */
+        .img-fallback {
+            width:100%; height:100%; display:flex; flex-direction:column; align-items:center;
+            justify-content:center; background:linear-gradient(135deg, #050708, #101518);
+            border-bottom:2px solid var(--ingen-green-dim); position:relative;
+        }
+
+        /* Success Overlay */
+        .success-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; backdrop-filter: blur(10px);
+        }
+        .success-overlay.active { display: flex; }
+        .success-box {
+            background: #0a0c0e; border: 1px solid var(--ingen-green);
+            padding: 40px; max-width: 500px; width: 90%;
+            box-shadow: 0 0 30px var(--ingen-green-glow);
+        }
+        .success-title { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: var(--ingen-green); letter-spacing: 3px; margin-bottom: 20px; text-shadow: 0 0 15px var(--ingen-green-glow); }
+        .success-text { font-size: 0.9rem; line-height: 1.8; color: #fff; margin-bottom: 25px; }
+        /* Paleo full-site redesign */
+        body {
+            background:
+                radial-gradient(circle at 18% 0%, rgba(0, 200, 83, 0.09), transparent 34%),
+                linear-gradient(135deg, #07090a 0%, #101412 48%, #050606 100%);
+        }
+        .console-header {
+            max-width: 1220px;
+            margin: 18px auto 24px auto;
+            border: 1px solid rgba(168, 213, 168, 0.18);
+            border-bottom: 1px solid rgba(168, 213, 168, 0.18);
+            background: rgba(8, 11, 12, 0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+        }
+        .back-btn {
+            color: var(--ingen-text);
+            border-color: rgba(168, 213, 168, 0.22);
+            background: rgba(0, 0, 0, 0.28);
+        }
+        .back-btn:hover {
+            border-color: var(--ingen-green);
+            background: var(--ingen-green-glow);
+        }
+        .sys-title {
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .sys-title span {
+            color: var(--ingen-green);
+        }
+        .workspace-grid {
+            max-width: 1220px;
+            grid-template-columns: minmax(0, 1.2fr) 360px;
+            gap: 24px;
+            padding: 0 18px 42px 18px;
+        }
+        .synthesis-card,
+        .preview-sticky {
+            border-radius: 6px;
+            border-color: rgba(168, 213, 168, 0.18);
+            background: rgba(8, 11, 12, 0.92);
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+        }
+        .form-section-title,
+        .preview-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            border-color: rgba(168, 213, 168, 0.18);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--ingen-green);
+            box-shadow: 0 0 14px var(--ingen-green-glow);
+        }
+        .action-btn {
+            border-radius: 0;
+            border-color: var(--ingen-green);
+            background: var(--ingen-green-glow);
+        }
+        .card {
+            border-radius: 6px;
+            border-color: rgba(168, 213, 168, 0.18);
+            background: rgba(0, 0, 0, 0.28);
+        }
+        .card-img {
+            object-fit: contain;
+        }
+        .spec-name {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0;
+        }
+        @media (max-width: 950px) {
+            .console-header {
+                margin-left: 12px;
+                margin-right: 12px;
+            }
+            .workspace-grid {
+                grid-template-columns: 1fr;
+                padding: 0 12px 32px 12px;
+            }
+            .preview-sticky {
+                position: relative;
+                top: auto;
+            }
+        }
+        @media (max-width: 680px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 680px) {
+            .back-nav {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+            .back-nav > div {
+                width: 100%;
+            }
+            .back-btn {
+                width: 100%;
+                text-align: center;
+                white-space: normal;
+                line-height: 1.4;
+                box-sizing: border-box;
+            }
+            #operatorLabel {
+                display: block !important;
+                margin: 10px 0 0 0 !important;
+                padding-left: 0 !important;
+                border-left: 0 !important;
+                white-space: normal;
+            }
+            .sys-title {
+                font-size: 1rem;
+                line-height: 1.35;
+                overflow-wrap: anywhere;
+            }
+            .sys-title span {
+                display: block;
+            }
+            .console-header,
+            .workspace-grid {
+                width: calc(100vw - 24px);
+                max-width: calc(100vw - 24px);
+                margin-left: 12px;
+                margin-right: 12px;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            .form-section-title,
+            .preview-title {
+                font-size: 1rem;
+                line-height: 1.35;
+                word-break: break-word;
+                overflow-wrap: anywhere;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="console-header">
+    <div class="back-nav" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+            <a href="gallery.html" class="back-btn">← RETURN TO GALLERY / 返回图鉴</a>
+            <span style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; margin-left: 15px; display: inline-block; vertical-align: middle;" id="operatorLabel">OPERATOR / 操作员: GUEST | CLR / 权限: LEVEL 4</span>
+        </div>
+        <a href="timescale.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(0, 200, 83, 0.03);">DEEP-TIME TIMELINE / 地质年代表</a>
+    </div>
+    <div class="sys-title">SPECIMEN BUILDER / 标本编辑器<span> PORTAL // FIELD_ENTRY</span></div>
+</div>
+
+<!-- WORKSPACE -->
+<div class="workspace-grid">
+    <!-- LEFT: FORM -->
+    <div class="synthesis-card">
+        <div class="form-section-title">Specimen Record Configuration / 标本记录配置</div>
+        <form id="synthesisForm" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="code">Archive Code Reference / 档案编号参考</label>
+                    <input type="text" id="code" class="form-input" placeholder="e.g. LEG-01, RAR-12..." value="LEG-01">
+                    <div class="error-lbl" id="codeErr">Code is required / 资产编号不能为空</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="name">Species Genus Name / 学名/属名 (English)</label>
+                    <input type="text" id="name" class="form-input" placeholder="e.g. TYRANNOSAURUS REX" value="TYRANNOSAURUS REX">
+                    <div class="error-lbl" id="nameErr">Name is required / 属名不能为空</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="cnName">Chinese Name (中文名)</label>
+                    <input type="text" id="cnName" class="form-input" placeholder="e.g. 霸王龙" value="霸王龙">
+                    <div class="error-lbl" id="cnNameErr">Chinese name is required / 中文名称不能为空</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="classSelect">Taxonomy Class / 古生物科目</label>
+                    <select id="classSelect" class="form-select">
+                        <option value="hybrid">HYBRIDS / 混种生物</option>
+                        <option value="carnivore" selected>CARNIVORES / 肉食恐龙</option>
+                        <option value="herbivore">HERBIVORES / 草食恐龙</option>
+                        <option value="pterosaur">PTEROSAURS / 翼龙类</option>
+                        <option value="amphibian">EARLY TETRAPODS / 早期四足类与鳄形类</option>
+                        <option value="aquatic">AQUATIC LIFE / 水生与海生古生物</option>
+                        <option value="cenozoic">CENOZOIC FAUNA / 新生代动物</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="raritySelect">Archive Priority / 档案优先级</label>
+                    <select id="raritySelect" class="form-select">
+                        <option value="1">P1 / 基础记录</option>
+                        <option value="2">P2 / 扩展记录</option>
+                        <option value="3">P3 / 重点记录</option>
+                        <option value="4">P4 / 核心记录</option>
+                        <option value="5" selected>P5 / 代表记录</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="era">Geological Era / 生存地质年代</label>
+                    <input type="text" id="era" class="form-input" placeholder="e.g. Late Cretaceous, Holocene" value="Late Cretaceous">
+                    <div class="error-lbl" id="eraErr">Era is required / 生存年代不能为空</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="length">Estimated Length / 预估体长</label>
+                    <input type="text" id="length" class="form-input" placeholder="e.g. 12.3m" value="12.3m">
+                    <div class="error-lbl" id="lengthErr">Length is required / 体长不能为空</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="weight">Estimated Weight / 预估体重</label>
+                    <input type="text" id="weight" class="form-input" placeholder="e.g. 8,400kg" value="8,400kg">
+                    <div class="error-lbl" id="weightErr">Weight is required / 体重不能为空</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="atk">Optional Simulation Attack Index / 可选模拟攻击指数</label>
+                    <input type="number" id="atk" class="form-input" placeholder="e.g. 1200" value="1800">
+                    <div class="error-lbl" id="atkErr">Simulation attack index must be positive / 模拟攻击指数必须为正数</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="hp">Optional Simulation Vitality / 可选模拟生命指数</label>
+                    <input type="number" id="hp" class="form-input" placeholder="e.g. 3500" value="4500">
+                    <div class="error-lbl" id="hpErr">Simulation vitality must be positive / 模拟生命指数必须为正数</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="aggLevel">Simulation Threat Level / 模拟威胁等级 (1-5)</label>
+                    <select id="aggLevel" class="form-select">
+                        <option value="1">★☆☆☆☆ (DOCILE / 温顺)</option>
+                        <option value="2">★★☆☆☆ (CAUTIOUS / 谨慎)</option>
+                        <option value="3">★★★☆☆ (UNPREDICTABLE / 难测)</option>
+                        <option value="4" selected>★★★★☆ (HIGHLY AGGRESSIVE / 高度狂暴)</option>
+                        <option value="5">★★★★★ (EXTREME HAZARD / 极度致命)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="imgUrl">Reconstruction Image URL / 复原图链接 (选填)</label>
+                    <input type="text" id="imgUrl" class="form-input" placeholder="e.g. images/my-dino.jpg" value="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="description">Field Summary / 物种概要</label>
+                <textarea id="description" class="form-textarea" placeholder="Provide a concise fossil and anatomy summary...">Large tyrannosaurid from western North America, known from well-preserved Late Cretaceous skeletons.</textarea>
+                <div class="error-lbl" id="descErr">Summary is required / 物种概要不能为空</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="fact">Paleobiology Note / 古生物学要点</label>
+                <textarea id="fact" class="form-textarea" placeholder="Add one evidence-based paleobiology note...">Its robust skull and teeth were adapted for producing exceptionally high bite forces.</textarea>
+                <div class="error-lbl" id="factErr">Paleobiology note is required / 古生物学要点不能为空</div>
+            </div>
+
+            <button type="submit" class="action-btn">SAVE SPECIMEN RECORD / 保存标本记录</button>
+        </form>
+    </div>
+
+    <!-- RIGHT: LIVE CARD PREVIEW -->
+    <div class="preview-sticky">
+        <div class="preview-title">Real-Time Specimen Preview / 标本实时预览</div>
+        <div class="card" id="previewCard" data-class="carnivore" data-containment="bunker">
+            <div class="card-vis">
+                <!-- Preview image or fallback -->
+                <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
+                <div class="img-fallback" id="pCardFallback">
+                    <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
+                        <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
+                      </svg>
+                      <span style="font-size:0.5rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL / 无图像信号</span>
+                </div>
+                <span class="class-icon" id="pCardIcon">CARNIVORE</span>
+                <div class="dna-overlay" id="pCardDna">AT C G   T T A C   C A T C   G A T C</div>
+            </div>
+            <div class="card-data">
+                <div id="pCardInnerData">
+                    <div class="spec-code" id="pCardCode">LEG-01</div>
+                    <h3 class="spec-name" id="pCardName">TYRANNOSAURUS REX</h3>
+                    <div class="spec-cn" id="pCardCn">霸王龙</div>
+                </div>
+                <div class="spec-stats">
+                    <div><b id="pCardEra">Late Cretaceous</b></div>
+                    <div><b id="pCardRarity">ARCHIVE P5</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SUCCESS DIALOG OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+    <div class="success-box">
+        <div class="success-title">RECORD SAVED / 档案已保存</div>
+        <div class="success-text">
+            The specimen record has been written to the local <b>PALEO ARCHIVE</b> collection.<br>
+            Scientific fields and optional simulation metrics are stored separately in the record.<br><br>
+            标本档案已写入本地 <b>PALEO ARCHIVE</b> 图鉴。<br>
+            科学信息与可选模拟数值已在记录中明确区分。
+        </div>
+        <button class="action-btn" onclick="window.location.href='gallery.html';" style="margin: 0;">◀ RETURN TO ARCHIVES / 返回档案库</button>
+    </div>
+</div>
+
+<script>
+    // Theme Tint Applier
+    (function() {
+        const theme = localStorage.getItem('ingen_theme') || 'green';
+        if (theme === 'amber') {
+            document.body.classList.add('theme-amber');
+        } else if (theme === 'red') {
+            document.body.classList.add('theme-red');
+        }
+
+        // Set Operator Label
+        const user = localStorage.getItem('ingen_username') || 'GUEST';
+        const clearance = localStorage.getItem('ingen_clearance') || 'LEVEL 1';
+        document.getElementById('operatorLabel').textContent = `OPERATOR / 操作员: ${user.toUpperCase()} | CLR / 权限: ${clearance.toUpperCase()}`;
+    })();
+
+    // ── LIVE PREVIEW CONTROLLER ────────────────
+    const pCard = document.getElementById('previewCard');
+    const pCardImg = document.getElementById('pCardImg');
+    const pCardFallback = document.getElementById('pCardFallback');
+    const pCardIcon = document.getElementById('pCardIcon');
+    const pCardDna = document.getElementById('pCardDna');
+    const pCardCode = document.getElementById('pCardCode');
+    const pCardName = document.getElementById('pCardName');
+    const pCardCn = document.getElementById('pCardCn');
+    const pCardEra = document.getElementById('pCardEra');
+    const pCardRarity = document.getElementById('pCardRarity');
+    const pCardInnerData = document.getElementById('pCardInnerData');
+
+    // Star Aggression and Containment calculations
+    function getContainment(cls, rarityVal, agg) {
+        if (cls === 'hybrid') return 'class';
+        if (agg <= 2 && (cls === 'herbivore' || cls === 'cenozoic')) return 'open';
+        if (rarityVal >= 4 || agg >= 4) return 'bunker';
+        if (agg >= 3) return 'fence';
+        return 'open';
+    }
+
+    const badgeLabels = { open:'SIM: OPEN RANGE / 模拟开放区', fence:'SIM: MONITORED / 模拟监控', bunker:'SIM: REINFORCED / 模拟加固', class:'FICTIONAL FILE / 虚构档案' };
+
+    function updatePreview() {
+        const code = document.getElementById('code').value.toUpperCase();
+        const name = document.getElementById('name').value.toUpperCase();
+        const cn = document.getElementById('cnName').value;
+        const cls = document.getElementById('classSelect').value;
+        const rarity = parseInt(document.getElementById('raritySelect').value);
+        const era = document.getElementById('era').value;
+        const img = document.getElementById('imgUrl').value;
+        const agg = parseInt(document.getElementById('aggLevel').value);
+
+        // Update basic values
+        pCard.setAttribute('data-class', cls);
+        pCardIcon.textContent = cls.toUpperCase();
+        pCardCode.textContent = code || 'REF-XXX';
+        pCardName.textContent = name || 'SPECIES_NAME';
+        pCardCn.textContent = cn || '中文名';
+        pCardEra.textContent = era || 'PERIOD_ERA';
+
+        const priorities = { '1': 'ARCHIVE P1', '2': 'ARCHIVE P2', '3': 'ARCHIVE P3', '4': 'ARCHIVE P4', '5': 'ARCHIVE P5' };
+        pCardRarity.textContent = priorities[rarity] || 'ARCHIVE P1';
+
+        // Update image or fallback
+        if (img && img.trim() !== '') {
+            pCardImg.src = img;
+            pCardImg.alt = `${name || 'Custom specimen'} reconstruction`;
+            pCardImg.style.display = 'block';
+            pCardFallback.style.display = 'none';
+        } else {
+            pCardImg.style.display = 'none';
+            pCardFallback.style.display = 'flex';
+        }
+
+        // Update DNA sequence text mock
+        const bases = 'ATCG'; let seq = '';
+        for (let i = 0; i < 24; i++) seq += (i > 0 && i % 4 === 0 ? ' ' : '') + bases[Math.floor(Math.random() * 4)];
+        pCardDna.textContent = seq;
+
+        // Update containment and badge
+        const ct = getContainment(cls, rarity, agg);
+        pCard.setAttribute('data-containment', ct);
+
+        // Remove old badge if exists, and insert new
+        let badge = pCardInnerData.querySelector('.containment-badge');
+        if (badge) badge.remove();
+        badge = document.createElement('div');
+        badge.className = 'containment-badge ct-' + ct;
+        badge.textContent = badgeLabels[ct];
+        pCardInnerData.appendChild(badge);
+    }
+
+    // Bind real-time input fields
+    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'era', 'imgUrl', 'aggLevel'];
+    inputs.forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener('input', updatePreview);
+        el.addEventListener('change', updatePreview);
+    });
+
+    // Run preview once on load
+    updatePreview();
+
+    // ── FORM VALIDATION & SAVE ────────────────
+    const form = document.getElementById('synthesisForm');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        const requiredFields = [
+            { id: 'code', errId: 'codeErr' },
+            { id: 'name', errId: 'nameErr' },
+            { id: 'cnName', errId: 'cnNameErr' },
+            { id: 'era', errId: 'eraErr' },
+            { id: 'length', errId: 'lengthErr' },
+            { id: 'weight', errId: 'weightErr' },
+            { id: 'description', errId: 'descErr' },
+            { id: 'fact', errId: 'factErr' }
+        ];
+
+        requiredFields.forEach(f => {
+            const el = document.getElementById(f.id);
+            const err = document.getElementById(f.errId);
+            el.classList.remove('input-error');
+            err.style.display = 'none';
+
+            if (el.value.trim() === '') {
+                el.classList.add('input-error');
+                err.style.display = 'block';
+                isValid = false;
+            }
+        });
+
+        // Numeric stats validation
+        const atkEl = document.getElementById('atk');
+        const atkErr = document.getElementById('atkErr');
+        atkEl.classList.remove('input-error');
+        atkErr.style.display = 'none';
+        if (atkEl.value.trim() === '' || isNaN(atkEl.value) || parseFloat(atkEl.value) <= 0) {
+            atkEl.classList.add('input-error');
+            atkErr.style.display = 'block';
+            isValid = false;
+        }
+
+        const hpEl = document.getElementById('hp');
+        const hpErr = document.getElementById('hpErr');
+        hpEl.classList.remove('input-error');
+        hpErr.style.display = 'none';
+        if (hpEl.value.trim() === '' || isNaN(hpEl.value) || parseFloat(hpEl.value) <= 0) {
+            hpEl.classList.add('input-error');
+            hpErr.style.display = 'block';
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Compile asset payload
+            const newAsset = {
+                code: document.getElementById('code').value.toUpperCase(),
+                name: document.getElementById('name').value.toUpperCase().trim(),
+                cn: document.getElementById('cnName').value.trim(),
+                class: document.getElementById('classSelect').value,
+                rarity: document.getElementById('raritySelect').value,
+                era: document.getElementById('era').value.trim(),
+                len: document.getElementById('length').value.trim(),
+                wgt: document.getElementById('weight').value.trim(),
+                atk: document.getElementById('atk').value.trim(),
+                hp: document.getElementById('hp').value.trim(),
+                agg: parseInt(document.getElementById('aggLevel').value),
+                img: document.getElementById('imgUrl').value.trim(),
+                desc: document.getElementById('description').value.trim(),
+                fact: document.getElementById('fact').value.trim()
+            };
+
+            // Read existing custom assets, append, and save
+            const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            customAssets.push(newAsset);
+            localStorage.setItem('ingen_custom_assets', JSON.stringify(customAssets));
+
+            // Display success modal
+            document.getElementById('successOverlay').classList.add('active');
+        }
+    });
+</script>
+</body>
+</html>
