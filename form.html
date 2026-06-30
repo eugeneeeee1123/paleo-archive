@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Create a custom PALEO ARCHIVE specimen record with taxonomy, geological context, measurements, imagery, and optional simulation metrics.">
-    <meta property="og:title" content="PALEO ARCHIVE | Specimen Builder">
-    <meta property="og:description" content="Build a bilingual prehistoric-life record and preview it in the PALEO ARCHIVE card system.">
+    <meta name="description" content="Document a PALEO ARCHIVE hybrid research file with genome notes, containment metrics, imagery, and local archive preview.">
+    <meta property="og:title" content="PALEO ARCHIVE | Hybrid Research">
+    <meta property="og:description" content="Build a bilingual hybrid research file and preview it in the PALEO ARCHIVE archive system.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trex.jpg">
-    <title>PALEO ARCHIVE | Specimen Builder</title>
+    <title>PALEO ARCHIVE | Hybrid Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="assets/js/site.js"></script>
     <link rel="stylesheet" href="assets/css/site.css">
@@ -22,26 +22,26 @@
             <a href="gallery.html" class="back-btn">← RETURN TO GALLERY / 返回图鉴</a>
             <span style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; margin-left: 15px; display: inline-block; vertical-align: middle;" id="operatorLabel">OPERATOR / 操作员: GUEST | CLR / 权限: LEVEL 4</span>
         </div>
-        <a href="timescale.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(0, 200, 83, 0.03);">DEEP-TIME TIMELINE / 地质年代表</a>
+        <a href="timescale.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">DEEP-TIME TIMELINE / 地质年代表</a>
     </div>
-    <div class="sys-title">SPECIMEN BUILDER / 标本编辑器<span> PORTAL // FIELD_ENTRY</span></div>
+    <div class="sys-title">HYBRID RESEARCH / 混种研究档案<span> PORTAL // GENOME_FILE</span></div>
 </div>
 
 <!-- WORKSPACE -->
 <div class="workspace-grid">
     <!-- LEFT: FORM -->
     <div class="synthesis-card">
-        <div class="form-section-title">Specimen Record Configuration / 标本记录配置</div>
+        <div class="form-section-title">Hybrid Research File / 混种研究档案</div>
         <form id="synthesisForm" novalidate>
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label" for="code">Archive Code Reference / 档案编号参考</label>
-                    <input type="text" id="code" class="form-input" placeholder="e.g. LEG-01, RAR-12..." value="LEG-01">
+                    <label class="form-label" for="code">Research File Code / 研究档案编号</label>
+                    <input type="text" id="code" class="form-input" placeholder="e.g. HYB-01, RS-12..." value="HYB-01">
                     <div class="error-lbl" id="codeErr">Code is required / 资产编号不能为空</div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="name">Species Genus Name / 学名/属名 (English)</label>
-                    <input type="text" id="name" class="form-input" placeholder="e.g. TYRANNOSAURUS REX" value="TYRANNOSAURUS REX">
+                    <label class="form-label" for="name">Research Subject Name / 研究对象名称 (English)</label>
+                    <input type="text" id="name" class="form-input" placeholder="e.g. INDOMINUS REX" value="INDOMINUS REX">
                     <div class="error-lbl" id="nameErr">Name is required / 属名不能为空</div>
                 </div>
             </div>
@@ -49,14 +49,14 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="cnName">Chinese Name (中文名)</label>
-                    <input type="text" id="cnName" class="form-input" placeholder="e.g. 霸王龙" value="霸王龙">
+                    <input type="text" id="cnName" class="form-input" placeholder="e.g. 帝王暴龙" value="帝王暴龙">
                     <div class="error-lbl" id="cnNameErr">Chinese name is required / 中文名称不能为空</div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="classSelect">Taxonomy Class / 古生物科目</label>
+                    <label class="form-label" for="classSelect">Research Classification / 研究分类</label>
                     <select id="classSelect" class="form-select">
-                        <option value="hybrid">HYBRIDS / 混种生物</option>
-                        <option value="carnivore" selected>CARNIVORES / 肉食恐龙</option>
+                        <option value="hybrid" selected>HYBRIDS / 混种生物</option>
+                        <option value="carnivore">CARNIVORES / 肉食恐龙</option>
                         <option value="herbivore">HERBIVORES / 草食恐龙</option>
                         <option value="pterosaur">PTEROSAURS / 翼龙类</option>
                         <option value="amphibian">EARLY TETRAPODS / 早期四足类与鳄形类</option>
@@ -68,7 +68,7 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label" for="raritySelect">Archive Priority / 档案优先级</label>
+                    <label class="form-label" for="raritySelect">Research Priority / 研究优先级</label>
                     <select id="raritySelect" class="form-select">
                         <option value="1">P1 / 基础记录</option>
                         <option value="2">P2 / 扩展记录</option>
@@ -78,8 +78,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="era">Geological Era / 生存地质年代</label>
-                    <input type="text" id="era" class="form-input" placeholder="e.g. Late Cretaceous, Holocene" value="Late Cretaceous">
+                    <label class="form-label" for="era">Research Context / 研究背景</label>
+                    <input type="text" id="era" class="form-input" placeholder="e.g. Fictional Cretaceous Research Model" value="Fictional Cretaceous Research Model">
                     <div class="error-lbl" id="eraErr">Era is required / 生存年代不能为空</div>
                 </div>
             </div>
@@ -99,20 +99,20 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label" for="atk">Optional Simulation Attack Index / 可选模拟攻击指数</label>
-                    <input type="number" id="atk" class="form-input" placeholder="e.g. 1200" value="1800">
+                    <label class="form-label" for="atk">Behavioral Risk Index / 行为风险指数</label>
+                    <input type="number" id="atk" class="form-input" placeholder="e.g. 1200" value="2100">
                     <div class="error-lbl" id="atkErr">Simulation attack index must be positive / 模拟攻击指数必须为正数</div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="hp">Optional Simulation Vitality / 可选模拟生命指数</label>
-                    <input type="number" id="hp" class="form-input" placeholder="e.g. 3500" value="4500">
+                    <label class="form-label" for="hp">Viability Index / 存活稳定指数</label>
+                    <input type="number" id="hp" class="form-input" placeholder="e.g. 3500" value="5200">
                     <div class="error-lbl" id="hpErr">Simulation vitality must be positive / 模拟生命指数必须为正数</div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label" for="aggLevel">Simulation Threat Level / 模拟威胁等级 (1-5)</label>
+                    <label class="form-label" for="aggLevel">Research Hazard Level / 研究风险等级 (1-5)</label>
                     <select id="aggLevel" class="form-select">
                         <option value="1">★☆☆☆☆ (DOCILE / 温顺)</option>
                         <option value="2">★★☆☆☆ (CAUTIOUS / 谨慎)</option>
@@ -122,31 +122,34 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="imgUrl">Reconstruction Image URL / 复原图链接 (选填)</label>
-                    <input type="text" id="imgUrl" class="form-input" placeholder="e.g. images/my-dino.jpg" value="">
+                    <label class="form-label" for="imgUrl">Research Image URL / 研究参考图路径</label>
+                    <input type="text" id="imgUrl" class="form-input" placeholder="e.g. assets/images/originals/indominous_rex.jpg" value="assets/images/originals/indominous_rex.jpg">
+                    <label class="form-label image-upload-label" for="imgFile">Or Upload Local Image / 或上传本地图片</label>
+                    <input type="file" id="imgFile" class="form-input image-file-input" accept="image/*">
+                    <div class="image-help">Local upload is stored in this browser preview and custom archive. / 本地上传会保存在当前浏览器的预览与自定义档案中。</div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="description">Field Summary / 物种概要</label>
-                <textarea id="description" class="form-textarea" placeholder="Provide a concise fossil and anatomy summary...">Large tyrannosaurid from western North America, known from well-preserved Late Cretaceous skeletons.</textarea>
+                <label class="form-label" for="description">Research Hypothesis / 研究假说</label>
+                <textarea id="description" class="form-textarea" placeholder="Describe the genome mix, observed behavior, and research purpose...">A classified hybrid research model comparing tyrannosaur mass, raptor reaction speed, and enhanced survival behavior under controlled simulation review.</textarea>
                 <div class="error-lbl" id="descErr">Summary is required / 物种概要不能为空</div>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="fact">Paleobiology Note / 古生物学要点</label>
-                <textarea id="fact" class="form-textarea" placeholder="Add one evidence-based paleobiology note...">Its robust skull and teeth were adapted for producing exceptionally high bite forces.</textarea>
+                <label class="form-label" for="fact">Genome Research Note / 基因研究备注</label>
+                <textarea id="fact" class="form-textarea" placeholder="Add one genome, ethics, or safety note...">This file is a fictional research model and must stay separate from fossil evidence or verified paleobiology records.</textarea>
                 <div class="error-lbl" id="factErr">Paleobiology note is required / 古生物学要点不能为空</div>
             </div>
 
-            <button type="submit" class="action-btn">SAVE SPECIMEN RECORD / 保存标本记录</button>
+            <button type="submit" class="action-btn">SAVE RESEARCH FILE / 保存研究档案</button>
         </form>
     </div>
 
     <!-- RIGHT: LIVE CARD PREVIEW -->
     <div class="preview-sticky">
-        <div class="preview-title">Real-Time Specimen Preview / 标本实时预览</div>
-        <div class="card" id="previewCard" data-class="carnivore" data-containment="bunker">
+        <div class="preview-title">Research Subject Preview / 研究对象预览</div>
+        <div class="card" id="previewCard" data-class="hybrid" data-containment="class">
             <div class="card-vis">
                 <!-- Preview image or fallback -->
                 <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
@@ -156,17 +159,17 @@
                       </svg>
                       <span style="font-size:0.5rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL / 无图像信号</span>
                 </div>
-                <span class="class-icon" id="pCardIcon">CARNIVORE</span>
+                <span class="class-icon" id="pCardIcon">HYBRID</span>
                 <div class="dna-overlay" id="pCardDna">AT C G   T T A C   C A T C   G A T C</div>
             </div>
             <div class="card-data">
                 <div id="pCardInnerData">
-                    <div class="spec-code" id="pCardCode">LEG-01</div>
-                    <h3 class="spec-name" id="pCardName">TYRANNOSAURUS REX</h3>
-                    <div class="spec-cn" id="pCardCn">霸王龙</div>
+                    <div class="spec-code" id="pCardCode">HYB-01</div>
+                    <h3 class="spec-name" id="pCardName">INDOMINUS REX</h3>
+                    <div class="spec-cn" id="pCardCn">帝王暴龙</div>
                 </div>
                 <div class="spec-stats">
-                    <div><b id="pCardEra">Late Cretaceous</b></div>
+                    <div><b id="pCardEra">Fictional Cretaceous Research Model</b></div>
                     <div><b id="pCardRarity">ARCHIVE P5</b></div>
                 </div>
             </div>
@@ -177,12 +180,12 @@
 <!-- SUCCESS DIALOG OVERLAY -->
 <div class="success-overlay" id="successOverlay">
     <div class="success-box">
-        <div class="success-title">RECORD SAVED / 档案已保存</div>
+        <div class="success-title">RESEARCH FILE SAVED / 研究档案已保存</div>
         <div class="success-text">
-            The specimen record has been written to the local <b>PALEO ARCHIVE</b> collection.<br>
-            Scientific fields and optional simulation metrics are stored separately in the record.<br><br>
-            标本档案已写入本地 <b>PALEO ARCHIVE</b> 图鉴。<br>
-            科学信息与可选模拟数值已在记录中明确区分。
+            The hybrid research file and its preview image have been written to the local <b>PALEO ARCHIVE</b> collection.<br>
+            For true AI image generation, this static page needs a backend or a prepared image file path.<br><br>
+            混种研究档案与预览图片已写入本地 <b>PALEO ARCHIVE</b> 图鉴。<br>
+            如果要真正 AI 生图，静态页面需要后端接口，或先准备好图片路径。
         </div>
         <button class="action-btn" onclick="window.location.href='gallery.html';" style="margin: 0;">◀ RETURN TO ARCHIVES / 返回档案库</button>
     </div>

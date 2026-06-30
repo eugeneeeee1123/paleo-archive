@@ -22,9 +22,15 @@
             <a href="gallery.html" class="back-btn">← RETURN TO GALLERY / 返回图鉴</a>
             <span style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; margin-left: 15px; display: inline-block; vertical-align: middle;" id="operatorLabel">OPERATOR / 操作员: GUEST | CLR / 权限: LEVEL 4</span>
         </div>
-        <a href="form.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(0, 200, 83, 0.03);">SPECIMEN BUILDER / 标本编辑器</a>
+        <a href="form.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">SPECIMEN BUILDER / 标本编辑器</a>
     </div>
-    <div class="sys-title">DEEP-TIME TIMELINE / 地质年代表<span> SECTION // CHRONO_INDEX</span></div>
+    <div class="sys-title">GEOLOGIC TIMELINE / 地质年代表<span> PERIOD IMAGE ATLAS</span></div>
+    <div class="timeline-scope-strip" aria-label="Timeline scope">
+        <span>EONS</span>
+        <span>ERAS</span>
+        <span class="active">PERIODS</span>
+        <span>EPOCHS</span>
+    </div>
 </div>
 
 <!-- CONTAINER -->
@@ -37,43 +43,59 @@
     <!-- RIGHT: DETAIL DISPLAY PANE -->
     <div class="details-sticky">
         <div class="details-panel" id="detailsPanel">
-            <div class="details-era" id="detEra">PHANEROZOIC EON</div>
-            <div class="details-title" id="detTitle">SELECT A PERIOD</div>
-            <div class="details-span" id="detSpan">—</div>
-            <div class="era-visual-placeholder" aria-label="Reserved geologic timeline image area"></div>
-            
-            <div class="stat-grid">
-                <div class="stat-box">
-                    <div class="stat-lbl">Atmospheric Oxygen / 大气含氧量</div>
-                    <div class="stat-val" id="detO2">—</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-lbl">Atmospheric CO2 / 大气CO₂浓度</div>
-                    <div class="stat-val" id="detCO2">—</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-lbl">Surface Temperature / 地表平均温度</div>
-                    <div class="stat-val" id="detTemp">—</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-lbl">Sea Level / 平均海平面高度</div>
-                    <div class="stat-val" id="detSeaLevel">—</div>
+            <div class="era-visual-frame" id="eraVisualFrame">
+                <img src="hanwuji.jpg" alt="Cambrian period artwork" class="era-visual-image" id="detImage">
+                <div class="era-image-pending" id="detImagePending">IMAGE PENDING / 图片待补</div>
+                <div class="era-visual-copy">
+                    <div class="details-era" id="detEra">PALEOZOIC ERA</div>
+                    <div class="details-title" id="detTitle">CAMBRIAN PERIOD / 寒武纪</div>
+                    <div class="details-span" id="detSpan">541.0 - 485.4 million years ago / 5.41亿 - 4.85亿年前</div>
                 </div>
             </div>
 
-            <div class="desc-title">Tectonic Activity & Geography / 地壳板块运动与地理</div>
-            <div class="desc-text" id="detTectonic">—</div>
+            <div class="timeline-detail-grid">
+                <div class="timeline-copy-stack">
+                    <div class="desc-title">Tectonic Activity & Geography / 地壳板块运动与地理</div>
+                    <div class="desc-text" id="detTectonic">-</div>
 
-            <div class="desc-title" id="detExtinctionTitle" style="color:var(--error-red); display:none; font-family:'Orbitron',sans-serif; text-shadow:0 0 10px var(--error-glow);">⚠️ Mass Extinction Event / 生物大灭绝事件</div>
-            <div class="desc-text" id="detExtinction" style="border: 1px dashed var(--error-red); padding: 10px; background: rgba(214, 48, 49, 0.05); display:none; margin-bottom: 25px;">—</div>
+                    <div class="desc-title" id="detExtinctionTitle" style="color:var(--error-red); display:none; font-family:'Orbitron',sans-serif; text-shadow:0 0 10px var(--error-glow);">Mass Extinction Event / 生物大灭绝事件</div>
+                    <div class="desc-text" id="detExtinction" style="border: 1px dashed var(--error-red); padding: 10px; background: rgba(169, 58, 44, 0.08); display:none; margin-bottom: 25px;">-</div>
 
-            <div class="desc-title">Evolutionary Milestones / 进化里程碑与主要生命事件</div>
-            <div class="desc-text" id="detBio">—</div>
+                    <div class="desc-title">Evolutionary Milestones / 进化里程碑与主要生命事件</div>
+                    <div class="desc-text" id="detBio">-</div>
 
-            <div class="desc-title">Dominant Archetypes / 主要优势与代表性古生物</div>
-            <div class="desc-text" id="detArchetypes">—</div>
+                    <div class="desc-title">Dominant Archetypes / 主要优势与代表性古生物</div>
+                    <div class="desc-text" id="detArchetypes">-</div>
+                </div>
 
-            <button class="action-btn" id="queryBtn" onclick="queryArchive()">🔍 QUERY ARCHIVES / 查询数据库档案</button>
+                <div class="timeline-fact-stack">
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-lbl">Atmospheric Oxygen / 大气含氧量</div>
+                            <div class="stat-val" id="detO2">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-lbl">Atmospheric CO2 / 大气CO₂浓度</div>
+                            <div class="stat-val" id="detCO2">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-lbl">Surface Temperature / 地表平均温度</div>
+                            <div class="stat-val" id="detTemp">-</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-lbl">Sea Level / 平均海平面高度</div>
+                            <div class="stat-val" id="detSeaLevel">-</div>
+                        </div>
+                    </div>
+
+                    <div class="major-events">
+                        <div class="major-events-title">Major Events / 主要事件</div>
+                        <div class="major-events-list" id="detEvents"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="action-btn" id="queryBtn" onclick="queryArchive()">QUERY ARCHIVES / 查询数据库档案</button>
         </div>
     </div>
 </div>

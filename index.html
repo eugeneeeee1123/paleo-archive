@@ -17,118 +17,160 @@
 
 <div class="site-shell">
     <header class="topbar">
-        <div class="brand-mark">PALEO<span>ARCHIVE</span> / 古生物档案库</div>
+        <a class="brand-mark" href="index.html" aria-label="PALEO ARCHIVE home">PALEO<span>ARCHIVE</span> / 古生物档案库</a>
         <nav class="top-links" aria-label="Primary">
-            <a href="gallery.html">Specimen Gallery / 图鉴</a>
-            <a href="timescale.html">Deep-Time Timeline / 年代表</a>
+            <a href="gallery.html">Archive / 图鉴</a>
+            <a href="timescale.html">Timeline / 年代表</a>
             <a href="form.html">Sequencer / 合成器</a>
         </nav>
     </header>
 
-    <main class="hero-grid">
-        <section class="hero-copy" aria-label="Paleo archive introduction">
-            <div>
-                <div class="eyebrow">Curated from local specimen imagery / 使用本地素材重构</div>
-                <h1 class="hero-title">Deep Time<span>Field Lab</span></h1>
+    <main>
+        <section class="hero-grid" aria-label="Paleo archive introduction">
+            <div class="hero-copy">
+                <div class="eyebrow">Deep time control system / 深时控制系统</div>
+                <h1 class="hero-title">The Past Is<br>Now Yours.</h1>
                 <p class="hero-deck">
-                    A cinematic paleobiology interface led by four headline specimens: Mosasaurus,
-                    Quetzalcoatlus, Tyrannosaurus rex, and Titanosaur. The archive keeps the game-like terminal
-                    energy, but shifts the focus back to fossil eras, habitats, and visual discovery.
+                    Enter a cinematic specimen database built from fossil-era imagery, field notes,
+                    habitat records, and bilingual archive tools.
                 </p>
                 <div class="hero-actions">
-                    <a class="primary-btn" href="gallery.html">Open Archive / 打开图鉴</a>
-                    <a class="ghost-btn" href="timescale.html">Read Timeline / 查看年代表</a>
+                    <a class="primary-btn" href="gallery.html">Enter Archive / 进入档案</a>
+                    <a class="ghost-btn" href="timescale.html">View Timeline / 查看年表</a>
                 </div>
             </div>
 
+            <aside class="portal-container" id="portalContainer" aria-label="Archive access terminal">
+                <div class="caution-strip">
+                    FIELD TERMINAL ACCESS / 古生物档案终端
+                </div>
+
+                <div class="portal-header">
+                    <div class="portal-logo">PALEO<span>LAB</span></div>
+                    <div class="portal-subtitle">OPTIONAL SESSION PROFILE / 可选会话配置</div>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="username">Operator Name / 操作员代号</label>
+                        <input type="text" id="username" class="form-input" placeholder="ENTER CODENAME / 输入代号..." autocomplete="off">
+                        <div class="error-message" id="usernameError">Name must be at least 3 characters / 代号长度不能少于3个字符</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="accessKey">Access Key / Security Code / 访问密钥</label>
+                        <input type="password" id="accessKey" class="form-input" placeholder="INGEN-XXXXXX..." autocomplete="off">
+                        <div class="error-message" id="keyError">Key format invalid / 密钥格式不匹配 (需符合 INGEN-XXXXXX 格式)</div>
+                    </div>
+
+                    <div class="form-group compact-field">
+                        <label class="form-label" for="clearance">Clearance Level / 安全许可等级</label>
+                        <select id="clearance" class="form-select">
+                            <option value="level 1">LEVEL 1 - VISITOR Clearance / 1级许可 - 访客等级</option>
+                            <option value="level 2">LEVEL 2 - FIELD TECH Clearance / 2级许可 - 野外技术员</option>
+                            <option value="level 3">LEVEL 3 - PALEOBIOLOGIST Clearance / 3级许可 - 古生物研究员</option>
+                            <option value="level 4" selected>LEVEL 4 - CLASSIFIED ARCHIVE CLEARANCE / 4级许可 - 机密归档</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group compact-field">
+                        <label class="form-label" for="themeSelect">Terminal Theme Tint / 终端显示色调</label>
+                        <select id="themeSelect" class="form-select" onchange="changeThemeTint(this.value)">
+                            <option value="green">ARCHIVE GOLD (DEFAULT) / 档案金 (默认)</option>
+                            <option value="amber">AMBER TINT (WARNING) / 琥珀黄 (警示)</option>
+                            <option value="red">CRT RED (ALARM) / 警报红 (危机)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">INITIATE SESSION / 启动终端</button>
+                </form>
+            </aside>
+
+            <div class="hero-feed" aria-hidden="true">
+                <span>SYSTEM STATUS: ONLINE</span>
+                <span>NEW FOSSIL RECORD: MOROCCO / 2H AGO</span>
+                <span>MARINE SPECIES ANALYZED: TETHYS SEA</span>
+            </div>
+        </section>
+
+        <section class="archive-strip" aria-label="Archive summary">
+            <div class="archive-stat"><strong>128</strong><span>Specimen records / 标本档案</span></div>
+            <div class="archive-stat"><strong>541M</strong><span>Years indexed / 深时跨度</span></div>
+            <div class="archive-stat"><strong>7</strong><span>Creature groups / 生物分类</span></div>
+            <div class="archive-stat"><strong>4</strong><span>Linked modules / 页面模块</span></div>
+        </section>
+
+        <section class="specimen-index" aria-label="Featured specimens">
+            <div class="section-kicker">Specimen Index / 标本索引</div>
+            <div class="section-heading">
+                <h2>Five gateway records.</h2>
+                <a class="inline-link" href="gallery.html">View all entries / 查看全部</a>
+            </div>
             <div class="specimen-stage">
-                <div class="specimen-tile large">
-                    <img src="assets/images/thumbs/mosasaurus.webp" alt="Mosasaurus specimen artwork" fetchpriority="high">
-                    <div class="specimen-caption">Marine apex file / Mosasaurus</div>
-                </div>
-                <div class="specimen-tile">
-                    <img src="assets/images/thumbs/Quetzalcoatlus.webp" alt="Quetzalcoatlus specimen artwork" loading="lazy" decoding="async">
-                    <div class="specimen-caption">Azhdarchid giant / Quetzalcoatlus</div>
-                </div>
-                <div class="specimen-tile">
-                    <img src="assets/images/thumbs/trex.webp" alt="Tyrannosaurus rex specimen artwork" loading="lazy" decoding="async">
-                    <div class="specimen-caption">Tyrant king file / T. rex</div>
-                </div>
-                <div class="specimen-tile">
-                    <img src="assets/images/thumbs/titan.webp" alt="Titanosaur specimen artwork" loading="lazy" decoding="async">
-                    <div class="specimen-caption">Sauropod mass record / Titanosaur</div>
-                </div>
+                <article class="specimen-tile large">
+                    <img src="assets/images/originals/trex.jpg" alt="Tyrannosaurus rex reconstruction" fetchpriority="high">
+                    <div class="specimen-caption"><b>Tyrannosaurus rex</b><span>Late Cretaceous / Terrestrial apex</span></div>
+                </article>
+                <article class="specimen-tile marine">
+                    <img src="assets/images/originals/mosasaurus.jpg" alt="Mosasaurus reconstruction" loading="lazy" decoding="async">
+                    <div class="specimen-caption"><b>Mosasaurus</b><span>Marine apex file</span></div>
+                </article>
+                <article class="specimen-tile">
+                    <img src="assets/images/originals/Quetzalcoatlus.jpg" alt="Quetzalcoatlus reconstruction" loading="lazy" decoding="async">
+                    <div class="specimen-caption"><b>Quetzalcoatlus</b><span>Azhdarchid giant</span></div>
+                </article>
+                <article class="specimen-tile">
+                    <img src="assets/images/originals/titan.jpg" alt="Titanosaur reconstruction" loading="lazy" decoding="async">
+                    <div class="specimen-caption"><b>Titanosaur</b><span>Sauropod mass record</span></div>
+                </article>
+                <article class="specimen-tile">
+                    <img src="assets/images/originals/smilodon.jpg" alt="Smilodon reconstruction" loading="lazy" decoding="async">
+                    <div class="specimen-caption"><b>Smilodon</b><span>Pleistocene / Saber-toothed apex</span></div>
+                </article>
             </div>
+        </section>
 
-            <div class="field-panels">
-                <div class="field-panel">
-                    <b>Fossil Record</b>
-                    <span>Formation-level locality notes connect each animal to the rocks and regions where evidence was recovered.</span>
+        <section class="era-console" aria-label="Deep time timeline preview">
+            <div class="section-kicker">Deep-Time Timeline / 年代表</div>
+            <div class="era-panel">
+                <div>
+                    <h2>Navigate by era, not by menu.</h2>
+                    <p>Period cards move from Triassic ignition to Cenozoic recovery, keeping each animal anchored to geological context.</p>
+                    <a class="ghost-btn" href="timescale.html">Open Timeline / 打开年代表</a>
                 </div>
-                <div class="field-panel">
-                    <b>Deep-Time Context</b>
-                    <span>Geological periods and evolutionary transitions place each specimen within a shared planetary timeline.</span>
-                </div>
-                <div class="field-panel">
-                    <b>Reconstruction Notes</b>
-                    <span>Artwork is presented as a reconstruction layer, separate from measured fossil data and simulation metrics.</span>
+                <div class="era-track">
+                    <div class="era-card triassic"><span>251-201 Ma</span><b>Triassic / 三叠纪</b></div>
+                    <div class="era-card jurassic active"><span>201-145 Ma</span><b>Jurassic / 侏罗纪</b></div>
+                    <div class="era-card cretaceous"><span>145-66 Ma</span><b>Cretaceous / 白垩纪</b></div>
+                    <div class="era-card cenozoic"><span>66 Ma-Present</span><b>Cenozoic / 新生代</b></div>
                 </div>
             </div>
         </section>
 
-        <aside class="portal-container" id="portalContainer" aria-label="Archive access terminal">
-            <div class="caution-strip">
-                FIELD TERMINAL ACCESS / 古生物档案终端
+        <section class="field-panels" aria-label="Archive method">
+            <div class="field-panel">
+                <b>Fossil Record</b>
+                <span>Formation-level notes connect animals to rocks, regions, and evidence.</span>
             </div>
-            
-            <div class="portal-header">
-                <div class="portal-logo">PALEO<span>LAB</span></div>
-                <div class="portal-subtitle">OPTIONAL SESSION PROFILE / 可选会话配置</div>
+            <div class="field-panel">
+                <b>Reconstruction Layer</b>
+                <span>Artwork is treated as interpretation, separate from measured fossil data.</span>
             </div>
+            <div class="field-panel accent-panel">
+                <b>Simulation Boundary</b>
+                <span>Hybrid and game-inspired entries stay clearly marked as fictional records.</span>
+            </div>
+        </section>
 
-            <form id="loginForm" novalidate>
-                <div class="form-group">
-                    <label class="form-label" for="username">Operator Name / 操作员代号</label>
-                    <input type="text" id="username" class="form-input" placeholder="ENTER CODENAME / 输入代号..." autocomplete="off">
-                    <div class="error-message" id="usernameError">Name must be at least 3 characters / 代号长度不能少于3个字符</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="accessKey">Access Key / Security Code / 访问密钥</label>
-                    <input type="password" id="accessKey" class="form-input" placeholder="INGEN-XXXXXX..." autocomplete="off">
-                    <div class="error-message" id="keyError">Key format invalid / 密钥格式不匹配 (需符合 INGEN-XXXXXX 格式)</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="clearance">Clearance Level / 安全许可等级</label>
-                    <select id="clearance" class="form-select">
-                        <option value="level 1">LEVEL 1 - VISITOR Clearance / 1级许可 - 访客等级</option>
-                        <option value="level 2">LEVEL 2 - FIELD TECH Clearance / 2级许可 - 野外技术员</option>
-                        <option value="level 3">LEVEL 3 - PALEOBIOLOGIST Clearance / 3级许可 - 古生物研究员</option>
-                        <option value="level 4" selected>LEVEL 4 - CLASSIFIED ARCHIVE CLEARANCE / 4级许可 - 机密归档</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="themeSelect">Terminal Theme Tint / 终端显示色调</label>
-                    <select id="themeSelect" class="form-select" onchange="changeThemeTint(this.value)">
-                        <option value="green">EMERALD GREEN (DEFAULT) / 翡翠绿 (默认)</option>
-                        <option value="amber">AMBER TINT (WARNING) / 琥珀黄 (警示)</option>
-                        <option value="red">CRT RED (ALARM) / 警报红 (危机)</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn">START SESSION / 启动会话</button>
-            </form>
-        </aside>
+        <section class="closing-cta" aria-label="Start exploring">
+            <div class="section-kicker">Begin Field Session / 开始探索</div>
+            <h2>Open the archive before the signal fades.</h2>
+            <div class="hero-actions">
+                <a class="primary-btn" href="gallery.html">Browse Specimens / 浏览标本</a>
+                <a class="ghost-btn" href="form.html">Build Scenario / 创建场景</a>
+            </div>
+        </section>
     </main>
-
-    <section class="archive-strip" aria-label="Archive summary">
-        <div class="archive-stat"><strong>4</strong><span>Hero specimens / 首页主生物</span></div>
-        <div class="archive-stat"><strong>7</strong><span>Creature groups / 生物分类</span></div>
-        <div class="archive-stat"><strong>541M</strong><span>Years indexed / 深时跨度</span></div>
-        <div class="archive-stat"><strong>4</strong><span>HTML modules / 页面模块</span></div>
-    </section>
 </div>
 
 <!-- Booting Overlay screen -->
