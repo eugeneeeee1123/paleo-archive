@@ -1,5 +1,6 @@
 (function () {
   const page = document.documentElement.dataset.page;
+  const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.png';
 
   if (page === 'gallery' || page === 'timescale') {
     (function() {
@@ -586,7 +587,7 @@ Object.assign(window, { changeThemeTint });
 
     (function loadCustomAssets() {
       const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
-      customAssets.forEach(asset => {
+      customAssets.forEach((asset, index) => {
         const grid = document.querySelector(`#sec-${asset.class} .grid`);
         if (!grid) return;
 
@@ -596,6 +597,9 @@ Object.assign(window, { changeThemeTint });
         card.setAttribute('data-rarity', asset.rarity);
         card.setAttribute('data-name', asset.name);
         card.setAttribute('data-cn', asset.cn);
+        card.setAttribute('data-custom-record', 'true');
+        card.setAttribute('data-custom-index', String(index));
+        card.setAttribute('data-status', asset.status || 'success');
 
         const rarityMap = {
           '1': 'ARCHIVE P1',
@@ -606,8 +610,12 @@ Object.assign(window, { changeThemeTint });
         };
         const rarityText = rarityMap[asset.rarity] || asset.rarity || 'Common';
         const classUpper = asset.class.toUpperCase();
+        const status = asset.status === 'failure' ? 'failure' : 'success';
+        const statusLabel = status === 'failure' ? 'SYNTHESIS FAILURE' : 'SYNTHESIS SUCCESS';
+        const isAlertUnknown = parseInt(asset.agg, 10) >= 4;
+        card.classList.toggle('synthesis-alert', isAlertUnknown);
         const safe = {
-          img: escapeHtml(asset.img || ''),
+          img: escapeHtml(UNKNOWN_HYBRID_IMAGE),
           name: escapeHtml(asset.name || ''),
           code: escapeHtml(asset.code || ''),
           cn: escapeHtml(asset.cn || ''),
@@ -620,19 +628,23 @@ Object.assign(window, { changeThemeTint });
           fact: escapeHtml(asset.fact || ''),
           desc: escapeHtml(asset.desc || ''),
           classUpper: escapeHtml(classUpper),
-          rarityText: escapeHtml(rarityText)
+          rarityText: escapeHtml(rarityText),
+          status: escapeHtml(status),
+          statusLabel: escapeHtml(statusLabel),
+          alertLabel: escapeHtml(isAlertUnknown ? 'ALERT: UNKNOWN' : 'UNKNOWN')
         };
 
         card.innerHTML = `
           <div class="card-vis">
-            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} custom reconstruction" style="${asset.img ? '' : 'display:none;'}">
-            <div class="img-fallback" style="${asset.img ? 'display:none;' : 'display:flex;'} width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;">
+            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} unknown specimen reconstruction">
+            <div class="img-fallback" style="display:none; width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;">
               <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
                 <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
               </svg>
-              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
+              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
             </div>
             <span class="class-icon">${safe.classUpper}</span>
+            <span class="unknown-alert-badge">${safe.alertLabel}</span>
           </div>
           <div class="card-data">
             <div>
@@ -644,6 +656,8 @@ Object.assign(window, { changeThemeTint });
               <div><b>${safe.era}</b></div>
               <div><b>${safe.rarityText}</b></div>
             </div>
+            <div class="synthesis-status status-${safe.status}">${safe.statusLabel}</div>
+            <button type="button" class="delete-custom-btn" aria-label="Delete custom archive">DELETE FILE</button>
           </div>
           <div class="hidden-data" 
                data-atk="${safe.atk}" 
@@ -653,9 +667,22 @@ Object.assign(window, { changeThemeTint });
                data-wgt="${safe.wgt}" 
                data-agg="${safe.agg}" 
                data-fact="${safe.fact}" 
-               data-desc="${safe.desc}"></div>
+               data-desc="${safe.desc}"
+               data-status="${safe.status}"></div>
         `;
         grid.insertBefore(card, grid.firstChild);
+        const deleteBtn = card.querySelector('.delete-custom-btn');
+        if (deleteBtn) {
+          deleteBtn.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (!confirm('Delete this custom archive file?')) return;
+            const savedAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            savedAssets.splice(index, 1);
+            localStorage.setItem('ingen_custom_assets', JSON.stringify(savedAssets));
+            window.location.reload();
+          });
+        }
 
         habitatData[asset.name] = { r: 'isla_nublar', l: 'ISLA NUBLAR — Sector 4/Lab Custom Gen' };
       });
@@ -665,6 +692,7 @@ Object.assign(window, { changeThemeTint });
       if (!Array.isArray(window.PALEO_SPECIES)) return;
       const speciesByName = new Map(window.PALEO_SPECIES.map(species => [species.name.toLowerCase(), species]));
       document.querySelectorAll('.card').forEach(card => {
+        if (card.getAttribute('data-custom-record') === 'true') return;
         const species = speciesByName.get((card.getAttribute('data-name') || '').toLowerCase());
         if (!species) return;
 
@@ -704,7 +732,7 @@ Object.assign(window, { changeThemeTint });
               <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
                 <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
               </svg>
-              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
+              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
             `;
             this.parentNode.insertBefore(fallback, this.nextSibling);
           } else {
@@ -805,6 +833,11 @@ Object.assign(window, { changeThemeTint });
       document.getElementById('mDesc').innerText = buildFieldSummary(name, cls, hd, recordLocation);
       document.getElementById('mFact').innerText = hd.getAttribute('data-fact');
       document.getElementById('mPlateLocation').innerText = recordLocation;
+      const synthStatus = hd.getAttribute('data-status') || card.getAttribute('data-status') || 'verified';
+      const synthStatusEl = document.getElementById('mSynthStatus');
+      if (synthStatusEl) {
+        synthStatusEl.innerText = synthStatus === 'failure' ? 'SYNTHESIS FAILURE' : synthStatus === 'success' ? 'SYNTHESIS SUCCESS' : 'VERIFIED RECORD';
+      }
       let stars=''; for(let i=0;i<5;i++) stars+=(i<agg)?'★':'☆';
       document.getElementById('mAgg').innerText=stars;
       // Protocol
@@ -1524,15 +1557,13 @@ Object.assign(window, { queryArchive });
         const cls = document.getElementById('classSelect').value;
         const rarity = parseInt(document.getElementById('raritySelect').value);
         const era = document.getElementById('era').value;
-        const imgInputValue = document.getElementById('imgUrl').value;
-        const img = uploadedImageData || imgInputValue;
+        const synthesisStatus = document.getElementById('synthesisStatus')?.value || 'success';
         const agg = parseInt(document.getElementById('aggLevel').value);
         const len = document.getElementById('length').value;
         const wgt = document.getElementById('weight').value;
         const speciesA = getSelectedSpecies(parentASelect);
         const speciesB = getSelectedSpecies(parentBSelect);
-        const t = Number(blendRatio?.value || 50) / 100;
-        const useCompositeImage = speciesA && speciesB && !uploadedImageData && imgInputValue.trim() === '';
+        const isAlertUnknown = agg >= 4;
 
         // Update basic values
         pCard.setAttribute('data-class', cls);
@@ -1545,24 +1576,21 @@ Object.assign(window, { queryArchive });
         const priorities = { '1': 'ARCHIVE P1', '2': 'ARCHIVE P2', '3': 'ARCHIVE P3', '4': 'ARCHIVE P4', '5': 'ARCHIVE P5' };
         pCardRarity.textContent = priorities[rarity] || 'ARCHIVE P1';
 
-        // Update image or fallback
-        if (useCompositeImage) {
-            pCardImg.style.display = 'none';
-            pCardFallback.style.display = 'none';
-            if (hybridCanvas) {
-                hybridCanvas.hidden = false;
-                renderCompositeSplice(hybridCanvas, speciesA.thumb, speciesB.thumb, t);
-            }
-        } else if (img && img.trim() !== '') {
-            if (hybridCanvas) hybridCanvas.hidden = true;
-            pCardImg.src = img;
-            pCardImg.alt = `${name || 'Custom specimen'} reconstruction`;
-            pCardImg.style.display = 'block';
-            pCardFallback.style.display = 'none';
-        } else {
-            if (hybridCanvas) hybridCanvas.hidden = true;
-            pCardImg.style.display = 'none';
-            pCardFallback.style.display = 'flex';
+        // Synthesis previews intentionally use the locked unknown visual until the file is verified.
+        if (hybridCanvas) hybridCanvas.hidden = true;
+        pCardImg.src = UNKNOWN_HYBRID_IMAGE;
+        pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
+        pCardImg.style.display = 'block';
+        pCardFallback.style.display = 'none';
+        pCardFallback.classList.toggle('alert-unknown', isAlertUnknown);
+        pCard.classList.toggle('synthesis-alert', isAlertUnknown);
+        pCard.classList.toggle('synthesis-success', synthesisStatus === 'success');
+        pCard.classList.toggle('synthesis-failure', synthesisStatus === 'failure');
+        const unknownStatus = pCardFallback.querySelector('.unknown-status') || pCardFallback.querySelector('span');
+        if (unknownStatus) {
+            unknownStatus.textContent = isAlertUnknown
+                ? 'ALERT: UNKNOWN / 警报：未知影像'
+                : 'UNKNOWN: NO_VISUAL / 未知图像信号';
         }
 
         // Update DNA sequence text mock
@@ -1586,21 +1614,20 @@ Object.assign(window, { queryArchive });
             renderHelix(dnaHelix, classColors[speciesA.class] || classColors.hybrid, classColors[speciesB.class] || classColors.hybrid);
         }
         if (mobilePreviewName) mobilePreviewName.textContent = name || 'SPECIES_NAME';
-        if (mobilePreviewStats) mobilePreviewStats.textContent = `${len || '0m'} / ${wgt || '0kg'}`;
+        if (mobilePreviewStats) {
+            const resultState = synthesisStatus === 'failure' ? 'FAILURE' : 'SUCCESS';
+            const visualState = isAlertUnknown ? `ALERT: UNKNOWN / ${resultState}` : `UNKNOWN / ${resultState}`;
+            mobilePreviewStats.textContent = `${visualState} / ${len || '0m'} / ${wgt || '0kg'}`;
+        }
         if (mobilePreviewImg) {
-            const summaryImg = uploadedImageData || imgInputValue || speciesA?.thumb || '';
-            if (summaryImg) {
-                mobilePreviewImg.src = summaryImg;
-                mobilePreviewImg.alt = `${name || 'Hybrid specimen'} preview`;
-                mobilePreviewImg.style.display = 'block';
-            } else {
-                mobilePreviewImg.style.display = 'none';
-            }
+            mobilePreviewImg.src = UNKNOWN_HYBRID_IMAGE;
+            mobilePreviewImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
+            mobilePreviewImg.style.display = 'block';
         }
     }
 
     // Bind real-time input fields
-    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'era', 'length', 'weight', 'atk', 'hp', 'imgUrl', 'aggLevel'];
+    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'synthesisStatus', 'era', 'length', 'weight', 'atk', 'hp', 'imgUrl', 'aggLevel'];
     inputs.forEach(id => {
         const el = document.getElementById(id);
         el.addEventListener('input', updatePreview);
@@ -1694,15 +1721,6 @@ Object.assign(window, { queryArchive });
         }
 
         if (isValid) {
-            let generatedImageData = '';
-            if (hybridCanvas && !hybridCanvas.hidden) {
-                try {
-                    generatedImageData = hybridCanvas.toDataURL('image/png');
-                } catch (err) {
-                    generatedImageData = '';
-                }
-            }
-
             // Compile asset payload
             const newAsset = {
                 code: document.getElementById('code').value.toUpperCase(),
@@ -1716,7 +1734,8 @@ Object.assign(window, { queryArchive });
                 atk: document.getElementById('atk').value.trim(),
                 hp: document.getElementById('hp').value.trim(),
                 agg: parseInt(document.getElementById('aggLevel').value),
-                img: uploadedImageData || document.getElementById('imgUrl').value.trim() || generatedImageData,
+                status: document.getElementById('synthesisStatus').value,
+                img: UNKNOWN_HYBRID_IMAGE,
                 desc: document.getElementById('description').value.trim(),
                 fact: document.getElementById('fact').value.trim()
             };
