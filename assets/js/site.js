@@ -574,6 +574,16 @@ Object.assign(window, { changeThemeTint });
     })();
 
     // ── LOAD CUSTOM ASSETS ────────────────
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
     (function loadCustomAssets() {
       const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
       customAssets.forEach(asset => {
@@ -596,38 +606,54 @@ Object.assign(window, { changeThemeTint });
         };
         const rarityText = rarityMap[asset.rarity] || asset.rarity || 'Common';
         const classUpper = asset.class.toUpperCase();
+        const safe = {
+          img: escapeHtml(asset.img || ''),
+          name: escapeHtml(asset.name || ''),
+          code: escapeHtml(asset.code || ''),
+          cn: escapeHtml(asset.cn || ''),
+          era: escapeHtml(asset.era || ''),
+          atk: escapeHtml(asset.atk || ''),
+          hp: escapeHtml(asset.hp || ''),
+          len: escapeHtml(asset.len || ''),
+          wgt: escapeHtml(asset.wgt || ''),
+          agg: escapeHtml(asset.agg || ''),
+          fact: escapeHtml(asset.fact || ''),
+          desc: escapeHtml(asset.desc || ''),
+          classUpper: escapeHtml(classUpper),
+          rarityText: escapeHtml(rarityText)
+        };
 
         card.innerHTML = `
           <div class="card-vis">
-            <img src="${asset.img || ''}" data-full-src="${asset.img || ''}" class="card-img" loading="lazy" decoding="async" alt="${asset.name} custom reconstruction" style="${asset.img ? '' : 'display:none;'}">
+            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} custom reconstruction" style="${asset.img ? '' : 'display:none;'}">
             <div class="img-fallback" style="${asset.img ? 'display:none;' : 'display:flex;'} width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;">
               <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
                 <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
               </svg>
-              <span style="font-size:0.5rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
+              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
             </div>
-            <span class="class-icon">${classUpper}</span>
+            <span class="class-icon">${safe.classUpper}</span>
           </div>
           <div class="card-data">
             <div>
-              <div class="spec-code">${asset.code}</div>
-              <h3 class="spec-name">${asset.name}</h3>
-              <div class="spec-cn">${asset.cn}</div>
+              <div class="spec-code">${safe.code}</div>
+              <h3 class="spec-name">${safe.name}</h3>
+              <div class="spec-cn">${safe.cn}</div>
             </div>
             <div class="spec-stats">
-              <div><b>${asset.era}</b></div>
-              <div><b>${rarityText}</b></div>
+              <div><b>${safe.era}</b></div>
+              <div><b>${safe.rarityText}</b></div>
             </div>
           </div>
           <div class="hidden-data" 
-               data-atk="${asset.atk}" 
-               data-hp="${asset.hp}" 
-               data-era="${asset.era}" 
-               data-len="${asset.len}" 
-               data-wgt="${asset.wgt}" 
-               data-agg="${asset.agg}" 
-               data-fact="${asset.fact}" 
-               data-desc="${asset.desc}"></div>
+               data-atk="${safe.atk}" 
+               data-hp="${safe.hp}" 
+               data-era="${safe.era}" 
+               data-len="${safe.len}" 
+               data-wgt="${safe.wgt}" 
+               data-agg="${safe.agg}" 
+               data-fact="${safe.fact}" 
+               data-desc="${safe.desc}"></div>
         `;
         grid.insertBefore(card, grid.firstChild);
 
@@ -635,6 +661,34 @@ Object.assign(window, { changeThemeTint });
       });
     })();
 
+    (function syncSpeciesData() {
+      if (!Array.isArray(window.PALEO_SPECIES)) return;
+      const speciesByName = new Map(window.PALEO_SPECIES.map(species => [species.name.toLowerCase(), species]));
+      document.querySelectorAll('.card').forEach(card => {
+        const species = speciesByName.get((card.getAttribute('data-name') || '').toLowerCase());
+        if (!species) return;
+
+        card.setAttribute('data-class', species.class);
+        card.setAttribute('data-rarity', species.rarity);
+        card.setAttribute('data-cn', species.cn);
+        const img = card.querySelector('.card-img');
+        if (img) {
+          img.src = species.thumb;
+          img.setAttribute('data-full-src', species.full);
+        }
+        const hiddenData = card.querySelector('.hidden-data');
+        if (hiddenData) {
+          hiddenData.setAttribute('data-atk', species.atk);
+          hiddenData.setAttribute('data-hp', species.hp);
+          hiddenData.setAttribute('data-era', species.era);
+          hiddenData.setAttribute('data-len', `${species.len}${species.lenUnit}`);
+          hiddenData.setAttribute('data-wgt', `${Number(species.wgt).toLocaleString()}${species.wgtUnit}`);
+          hiddenData.setAttribute('data-agg', species.agg);
+          hiddenData.setAttribute('data-fact', species.fact);
+          hiddenData.setAttribute('data-desc', species.desc);
+        }
+      });
+    })();
     // ── IMAGE ERROR FALLBACK REGISTRATION ──
     document.querySelectorAll('.card').forEach(card => {
       const img = card.querySelector('.card-img');
@@ -650,7 +704,7 @@ Object.assign(window, { changeThemeTint });
               <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
                 <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
               </svg>
-              <span style="font-size:0.5rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
+              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL</span>
             `;
             this.parentNode.insertBefore(fallback, this.nextSibling);
           } else {
@@ -757,7 +811,7 @@ Object.assign(window, { changeThemeTint });
       const proto=document.getElementById('mProtocol');
       if(proto){proto.className='mi-protocol proto-'+ct;document.getElementById('mProtoLabel').innerText=CT.labels[ct];}
       // Border
-      const clrMap={hybrid:'#d63031',carnivore:'#e74c3c',herbivore:'#27ae60',pterosaur:'#f1c40f',amphibian:'#00d2d3',aquatic:'#0984e3',cenozoic:'#a29bfe'};
+      const clrMap={hybrid:'#e84393',carnivore:'#e74c3c',herbivore:'#27ae60',pterosaur:'#f1c40f',amphibian:'#00d2d3',aquatic:'#0984e3',cenozoic:'#a29bfe'};
       document.querySelector('.modal-window').style.borderColor=clrMap[cls]||'#444';
       const btn=document.querySelector('.deploy-btn');
       if(btn&&ct==='class'){btn.style.borderColor='#d63031';btn.style.color='#ff7675';btn.textContent='SIMULATION RESTRICTED / 模拟受限';}
@@ -1152,6 +1206,38 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 
     let currentSelectedSearch = 'Cretaceous';
     let isPrecambrian = false;
+    const timescaleSpecies = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
+    const archetypeAliases = {
+        'T-Rex': 'Tyrannosaurus Rex',
+        'Mammoths': 'Mammoth',
+        'Smilodons': 'Smilodon',
+        'Woolly Rhinos': 'Woolly Rhino',
+        'Trilobites': 'Trilobite',
+        'giant amphibians': 'Mastodonsaurus'
+    };
+
+    function findArchetypeSpecimen(label) {
+        const clean = label.trim();
+        const targetName = archetypeAliases[clean] || clean;
+        return timescaleSpecies.find(species => species.name.toLowerCase() === targetName.toLowerCase());
+    }
+
+    function renderArchetypeLinks(textValue) {
+        const archetypesEl = document.getElementById('detArchetypes');
+        archetypesEl.textContent = '';
+        textValue.split(/(,\s*|\s\/\s)/).forEach(part => {
+            const specimen = findArchetypeSpecimen(part);
+            if (!specimen) {
+                archetypesEl.appendChild(document.createTextNode(part));
+                return;
+            }
+            const link = document.createElement('a');
+            link.href = `gallery.html?specimen=${encodeURIComponent(specimen.name)}`;
+            link.textContent = part;
+            link.className = 'archetype-link';
+            archetypesEl.appendChild(link);
+        });
+    }
 
     // Populate timeline list
     function initTimeline() {
@@ -1196,7 +1282,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
         document.getElementById('detSeaLevel').textContent = data.sea;
         document.getElementById('detTectonic').textContent = data.tectonic;
         document.getElementById('detBio').textContent = data.bio;
-        document.getElementById('detArchetypes').textContent = data.archetypes;
+        renderArchetypeLinks(data.archetypes);
 
         const image = document.getElementById('detImage');
         const imagePending = document.getElementById('detImagePending');
@@ -1289,6 +1375,16 @@ Object.assign(window, { queryArchive });
     const pCardRarity = document.getElementById('pCardRarity');
     const pCardInnerData = document.getElementById('pCardInnerData');
     const imgFileInput = document.getElementById('imgFile');
+    const parentASelect = document.getElementById('parentASelect');
+    const parentBSelect = document.getElementById('parentBSelect');
+    const blendRatio = document.getElementById('blendRatio');
+    const blendReadout = document.getElementById('blendReadout');
+    const hybridCanvas = document.getElementById('hybridCanvas');
+    const dnaHelix = document.getElementById('dnaHelix');
+    const mobilePreviewImg = document.getElementById('mobilePreviewImg');
+    const mobilePreviewName = document.getElementById('mobilePreviewName');
+    const mobilePreviewStats = document.getElementById('mobilePreviewStats');
+    const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
     let uploadedImageData = '';
 
     // Star Aggression and Containment calculations
@@ -1302,6 +1398,125 @@ Object.assign(window, { queryArchive });
 
     const badgeLabels = { open:'SIM: OPEN RANGE / 模拟开放区', fence:'SIM: MONITORED / 模拟监控', bunker:'SIM: REINFORCED / 模拟加固', class:'FICTIONAL FILE / 虚构档案' };
 
+    const classColors = {
+        hybrid: '#e84393',
+        carnivore: '#e74c3c',
+        herbivore: '#27ae60',
+        pterosaur: '#f1c40f',
+        amphibian: '#00d2d3',
+        aquatic: '#0984e3',
+        cenozoic: '#a29bfe'
+    };
+
+    function formatWeight(value) {
+        return `${Math.round(value).toLocaleString()}kg`;
+    }
+
+    function getSelectedSpecies(selectEl) {
+        return speciesData.find(species => species.key === selectEl?.value);
+    }
+
+    function lerp(a, b, t) {
+        return a + (b - a) * t;
+    }
+
+    function blendStats(speciesA, speciesB, t) {
+        return {
+            len: Number(lerp(speciesA.len || 0, speciesB.len || 0, t).toFixed(1)),
+            wgt: Math.round(lerp(speciesA.wgt || 0, speciesB.wgt || 0, t)),
+            atk: Math.round(lerp(speciesA.atk || 0, speciesB.atk || 0, t)),
+            hp: Math.round(lerp(speciesA.hp || 0, speciesB.hp || 0, t))
+        };
+    }
+
+    function renderHelix(container, colorA, colorB, rungCount = 24) {
+        if (!container) return;
+        container.style.setProperty('--strand-a', colorA);
+        container.style.setProperty('--strand-b', colorB);
+        container.textContent = '';
+        for (let i = 0; i < rungCount; i++) {
+            const rung = document.createElement('div');
+            rung.className = 'dna-rung';
+            const depth = i / rungCount;
+            rung.style.top = `${depth * 100}%`;
+            rung.style.animationDelay = `${depth * 3}s`;
+            container.appendChild(rung);
+        }
+    }
+
+    function renderCompositeSplice(canvas, imgAUrl, imgBUrl, blendRatioValue) {
+        if (!canvas || !imgAUrl || !imgBUrl) return;
+        const ctx = canvas.getContext('2d');
+        const imgA = new Image();
+        const imgB = new Image();
+        let loaded = 0;
+
+        function draw() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const splitX = Math.max(1, Math.min(width - 1, Math.round(width * blendRatioValue)));
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#050708';
+            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(imgA, 0, 0, splitX, height, 0, 0, splitX, height);
+            ctx.drawImage(imgB, splitX, 0, width - splitX, height, splitX, 0, width - splitX, height);
+            ctx.fillStyle = 'rgba(0, 255, 150, 0.035)';
+            for (let y = 0; y < height; y += 5) ctx.fillRect(0, y, width, 1);
+            ctx.fillStyle = 'rgba(232, 67, 147, 0.16)';
+            ctx.fillRect(splitX - 2, 0, 4, height);
+        }
+
+        imgA.onload = () => { if (++loaded === 2) draw(); };
+        imgB.onload = () => { if (++loaded === 2) draw(); };
+        imgA.onerror = imgB.onerror = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#050708';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        };
+        imgA.src = imgAUrl;
+        imgB.src = imgBUrl;
+    }
+
+    function populateParentSelectors() {
+        if (!parentASelect || !parentBSelect || !speciesData.length) return;
+        const selectable = speciesData.filter(species => species.class !== 'hybrid' && species.len !== null && species.wgt !== null);
+        selectable.forEach(species => {
+            const label = `${species.name} / ${species.cn}`;
+            parentASelect.add(new Option(label, species.key));
+            parentBSelect.add(new Option(label, species.key));
+        });
+        parentASelect.value = selectable.find(species => species.key === 'tyrannosaurus_rex')?.key || selectable[0]?.key || '';
+        parentBSelect.value = selectable.find(species => species.key === 'spinosaurus')?.key || selectable[1]?.key || parentASelect.value;
+    }
+
+    function applyHybridBlend() {
+        const speciesA = getSelectedSpecies(parentASelect);
+        const speciesB = getSelectedSpecies(parentBSelect);
+        if (!speciesA || !speciesB) return;
+
+        const t = Number(blendRatio?.value || 50) / 100;
+        const stats = blendStats(speciesA, speciesB, t);
+        const nameBlend = `${speciesA.name.split(' ')[0]}-${speciesB.name.split(' ')[0]} Hybrid`;
+        const cnBlend = `${speciesA.cn}${speciesB.cn}混种`;
+
+        document.getElementById('classSelect').value = 'hybrid';
+        document.getElementById('name').value = nameBlend.toUpperCase();
+        document.getElementById('cnName').value = cnBlend;
+        document.getElementById('era').value = 'Fictional Hybrid Research Model';
+        document.getElementById('length').value = `${stats.len}m`;
+        document.getElementById('weight').value = formatWeight(stats.wgt);
+        document.getElementById('atk').value = stats.atk;
+        document.getElementById('hp').value = stats.hp;
+        document.getElementById('aggLevel').value = String(Math.max(speciesA.agg || 3, speciesB.agg || 3));
+        document.getElementById('description').value = `Hybrid simulation blending ${speciesA.name} mass and field traits with ${speciesB.name} morphology under controlled archive review.`;
+        document.getElementById('fact').value = `Genome dominance: ${Math.round(t * 100)}% ${speciesB.name}. This remains a fictional research model.`;
+        document.getElementById('imgUrl').value = '';
+        uploadedImageData = '';
+        if (imgFileInput) imgFileInput.value = '';
+        if (blendReadout) blendReadout.textContent = `${Math.round(t * 100)}% Parent B / 亲本 B 显性`;
+        updatePreview();
+    }
+
     function updatePreview() {
         const code = document.getElementById('code').value.toUpperCase();
         const name = document.getElementById('name').value.toUpperCase();
@@ -1309,8 +1524,15 @@ Object.assign(window, { queryArchive });
         const cls = document.getElementById('classSelect').value;
         const rarity = parseInt(document.getElementById('raritySelect').value);
         const era = document.getElementById('era').value;
-        const img = uploadedImageData || document.getElementById('imgUrl').value;
+        const imgInputValue = document.getElementById('imgUrl').value;
+        const img = uploadedImageData || imgInputValue;
         const agg = parseInt(document.getElementById('aggLevel').value);
+        const len = document.getElementById('length').value;
+        const wgt = document.getElementById('weight').value;
+        const speciesA = getSelectedSpecies(parentASelect);
+        const speciesB = getSelectedSpecies(parentBSelect);
+        const t = Number(blendRatio?.value || 50) / 100;
+        const useCompositeImage = speciesA && speciesB && !uploadedImageData && imgInputValue.trim() === '';
 
         // Update basic values
         pCard.setAttribute('data-class', cls);
@@ -1324,12 +1546,21 @@ Object.assign(window, { queryArchive });
         pCardRarity.textContent = priorities[rarity] || 'ARCHIVE P1';
 
         // Update image or fallback
-        if (img && img.trim() !== '') {
+        if (useCompositeImage) {
+            pCardImg.style.display = 'none';
+            pCardFallback.style.display = 'none';
+            if (hybridCanvas) {
+                hybridCanvas.hidden = false;
+                renderCompositeSplice(hybridCanvas, speciesA.thumb, speciesB.thumb, t);
+            }
+        } else if (img && img.trim() !== '') {
+            if (hybridCanvas) hybridCanvas.hidden = true;
             pCardImg.src = img;
             pCardImg.alt = `${name || 'Custom specimen'} reconstruction`;
             pCardImg.style.display = 'block';
             pCardFallback.style.display = 'none';
         } else {
+            if (hybridCanvas) hybridCanvas.hidden = true;
             pCardImg.style.display = 'none';
             pCardFallback.style.display = 'flex';
         }
@@ -1350,10 +1581,26 @@ Object.assign(window, { queryArchive });
         badge.className = 'containment-badge ct-' + ct;
         badge.textContent = badgeLabels[ct];
         pCardInnerData.appendChild(badge);
+
+        if (speciesA && speciesB) {
+            renderHelix(dnaHelix, classColors[speciesA.class] || classColors.hybrid, classColors[speciesB.class] || classColors.hybrid);
+        }
+        if (mobilePreviewName) mobilePreviewName.textContent = name || 'SPECIES_NAME';
+        if (mobilePreviewStats) mobilePreviewStats.textContent = `${len || '0m'} / ${wgt || '0kg'}`;
+        if (mobilePreviewImg) {
+            const summaryImg = uploadedImageData || imgInputValue || speciesA?.thumb || '';
+            if (summaryImg) {
+                mobilePreviewImg.src = summaryImg;
+                mobilePreviewImg.alt = `${name || 'Hybrid specimen'} preview`;
+                mobilePreviewImg.style.display = 'block';
+            } else {
+                mobilePreviewImg.style.display = 'none';
+            }
+        }
     }
 
     // Bind real-time input fields
-    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'era', 'imgUrl', 'aggLevel'];
+    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'era', 'length', 'weight', 'atk', 'hp', 'imgUrl', 'aggLevel'];
     inputs.forEach(id => {
         const el = document.getElementById(id);
         el.addEventListener('input', updatePreview);
@@ -1388,7 +1635,12 @@ Object.assign(window, { queryArchive });
     }
 
     // Run preview once on load
-    updatePreview();
+    populateParentSelectors();
+    if (parentASelect) parentASelect.addEventListener('change', applyHybridBlend);
+    if (parentBSelect) parentBSelect.addEventListener('change', applyHybridBlend);
+    if (blendRatio) blendRatio.addEventListener('input', applyHybridBlend);
+    if (speciesData.length) applyHybridBlend();
+    else updatePreview();
 
     // ── FORM VALIDATION & SAVE ────────────────
     const form = document.getElementById('synthesisForm');
@@ -1442,6 +1694,15 @@ Object.assign(window, { queryArchive });
         }
 
         if (isValid) {
+            let generatedImageData = '';
+            if (hybridCanvas && !hybridCanvas.hidden) {
+                try {
+                    generatedImageData = hybridCanvas.toDataURL('image/png');
+                } catch (err) {
+                    generatedImageData = '';
+                }
+            }
+
             // Compile asset payload
             const newAsset = {
                 code: document.getElementById('code').value.toUpperCase(),
@@ -1455,7 +1716,7 @@ Object.assign(window, { queryArchive });
                 atk: document.getElementById('atk').value.trim(),
                 hp: document.getElementById('hp').value.trim(),
                 agg: parseInt(document.getElementById('aggLevel').value),
-                img: uploadedImageData || document.getElementById('imgUrl').value.trim(),
+                img: uploadedImageData || document.getElementById('imgUrl').value.trim() || generatedImageData,
                 desc: document.getElementById('description').value.trim(),
                 fact: document.getElementById('fact').value.trim()
             };
@@ -1472,356 +1733,7 @@ Object.assign(window, { queryArchive });
 
 }
 
-  function init_paleo() {
-// ── BOOT ──────────────────────────────
-    const bootLines = [
-      'INGEN PROPRIETARY SYSTEMS v4.2 ...... OK',
-      'LOADING SECURITY PROTOCOLS .......... OK',
-      'VERIFYING TERMINAL CLEARANCE ........ GRANTED',
-      'INITIALIZING ASSET DATABASE ......... OK',
-      'DNA SEQUENCE INDEXING ............... DONE',
-      'PADDOCK STATUS NETWORK .............. ONLINE',
-      '> WELCOME — LEVEL 4 CLEARANCE ACTIVE',
-      '> SYSTEM READY',
-    ];
-    let bIdx = 0;
-    const bTextEl = document.getElementById('boot-text');
-    const bOverlay = document.getElementById('boot-overlay');
-    function addBootLine() {
-      if (bIdx < bootLines.length) {
-        const s = document.createElement('span');
-        s.className = 'boot-line'; s.textContent = bootLines[bIdx];
-        bTextEl.insertBefore(s, document.getElementById('boot-cursor'));
-        bIdx++;
-        setTimeout(addBootLine, bIdx < 6 ? 260 : 380);
-      } else {
-        setTimeout(() => {
-          bOverlay.classList.add('fade-out');
-          setTimeout(() => bOverlay.style.display='none', 900);
-        }, 500);
-      }
-    }
-    setTimeout(addBootLine, 300);
-
-    // ── CLOCK ─────────────────────────────
-    function updateClock() {
-      const el = document.getElementById('sysClock');
-      if (el) el.textContent = new Date().toTimeString().slice(0,8);
-    }
-    setInterval(updateClock, 1000); updateClock();
-
-    // ── CONTAINMENT LOGIC ──────────────────
-    const CT = {
-      labels: { open:'🟢 OPEN PADDOCK', fence:'⚡ ELECTRIC FENCE', bunker:'🔶 REINFORCED BUNKER', class:'🔴 CLASSIFIED — DO NOT DEPLOY' },
-      badgeLabels: { open:'OPEN PADDOCK', fence:'ELECTRIC FENCE', bunker:'REINFORCED BUNKER', class:'CLASSIFIED' },
-    };
-    function getContainment(cls, rarity, agg) {
-      if (cls==='hybrid') return 'class';
-      if (agg<=2 && (cls==='herbivore'||cls==='cenozoic')) return 'open';
-      if (rarity>=4 || agg>=4) return 'bunker';
-      if (agg>=3) return 'fence';
-      return 'open';
-    }
-    function getPaddock(cls, name) {
-      if (cls==='hybrid') return 'indominus';
-      if (cls==='aquatic') return 'mosasaur';
-      if (cls==='pterosaur') return 'aviary';
-      if (cls==='herbivore') return 'gyrosphere';
-      if (cls==='cenozoic') return 'cenozoic';
-      if (cls==='amphibian') return 'sector5';
-      const small = ['Velociraptor','Blue','Deinonychus','Troodon','Coelophysis','Compsognathus'];
-      return small.includes(name) ? 'raptor' : 'trex';
-    }
-
-    // ── HABITAT DATA ───────────────────────
-    const habitatData = {
-      'Indominus Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Indoraptor':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Scorpios Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Diabolus Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Velocipterus':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Blue':{r:'isla_nublar',l:'ISLA NUBLAR — Raptor Pen B'},
-      'Bumpy':{r:'isla_nublar',l:'ISLA NUBLAR — Camp Cretaceous'},
-      'Mosasaurus':{r:'isla_nublar',l:'ISLA NUBLAR — JW Mosasaur Lagoon'},
-      'Tyrannosaurus Rex':{r:'north_america',l:'Hell Creek Formation, Montana/Wyoming, USA'},
-      'Triceratops':{r:'north_america',l:'Lance Formation, Wyoming/Montana, USA'},
-      'Allosaurus':{r:'north_america',l:'Morrison Formation, Colorado/Wyoming, USA'},
-      'Brachiosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Velociraptor':{r:'asia',l:'Djadochta Formation, Mongolia'},
-      'Carnotaurus':{r:'south_america',l:'La Colonia Formation, Patagonia, Argentina'},
-      'Spinosaurus':{r:'africa',l:'Kem Kem Formation, Morocco/Egypt'},
-      'Giganotosaurus':{r:'south_america',l:'Candeleros Formation, Neuquén, Argentina'},
-      'Carcharodontosaurus':{r:'africa',l:'Kem Kem Formation, North Africa'},
-      'Tarbosaurus':{r:'asia',l:'Nemegt Formation, Gobi Desert, Mongolia'},
-      'Mapusaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Argentinosaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Albertosaurus':{r:'north_america',l:'Horseshoe Canyon, Alberta, Canada'},
-      'Suchomimus':{r:'africa',l:'Elrhaz Formation, Niger'},
-      'Utahraptor':{r:'north_america',l:'Cedar Mountain Formation, Utah, USA'},
-      'Deinonychus':{r:'north_america',l:'Cloverly Formation, Montana, USA'},
-      'Majungasaurus':{r:'africa',l:'Maevarano Formation, Madagascar'},
-      'Yutyrannus':{r:'asia',l:'Yixian Formation, Liaoning, China'},
-      'Inostrancevia':{r:'europe',l:'Late Permian, Russia'},
-      'Cryolophosaurus':{r:'antarctica',l:'Hanson Formation, Antarctica'},
-      'Baryonyx':{r:'europe',l:'Wealden Group, Surrey, England'},
-      'Allosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Herrerasaurus':{r:'south_america',l:'Ischigualasto Formation, Argentina'},
-      'Coelophysis':{r:'north_america',l:'Ghost Ranch, New Mexico, USA'},
-      'Compsognathus':{r:'europe',l:'Solnhofen Limestone, Bavaria, Germany'},
-      'Ceratosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Dimetrodon':{r:'north_america',l:'Red Beds, Texas/Oklahoma, USA'},
-      'Troodon':{r:'north_america',l:'Two Medicine Formation, Montana, USA'},
-      'Bumpy':{r:'isla_nublar',l:'ISLA NUBLAR — Camp Cretaceous'},
-      'Therizinosaurus':{r:'asia',l:'Nemegt Formation, Mongolia'},
-      'Brachiosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Ankylosaurus':{r:'north_america',l:'Hell Creek Formation, Montana, USA'},
-      'Stegosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Brontosaurus':{r:'north_america',l:'Morrison Formation, Wyoming, USA'},
-      'Supersaurus':{r:'north_america',l:'Morrison Formation, Utah/Colorado, USA'},
-      'Seismosaurus':{r:'north_america',l:'Morrison Formation, New Mexico, USA'},
-      'Argentinosaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Mamenchisaurus':{r:'asia',l:'Shaximiao Formation, Sichuan, China'},
-      'Diplodocus':{r:'north_america',l:'Morrison Formation, Wyoming/Colorado, USA'},
-      'Pachycephalosaurus':{r:'north_america',l:'Lance/Hell Creek Formation, USA/Canada'},
-      'Parasaurolophus':{r:'north_america',l:'Campanian, Alberta / New Mexico, USA'},
-      'Iguanodon':{r:'europe',l:'Wealden Group, Belgium / England'},
-      'Titanosaurus':{r:'asia',l:'Lameta Formation, India'},
-      'Maiasaura':{r:'north_america',l:'Two Medicine Formation, Montana, USA'},
-      'Camarasaurus':{r:'north_america',l:'Morrison Formation, USA'},
-      'Plateosaurus':{r:'europe',l:'Triassic, Germany / Switzerland'},
-      'Psittacosaurus':{r:'asia',l:'Yixian Formation, China / Mongolia'},
-      'Dodo':{r:'africa',l:'Mauritius Island, Indian Ocean (Extinct 1662)'},
-      'Quetzalcoatlus':{r:'north_america',l:'Javelina Formation, Texas, USA'},
-      'Pteranodon':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Tapejara':{r:'south_america',l:'Santana Formation, Ceará, Brazil'},
-      'Dimorphodon':{r:'europe',l:'Lower Jurassic, Dorset, England'},
-      'Hatzegopteryx':{r:'europe',l:'Maastrichtian, Transylvania, Romania'},
-      'Sarcosuchus':{r:'africa',l:'Elrhaz Formation, Niger'},
-      'Purussaurus':{r:'south_america',l:'Solimões Formation, Amazon Basin'},
-      'Mastodonsaurus':{r:'europe',l:'Triassic, Germany / Russia'},
-      'Deinosuchus':{r:'north_america',l:'Aguja Formation, Texas / Montana, USA'},
-      'Prestosuchus':{r:'south_america',l:'Santa Maria Formation, Rio Grande do Sul, Brazil'},
-      'Baurusuchus':{r:'south_america',l:'Bauru Group, São Paulo, Brazil'},
-      'Kaprosuchus':{r:'africa',l:'Kem Kem Formation, Saharan Africa'},
-      'Metoposaurus':{r:'europe',l:'Triassic, Portugal / Poland'},
-      'Rutiodon':{r:'north_america',l:'Triassic, Eastern North America'},
-      'Diplocaulus':{r:'north_america',l:'Permian, Texas, USA'},
-      'Crassigyrinus':{r:'europe',l:'Carboniferous, Scotland'},
-      'Ichthyostega':{r:'greenland',l:'Devonian, Greenland'},
-      'Tiktaalik':{r:'north_america',l:'Ellesmere Island, Nunavut, Canada'},
-      'Acanthostega':{r:'greenland',l:'Late Devonian, Greenland'},
-      'Panderichthys':{r:'europe',l:'Devonian, Latvia'},
-      'Postosuchus':{r:'north_america',l:'Dockum Formation, Texas, USA'},
-      'Mosasaurus':{r:'isla_nublar',l:'ISLA NUBLAR — JW Mosasaur Lagoon (also global Late Cret.)'},
-      'Megalodon':{r:'global_ocean',l:'Global Ocean — Miocene / Pliocene'},
-      'Tylosaurus':{r:'north_america',l:'Western Interior Seaway, Kansas, USA'},
-      'Shonisaurus':{r:'north_america',l:'Luning Formation, Nevada, USA'},
-      'Pliosaurus':{r:'europe',l:'Late Jurassic, Norway / England'},
-      'Archelon':{r:'north_america',l:'Pierre Shale, South Dakota, USA'},
-      'Anomalocaris':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Livyatan':{r:'south_america',l:'Pisco Formation, Ica, Peru'},
-      'Shastasaurus':{r:'global_ocean',l:'Late Triassic Pacific (Canada / China)'},
-      'Dunkleosteus':{r:'north_america',l:'Cleveland Shale, Ohio, USA'},
-      'Liopleurodon':{r:'europe',l:'Callovian, France / England'},
-      'Basilosaurus':{r:'africa',l:'Wadi Al-Hitan, Fayum, Egypt'},
-      'Stethacanthus':{r:'europe',l:'Late Devonian, Scotland / North America'},
-      'Ophthalmosaurus':{r:'europe',l:'Oxford Clay, England'},
-      'Metriorhynchus':{r:'europe',l:'Callovian, France / England'},
-      'Orthoceras':{r:'global_ocean',l:'Global Ordovician oceans'},
-      'Leedsichthys':{r:'europe',l:'Oxford Clay, England'},
-      'Xiphactinus':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Helicoprion':{r:'global_ocean',l:'Global Permian oceans'},
-      'Tusoteuthis':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Opabinia':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Cladoselache':{r:'north_america',l:'Cleveland Shale, Ohio, USA'},
-      'Nothosaurus':{r:'europe',l:'Triassic, Europe / China'},
-      'Pterygotus':{r:'global_ocean',l:'Silurian oceans, globally distributed'},
-      'Elasmosaurus':{r:'north_america',l:'Pierre Shale, Kansas, USA'},
-      'Mixosaurus':{r:'europe',l:'Triassic, Switzerland / Italy'},
-      'Ichthyosaurus':{r:'europe',l:'Lower Jurassic, Dorset, England'},
-      'Bothriolepis':{r:'global',l:'Global — Late Devonian (All Continents)'},
-      'Coelacanth':{r:'africa',l:'Indian Ocean, Comoros Islands — Still Alive Today'},
-      'Ammonite':{r:'global_ocean',l:'Global Ocean — Devonian to Cretaceous'},
-      'Trilobite':{r:'global_ocean',l:'Global — Cambrian to Permian (All Continents)'},
-      'Pikaia':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Deinotherium':{r:'africa',l:'Miocene Africa / Southern Eurasia'},
-      'Megacerops':{r:'north_america',l:'White River Formation, South Dakota, USA'},
-      'Panthera Atrox':{r:'north_america',l:'Pleistocene North America'},
-      'Doedicurus':{r:'south_america',l:'Pleistocene, Argentina / Uruguay'},
-      'Mammoth':{r:'global',l:'Global — Eurasia / North America (Pleistocene)'},
-      'Smilodon':{r:'north_america',l:'La Brea Tar Pits, California / South America'},
-      'Amphicyon':{r:'europe',l:'Miocene, Europe / Asia / North America'},
-      'Gastornis':{r:'europe',l:'Paleocene–Eocene, France / Germany'},
-      'Chalicotherium':{r:'asia',l:'Miocene, Eurasia'},
-      'Titanoboa':{r:'south_america',l:'Cerrejón Formation, Colombia'},
-      'Terror Bird':{r:'south_america',l:'Santa Cruz Formation, Patagonia, Argentina'},
-      'Woolly Rhino':{r:'asia',l:'Pleistocene, Siberia / Europe'},
-      'Megatherium':{r:'south_america',l:'Pleistocene, Argentina / South America'},
-      'Paraceratherium':{r:'asia',l:'Oligocene, Kazakhstan / Pakistan / China'},
-      'Diprotodon':{r:'australia',l:'Pleistocene, Australia'},
-      'Glyptodon':{r:'south_america',l:'Pleistocene, South America'},
-      'Dire Wolf':{r:'north_america',l:'La Brea Tar Pits, California, USA'},
-      'Dire Bear':{r:'north_america',l:'Pleistocene, North America'},
-      'Thylacoleo':{r:'australia',l:'Pleistocene, Australia'},
-      'Andrewsarchus':{r:'asia',l:'Irdin Manha Formation, Mongolia'},
-      'Hyaenodon':{r:'asia',l:'Eocene–Miocene, Europe / Asia / Africa'},
-      'Megalania':{r:'australia',l:'Pleistocene, Australia'},
-      'Argentavis':{r:'south_america',l:'Huayquerian Formation, Argentina'},
-      'Procoptodon':{r:'australia',l:'Pleistocene, Australia'},
-      'Borophagus':{r:'north_america',l:'Miocene, North America'},
-    };
-
-    function highlightMap(name, classified) {
-      document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','classified-zone'));
-      document.querySelectorAll('.map-dot').forEach(d=>d.classList.remove('active'));
-      const d = habitatData[name];
-      const cap = document.getElementById('mapCaption');
-      const lt = document.getElementById('mapLocText');
-      if (!d) { lt.textContent='DATA UNAVAILABLE'; cap.className='map-caption'; return; }
-      const reg = d.r;
-      const regEl = document.getElementById('reg-'+reg);
-      const dotEl = document.getElementById('dot-'+reg);
-      if (classified||reg==='isla_nublar') {
-        if (regEl) regEl.classList.add('classified-zone');
-        if (dotEl) { dotEl.classList.add('active','classified'); }
-        cap.className='map-caption cls-cap';
-      } else {
-        if (regEl) regEl.classList.add('active');
-        if (dotEl) dotEl.classList.add('active');
-        cap.className='map-caption';
-      }
-      lt.textContent = d.l;
-    }
-
-    // ── APPLY CONTAINMENT TO CARDS ──────────
-    document.querySelectorAll('.card').forEach(card => {
-      const cls = card.getAttribute('data-class');
-      const rarity = parseInt(card.getAttribute('data-rarity'));
-      const hd = card.querySelector('.hidden-data');
-      const agg = hd ? parseInt(hd.getAttribute('data-agg')) : 3;
-      const ct = getContainment(cls, rarity, agg);
-      card.setAttribute('data-containment', ct);
-      // Add DNA overlay
-      const vis = card.querySelector('.card-vis');
-      if (vis && !vis.querySelector('.dna-overlay')) {
-        const dna = document.createElement('div');
-        dna.className = 'dna-overlay';
-        const bases='ATCG'; let seq='';
-        for(let i=0;i<36;i++) seq+=(i>0&&i%4===0?' ':'')+bases[Math.floor(Math.random()*4)];
-        dna.textContent = seq;
-        vis.appendChild(dna);
-      }
-      // Add badge
-      const cd = card.querySelector('.card-data > div');
-      if (cd && !cd.querySelector('.containment-badge')) {
-        const b = document.createElement('div');
-        b.className='containment-badge ct-'+ct;
-        b.textContent = CT.badgeLabels[ct];
-        cd.appendChild(b);
-      }
-    });
-
-    // ── MODAL ────────────────────────────────
-    let currentPaddock = null, currentCT = null;
-    function openModal(card) {
-      const hd = card.querySelector('.hidden-data');
-      const name = card.getAttribute('data-name');
-      const cls = card.getAttribute('data-class');
-      const rarity = parseInt(card.getAttribute('data-rarity'));
-      const agg = parseInt(hd.getAttribute('data-agg'));
-      const ct = getContainment(cls, rarity, agg);
-      currentCT = ct; currentPaddock = getPaddock(cls, name);
-      document.getElementById('mImg').src = card.querySelector('.card-img').src;
-      document.getElementById('mName').innerText = name;
-      document.getElementById('mCn').innerText = card.getAttribute('data-cn');
-      document.getElementById('mClass').innerText = cls.toUpperCase();
-      document.getElementById('mCode').innerText = card.querySelector('.spec-code').innerText;
-      document.getElementById('mAtk').innerText = hd.getAttribute('data-atk');
-      document.getElementById('mHp').innerText = hd.getAttribute('data-hp');
-      document.getElementById('mEra').innerText = hd.getAttribute('data-era');
-      document.getElementById('mLen').innerText = hd.getAttribute('data-len');
-      document.getElementById('mWgt').innerText = hd.getAttribute('data-wgt');
-      document.getElementById('mDesc').innerText = hd.getAttribute('data-desc');
-      document.getElementById('mFact').innerText = '"'+hd.getAttribute('data-fact')+'"';
-      let stars=''; for(let i=0;i<5;i++) stars+=(i<agg)?'★':'☆';
-      document.getElementById('mAgg').innerText=stars;
-      // Protocol
-      const proto=document.getElementById('mProtocol');
-      if(proto){proto.className='mi-protocol proto-'+ct;document.getElementById('mProtoLabel').innerText=CT.labels[ct];}
-      // Border
-      const clrMap={hybrid:'#d63031',carnivore:'#e74c3c',herbivore:'#27ae60',pterosaur:'#f1c40f',amphibian:'#00d2d3',aquatic:'#0984e3',cenozoic:'#a29bfe'};
-      document.querySelector('.modal-window').style.borderColor=clrMap[cls]||'#444';
-      const btn=document.querySelector('.deploy-btn');
-      if(btn&&ct==='class'){btn.style.borderColor='#d63031';btn.style.color='#d63031';btn.textContent='⛔ DEPLOYMENT RESTRICTED';}
-      else if(btn){btn.style.borderColor='';btn.style.color='';btn.textContent='▶ DEPLOY ASSET TO PADDOCK';}
-      // Map
-      highlightMap(name, ct==='class'||ct==='class');
-      document.getElementById('modal').classList.add('active');
-    }
-    function closeModal(){document.getElementById('modal').classList.remove('active');}
-    function deployAsset(){
-      const paddockNames={trex:'T-REX KINGDOM',raptor:'RAPTOR PEN B',mosasaur:'MOSASAUR LAGOON',aviary:'JW AVIARY',gyrosphere:'GYROSPHERE VALLEY',sector5:'SECTOR 5 CROC BAY',cenozoic:'CENOZOIC SECTOR 7',indominus:'INDOMINUS ENCLOSURE'};
-      if(currentCT==='class'){
-        const b=document.getElementById('ingen-breach');
-        document.getElementById('breachSub').textContent='ASSET TOO DANGEROUS — DEPLOYMENT DENIED';
-        document.getElementById('breachPad').textContent='PADDOCK: '+paddockNames[currentPaddock];
-        closeModal(); b.classList.add('active');
-        const pe=document.getElementById('pad-'+currentPaddock),se=document.getElementById('ps-'+currentPaddock);
-        if(pe){pe.classList.add('breach');if(se)se.textContent='● BREACH';}
-        setTimeout(()=>{b.classList.remove('active');setTimeout(()=>{if(pe)pe.classList.remove('breach');if(se)se.textContent='● SECURE';},2000);},3500);
-      } else {
-        const now=new Date().toTimeString().slice(0,5);
-        const pe=document.getElementById('pad-'+currentPaddock),te=document.getElementById('pt-'+currentPaddock);
-        if(te){te.textContent='ASSET INBOUND...';setTimeout(()=>{te.textContent='LAST CHK: '+now;},2500);}
-        closeModal();
-      }
-    }
-    document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>openModal(c)));
-    document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-    // Periodic paddock check-in flicker
-    const pads=['trex','raptor','mosasaur','aviary','gyrosphere','sector5','cenozoic'];
-    setInterval(()=>{
-      if(Math.random()<0.18){
-        const id=pads[Math.floor(Math.random()*pads.length)];
-        const te=document.getElementById('pt-'+id);
-        const pe=document.getElementById('pad-'+id);
-        if(te&&!pe.classList.contains('breach'))te.textContent='LAST CHK: '+new Date().toTimeString().slice(0,5);
-      }
-    },10000);
-
-        // ── LEGACY FILTER/SEARCH/SORT (kept for compatibility) ──
-        function filterSelection(c) {
-            document.querySelectorAll('.filter-btn').forEach(btn => { btn.classList.remove('active'); if(btn.getAttribute('data-val')===c) btn.classList.add('active'); });
-            const sections = document.querySelectorAll('.section-wrapper');
-            sections.forEach(sec => { const cards=sec.querySelectorAll('.card'); let visible=false; cards.forEach(card => { const cls=card.getAttribute('data-class'); if(c==='all'||cls===c){card.classList.remove('hidden');visible=true;}else{card.classList.add('hidden');}}); sec.classList.toggle('hidden-section',!visible); });
-        }
-        document.getElementById('searchInput').addEventListener('keyup',function(){
-            const val=this.value.toLowerCase();
-            document.querySelectorAll('.card').forEach(card=>{
-                const name=card.getAttribute('data-name').toLowerCase();
-                const cn=card.getAttribute('data-cn')||'';
-                if(name.includes(val)||cn.toLowerCase().includes(val))card.classList.remove('hidden');
-                else card.classList.add('hidden');
-            });
-        });
-        function sortCards(){
-            const type=document.getElementById('sortSelect').value;
-            document.querySelectorAll('.grid').forEach(grid=>{
-                const cards=Array.from(grid.children);
-                cards.sort((a,b)=>{
-                    if(type==='rarity')return b.getAttribute('data-rarity')-a.getAttribute('data-rarity');
-                    if(type==='name')return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-                    return 0;
-                });
-                cards.forEach(card=>grid.appendChild(card));
-            });
-        }
-
-Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
-}
-
-  const initializers = { index: init_index, gallery: init_gallery, timescale: init_timescale, form: init_form, paleo: init_paleo };
+  const initializers = { index: init_index, gallery: init_gallery, timescale: init_timescale, form: init_form };
   const initialize = () => { if (initializers[page]) initializers[page](); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
   else initialize();

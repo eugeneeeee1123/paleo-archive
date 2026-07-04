@@ -10,6 +10,7 @@
     <meta property="og:image" content="assets/images/originals/trex.jpg">
     <title>PALEO ARCHIVE | Hybrid Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="assets/js/species-data.js"></script>
     <script src="assets/js/site.js"></script>
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
@@ -64,6 +65,23 @@
                         <option value="cenozoic">CENOZOIC FAUNA / 新生代动物</option>
                     </select>
                 </div>
+            </div>
+
+            <div class="form-row hybrid-parent-row">
+                <div class="form-group">
+                    <label class="form-label" for="parentASelect">Parent A Genome / 亲本 A 基因</label>
+                    <select id="parentASelect" class="form-select"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="parentBSelect">Parent B Genome / 亲本 B 基因</label>
+                    <select id="parentBSelect" class="form-select"></select>
+                </div>
+            </div>
+
+            <div class="form-group hybrid-blend-group">
+                <label class="form-label" for="blendRatio">Genome Dominance / 基因显性比例</label>
+                <input type="range" id="blendRatio" class="form-input blend-range" min="0" max="100" value="50">
+                <div class="blend-readout" id="blendReadout">50% Parent B / 亲本 B 显性</div>
             </div>
 
             <div class="form-row">
@@ -148,20 +166,29 @@
 
     <!-- RIGHT: LIVE CARD PREVIEW -->
     <div class="preview-sticky">
+        <div class="mobile-preview-summary" id="mobilePreviewSummary">
+            <img src="" id="mobilePreviewImg" alt="" style="display:none;">
+            <div>
+                <b id="mobilePreviewName">INDOMINUS REX</b>
+                <span id="mobilePreviewStats">12.3m / 8,400kg</span>
+            </div>
+        </div>
         <div class="preview-title">Research Subject Preview / 研究对象预览</div>
         <div class="card" id="previewCard" data-class="hybrid" data-containment="class">
             <div class="card-vis">
                 <!-- Preview image or fallback -->
                 <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
+                <canvas id="hybridCanvas" class="hybrid-canvas" width="640" height="480" hidden></canvas>
                 <div class="img-fallback" id="pCardFallback">
                     <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
                         <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
                       </svg>
-                      <span style="font-size:0.5rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL / 无图像信号</span>
+                      <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">WIRE_SYS_ERROR: NO_VISUAL / 无图像信号</span>
                 </div>
                 <span class="class-icon" id="pCardIcon">HYBRID</span>
                 <div class="dna-overlay" id="pCardDna">AT C G   T T A C   C A T C   G A T C</div>
             </div>
+            <div class="dna-helix" id="dnaHelix" aria-hidden="true"></div>
             <div class="card-data">
                 <div id="pCardInnerData">
                     <div class="spec-code" id="pCardCode">HYB-01</div>
