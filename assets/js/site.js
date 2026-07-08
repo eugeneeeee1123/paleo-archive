@@ -173,6 +173,7 @@ Object.assign(window, { changeThemeTint });
 }
 
   function init_gallery() {
+    const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
 // ── BOOT ──────────────────────────────
     const bootLines = [
       'PALEO ARCHIVE SYSTEMS v4.2 .......... OK / 正在启动古生物档案系统 ... 成功',
@@ -332,7 +333,6 @@ Object.assign(window, { changeThemeTint });
       return card;
     }
     function renderSpeciesGallery() {
-      const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
       document.querySelectorAll('.grid[data-species-class]').forEach(grid => {
         grid.textContent = '';
       });
@@ -343,142 +343,11 @@ Object.assign(window, { changeThemeTint });
     }
 
     // ── HABITAT DATA ───────────────────────
-    const habitatData = {
-      'Indominus Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Indoraptor':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Scorpios Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Diabolus Rex':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Velocipterus':{r:'isla_nublar',l:'ISLA NUBLAR — CLASSIFIED'},
-      'Blue':{r:'isla_nublar',l:'ISLA NUBLAR — Raptor Pen B'},
-      'Bumpy':{r:'isla_nublar',l:'ISLA NUBLAR — Camp Cretaceous'},
-      'Mosasaurus':{r:'europe',l:'Maastricht Formation, Limburg, Netherlands'},
-      'Tyrannosaurus Rex':{r:'north_america',l:'Hell Creek Formation, Montana/Wyoming, USA'},
-      'Triceratops':{r:'north_america',l:'Lance Formation, Wyoming/Montana, USA'},
-      'Allosaurus':{r:'north_america',l:'Morrison Formation, Colorado/Wyoming, USA'},
-      'Brachiosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Velociraptor':{r:'asia',l:'Djadochta Formation, Mongolia'},
-      'Carnotaurus':{r:'south_america',l:'La Colonia Formation, Patagonia, Argentina'},
-      'Spinosaurus':{r:'africa',l:'Kem Kem Formation, Morocco/Egypt'},
-      'Giganotosaurus':{r:'south_america',l:'Candeleros Formation, Neuquén, Argentina'},
-      'Carcharodontosaurus':{r:'africa',l:'Kem Kem Formation, North Africa'},
-      'Tarbosaurus':{r:'asia',l:'Nemegt Formation, Gobi Desert, Mongolia'},
-      'Mapusaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Argentinosaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Albertosaurus':{r:'north_america',l:'Horseshoe Canyon, Alberta, Canada'},
-      'Suchomimus':{r:'africa',l:'Elrhaz Formation, Niger'},
-      'Utahraptor':{r:'north_america',l:'Cedar Mountain Formation, Utah, USA'},
-      'Deinonychus':{r:'north_america',l:'Cloverly Formation, Montana, USA'},
-      'Majungasaurus':{r:'africa',l:'Maevarano Formation, Madagascar'},
-      'Yutyrannus':{r:'asia',l:'Yixian Formation, Liaoning, China'},
-      'Inostrancevia':{r:'europe',l:'Late Permian, Russia'},
-      'Cryolophosaurus':{r:'antarctica',l:'Hanson Formation, Antarctica'},
-      'Baryonyx':{r:'europe',l:'Wealden Group, Surrey, England'},
-      'Allosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Herrerasaurus':{r:'south_america',l:'Ischigualasto Formation, Argentina'},
-      'Coelophysis':{r:'north_america',l:'Ghost Ranch, New Mexico, USA'},
-      'Compsognathus':{r:'europe',l:'Solnhofen Limestone, Bavaria, Germany'},
-      'Ceratosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Dimetrodon':{r:'north_america',l:'Red Beds, Texas/Oklahoma, USA'},
-      'Troodon':{r:'north_america',l:'Two Medicine Formation, Montana, USA'},
-      'Bumpy':{r:'isla_nublar',l:'ISLA NUBLAR — Camp Cretaceous'},
-      'Therizinosaurus':{r:'asia',l:'Nemegt Formation, Mongolia'},
-      'Brachiosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Ankylosaurus':{r:'north_america',l:'Hell Creek Formation, Montana, USA'},
-      'Stegosaurus':{r:'north_america',l:'Morrison Formation, Colorado, USA'},
-      'Brontosaurus':{r:'north_america',l:'Morrison Formation, Wyoming, USA'},
-      'Supersaurus':{r:'north_america',l:'Morrison Formation, Utah/Colorado, USA'},
-      'Seismosaurus':{r:'north_america',l:'Morrison Formation, New Mexico, USA'},
-      'Argentinosaurus':{r:'south_america',l:'Huincul Formation, Neuquén, Argentina'},
-      'Mamenchisaurus':{r:'asia',l:'Shaximiao Formation, Sichuan, China'},
-      'Diplodocus':{r:'north_america',l:'Morrison Formation, Wyoming/Colorado, USA'},
-      'Pachycephalosaurus':{r:'north_america',l:'Lance/Hell Creek Formation, USA/Canada'},
-      'Parasaurolophus':{r:'north_america',l:'Campanian, Alberta / New Mexico, USA'},
-      'Iguanodon':{r:'europe',l:'Wealden Group, Belgium / England'},
-      'Titanosaurus':{r:'asia',l:'Lameta Formation, India'},
-      'Maiasaura':{r:'north_america',l:'Two Medicine Formation, Montana, USA'},
-      'Camarasaurus':{r:'north_america',l:'Morrison Formation, USA'},
-      'Plateosaurus':{r:'europe',l:'Triassic, Germany / Switzerland'},
-      'Psittacosaurus':{r:'asia',l:'Yixian Formation, China / Mongolia'},
-      'Dodo':{r:'africa',l:'Mauritius Island, Indian Ocean (Extinct 1662)'},
-      'Quetzalcoatlus':{r:'north_america',l:'Javelina Formation, Texas, USA'},
-      'Pteranodon':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Tapejara':{r:'south_america',l:'Santana Formation, Ceará, Brazil'},
-      'Dimorphodon':{r:'europe',l:'Lower Jurassic, Dorset, England'},
-      'Hatzegopteryx':{r:'europe',l:'Maastrichtian, Transylvania, Romania'},
-      'Sarcosuchus':{r:'africa',l:'Elrhaz Formation, Niger'},
-      'Purussaurus':{r:'south_america',l:'Solimões Formation, Amazon Basin'},
-      'Mastodonsaurus':{r:'europe',l:'Triassic, Germany / Russia'},
-      'Deinosuchus':{r:'north_america',l:'Aguja Formation, Texas / Montana, USA'},
-      'Prestosuchus':{r:'south_america',l:'Santa Maria Formation, Rio Grande do Sul, Brazil'},
-      'Baurusuchus':{r:'south_america',l:'Bauru Group, São Paulo, Brazil'},
-      'Kaprosuchus':{r:'africa',l:'Kem Kem Formation, Saharan Africa'},
-      'Metoposaurus':{r:'europe',l:'Triassic, Portugal / Poland'},
-      'Rutiodon':{r:'north_america',l:'Triassic, Eastern North America'},
-      'Diplocaulus':{r:'north_america',l:'Permian, Texas, USA'},
-      'Crassigyrinus':{r:'europe',l:'Carboniferous, Scotland'},
-      'Ichthyostega':{r:'greenland',l:'Devonian, Greenland'},
-      'Tiktaalik':{r:'north_america',l:'Ellesmere Island, Nunavut, Canada'},
-      'Acanthostega':{r:'greenland',l:'Late Devonian, Greenland'},
-      'Panderichthys':{r:'europe',l:'Devonian, Latvia'},
-      'Postosuchus':{r:'north_america',l:'Dockum Formation, Texas, USA'},
-      'Mosasaurus':{r:'europe',l:'Maastricht Formation, Limburg, Netherlands'},
-      'Megalodon':{r:'global_ocean',l:'Global Ocean — Miocene / Pliocene'},
-      'Tylosaurus':{r:'north_america',l:'Western Interior Seaway, Kansas, USA'},
-      'Shonisaurus':{r:'north_america',l:'Luning Formation, Nevada, USA'},
-      'Pliosaurus':{r:'europe',l:'Late Jurassic, Norway / England'},
-      'Archelon':{r:'north_america',l:'Pierre Shale, South Dakota, USA'},
-      'Anomalocaris':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Livyatan':{r:'south_america',l:'Pisco Formation, Ica, Peru'},
-      'Shastasaurus':{r:'global_ocean',l:'Late Triassic Pacific (Canada / China)'},
-      'Dunkleosteus':{r:'north_america',l:'Cleveland Shale, Ohio, USA'},
-      'Liopleurodon':{r:'europe',l:'Callovian, France / England'},
-      'Basilosaurus':{r:'africa',l:'Wadi Al-Hitan, Fayum, Egypt'},
-      'Stethacanthus':{r:'europe',l:'Late Devonian, Scotland / North America'},
-      'Ophthalmosaurus':{r:'europe',l:'Oxford Clay, England'},
-      'Metriorhynchus':{r:'europe',l:'Callovian, France / England'},
-      'Orthoceras':{r:'global_ocean',l:'Global Ordovician oceans'},
-      'Leedsichthys':{r:'europe',l:'Oxford Clay, England'},
-      'Xiphactinus':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Helicoprion':{r:'global_ocean',l:'Global Permian oceans'},
-      'Tusoteuthis':{r:'north_america',l:'Niobrara Formation, Kansas, USA'},
-      'Opabinia':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Cladoselache':{r:'north_america',l:'Cleveland Shale, Ohio, USA'},
-      'Nothosaurus':{r:'europe',l:'Triassic, Europe / China'},
-      'Pterygotus':{r:'global_ocean',l:'Silurian oceans, globally distributed'},
-      'Elasmosaurus':{r:'north_america',l:'Pierre Shale, Kansas, USA'},
-      'Mixosaurus':{r:'europe',l:'Triassic, Switzerland / Italy'},
-      'Ichthyosaurus':{r:'europe',l:'Lower Jurassic, Dorset, England'},
-      'Bothriolepis':{r:'global',l:'Global — Late Devonian (All Continents)'},
-      'Coelacanth':{r:'africa',l:'Indian Ocean, Comoros Islands — Still Alive Today'},
-      'Ammonite':{r:'global_ocean',l:'Global Ocean — Devonian to Cretaceous'},
-      'Trilobite':{r:'global_ocean',l:'Global — Cambrian to Permian (All Continents)'},
-      'Pikaia':{r:'north_america',l:'Burgess Shale, British Columbia, Canada'},
-      'Deinotherium':{r:'africa',l:'Miocene Africa / Southern Eurasia'},
-      'Megacerops':{r:'north_america',l:'White River Formation, South Dakota, USA'},
-      'Panthera Atrox':{r:'north_america',l:'Pleistocene North America'},
-      'Doedicurus':{r:'south_america',l:'Pleistocene, Argentina / Uruguay'},
-      'Mammoth':{r:'global',l:'Global — Eurasia / North America (Pleistocene)'},
-      'Smilodon':{r:'north_america',l:'La Brea Tar Pits, California / South America'},
-      'Amphicyon':{r:'europe',l:'Miocene, Europe / Asia / North America'},
-      'Gastornis':{r:'europe',l:'Paleocene–Eocene, France / Germany'},
-      'Chalicotherium':{r:'asia',l:'Miocene, Eurasia'},
-      'Titanoboa':{r:'south_america',l:'Cerrejón Formation, Colombia'},
-      'Terror Bird':{r:'south_america',l:'Santa Cruz Formation, Patagonia, Argentina'},
-      'Woolly Rhino':{r:'asia',l:'Pleistocene, Siberia / Europe'},
-      'Megatherium':{r:'south_america',l:'Pleistocene, Argentina / South America'},
-      'Paraceratherium':{r:'asia',l:'Oligocene, Kazakhstan / Pakistan / China'},
-      'Diprotodon':{r:'australia',l:'Pleistocene, Australia'},
-      'Glyptodon':{r:'south_america',l:'Pleistocene, South America'},
-      'Dire Wolf':{r:'north_america',l:'La Brea Tar Pits, California, USA'},
-      'Dire Bear':{r:'north_america',l:'Pleistocene, North America'},
-      'Thylacoleo':{r:'australia',l:'Pleistocene, Australia'},
-      'Andrewsarchus':{r:'asia',l:'Irdin Manha Formation, Mongolia'},
-      'Hyaenodon':{r:'asia',l:'Eocene–Miocene, Europe / Asia / Africa'},
-      'Megalania':{r:'australia',l:'Pleistocene, Australia'},
-      'Argentavis':{r:'south_america',l:'Huayquerian Formation, Argentina'},
-      'Procoptodon':{r:'australia',l:'Pleistocene, Australia'},
-      'Borophagus':{r:'north_america',l:'Miocene, North America'},
-    };
+    const habitatData = Object.fromEntries(
+      speciesData
+        .filter(species => species.region && species.site)
+        .map(species => [species.name, { r: species.region, l: species.site }])
+    );
 
     const fossilSiteLookup = [
       { test:/isla nublar/i, lat:9.8, lon:-84.7 },
@@ -1338,6 +1207,22 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
         }
     ];
 
+    const periodNodeColors = {
+        cambrian: '#6c9a91',
+        ordovician: '#80a774',
+        silurian: '#b0a36c',
+        devonian: '#b9874f',
+        carboniferous: '#7f9867',
+        permian: '#a96b42',
+        triassic: '#b84b3e',
+        jurassic: '#c0a16d',
+        cretaceous: '#a93a2c',
+        paleocene: '#c8915b',
+        paleogene: '#c8915b',
+        neogene: '#b9874f',
+        quaternary: '#97a6a8'
+    };
+
     let currentSelectedSearch = 'Cretaceous';
     let isPrecambrian = false;
     const timescaleSpecies = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
@@ -1381,6 +1266,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
             node.className = `timeline-node ${index === 0 ? 'active' : ''}`;
             node.dataset.period = data.id;
             node.dataset.index = String(index + 1).padStart(2, '0');
+            node.style.setProperty('--node-left-color', periodNodeColors[data.id] || 'rgba(184, 170, 134, 0.44)');
             node.innerHTML = `
                 <div class="node-thumb">
                     <img src="${data.image || ''}" alt="" loading="lazy" decoding="async">
