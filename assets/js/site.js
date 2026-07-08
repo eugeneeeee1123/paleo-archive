@@ -242,6 +242,105 @@ Object.assign(window, { changeThemeTint });
       const small = ['Velociraptor','Blue','Deinonychus','Troodon','Coelophysis','Compsognathus'];
       return small.includes(name) ? 'raptor' : 'trex';
     }
+    function formatSpeciesLength(species) {
+      if (species.len === null || species.len === undefined || species.len === '') return 'N/A';
+      return `${species.len}${species.lenUnit || ''}`;
+    }
+    function formatSpeciesWeight(species) {
+      if (species.wgt === null || species.wgt === undefined || species.wgt === '') return 'N/A';
+      return `${Number(species.wgt).toLocaleString()}${species.wgtUnit || ''}`;
+    }
+    function shortEraLabel(era) {
+      const value = String(era || '');
+      if (value.includes('Cretaceous')) return value.includes('Late') ? 'Late Cret' : value.includes('Early') ? 'Early Cret' : 'Mid Cret';
+      if (value.includes('Jurassic')) return value.includes('Late') ? 'Late Jur' : value.includes('Early') ? 'Early Jur' : 'Jurassic';
+      if (value.includes('Pleistocene')) return 'Pleisto.';
+      if (value.includes('Paleocene')) return 'Paleoc.';
+      if (value.includes('Oligocene')) return 'Oligoc.';
+      return value || 'Unknown';
+    }
+    function createSpeciesCard(species) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-class', species.class);
+      card.setAttribute('data-rarity', species.rarity);
+      card.setAttribute('data-name', species.name);
+      card.setAttribute('data-cn', species.cn);
+
+      const vis = document.createElement('div');
+      vis.className = 'card-vis';
+
+      const img = document.createElement('img');
+      img.src = species.thumb;
+      img.setAttribute('data-full-src', species.full);
+      img.className = 'card-img';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = `${species.name} reconstruction`;
+
+      const icon = document.createElement('span');
+      icon.className = 'class-icon';
+      icon.textContent = species.class.toUpperCase();
+
+      vis.append(img, icon);
+
+      const cardData = document.createElement('div');
+      cardData.className = 'card-data';
+
+      const mainData = document.createElement('div');
+      const code = document.createElement('div');
+      code.className = 'spec-code';
+      code.textContent = species.code;
+
+      const name = document.createElement('h3');
+      name.className = 'spec-name';
+      name.textContent = species.name.toUpperCase();
+
+      const cn = document.createElement('div');
+      cn.className = 'spec-cn';
+      cn.textContent = species.cn;
+
+      mainData.append(code, name, cn);
+
+      const stats = document.createElement('div');
+      stats.className = 'spec-stats';
+      const eraStat = document.createElement('div');
+      const eraText = document.createElement('b');
+      eraText.textContent = shortEraLabel(species.era);
+      eraStat.appendChild(eraText);
+
+      const rarityStat = document.createElement('div');
+      const rarityText = document.createElement('b');
+      rarityText.textContent = `ARCHIVE P${species.rarity}`;
+      rarityStat.appendChild(rarityText);
+      stats.append(eraStat, rarityStat);
+
+      cardData.append(mainData, stats);
+
+      const hidden = document.createElement('div');
+      hidden.className = 'hidden-data';
+      hidden.setAttribute('data-atk', species.atk);
+      hidden.setAttribute('data-hp', species.hp);
+      hidden.setAttribute('data-era', species.era);
+      hidden.setAttribute('data-len', formatSpeciesLength(species));
+      hidden.setAttribute('data-wgt', formatSpeciesWeight(species));
+      hidden.setAttribute('data-agg', species.agg);
+      hidden.setAttribute('data-fact', species.fact);
+      hidden.setAttribute('data-desc', species.desc);
+
+      card.append(vis, cardData, hidden);
+      return card;
+    }
+    function renderSpeciesGallery() {
+      const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
+      document.querySelectorAll('.grid[data-species-class]').forEach(grid => {
+        grid.textContent = '';
+      });
+      speciesData.forEach(species => {
+        const grid = document.querySelector(`#sec-${species.class} .grid`);
+        if (grid) grid.appendChild(createSpeciesCard(species));
+      });
+    }
 
     // ── HABITAT DATA ───────────────────────
     const habitatData = {
@@ -573,6 +672,8 @@ Object.assign(window, { changeThemeTint });
         displayEl.textContent = `OPERATOR / 操作员: ${user.toUpperCase()} | CLR / 权限: ${clearance.toUpperCase()}`;
       }
     })();
+
+    renderSpeciesGallery();
 
     // ── LOAD CUSTOM ASSETS ────────────────
     function escapeHtml(value) {
@@ -1510,6 +1611,45 @@ Object.assign(window, { queryArchive });
         imgB.src = imgBUrl;
     }
 
+    function getHybridImagePath(keyA, keyB) {
+        const [first, second] = [keyA, keyB].sort();
+        return `assets/images/hybrids/${first}_${second}.jpg`;
+    }
+
+    function imageExists(url) {
+        return new Promise(resolve => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
+    }
+
+    let hybridVisualRequest = 0;
+    async function resolveHybridImage(speciesA, speciesB, blendRatioValue, canvasEl) {
+        if (!speciesA || !speciesB || !canvasEl) return;
+        const requestId = ++hybridVisualRequest;
+        const presetPath = getHybridImagePath(speciesA.key, speciesB.key);
+
+        if (await imageExists(presetPath)) {
+            if (requestId !== hybridVisualRequest) return;
+            pCardImg.src = presetPath;
+            pCardImg.alt = `${speciesA.name} and ${speciesB.name} hybrid reconstruction`;
+            pCardImg.style.display = 'block';
+            canvasEl.hidden = true;
+            if (mobilePreviewImg) mobilePreviewImg.src = presetPath;
+            return;
+        }
+
+        if (requestId !== hybridVisualRequest) return;
+        renderCompositeSplice(canvasEl, speciesA.thumb, speciesB.thumb, blendRatioValue);
+        canvasEl.hidden = false;
+        pCardImg.style.display = 'none';
+        if (mobilePreviewImg) {
+            mobilePreviewImg.src = UNKNOWN_HYBRID_IMAGE;
+        }
+    }
+
     function populateParentSelectors() {
         if (!parentASelect || !parentBSelect || !speciesData.length) return;
         const selectable = speciesData.filter(species => species.class !== 'hybrid' && species.len !== null && species.wgt !== null);
@@ -1576,7 +1716,9 @@ Object.assign(window, { queryArchive });
         const priorities = { '1': 'ARCHIVE P1', '2': 'ARCHIVE P2', '3': 'ARCHIVE P3', '4': 'ARCHIVE P4', '5': 'ARCHIVE P5' };
         pCardRarity.textContent = priorities[rarity] || 'ARCHIVE P1';
 
-        // Synthesis previews intentionally use the locked unknown visual until the file is verified.
+        const blendT = Number(blendRatio?.value || 50) / 100;
+        const shouldResolveHybridVisual = cls === 'hybrid' && speciesA && speciesB;
+        if (!shouldResolveHybridVisual) hybridVisualRequest++;
         if (hybridCanvas) hybridCanvas.hidden = true;
         pCardImg.src = UNKNOWN_HYBRID_IMAGE;
         pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
@@ -1612,6 +1754,9 @@ Object.assign(window, { queryArchive });
 
         if (speciesA && speciesB) {
             renderHelix(dnaHelix, classColors[speciesA.class] || classColors.hybrid, classColors[speciesB.class] || classColors.hybrid);
+            if (shouldResolveHybridVisual) {
+                resolveHybridImage(speciesA, speciesB, blendT, hybridCanvas);
+            }
         }
         if (mobilePreviewName) mobilePreviewName.textContent = name || 'SPECIES_NAME';
         if (mobilePreviewStats) {
