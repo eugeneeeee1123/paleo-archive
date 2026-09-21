@@ -169,7 +169,68 @@
         setTimeout(addLine, 200);
     }
 
-Object.assign(window, { changeThemeTint });
+    // ── PALEOLOGIST RED CODE ALERT & NAVIGATION ──
+    const alertModal = document.getElementById('redCodeModal');
+    const openAlertBtns = document.querySelectorAll('.js-open-alert');
+    const closeAlertBtns = document.querySelectorAll('.js-close-alert');
+
+    function openRedAlert(e) {
+      if (e) e.preventDefault();
+      if (alertModal) {
+        alertModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeRedAlert(e) {
+      if (e) e.preventDefault();
+      if (alertModal) {
+        alertModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    openAlertBtns.forEach(btn => btn.addEventListener('click', openRedAlert));
+    closeAlertBtns.forEach(btn => btn.addEventListener('click', closeRedAlert));
+
+    if (alertModal) {
+      alertModal.addEventListener('click', function(e) {
+        if (e.target === alertModal) closeRedAlert();
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeRedAlert();
+    });
+
+    // Alert status filter tabs
+    const alertTabs = document.querySelectorAll('.pl-alert-tab');
+    alertTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        alertTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.getAttribute('data-status');
+        const cards = document.querySelectorAll('.pl-threat-card');
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-status') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('mobile-open');
+      });
+    }
+
+Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
 }
 
   function init_gallery() {
@@ -283,7 +344,16 @@ Object.assign(window, { changeThemeTint });
       icon.className = 'class-icon';
       icon.textContent = species.class.toUpperCase();
 
-      vis.append(img, icon);
+      const r = parseInt(species.rarity) || 3;
+      const statusKey = r >= 5 ? 'cr' : r === 4 ? 'en' : r === 3 ? 'vu' : 'lc';
+      card.setAttribute('data-iucn', statusKey);
+      card.setAttribute('data-diet', (species.diet || '').toLowerCase());
+
+      const iucnBadge = document.createElement('span');
+      iucnBadge.className = `pl-card-badge ${statusKey}`;
+      iucnBadge.textContent = statusKey.toUpperCase();
+
+      vis.append(img, icon, iucnBadge);
 
       const cardData = document.createElement('div');
       cardData.className = 'card-data';
@@ -316,7 +386,11 @@ Object.assign(window, { changeThemeTint });
       rarityStat.appendChild(rarityText);
       stats.append(eraStat, rarityStat);
 
-      cardData.append(mainData, stats);
+      const actionLink = document.createElement('div');
+      actionLink.className = 'pl-card-action';
+      actionLink.innerHTML = 'View Profile &nbsp;›';
+
+      cardData.append(mainData, stats, actionLink);
 
       const hidden = document.createElement('div');
       hidden.className = 'hidden-data';
@@ -968,6 +1042,103 @@ Object.assign(window, { changeThemeTint });
         });
         applyVisibilityWindow();
 
+        // ── PALEOLOGIST ADVANCED FILTERS ──
+        const eraSelect = document.getElementById('eraFilterSelect');
+        const dietSelect = document.getElementById('dietFilterSelect');
+        const classSelect = document.getElementById('classFilterSelect');
+        const statusSelect = document.getElementById('statusFilterSelect');
+
+        function applyAdvancedFilters() {
+            const eraVal = eraSelect ? eraSelect.value.toLowerCase() : 'all';
+            const dietVal = dietSelect ? dietSelect.value.toLowerCase() : 'all';
+            const classVal = classSelect ? classSelect.value.toLowerCase() : 'all';
+            const statusVal = statusSelect ? statusSelect.value.toLowerCase() : 'all';
+
+            document.querySelectorAll('.card').forEach(card => {
+                const cClass = card.getAttribute('data-class') || '';
+                const cEra = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
+                const cDiet = (card.getAttribute('data-diet') || '').toLowerCase();
+                const cIucn = (card.getAttribute('data-iucn') || '').toLowerCase();
+
+                let match = true;
+                if (eraVal !== 'all' && !cEra.includes(eraVal)) match = false;
+                if (dietVal !== 'all' && !cDiet.includes(dietVal)) match = false;
+                if (classVal !== 'all' && cClass !== classVal) match = false;
+                if (statusVal !== 'all' && cIucn !== statusVal) match = false;
+
+                if (match) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            applyVisibilityWindow();
+        }
+
+        [eraSelect, dietSelect, classSelect, statusSelect].forEach(sel => {
+            if (sel) sel.addEventListener('change', applyAdvancedFilters);
+        });
+
+        // Gallery Showcase Category Tabs
+        document.querySelectorAll('.pl-gallery-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.pl-gallery-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const cat = this.getAttribute('data-cat');
+                document.querySelectorAll('.pl-showcase-item').forEach(item => {
+                    if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Red Code Alert Modal handlers in gallery
+        const alertModal = document.getElementById('redCodeModal');
+        document.querySelectorAll('.js-open-alert').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (alertModal) {
+                    alertModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        document.querySelectorAll('.js-close-alert').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (alertModal) {
+                    alertModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        if (alertModal) {
+            alertModal.addEventListener('click', (e) => {
+                if (e.target === alertModal) {
+                    alertModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Alert filter tabs inside gallery
+        document.querySelectorAll('.pl-alert-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.getAttribute('data-status');
+                document.querySelectorAll('.pl-threat-card').forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
 Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 }
 
@@ -1363,6 +1534,73 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     // Initialize timescale nodes
     initTimeline();
 
+    // Timeline scope strip interaction
+    document.querySelectorAll('.timeline-scope-strip span').forEach(span => {
+        span.addEventListener('click', function() {
+            document.querySelectorAll('.timeline-scope-strip span').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Red Code Alert Modal handlers in timescale
+    const alertModal = document.getElementById('redCodeModal');
+    document.querySelectorAll('.js-open-alert').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (alertModal) {
+                alertModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    document.querySelectorAll('.js-close-alert').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (alertModal) {
+                alertModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    if (alertModal) {
+        alertModal.addEventListener('click', (e) => {
+            if (e.target === alertModal) {
+                alertModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && alertModal && alertModal.classList.contains('active')) {
+            alertModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Alert filter tabs inside timescale
+    document.querySelectorAll('.pl-alert-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-status');
+            document.querySelectorAll('.pl-threat-card').forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
+    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('mobile-open');
+        });
+    }
+
 Object.assign(window, { queryArchive });
 }
 
@@ -1573,6 +1811,39 @@ Object.assign(window, { queryArchive });
         uploadedImageData = '';
         if (imgFileInput) imgFileInput.value = '';
         if (blendReadout) blendReadout.textContent = `${Math.round(t * 100)}% Parent B / 亲本 B 显性`;
+
+        // Update Parent 1 and 2 cards in workbench
+        const parentAImg = document.getElementById('parentAImg');
+        const parentBImg = document.getElementById('parentBImg');
+        if (parentAImg && speciesA) {
+            parentAImg.src = speciesA.thumb || speciesA.full;
+            parentAImg.alt = speciesA.name;
+        }
+        if (parentBImg && speciesB) {
+            parentBImg.src = speciesB.thumb || speciesB.full;
+            parentBImg.alt = speciesB.name;
+        }
+        const pALen = document.getElementById('pALen');
+        const pAWgt = document.getElementById('pAWgt');
+        const pAAtk = document.getElementById('pAAtk');
+        const pAHp = document.getElementById('pAHp');
+        if (speciesA) {
+            if (pALen) pALen.style.width = `${Math.min(100, Math.max(15, ((speciesA.len || 5) / 25) * 100))}%`;
+            if (pAWgt) pAWgt.style.width = `${Math.min(100, Math.max(15, ((speciesA.wgt || 1000) / 20000) * 100))}%`;
+            if (pAAtk) pAAtk.style.width = `${Math.min(100, Math.max(15, ((speciesA.atk || 1000) / 3000) * 100))}%`;
+            if (pAHp) pAHp.style.width = `${Math.min(100, Math.max(15, ((speciesA.hp || 2000) / 8000) * 100))}%`;
+        }
+        const pBLen = document.getElementById('pBLen');
+        const pBWgt = document.getElementById('pBWgt');
+        const pBAtk = document.getElementById('pBAtk');
+        const pBHp = document.getElementById('pBHp');
+        if (speciesB) {
+            if (pBLen) pBLen.style.width = `${Math.min(100, Math.max(15, ((speciesB.len || 5) / 25) * 100))}%`;
+            if (pBWgt) pBWgt.style.width = `${Math.min(100, Math.max(15, ((speciesB.wgt || 1000) / 20000) * 100))}%`;
+            if (pBAtk) pBAtk.style.width = `${Math.min(100, Math.max(15, ((speciesB.atk || 1000) / 3000) * 100))}%`;
+            if (pBHp) pBHp.style.width = `${Math.min(100, Math.max(15, ((speciesB.hp || 2000) / 8000) * 100))}%`;
+        }
+
         updatePreview();
     }
 
@@ -1780,6 +2051,94 @@ Object.assign(window, { queryArchive });
             document.getElementById('successOverlay').classList.add('active');
         }
     });
+
+    // Ratio presets
+    document.querySelectorAll('.pl-ratio-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.pl-ratio-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const ratio = this.getAttribute('data-ratio');
+            if (blendRatio) {
+                blendRatio.value = ratio;
+                applyHybridBlend();
+            }
+        });
+    });
+
+    // Reset button
+    const resetBtn = document.getElementById('resetLabBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            if (parentASelect && parentBSelect) {
+                parentASelect.selectedIndex = 0;
+                parentBSelect.selectedIndex = Math.min(1, parentBSelect.options.length - 1);
+                if (blendRatio) blendRatio.value = 50;
+                document.querySelectorAll('.pl-ratio-btn').forEach(b => {
+                    b.classList.toggle('active', b.getAttribute('data-ratio') === '50');
+                });
+                applyHybridBlend();
+            }
+        });
+    }
+
+    // Red Code Alert Modal handlers in form
+    const alertModal = document.getElementById('redCodeModal');
+    document.querySelectorAll('.js-open-alert').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (alertModal) {
+                alertModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    document.querySelectorAll('.js-close-alert').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (alertModal) {
+                alertModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    if (alertModal) {
+        alertModal.addEventListener('click', (e) => {
+            if (e.target === alertModal) {
+                alertModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && alertModal && alertModal.classList.contains('active')) {
+            alertModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Alert filter tabs inside form
+    document.querySelectorAll('.pl-alert-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-status');
+            document.querySelectorAll('.pl-threat-card').forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
+    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('mobile-open');
+        });
+    }
 
 }
 

@@ -3,233 +3,523 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Document a PALEO ARCHIVE hybrid research file with genome notes, containment metrics, imagery, and local archive preview.">
-    <meta property="og:title" content="PALEO ARCHIVE | Hybrid Research">
-    <meta property="og:description" content="Build a bilingual hybrid research file and preview it in the PALEO ARCHIVE archive system.">
+    <meta name="description" content="Document a PALEOLOGIST hybrid research file with genome notes, containment metrics, imagery, and local archive preview.">
+    <meta property="og:title" content="PALEOLOGIST | Hybrid Lab">
+    <meta property="og:description" content="Build a bilingual hybrid research file and preview it in the PALEOLOGIST archive system.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trex.jpg">
-    <title>PALEO ARCHIVE | Hybrid Research</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>PALEOLOGIST | Hybrid Lab / 基因合成实验室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
     <script src="assets/js/species-data.js"></script>
     <script src="assets/js/site.js"></script>
-    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="console-header">
-    <div class="back-nav" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+<!-- GLOBAL NAVIGATION HEADER -->
+<header class="pl-header">
+  <div class="pl-header-inner">
+    <a href="index.html" class="pl-logo">
+      <svg class="pl-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+        <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9c3.86 0 7.12-2.44 8.36-5.89-.35.08-.71.13-1.09.13-2.9 0-5.27-2.36-5.27-5.24 0-1.74.85-3.28 2.16-4.23C19.78 8.1 17.98 7 16 7z" fill="#c29b62" opacity="0.6"/>
+        <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+      </svg>
+      <span class="pl-logo-text">PALEOLOGIST</span>
+    </a>
+
+    <nav class="pl-nav" id="plNav">
+      <a href="index.html" class="pl-nav-link">HOME / 首页</a>
+      <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+      <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
+      <a href="form.html" class="pl-nav-link active">HYBRID LAB / 基因合成</a>
+    </nav>
+
+    <div class="pl-header-actions">
+      <button class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert Modal">
+        <span class="pl-pulse-dot"></span>
+        <span>RED CODE ALERT</span>
+      </button>
+      <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN WORKSPACE -->
+<main class="pl-container" style="padding-top: 100px; padding-bottom: 80px;">
+  <!-- PAGE HEADER -->
+  <div class="pl-field-guide-header" style="margin-bottom: 28px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="pl-section-tag">GENOME SYNTHESIS / 基因工程与繁育</span>
+        <h1 class="pl-section-title" style="margin-top: 8px; margin-bottom: 10px;">HYBRID LAB / 基因合成实验室</h1>
+        <p style="color: var(--pl-text-muted); font-size: 0.95rem; max-width: 720px; margin: 0; line-height: 1.6;">
+          Dual-parent genome recombination and phenotypic simulation. Balance parent traits, predict containment hazard ratings, preview real-time spliced morphology, and register custom specimens into the field archive.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--pl-gold); background: rgba(194, 155, 98, 0.08); border: 1px solid var(--pl-border); padding: 8px 14px; border-radius: var(--pl-radius-sm);">
+        <span id="operatorLabel">OPERATOR: GUEST | CLR: LEVEL 4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKBENCH: DUAL PARENTS & DNA HELIX -->
+  <div class="pl-lab-workbench">
+    <!-- PARENT 1 CARD -->
+    <div class="pl-parent-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="pl-parent-title">PARENT 1 (GENOME ALPHA)</h3>
+        <span class="pl-badge" style="background: rgba(194, 155, 98, 0.15); color: var(--pl-gold-light);">BASE SPECIMEN</span>
+      </div>
+      <div class="form-group" style="margin: 0;">
+        <label class="form-label" for="parentASelect" style="display:none;">Parent A Genome</label>
+        <select id="parentASelect" class="form-select"></select>
+      </div>
+      <img src="assets/images/originals/trex.jpg" id="parentAImg" class="pl-parent-img" alt="Parent A Specimen">
+      
+      <div class="pl-stat-bar-group">
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">SIZE / 体长</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pALen" style="width: 70%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">WEIGHT / 体重</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAWgt" style="width: 65%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">POWER / 攻击</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAAtk" style="width: 85%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">HEALTH / 生命</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAHp" style="width: 80%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELIX CORE & BLEND SLIDER -->
+    <div class="pl-helix-core">
+      <svg class="pl-helix-icon" viewBox="0 0 64 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 10 C 25 30, 45 40, 52 60 C 45 80, 25 90, 12 110" stroke="#c29b62" stroke-width="3" stroke-linecap="round"/>
+        <path d="M52 10 C 39 30, 19 40, 12 60 C 19 80, 39 90, 52 110" stroke="#e5b869" stroke-width="3" stroke-linecap="round"/>
+        <line x1="16" y1="20" x2="48" y2="20" stroke="#c29b62" stroke-width="2" stroke-dasharray="3 3"/>
+        <line x1="22" y1="40" x2="42" y2="40" stroke="#e5b869" stroke-width="2" stroke-dasharray="3 3"/>
+        <line x1="32" y1="60" x2="32" y2="60" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <line x1="22" y1="80" x2="42" y2="80" stroke="#c29b62" stroke-width="2" stroke-dasharray="3 3"/>
+        <line x1="16" y1="100" x2="48" y2="100" stroke="#e5b869" stroke-width="2" stroke-dasharray="3 3"/>
+      </svg>
+      
+      <div class="pl-blend-control">
+        <label class="form-label" for="blendRatio" style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; color: var(--pl-text-muted);">DOMINANCE / 显性比</label>
+        <input type="range" id="blendRatio" class="form-input blend-range pl-blend-slider" min="0" max="100" value="50">
+        <div class="blend-readout pl-blend-readout" id="blendReadout">50% Parent B / 亲本 B 显性</div>
+        <div class="pl-ratio-presets">
+          <button type="button" class="pl-ratio-btn" data-ratio="25">25% B</button>
+          <button type="button" class="pl-ratio-btn active" data-ratio="50">50/50</button>
+          <button type="button" class="pl-ratio-btn" data-ratio="75">75% B</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARENT 2 CARD -->
+    <div class="pl-parent-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="pl-parent-title">PARENT 2 (GENOME BETA)</h3>
+        <span class="pl-badge" style="background: rgba(194, 155, 98, 0.15); color: var(--pl-gold-light);">SPLICING DONOR</span>
+      </div>
+      <div class="form-group" style="margin: 0;">
+        <label class="form-label" for="parentBSelect" style="display:none;">Parent B Genome</label>
+        <select id="parentBSelect" class="form-select"></select>
+      </div>
+      <img src="assets/images/originals/spinosaurus.jpg" id="parentBImg" class="pl-parent-img" alt="Parent B Specimen">
+      
+      <div class="pl-stat-bar-group">
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">SIZE / 体长</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBLen" style="width: 80%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">WEIGHT / 体重</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBWgt" style="width: 75%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">POWER / 攻击</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBAtk" style="width: 90%;"></div></div>
+        </div>
+        <div class="pl-stat-row">
+          <span class="pl-stat-label">HEALTH / 生命</span>
+          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBHp" style="width: 85%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYBRID PREVIEW SHOWCASE -->
+  <div class="pl-hybrid-preview-box">
+    <div class="pl-hybrid-img-wrap">
+      <div class="card" id="previewCard" data-class="hybrid" data-containment="class" style="width: 100%; height: 100%; border: none; background: transparent; border-radius: 0; box-shadow: none;">
+        <div class="card-vis" style="width: 100%; height: 100%; aspect-ratio: auto; border: none; position: relative;">
+          <!-- Preview image or fallback -->
+          <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
+          <canvas id="hybridCanvas" class="hybrid-canvas" width="640" height="480" hidden></canvas>
+          <div class="img-fallback" id="pCardFallback">
+            <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--pl-gold); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
+              <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
+            </svg>
+            <span class="unknown-status" style="font-size:0.75rem; color:var(--pl-gold); letter-spacing:1px; margin-top:8px; opacity:0.7;">UNKNOWN: NO_VISUAL</span>
+          </div>
+          <span class="class-icon" id="pCardIcon" style="background: var(--pl-gold); color: #0d0c0a; font-family: var(--font-display); letter-spacing: 1px;">HYBRID</span>
+          <div class="dna-overlay" id="pCardDna" style="color: var(--pl-gold); opacity: 0.35;">AT C G   T T A C   C A T C   G A T C</div>
+        </div>
+        <div class="dna-helix" id="dnaHelix" aria-hidden="true" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- SPECIMEN SUMMARY & LIVE DETAILS -->
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span class="pl-badge" style="background: rgba(194, 155, 98, 0.15); color: var(--pl-gold);">LIVE PREVIEW · 表型预测</span>
+        <span class="spec-stats" style="border: none; padding: 0;"><b id="pCardRarity" style="font-family: var(--font-mono); color: var(--pl-gold-light); font-size: 0.8rem;">ARCHIVE P5</b></span>
+      </div>
+
+      <div id="pCardInnerData">
+        <div class="spec-code" id="pCardCode" style="font-family: var(--font-mono); color: var(--pl-gold); font-size: 0.85rem; letter-spacing: 1.5px; margin-bottom: 4px;">HYB-01</div>
+        <h2 class="spec-name" id="pCardName" style="font-family: var(--font-display); font-size: 2rem; color: var(--pl-text); letter-spacing: 2px; margin: 0 0 6px;">INDOMINUS REX</h2>
+        <div class="spec-cn" id="pCardCn" style="font-size: 1.1rem; color: var(--pl-text-muted); margin-bottom: 16px;">帝王暴龙</div>
+      </div>
+
+      <div class="spec-stats" style="border-top: 1px solid var(--pl-border); border-bottom: 1px solid var(--pl-border); padding: 12px 0; margin-bottom: 20px;">
+        <div><b id="pCardEra" style="font-family: var(--font-ui); color: var(--pl-text-muted); font-size: 0.82rem; font-weight: 400;">Fictional Cretaceous Research Model</b></div>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--pl-text-muted); line-height: 1.6; margin-bottom: 20px;">
+        Recombinant DNA algorithm balances morphological dominance, musculoskeletal mass, and metabolic stability across simulated generations.
+      </p>
+
+      <!-- Mobile preview fallback summary -->
+      <div class="mobile-preview-summary" id="mobilePreviewSummary" style="display:none;">
+        <img src="" id="mobilePreviewImg" alt="" style="display:none;">
         <div>
-            <a href="gallery.html" class="back-btn">← RETURN TO GALLERY / 返回图鉴</a>
-            <span style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; margin-left: 15px; display: inline-block; vertical-align: middle;" id="operatorLabel">OPERATOR / 操作员: GUEST | CLR / 权限: LEVEL 4</span>
+          <b id="mobilePreviewName">INDOMINUS REX</b>
+          <span id="mobilePreviewStats">12.3m / 8,400kg</span>
         </div>
-        <a href="timescale.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">DEEP-TIME TIMELINE / 地质年代表</a>
+      </div>
     </div>
-    <div class="sys-title">HYBRID RESEARCH / 混种研究档案<span> PORTAL // GENOME_FILE</span></div>
-</div>
+  </div>
 
-<!-- WORKSPACE -->
-<div class="workspace-grid">
-    <!-- LEFT: FORM -->
-    <div class="synthesis-card">
-        <div class="form-section-title">Hybrid Research File / 混种研究档案</div>
-        <form id="synthesisForm" novalidate>
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="code">Research File Code / 研究档案编号</label>
-                    <input type="text" id="code" class="form-input" placeholder="e.g. HYB-01, RS-12..." value="HYB-01">
-                    <div class="error-lbl" id="codeErr">Code is required / 资产编号不能为空</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="name">Research Subject Name / 研究对象名称 (English)</label>
-                    <input type="text" id="name" class="form-input" placeholder="e.g. INDOMINUS REX" value="INDOMINUS REX">
-                    <div class="error-lbl" id="nameErr">Name is required / 属名不能为空</div>
-                </div>
-            </div>
+  <!-- RESEARCH SPECIFICATION FORM -->
+  <div class="pl-form-section">
+    <div class="pl-form-section-title">SPECIMEN GENOME SPECIFICATION / 基因规格录入</div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="cnName">Chinese Name (中文名)</label>
-                    <input type="text" id="cnName" class="form-input" placeholder="e.g. 帝王暴龙" value="帝王暴龙">
-                    <div class="error-lbl" id="cnNameErr">Chinese name is required / 中文名称不能为空</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="classSelect">Research Classification / 研究分类</label>
-                    <select id="classSelect" class="form-select">
-                        <option value="hybrid" selected>HYBRIDS / 混种生物</option>
-                        <option value="carnivore">CARNIVORES / 肉食恐龙</option>
-                        <option value="herbivore">HERBIVORES / 草食恐龙</option>
-                        <option value="pterosaur">PTEROSAURS / 翼龙类</option>
-                        <option value="amphibian">EARLY TETRAPODS / 早期四足类与鳄形类</option>
-                        <option value="aquatic">AQUATIC LIFE / 水生与海生古生物</option>
-                        <option value="cenozoic">CENOZOIC FAUNA / 新生代动物</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-row hybrid-parent-row">
-                <div class="form-group">
-                    <label class="form-label" for="parentASelect">Parent A Genome / 亲本 A 基因</label>
-                    <select id="parentASelect" class="form-select"></select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="parentBSelect">Parent B Genome / 亲本 B 基因</label>
-                    <select id="parentBSelect" class="form-select"></select>
-                </div>
-            </div>
-
-            <div class="form-group hybrid-blend-group">
-                <label class="form-label" for="blendRatio">Genome Dominance / 基因显性比例</label>
-                <input type="range" id="blendRatio" class="form-input blend-range" min="0" max="100" value="50">
-                <div class="blend-readout" id="blendReadout">50% Parent B / 亲本 B 显性</div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="raritySelect">Research Priority / 研究优先级</label>
-                    <select id="raritySelect" class="form-select">
-                        <option value="1">P1 / 基础记录</option>
-                        <option value="2">P2 / 扩展记录</option>
-                        <option value="3">P3 / 重点记录</option>
-                        <option value="4">P4 / 核心记录</option>
-                        <option value="5" selected>P5 / 代表记录</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="synthesisStatus">Synthesis Result / 合成结果</label>
-                    <select id="synthesisStatus" class="form-select">
-                        <option value="success" selected>SUCCESS / 成功</option>
-                        <option value="failure">FAILURE / 失败</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="era">Research Context / 研究背景</label>
-                    <input type="text" id="era" class="form-input" placeholder="e.g. Fictional Cretaceous Research Model" value="Fictional Cretaceous Research Model">
-                    <div class="error-lbl" id="eraErr">Era is required / 生存年代不能为空</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="archiveStatus">Archive Status / 档案状态</label>
-                    <input type="text" id="archiveStatus" class="form-input" value="UNKNOWN VISUAL LOCKED" readonly>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="length">Estimated Length / 预估体长</label>
-                    <input type="text" id="length" class="form-input" placeholder="e.g. 12.3m" value="12.3m">
-                    <div class="error-lbl" id="lengthErr">Length is required / 体长不能为空</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="weight">Estimated Weight / 预估体重</label>
-                    <input type="text" id="weight" class="form-input" placeholder="e.g. 8,400kg" value="8,400kg">
-                    <div class="error-lbl" id="weightErr">Weight is required / 体重不能为空</div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="atk">Behavioral Risk Index / 行为风险指数</label>
-                    <input type="number" id="atk" class="form-input" placeholder="e.g. 1200" value="2100">
-                    <div class="error-lbl" id="atkErr">Simulation attack index must be positive / 模拟攻击指数必须为正数</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="hp">Viability Index / 存活稳定指数</label>
-                    <input type="number" id="hp" class="form-input" placeholder="e.g. 3500" value="5200">
-                    <div class="error-lbl" id="hpErr">Simulation vitality must be positive / 模拟生命指数必须为正数</div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="aggLevel">Research Hazard Level / 研究风险等级 (1-5)</label>
-                    <select id="aggLevel" class="form-select">
-                        <option value="1">★☆☆☆☆ (DOCILE / 温顺)</option>
-                        <option value="2">★★☆☆☆ (CAUTIOUS / 谨慎)</option>
-                        <option value="3">★★★☆☆ (UNPREDICTABLE / 难测)</option>
-                        <option value="4" selected>★★★★☆ (HIGHLY AGGRESSIVE / 高度狂暴)</option>
-                        <option value="5">★★★★★ (EXTREME HAZARD / 极度致命)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="imgUrl">Research Image URL / 研究参考图路径</label>
-                    <input type="text" id="imgUrl" class="form-input" placeholder="e.g. assets/images/originals/indominous_rex.jpg" value="assets/images/originals/indominous_rex.jpg">
-                    <label class="form-label image-upload-label" for="imgFile">Or Upload Local Image / 或上传本地图片</label>
-                    <input type="file" id="imgFile" class="form-input image-file-input" accept="image/*">
-                    <div class="image-help">Local upload is stored in this browser preview and custom archive. / 本地上传会保存在当前浏览器的预览与自定义档案中。</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="description">Research Hypothesis / 研究假说</label>
-                <textarea id="description" class="form-textarea" placeholder="Describe the genome mix, observed behavior, and research purpose...">A classified hybrid research model comparing tyrannosaur mass, raptor reaction speed, and enhanced survival behavior under controlled simulation review.</textarea>
-                <div class="error-lbl" id="descErr">Summary is required / 物种概要不能为空</div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="fact">Genome Research Note / 基因研究备注</label>
-                <textarea id="fact" class="form-textarea" placeholder="Add one genome, ethics, or safety note...">This file is a fictional research model and must stay separate from fossil evidence or verified paleobiology records.</textarea>
-                <div class="error-lbl" id="factErr">Paleobiology note is required / 古生物学要点不能为空</div>
-            </div>
-
-            <button type="submit" class="action-btn">SAVE RESEARCH FILE / 保存研究档案</button>
-        </form>
-    </div>
-
-    <!-- RIGHT: LIVE CARD PREVIEW -->
-    <div class="preview-sticky">
-        <div class="mobile-preview-summary" id="mobilePreviewSummary">
-            <img src="" id="mobilePreviewImg" alt="" style="display:none;">
-            <div>
-                <b id="mobilePreviewName">INDOMINUS REX</b>
-                <span id="mobilePreviewStats">12.3m / 8,400kg</span>
-            </div>
+    <form id="synthesisForm" novalidate>
+      <div class="pl-form-grid">
+        <!-- 01: Identification -->
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="code">Research File Code / 档案编号</label>
+          <input type="text" id="code" class="form-input" placeholder="e.g. HYB-01, RS-12..." value="HYB-01">
+          <div class="error-lbl" id="codeErr">Code is required / 资产编号不能为空</div>
         </div>
-        <div class="preview-title">Research Subject Preview / 研究对象预览</div>
-        <div class="card" id="previewCard" data-class="hybrid" data-containment="class">
-            <div class="card-vis">
-                <!-- Preview image or fallback -->
-                <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
-                <canvas id="hybridCanvas" class="hybrid-canvas" width="640" height="480" hidden></canvas>
-                <div class="img-fallback" id="pCardFallback">
-                    <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
-                        <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
-                      </svg>
-                      <span class="unknown-status" style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
-                </div>
-                <span class="class-icon" id="pCardIcon">HYBRID</span>
-                <div class="dna-overlay" id="pCardDna">AT C G   T T A C   C A T C   G A T C</div>
-            </div>
-            <div class="dna-helix" id="dnaHelix" aria-hidden="true"></div>
-            <div class="card-data">
-                <div id="pCardInnerData">
-                    <div class="spec-code" id="pCardCode">HYB-01</div>
-                    <h3 class="spec-name" id="pCardName">INDOMINUS REX</h3>
-                    <div class="spec-cn" id="pCardCn">帝王暴龙</div>
-                </div>
-                <div class="spec-stats">
-                    <div><b id="pCardEra">Fictional Cretaceous Research Model</b></div>
-                    <div><b id="pCardRarity">ARCHIVE P5</b></div>
-                </div>
-            </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="name">Subject Name / 对象名称 (English)</label>
+          <input type="text" id="name" class="form-input" placeholder="e.g. INDOMINUS REX" value="INDOMINUS REX">
+          <div class="error-lbl" id="nameErr">Name is required / 属名不能为空</div>
         </div>
-    </div>
-</div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="cnName">Chinese Name / 中文名</label>
+          <input type="text" id="cnName" class="form-input" placeholder="e.g. 帝王暴龙" value="帝王暴龙">
+          <div class="error-lbl" id="cnNameErr">Chinese name is required / 中文名称不能为空</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="classSelect">Classification / 分类归属</label>
+          <select id="classSelect" class="form-select">
+            <option value="hybrid" selected>HYBRIDS / 混种生物</option>
+            <option value="carnivore">CARNIVORES / 肉食恐龙</option>
+            <option value="herbivore">HERBIVORES / 草食恐龙</option>
+            <option value="pterosaur">PTEROSAURS / 翼龙类</option>
+            <option value="amphibian">EARLY TETRAPODS / 早期四足类与鳄形类</option>
+            <option value="aquatic">AQUATIC LIFE / 水生与海生古生物</option>
+            <option value="cenozoic">CENOZOIC FAUNA / 新生代动物</option>
+          </select>
+        </div>
+
+        <!-- 02: Priorities & Results -->
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="raritySelect">Archive Priority / 研究优先级</label>
+          <select id="raritySelect" class="form-select">
+            <option value="1">P1 / 基础记录</option>
+            <option value="2">P2 / 扩展记录</option>
+            <option value="3">P3 / 重点记录</option>
+            <option value="4">P4 / 核心记录</option>
+            <option value="5" selected>P5 / 代表记录</option>
+          </select>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="synthesisStatus">Synthesis Result / 合成结果</label>
+          <select id="synthesisStatus" class="form-select">
+            <option value="success" selected>SUCCESS / 成功</option>
+            <option value="failure">FAILURE / 失败</option>
+          </select>
+        </div>
+
+        <!-- 03: Geologic Context -->
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="era">Research Context / 研究背景</label>
+          <input type="text" id="era" class="form-input" placeholder="e.g. Fictional Cretaceous Research Model" value="Fictional Cretaceous Research Model">
+          <div class="error-lbl" id="eraErr">Era is required / 生存年代不能为空</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="archiveStatus">Archive Status / 档案状态</label>
+          <input type="text" id="archiveStatus" class="form-input" value="UNKNOWN VISUAL LOCKED" readonly>
+        </div>
+
+        <!-- 04: Physical Metrics -->
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="length">Estimated Length / 预估体长</label>
+          <input type="text" id="length" class="form-input" placeholder="e.g. 12.3m" value="12.3m">
+          <div class="error-lbl" id="lengthErr">Length is required / 体长不能为空</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="weight">Estimated Weight / 预估体重</label>
+          <input type="text" id="weight" class="form-input" placeholder="e.g. 8,400kg" value="8,400kg">
+          <div class="error-lbl" id="weightErr">Weight is required / 体重不能为空</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="atk">Behavioral Risk Index / 行为风险指数</label>
+          <input type="number" id="atk" class="form-input" placeholder="e.g. 1200" value="2100">
+          <div class="error-lbl" id="atkErr">Simulation attack index must be positive / 模拟攻击指数必须为正数</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="hp">Viability Index / 存活稳定指数</label>
+          <input type="number" id="hp" class="form-input" placeholder="e.g. 3500" value="5200">
+          <div class="error-lbl" id="hpErr">Simulation vitality must be positive / 模拟生命指数必须为正数</div>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="aggLevel">Research Hazard Level / 风险等级 (1-5)</label>
+          <select id="aggLevel" class="form-select">
+            <option value="1">★☆☆☆☆ (DOCILE / 温顺)</option>
+            <option value="2">★★☆☆☆ (CAUTIOUS / 谨慎)</option>
+            <option value="3">★★★☆☆ (UNPREDICTABLE / 难测)</option>
+            <option value="4" selected>★★★★☆ (HIGHLY AGGRESSIVE / 高度狂暴)</option>
+            <option value="5">★★★★★ (EXTREME HAZARD / 极度致命)</option>
+          </select>
+        </div>
+
+        <div class="pl-form-group">
+          <label class="pl-form-label" for="imgUrl">Image URL or Local Upload / 参考图或上传</label>
+          <input type="text" id="imgUrl" class="form-input" placeholder="e.g. assets/images/originals/indominous_rex.jpg" value="assets/images/originals/indominous_rex.jpg">
+          <label class="form-label image-upload-label" for="imgFile" style="font-size: 0.72rem; color: var(--pl-gold); margin-top: 4px; cursor: pointer;">Or Upload Local File / 或上传本地文件</label>
+          <input type="file" id="imgFile" class="form-input image-file-input" accept="image/*" style="padding: 6px 12px !important; font-size: 0.78rem !important;">
+        </div>
+
+        <!-- 05: Narrative Fields -->
+        <div class="pl-form-group pl-form-full">
+          <label class="pl-form-label" for="description">Research Hypothesis / 研究假说</label>
+          <textarea id="description" class="form-textarea" rows="3" placeholder="Describe the genome mix, observed behavior, and research purpose...">A classified hybrid research model comparing tyrannosaur mass, raptor reaction speed, and enhanced survival behavior under controlled simulation review.</textarea>
+          <div class="error-lbl" id="descErr">Summary is required / 物种概要不能为空</div>
+        </div>
+
+        <div class="pl-form-group pl-form-full">
+          <label class="pl-form-label" for="fact">Genome Research Note / 基因研究备注</label>
+          <textarea id="fact" class="form-textarea" rows="2" placeholder="Add one genome, ethics, or safety note...">This file is a fictional research model and must stay separate from fossil evidence or verified paleobiology records.</textarea>
+          <div class="error-lbl" id="factErr">Paleobiology note is required / 古生物学要点不能为空</div>
+        </div>
+      </div>
+
+      <div class="pl-form-actions">
+        <button type="submit" class="pl-btn-primary" style="padding: 14px 32px; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; letter-spacing: 2px;">CREATE HYBRID / 保存研究档案</button>
+        <button type="button" id="resetLabBtn" class="pl-btn-secondary" style="padding: 14px 28px; font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 2px;">RESET / 重置样本</button>
+      </div>
+    </form>
+  </div>
+</main>
 
 <!-- SUCCESS DIALOG OVERLAY -->
 <div class="success-overlay" id="successOverlay">
-    <div class="success-box">
-        <div class="success-title">RESEARCH FILE SAVED / 研究档案已保存</div>
-        <div class="success-text">
-            The hybrid research file and its preview image have been written to the local <b>PALEO ARCHIVE</b> collection.<br>
-            For true AI image generation, this static page needs a backend or a prepared image file path.<br><br>
-            混种研究档案与预览图片已写入本地 <b>PALEO ARCHIVE</b> 图鉴。<br>
-            如果要真正 AI 生图，静态页面需要后端接口，或先准备好图片路径。
-        </div>
-        <button class="action-btn" onclick="window.location.href='gallery.html';" style="margin: 0;">◀ RETURN TO ARCHIVES / 返回档案库</button>
+  <div class="success-box">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(194, 155, 98, 0.15); border: 1px solid var(--pl-gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--pl-gold);">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
     </div>
+    <div class="success-title">RESEARCH FILE SAVED / 研究档案已保存</div>
+    <div class="success-text">
+      The hybrid research file and its preview image have been committed to the local <b>PALEOLOGIST</b> collection.<br><br>
+      混种研究档案与预览图片已写入本地 <b>PALEOLOGIST</b> 标本库。您可以在物种图鉴中查看合成档案。
+    </div>
+    <button class="pl-btn-primary" onclick="window.location.href='gallery.html';" style="padding: 12px 28px; font-family: var(--font-display); letter-spacing: 2px;">VIEW IN FIELD GUIDE / 返回图鉴查看</button>
+  </div>
 </div>
+
+<!-- RED CODE ALERT MODAL -->
+<div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle">
+  <div class="pl-modal-card">
+    <div class="pl-modal-header">
+      <div class="pl-modal-title-wrap">
+        <span class="pl-badge pl-badge-cr">URGENT CALL TO ACTION</span>
+        <h2 class="pl-modal-title" id="modalAlertTitle">RED CODE ALERT / 红色警戒</h2>
+      </div>
+      <button class="pl-modal-close js-close-alert" id="closeRedAlertModal" aria-label="Close modal">×</button>
+    </div>
+
+    <div class="pl-modal-body">
+      <div class="pl-modal-quote">
+        "Extinction is forever. What was once lost in deep time can teach us how to prevent the collapse of our modern biosphere."
+      </div>
+
+      <div class="pl-modal-tabs" id="modalStatusTabs">
+        <button class="pl-alert-tab active" data-status="all">ALL ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="CR">CRITICALLY ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="EN">ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="VU">VULNERABLE</button>
+      </div>
+
+      <div class="pl-threat-grid" id="modalThreatList">
+        <div class="pl-threat-card" data-status="CR">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
+            <span class="pl-badge pl-badge-cr">CR</span>
+          </div>
+          <div class="pl-threat-status">EXTINCT IN WILD (EW) / 濒危极危</div>
+          <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="EN">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
+            <span class="pl-badge pl-badge-en">EN</span>
+          </div>
+          <div class="pl-threat-status">EXTINCT / 极度濒危灭绝物种</div>
+          <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="VU">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
+            <span class="pl-badge pl-badge-vu">VU</span>
+          </div>
+          <div class="pl-threat-status">HIGH RISK / 易危物种</div>
+          <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="CR">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
+            <span class="pl-badge pl-badge-cr">CR</span>
+          </div>
+          <div class="pl-threat-status">HISTORIC EXTINCTION / 历史灭绝典型</div>
+          <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
+        </div>
+      </div>
+
+      <div class="pl-what-can-you-do">
+        <h3 class="pl-what-title">WHAT CAN YOU DO? / 我们能做什么？</h3>
+        <p class="pl-what-text">
+          Paleontological evidence reveals that Earth's five historical mass extinctions were driven by abrupt carbon emissions, ocean acidification, and habitat loss. Modern anthropogenic climate change is reproducing these same geobiological stresses at ten times the speed.
+        </p>
+        <div class="pl-what-steps">
+          <div class="pl-step-item">
+            <div class="pl-step-num">01</div>
+            <div>
+              <div class="pl-step-bold">Support Habitat Sanctuaries</div>
+              <div class="pl-step-desc">Preserve continuous ecological corridors to prevent genetic bottlenecks.</div>
+            </div>
+          </div>
+          <div class="pl-step-item">
+            <div class="pl-step-num">02</div>
+            <div>
+              <div class="pl-step-bold">Decarbonize Energy</div>
+              <div class="pl-step-desc">Halt runaway ocean acidification mirroring the end-Permian crisis.</div>
+            </div>
+          </div>
+          <div class="pl-step-item">
+            <div class="pl-step-num">03</div>
+            <div>
+              <div class="pl-step-bold">Advance Bio-Archiving</div>
+              <div class="pl-step-desc">Support cryogenic genetic banking and museum research collections.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="pl-footer">
+  <div class="pl-footer-inner">
+    <div class="pl-footer-grid">
+      <div class="pl-footer-brand-col">
+        <div class="pl-footer-brand">
+          <svg class="pl-footer-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+            <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+          </svg>
+          <span class="pl-footer-brand-text">PALEOLOGIST</span>
+        </div>
+        <p class="pl-footer-desc">
+          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+        </p>
+        <div class="pl-footer-status-pill">
+          <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
+          <span>SYSTEM OPERATIONAL · DATABASE V4.8.2</span>
+        </div>
+      </div>
+
+      <div class="pl-footer-links-col">
+        <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
+        <div class="pl-footer-links">
+          <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
+          <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+          <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
+          <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
+          <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+        </div>
+      </div>
+
+      <div class="pl-footer-art-col">
+        <div class="pl-fossil-art-box">
+          <svg class="pl-fossil-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 60 Q 50 30, 80 45 T 140 35" stroke="#c29b62" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M35 55 Q 38 75, 42 90" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M50 48 Q 55 78, 60 98" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M68 44 Q 74 76, 80 102" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M85 45 Q 92 74, 98 96" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M102 44 Q 108 68, 114 85" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M120 40 Q 124 58, 128 72" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M135 36 Q 148 24, 155 35 Q 150 48, 138 42 Z" stroke="#c29b62" stroke-width="1.5" fill="rgba(194, 155, 98, 0.15)"/>
+            <circle cx="148" cy="32" r="2.5" fill="#e5b869"/>
+          </svg>
+          <div class="pl-fossil-art-tag">SPECIMEN #FSL-908 · VERTEBRATE OSTEOLOGY</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-footer-bottom">
+      <div class="pl-footer-copy">
+        © 2026 PALEOLOGIST ARCHIVE · FUNDAMENTALS OF WEB PROGRAMMING
+      </div>
+      <div class="pl-footer-coords">
+        LAT 37°14'06"N · LON 115°48'40"W · ELEV 1,360M
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
+

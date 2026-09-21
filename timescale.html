@@ -3,102 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Navigate the PALEO ARCHIVE deep-time timeline from the earliest life through the Cenozoic.">
-    <meta property="og:title" content="PALEO ARCHIVE | Deep-Time Timeline">
+    <meta name="description" content="Navigate the PALEOLOGIST deep-time timeline from the earliest life through the Cenozoic.">
+    <meta property="og:title" content="PALEOLOGIST | Geologic Timeline">
     <meta property="og:description" content="A bilingual geological timeline connecting major periods, evolutionary transitions, and representative prehistoric life.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trilobite.jpg">
-    <title>PALEO ARCHIVE | Deep-Time Timeline</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>PALEOLOGIST | Geologic Timeline / 地质年代表</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
     <script src="assets/js/species-data.js"></script>
     <script src="assets/js/site.js"></script>
-    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="console-header">
-    <div class="back-nav" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <div>
-            <a href="gallery.html" class="back-btn">← RETURN TO GALLERY / 返回图鉴</a>
-            <span style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; margin-left: 15px; display: inline-block; vertical-align: middle;" id="operatorLabel">OPERATOR / 操作员: GUEST | CLR / 权限: LEVEL 4</span>
-        </div>
-        <a href="form.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">SPECIMEN BUILDER / 标本编辑器</a>
-    </div>
-    <div class="sys-title">GEOLOGIC TIMELINE / 地质年代表<span> PERIOD IMAGE ATLAS</span></div>
-    <div class="timeline-scope-strip" aria-label="Timeline scope">
-        <span>EONS</span>
-        <span>ERAS</span>
-        <span class="active">PERIODS</span>
-        <span>EPOCHS</span>
-    </div>
-</div>
+<!-- GLOBAL NAVIGATION HEADER -->
+<header class="pl-header">
+  <div class="pl-header-inner">
+    <a href="index.html" class="pl-logo">
+      <svg class="pl-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+        <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9c3.86 0 7.12-2.44 8.36-5.89-.35.08-.71.13-1.09.13-2.9 0-5.27-2.36-5.27-5.24 0-1.74.85-3.28 2.16-4.23C19.78 8.1 17.98 7 16 7z" fill="#c29b62" opacity="0.6"/>
+        <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+      </svg>
+      <span class="pl-logo-text">PALEOLOGIST</span>
+    </a>
 
-<!-- CONTAINER -->
-<div class="timeline-container">
+    <nav class="pl-nav" id="plNav">
+      <a href="index.html" class="pl-nav-link">HOME / 首页</a>
+      <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+      <a href="timescale.html" class="pl-nav-link active">TIMELINE / 地质年代</a>
+      <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
+    </nav>
+
+    <div class="pl-header-actions">
+      <button class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert Modal">
+        <span class="pl-pulse-dot"></span>
+        <span>RED CODE ALERT</span>
+      </button>
+      <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<main class="pl-container" style="padding-top: 100px; padding-bottom: 80px;">
+  <!-- PAGE HEADER -->
+  <div class="pl-field-guide-header" style="margin-bottom: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="pl-section-tag">CHRONO-STRATIGRAPHY / 深时地质学</span>
+        <h1 class="pl-section-title" style="margin-top: 8px; margin-bottom: 10px;">GEOLOGIC TIMELINE / 地质年代表</h1>
+        <p style="color: var(--pl-text-muted); font-size: 0.95rem; max-width: 680px; margin: 0; line-height: 1.6;">
+          Deep-time evolutionary transitions across Earth's eras. Navigate tectonic movements, atmospheric shifts, and major life radiations from the Cambrian explosion to the Quaternary megafauna.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--pl-gold); background: rgba(194, 155, 98, 0.08); border: 1px solid var(--pl-border); padding: 8px 14px; border-radius: var(--pl-radius-sm);">
+        <span id="operatorLabel">OPERATOR: GUEST | CLR: LEVEL 4</span>
+      </div>
+    </div>
+
+    <!-- SCOPE STRIP -->
+    <div class="timeline-scope-strip" aria-label="Timeline scope" style="margin-top: 24px;">
+      <span>EONS / 宙</span>
+      <span>ERAS / 代</span>
+      <span class="active">PERIODS / 纪</span>
+      <span>EPOCHS / 世</span>
+    </div>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="timeline-container">
     <!-- LEFT: CHRONOLOGICAL SELECTOR -->
     <div class="timeline-list" id="timelineList">
-        <!-- Will populate via Javascript for easier maintenance and clean layout -->
+      <!-- Populated via Javascript -->
     </div>
 
     <!-- RIGHT: DETAIL DISPLAY PANE -->
     <div class="details-sticky">
-        <div class="details-panel" id="detailsPanel">
-            <div class="era-visual-frame" id="eraVisualFrame">
-                <img src="assets/images/timeline/hanwuji.jpg" alt="Cambrian period artwork" class="era-visual-image" id="detImage">
-                <div class="era-image-pending" id="detImagePending">IMAGE PENDING / 图片待补</div>
-                <div class="era-visual-copy">
-                    <div class="details-era" id="detEra">PALEOZOIC ERA</div>
-                    <div class="details-title" id="detTitle">CAMBRIAN PERIOD / 寒武纪</div>
-                    <div class="details-span" id="detSpan">541.0 - 485.4 million years ago / 5.41亿 - 4.85亿年前</div>
-                </div>
-            </div>
-
-            <div class="timeline-detail-grid">
-                <div class="timeline-copy-stack">
-                    <div class="desc-title">Tectonic Activity & Geography / 地壳板块运动与地理</div>
-                    <div class="desc-text" id="detTectonic">-</div>
-
-                    <div class="desc-title" id="detExtinctionTitle" style="color:var(--error-red); display:none; font-family:'Orbitron',sans-serif; text-shadow:0 0 10px var(--error-glow);">Mass Extinction Event / 生物大灭绝事件</div>
-                    <div class="desc-text" id="detExtinction" style="border: 1px dashed var(--error-red); padding: 10px; background: rgba(169, 58, 44, 0.08); display:none; margin-bottom: 25px;">-</div>
-
-                    <div class="desc-title">Evolutionary Milestones / 进化里程碑与主要生命事件</div>
-                    <div class="desc-text" id="detBio">-</div>
-
-                    <div class="desc-title">Dominant Archetypes / 主要优势与代表性古生物</div>
-                    <div class="desc-text" id="detArchetypes">-</div>
-                </div>
-
-                <div class="timeline-fact-stack">
-                    <div class="stat-grid">
-                        <div class="stat-box">
-                            <div class="stat-lbl">Atmospheric Oxygen / 大气含氧量</div>
-                            <div class="stat-val" id="detO2">-</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-lbl">Atmospheric CO2 / 大气CO₂浓度</div>
-                            <div class="stat-val" id="detCO2">-</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-lbl">Surface Temperature / 地表平均温度</div>
-                            <div class="stat-val" id="detTemp">-</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-lbl">Sea Level / 平均海平面高度</div>
-                            <div class="stat-val" id="detSeaLevel">-</div>
-                        </div>
-                    </div>
-
-                    <div class="major-events">
-                        <div class="major-events-title">Major Events / 主要事件</div>
-                        <div class="major-events-list" id="detEvents"></div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="action-btn" id="queryBtn" onclick="queryArchive()">QUERY ARCHIVES / 查询数据库档案</button>
+      <div class="details-panel" id="detailsPanel">
+        <div class="era-visual-frame" id="eraVisualFrame">
+          <img src="assets/images/timeline/hanwuji.jpg" alt="Cambrian period artwork" class="era-visual-image" id="detImage">
+          <div class="era-image-pending" id="detImagePending">IMAGE PENDING / 图片待补</div>
+          <div class="era-visual-copy">
+            <div class="details-era" id="detEra">PALEOZOIC ERA</div>
+            <div class="details-title" id="detTitle">CAMBRIAN PERIOD / 寒武纪</div>
+            <div class="details-span" id="detSpan">541.0 - 485.4 million years ago / 5.41亿 - 4.85亿年前</div>
+          </div>
         </div>
+
+        <div class="timeline-detail-grid">
+          <div class="timeline-copy-stack">
+            <div class="desc-title">Tectonic Activity & Geography / 地壳板块运动与地理</div>
+            <div class="desc-text" id="detTectonic">-</div>
+
+            <div class="desc-title" id="detExtinctionTitle" style="color: var(--pl-crimson-light); display: none; font-family: var(--font-display); letter-spacing: 1.5px; text-shadow: 0 0 10px rgba(185, 28, 28, 0.4);">Mass Extinction Event / 生物大灭绝事件</div>
+            <div class="desc-text" id="detExtinction" style="border: 1px dashed var(--pl-crimson); padding: 12px 14px; background: rgba(185, 28, 28, 0.08); display: none; margin-bottom: 24px; border-radius: var(--pl-radius-sm); color: #fca5a5;">-</div>
+
+            <div class="desc-title">Evolutionary Milestones / 进化里程碑与主要生命事件</div>
+            <div class="desc-text" id="detBio">-</div>
+
+            <div class="desc-title">Dominant Archetypes / 主要优势与代表性古生物</div>
+            <div class="desc-text" id="detArchetypes">-</div>
+          </div>
+
+          <div class="timeline-fact-stack">
+            <div class="stat-grid">
+              <div class="stat-box">
+                <div class="stat-lbl">Atmospheric Oxygen / 大气含氧量</div>
+                <div class="stat-val" id="detO2">-</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-lbl">Atmospheric CO2 / 大气CO₂浓度</div>
+                <div class="stat-val" id="detCO2">-</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-lbl">Surface Temperature / 地表平均温度</div>
+                <div class="stat-val" id="detTemp">-</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-lbl">Sea Level / 平均海平面高度</div>
+                <div class="stat-val" id="detSeaLevel">-</div>
+              </div>
+            </div>
+
+            <div class="major-events">
+              <div class="major-events-title">Major Events / 主要事件</div>
+              <div class="major-events-list" id="detEvents"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="action-btn" id="queryBtn" onclick="queryArchive()" style="margin-top: 24px; width: 100%; font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; letter-spacing: 2px;">QUERY ARCHIVES / 查询数据库档案</button>
+      </div>
     </div>
+  </div>
+</main>
+
+<!-- RED CODE ALERT MODAL -->
+<div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle">
+  <div class="pl-modal-card">
+    <div class="pl-modal-header">
+      <div class="pl-modal-title-wrap">
+        <span class="pl-badge pl-badge-cr">URGENT CALL TO ACTION</span>
+        <h2 class="pl-modal-title" id="modalAlertTitle">RED CODE ALERT / 红色警戒</h2>
+      </div>
+      <button class="pl-modal-close js-close-alert" id="closeRedAlertModal" aria-label="Close modal">×</button>
+    </div>
+
+    <div class="pl-modal-body">
+      <div class="pl-modal-quote">
+        "Extinction is forever. What was once lost in deep time can teach us how to prevent the collapse of our modern biosphere."
+      </div>
+
+      <div class="pl-modal-tabs" id="modalStatusTabs">
+        <button class="pl-alert-tab active" data-status="all">ALL ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="CR">CRITICALLY ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="EN">ENDANGERED</button>
+        <button class="pl-alert-tab" data-status="VU">VULNERABLE</button>
+      </div>
+
+      <div class="pl-threat-grid" id="modalThreatList">
+        <div class="pl-threat-card" data-status="CR">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
+            <span class="pl-badge pl-badge-cr">CR</span>
+          </div>
+          <div class="pl-threat-status">EXTINCT IN WILD (EW) / 濒危极危</div>
+          <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="EN">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
+            <span class="pl-badge pl-badge-en">EN</span>
+          </div>
+          <div class="pl-threat-status">EXTINCT / 极度濒危灭绝物种</div>
+          <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="VU">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
+            <span class="pl-badge pl-badge-vu">VU</span>
+          </div>
+          <div class="pl-threat-status">HIGH RISK / 易危物种</div>
+          <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
+        </div>
+
+        <div class="pl-threat-card" data-status="CR">
+          <div class="pl-threat-card-header">
+            <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
+            <span class="pl-badge pl-badge-cr">CR</span>
+          </div>
+          <div class="pl-threat-status">HISTORIC EXTINCTION / 历史灭绝典型</div>
+          <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
+        </div>
+      </div>
+
+      <div class="pl-what-can-you-do">
+        <h3 class="pl-what-title">WHAT CAN YOU DO? / 我们能做什么？</h3>
+        <p class="pl-what-text">
+          Paleontological evidence reveals that Earth's five historical mass extinctions were driven by abrupt carbon emissions, ocean acidification, and habitat loss. Modern anthropogenic climate change is reproducing these same geobiological stresses at ten times the speed.
+        </p>
+        <div class="pl-what-steps">
+          <div class="pl-step-item">
+            <div class="pl-step-num">01</div>
+            <div>
+              <div class="pl-step-bold">Support Habitat Sanctuaries</div>
+              <div class="pl-step-desc">Preserve continuous ecological corridors to prevent genetic bottlenecks.</div>
+            </div>
+          </div>
+          <div class="pl-step-item">
+            <div class="pl-step-num">02</div>
+            <div>
+              <div class="pl-step-bold">Decarbonize Energy</div>
+              <div class="pl-step-desc">Halt runaway ocean acidification mirroring the end-Permian crisis.</div>
+            </div>
+          </div>
+          <div class="pl-step-item">
+            <div class="pl-step-num">03</div>
+            <div>
+              <div class="pl-step-bold">Advance Bio-Archiving</div>
+              <div class="pl-step-desc">Support cryogenic genetic banking and museum research collections.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="pl-footer">
+  <div class="pl-footer-inner">
+    <div class="pl-footer-grid">
+      <div class="pl-footer-brand-col">
+        <div class="pl-footer-brand">
+          <svg class="pl-footer-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+            <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+          </svg>
+          <span class="pl-footer-brand-text">PALEOLOGIST</span>
+        </div>
+        <p class="pl-footer-desc">
+          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+        </p>
+        <div class="pl-footer-status-pill">
+          <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
+          <span>SYSTEM OPERATIONAL · DATABASE V4.8.2</span>
+        </div>
+      </div>
+
+      <div class="pl-footer-links-col">
+        <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
+        <div class="pl-footer-links">
+          <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
+          <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+          <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
+          <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
+          <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+        </div>
+      </div>
+
+      <div class="pl-footer-art-col">
+        <div class="pl-fossil-art-box">
+          <svg class="pl-fossil-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 60 Q 50 30, 80 45 T 140 35" stroke="#c29b62" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M35 55 Q 38 75, 42 90" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M50 48 Q 55 78, 60 98" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M68 44 Q 74 76, 80 102" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M85 45 Q 92 74, 98 96" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M102 44 Q 108 68, 114 85" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M120 40 Q 124 58, 128 72" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M135 36 Q 148 24, 155 35 Q 150 48, 138 42 Z" stroke="#c29b62" stroke-width="1.5" fill="rgba(194, 155, 98, 0.15)"/>
+            <circle cx="148" cy="32" r="2.5" fill="#e5b869"/>
+          </svg>
+          <div class="pl-fossil-art-tag">SPECIMEN #FSL-908 · VERTEBRATE OSTEOLOGY</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-footer-bottom">
+      <div class="pl-footer-copy">
+        © 2026 PALEOLOGIST ARCHIVE · FUNDAMENTALS OF WEB PROGRAMMING
+      </div>
+      <div class="pl-footer-coords">
+        LAT 37°14'06"N · LON 115°48'40"W · ELEV 1,360M
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
+

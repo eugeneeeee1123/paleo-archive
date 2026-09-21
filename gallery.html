@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore a bilingual paleo specimen archive with geological eras, fossil localities, reconstructions, and clearly separated simulation data.">
-    <meta property="og:title" content="PALEO ARCHIVE / Specimen Gallery">
-    <meta property="og:description" content="A cinematic paleobiology gallery covering dinosaurs, pterosaurs, marine life, early tetrapods, and Cenozoic animals.">
+    <meta name="description" content="PALEOLOGIST | Species Field Guide - Explore detailed profiles of ancient species, geological eras, and fossil discoveries.">
+    <meta property="og:title" content="PALEOLOGIST | Species Field Guide">
+    <meta property="og:description" content="Comprehensive specimen database and fossil gallery across deep geological time.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trex.jpg">
-    <title>PALEO ARCHIVE / Specimen Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>PALEOLOGIST | Species Field Guide & Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="assets/js/species-data.js"></script>
     <script src="assets/js/site.js"></script>
     <link rel="stylesheet" href="assets/css/site.css">
@@ -36,38 +36,82 @@
   </div>
   <div class="paddock-footer"><div class="system-clock">SYS: <span id="sysClock">--:--:--</span></div></div>
 </div>
+    <!-- GLOBAL HEADER -->
+    <header class="pl-header">
+        <div class="pl-header-inner">
+            <a href="index.html" class="pl-logo">
+              <svg class="pl-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+                <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9c3.86 0 7.12-2.44 8.36-5.89-.35.08-.71.13-1.09.13-2.9 0-5.27-2.36-5.27-5.24 0-1.74.85-3.28 2.16-4.23C19.78 8.1 17.98 7 16 7z" fill="#c29b62" opacity="0.6"/>
+                <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+              </svg>
+              <span class="pl-logo-text">PALEOLOGIST</span>
+            </a>
+
+            <nav class="pl-nav" id="plNav" aria-label="Primary Navigation">
+                <a href="index.html" class="pl-nav-link">HOME / 首页</a>
+                <a href="gallery.html" class="pl-nav-link active">FIELD GUIDE / 物种图鉴</a>
+                <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
+                <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+                <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
+            </nav>
+
+            <div class="pl-header-actions">
+                <button type="button" class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert System">
+                    <span class="pl-pulse-dot"></span>
+                    <span>RED CODE ALERT</span>
+                </button>
+                <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                  </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
 <!-- PAGE WRAP START -->
 <div class="page-wrap">
-<!-- CLEARANCE BANNER -->
-<div class="clearance-banner">
-  <span class="clearance-text">PALEO ARCHIVE - CURATED SPECIMEN ACCESS / 古生物档案库 - 标本访问</span>
-  <span class="clearance-id">DOC: PALEO_DB_2026 | NODE-09</span>
-</div>
+    <div class="pl-field-guide-header">
+        <div class="pl-section-kicker">COMPREHENSIVE SPECIES DATABASE</div>
+        <h1 class="pl-section-title" style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 8px;">SPECIES FIELD GUIDE</h1>
+        <p style="color:var(--pl-text-muted); font-size:0.95rem; margin:0 0 24px;">Explore detailed profiles of ancient species across deep geological time.</p>
 
-
-    <div class="console-header">
-        <div class="back-nav" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-            <div>
-                <a href="index.html" class="back-btn" onclick="sessionStorage.setItem('skip_index_intro','true'); localStorage.removeItem('ingen_username'); localStorage.removeItem('ingen_clearance'); sessionStorage.removeItem('ingen_booted');">← RETURN HOME / 返回首页</a>
-                <span id="userClearanceDisplay" style="font-size:0.75rem; color: var(--ingen-green); letter-spacing:1px; margin-left: 15px; opacity: 0.85; border-left: 1px solid var(--ingen-green-dim); padding-left: 15px; display: inline-block; vertical-align: middle;">OPERATOR: GUEST | CLR: LEVEL 1</span>
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <a href="timescale.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">DEEP-TIME TIMELINE / 地质年代表</a>
-                <a href="form.html" class="back-btn" style="border-color: var(--ingen-green); color: var(--ingen-green); background: rgba(200, 163, 106, 0.08);">SPECIMEN BUILDER / 标本编辑器</a>
-            </div>
-        </div>
-        <div class="sys-title" style="font-family:'Orbitron',sans-serif;font-size:1.05rem;letter-spacing:3px;color:var(--ingen-green);text-shadow:0 0 12px var(--ingen-green-glow);">PALEO SPECIMEN GALLERY / 古生物标本图鉴</div>
-        <div class="tools-row">
-            <label class="sr-only" for="searchInput">Search specimens / 检索古生物标本</label>
-            <input type="search" id="searchInput" class="search-box" placeholder="SEARCH SPECIMENS / 检索古生物标本..." autocomplete="off">
-            <select id="sortSelect" class="sort-select" onchange="sortCards()">
+        <div class="pl-guide-filter-row">
+            <input type="search" id="searchInput" class="pl-search-input" placeholder="Search species (e.g. Tyrannosaurus, Triceratops, 霸王龙)..." autocomplete="off">
+            <select id="eraFilterSelect" class="pl-filter-select" aria-label="Filter by Era">
+                <option value="all">ALL ERAS / 全部年代</option>
+                <option value="cretaceous">CRETACEOUS / 白垩纪</option>
+                <option value="jurassic">JURASSIC / 侏罗纪</option>
+                <option value="triassic">TRIASSIC / 三叠纪</option>
+                <option value="permian">PERMIAN / 二叠纪</option>
+                <option value="carboniferous">CARBONIFEROUS / 石炭纪</option>
+                <option value="devonian">DEVONIAN / 泥盆纪</option>
+                <option value="cenozoic">CENOZOIC / 新生代</option>
+            </select>
+            <select id="dietFilterSelect" class="pl-filter-select" aria-label="Filter by Diet">
+                <option value="all">ALL DIETS / 全部食性</option>
+                <option value="carnivore">CARNIVORE / 肉食</option>
+                <option value="herbivore">HERBIVORE / 草食</option>
+                <option value="piscivore">PISCIVORE / 食鱼</option>
+                <option value="omnivore">OMNIVORE / 杂食</option>
+            </select>
+            <select id="statusFilterSelect" class="pl-filter-select" aria-label="Filter by Conservation Status">
+                <option value="all">ALL STATUSES / 全部保护状态</option>
+                <option value="cr">CRITICALLY ENDANGERED (CR)</option>
+                <option value="en">ENDANGERED (EN)</option>
+                <option value="vu">VULNERABLE (VU)</option>
+                <option value="lc">LEAST CONCERN (LC)</option>
+            </select>
+            <select id="sortSelect" class="pl-filter-select" onchange="sortCards()" aria-label="Sort specimens">
                 <option value="default">DEFAULT / 默认排序</option>
-                <option value="name">NAME (A-Z) / 名称 (A-Z)</option>
-                <option value="era">GEOLOGICAL ERA / 地质年代</option>
-                <option value="rarity">ARCHIVE PRIORITY / 档案优先级</option>
+                <option value="name">NAME (A-Z) / 名称</option>
+                <option value="era">ERA / 地质年代</option>
+                <option value="rarity">ARCHIVE PRIORITY / 优先级</option>
             </select>
         </div>
-        <div class="filter-group">
+
+        <div class="filter-group" style="margin-top: 16px;">
             <button class="filter-btn active" data-val="all" onclick="filterSelection('all')">ALL / 全部</button>
             <button class="filter-btn" data-val="hybrid" onclick="filterSelection('hybrid')">HYBRIDS / 混种生物</button>
             <button class="filter-btn" data-val="carnivore" onclick="filterSelection('carnivore')">CARNIVORES / 肉食恐龙</button>
@@ -80,7 +124,7 @@
     </div>
     <div class="results-status" id="resultsStatus" role="status" aria-live="polite">
         <span id="resultsCount">0 RECORDS / 0 条记录</span>
-        <span id="resultsHint">SCIENTIFIC RECORDS + MARKED SIMULATION DATA / 科学档案与明确标注的模拟数据</span>
+        <span id="resultsHint">SCIENTIFIC RECORDS + FIELD DISCOVERY FILES</span>
     </div>
 
     <div class="section-wrapper" id="sec-hybrid">
@@ -262,6 +306,79 @@
         <button type="button" class="load-more-btn" id="loadMoreBtn">LOAD MORE RECORDS / 加载更多记录</button>
     </div>
 
+    <!-- GALLERY SHOWCASE SECTION (BOARD 4 FROM PROTOTYPE.PNG) -->
+    <section id="gallery-showcase" style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--pl-border);">
+        <div class="pl-section-head">
+            <div class="pl-section-kicker">MUSEUM EXHIBITION ARCHIVE</div>
+            <h2 class="pl-section-title">GALLERY</h2>
+            <p style="color:var(--pl-text-muted); font-size:0.95rem; margin-top:6px;">Explore fossils, skeletons, and prehistoric worlds.</p>
+        </div>
+
+        <div class="pl-alert-filter-tabs" style="margin-bottom: 30px;">
+            <button type="button" class="pl-alert-tab pl-gallery-tab active" data-cat="all">ALL</button>
+            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="fossils">FOSSILS</button>
+            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="skeletons">SKELETONS</button>
+            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="habitats">HABITATS</button>
+            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="artwork">ARTWORK</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
+            <!-- Fossil 1 -->
+            <div class="pl-showcase-item" data-cat="skeletons" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/timeline/baieji.jpg" alt="Cretaceous Excavation" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Tyrannosaurid Skeleton Specimen</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Museum Hall · Hell Creek Formation</span>
+                </div>
+            </div>
+
+            <!-- Fossil 2 -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/originals/trilobite.jpg" alt="Trilobite Fossil Matrix" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Cambrian Trilobite Matrix</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Fossil Bed · Utah Shale</span>
+                </div>
+            </div>
+
+            <!-- Fossil 3 -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/timeline/zhuluoji.jpg" alt="Jurassic Conifer Valley" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Jurassic Conifer Floodplain</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Paleoenvironment Reconstruction</span>
+                </div>
+            </div>
+
+            <!-- Fossil 4 -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/originals/triceratop.jpg" alt="Triceratops in Fern Prairies" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triceratops Horridus Portrait</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Expedition Field Artwork</span>
+                </div>
+            </div>
+
+            <!-- Fossil 5 -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/originals/ammonite.jpg" alt="Sutured Ammonite Shell" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Pyritized Ammonite Concretion</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Marine Jurassic Locality</span>
+                </div>
+            </div>
+
+            <!-- Fossil 6 -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
+                <img src="assets/images/timeline/sandieji.jpg" alt="Triassic Red Canyon" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
+                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triassic Pangean Rift Valley</span>
+                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Deep Time Geomorphology</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- BREACH -->
 <div id="ingen-breach">
   <div class="breach-title">CONTAINMENT BREACH / 警告：收容突破</div>
@@ -270,5 +387,155 @@
 </div>
 
 </div><!-- /page-wrap -->
+
+    <!-- RED CODE ALERT MODAL -->
+    <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
+        <div class="pl-modal-window">
+            <button type="button" class="pl-modal-close js-close-alert" aria-label="Close Alert Dialog">✕</button>
+            <div class="pl-alert-modal-head">
+                <h2 class="pl-alert-modal-title" id="alertModalTitle">
+                    <span style="color:var(--pl-red-light);">▲</span> RED CODE ALERT
+                </h2>
+                <p class="pl-alert-modal-sub">Ancient species are disappearing. Awareness is the first step to preservation.</p>
+            </div>
+
+            <div class="pl-alert-filter-tabs">
+                <button type="button" class="pl-alert-tab active" data-status="all">ALL STATUSES</button>
+                <button type="button" class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED (CR)</button>
+                <button type="button" class="pl-alert-tab" data-status="en">ENDANGERED (EN)</button>
+                <button type="button" class="pl-alert-tab" data-status="vu">VULNERABLE (VU)</button>
+            </div>
+
+            <div class="pl-alert-cards-grid">
+                <!-- Card 1 -->
+                <div class="pl-threat-card" data-status="cr">
+                    <img src="assets/images/originals/triceratop.jpg" alt="Triceratops" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">TRICERATOPS</h4>
+                        <span class="pl-chip-badge cr">CR</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
+                    <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pl-threat-card" data-status="en">
+                    <img src="assets/images/originals/mammoth.jpg" alt="Woolly Mammoth" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
+                        <span class="pl-chip-badge en">EN</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
+                    <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pl-threat-card" data-status="vu">
+                    <img src="assets/images/originals/smilodon.jpg" alt="Saber-Toothed Tiger" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
+                        <span class="pl-chip-badge vu">VU</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
+                    <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="pl-threat-card" data-status="cr">
+                    <img src="assets/images/originals/dodo.jpg" alt="Dodo" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">DODO</h4>
+                        <span class="pl-chip-badge cr">CR</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
+                    <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators on Mauritius.</p>
+                </div>
+            </div>
+
+            <!-- WHAT CAN YOU DO? -->
+            <div class="pl-what-can-you-do">
+                <div>
+                    <h3 class="pl-what-title">WHAT CAN YOU DO?</h3>
+                    <p style="font-size:0.78rem; color:var(--pl-text-muted); margin:6px 0 0;">Preserving biodiversity begins with understanding history.</p>
+                </div>
+                <div class="pl-what-steps">
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">1. LEARN</div>
+                        <div class="pl-what-step-desc">Educate yourself and your community on ancient mass extinction triggers.</div>
+                    </div>
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">2. SHARE</div>
+                        <div class="pl-what-step-desc">Promote scientific research and paleobiological conservation studies.</div>
+                    </div>
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">3. SUPPORT</div>
+                        <div class="pl-what-step-desc">Support habitat preservation and active ecological restoration worldwide.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="pl-footer">
+      <div class="pl-footer-inner">
+        <div class="pl-footer-grid">
+          <div class="pl-footer-brand-col">
+            <div class="pl-footer-brand">
+              <svg class="pl-footer-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+                <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+              </svg>
+              <span class="pl-footer-brand-text">PALEOLOGIST</span>
+            </div>
+            <p class="pl-footer-desc">
+              An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+            </p>
+            <div class="pl-footer-status-pill">
+              <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
+              <span>SYSTEM OPERATIONAL · DATABASE V4.8.2</span>
+            </div>
+          </div>
+
+          <div class="pl-footer-links-col">
+            <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
+            <div class="pl-footer-links">
+              <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
+              <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+              <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
+              <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
+              <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+            </div>
+          </div>
+
+          <div class="pl-footer-art-col">
+            <div class="pl-fossil-art-box">
+              <svg class="pl-fossil-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 60 Q 50 30, 80 45 T 140 35" stroke="#c29b62" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M35 55 Q 38 75, 42 90" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M50 48 Q 55 78, 60 98" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M68 44 Q 74 76, 80 102" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M85 45 Q 92 74, 98 96" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M102 44 Q 108 68, 114 85" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M120 40 Q 124 58, 128 72" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M135 36 Q 148 24, 155 35 Q 150 48, 138 42 Z" stroke="#c29b62" stroke-width="1.5" fill="rgba(194, 155, 98, 0.15)"/>
+                <circle cx="148" cy="32" r="2.5" fill="#e5b869"/>
+              </svg>
+              <div class="pl-fossil-art-tag">SPECIMEN #FSL-908 · VERTEBRATE OSTEOLOGY</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-footer-bottom">
+          <div class="pl-footer-copy">
+            © 2026 PALEOLOGIST ARCHIVE · FUNDAMENTALS OF WEB PROGRAMMING
+          </div>
+          <div class="pl-footer-coords">
+            LAT 37°14'06"N · LON 115°48'40"W · ELEV 1,360M
+          </div>
+        </div>
+      </div>
+    </footer>
+
 </body>
 </html>

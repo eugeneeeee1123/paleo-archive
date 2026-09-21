@@ -3,182 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enter the PALEO ARCHIVE through four headline specimens and explore deep-time records, fossil eras, and paleobiology.">
-    <meta property="og:title" content="PALEO ARCHIVE | Deep Time Field Lab">
-    <meta property="og:description" content="A cinematic bilingual portal to prehistoric life, led by Mosasaurus, Quetzalcoatlus, Tyrannosaurus rex, and Titanosaur.">
+    <meta name="description" content="PALEOLOGIST | Exploring Earth's ancient past to protect life's future. Deep-time expedition archive, specimen field guide, and prehistoric gallery.">
+    <meta property="og:title" content="PALEOLOGIST | Exploring Earth's Ancient Past">
+    <meta property="og:description" content="A cinematic museum & field guide experience covering ancient species, deep geologic time, and prehistoric life.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/originals/mosasaurus.jpg">
-    <title>PALEO ARCHIVE | Deep Time Access Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <meta property="og:image" content="assets/images/originals/trex.jpg">
+    <title>PALEOLOGIST | Discover. Learn. Protect.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="assets/js/site.js"></script>
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="pl-shell">
 
-<div class="site-shell">
-    <header class="topbar">
-        <a class="brand-mark" href="index.html" aria-label="PALEO ARCHIVE home">PALEO<span>ARCHIVE</span> / 古生物档案库</a>
-        <nav class="top-links" aria-label="Primary">
-            <a href="gallery.html">Archive / 图鉴</a>
-            <a href="timescale.html">Timeline / 年代表</a>
-            <a href="form.html">Sequencer / 合成器</a>
-        </nav>
+    <!-- GLOBAL HEADER -->
+    <header class="pl-header">
+        <div class="pl-header-inner">
+            <a class="pl-brand" href="index.html" aria-label="PALEOLOGIST Home">
+                <svg class="pl-brand-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <span class="pl-brand-name">PALEOLOGIST</span>
+            </a>
+
+            <nav class="pl-nav" id="mainNav" aria-label="Primary Navigation">
+                <a href="index.html" class="pl-nav-link active">HOME</a>
+                <a href="gallery.html" class="pl-nav-link">SPECIES</a>
+                <a href="timescale.html" class="pl-nav-link">TIMELINE</a>
+                <a href="gallery.html#gallery-showcase" class="pl-nav-link">GALLERY</a>
+                <a href="form.html" class="pl-nav-link">HYBRID LAB</a>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <button type="button" class="pl-alert-btn js-open-alert" aria-label="Open Red Code Alert System">
+                    <span class="pl-alert-pulse"></span>
+                    <span>RED CODE ALERT</span>
+                </button>
+                <button type="button" class="pl-menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+            </div>
+        </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main>
-        <section class="hero-grid" aria-label="Paleo archive introduction">
-            <div class="hero-copy">
-                <div class="eyebrow">Deep time control system / 深时控制系统</div>
-                <h1 class="hero-title">The Past Is<br>Now Yours.</h1>
-                <p class="hero-deck">
-                    Enter a cinematic specimen database built from fossil-era imagery, field notes,
-                    habitat records, and bilingual archive tools.
-                </p>
-                <div class="hero-actions">
-                    <a class="primary-btn" href="gallery.html">Enter Archive / 进入档案</a>
-                    <a class="ghost-btn" href="timescale.html">View Timeline / 查看年表</a>
-                </div>
+        <!-- HERO SECTION -->
+        <section class="pl-hero" aria-label="Hero Expedition Introduction">
+            <div class="pl-hero-content">
+                <h1 class="pl-hero-title">DISCOVER.<br>LEARN.<br>PROTECT.</h1>
+                <p class="pl-hero-deck">Exploring Earth's ancient past to protect life's future.</p>
+                <a href="#explore-sections" class="pl-btn-gold">EXPLORE NOW &nbsp;›</a>
+            </div>
+        </section>
+
+        <!-- EXPLORE OUR SECTIONS (4-ITEM BENTO GRID) -->
+        <section class="pl-container" id="explore-sections" aria-label="Explore Sections">
+            <div class="pl-section-head">
+                <div class="pl-section-kicker">CURATED EXPEDITIONS</div>
+                <h2 class="pl-section-title">EXPLORE OUR SECTIONS</h2>
             </div>
 
-            <aside class="portal-container" id="portalContainer" aria-label="Archive access terminal">
-                <div class="caution-strip">
-                    FIELD TERMINAL ACCESS / 古生物档案终端
+            <div class="pl-sections-grid">
+                <!-- 01: SPECIES FIELD GUIDE -->
+                <a href="gallery.html" class="pl-section-card" aria-label="Explore Species Field Guide">
+                    <img src="assets/images/originals/trex.jpg" alt="Tyrannosaurus Rex" class="pl-card-bg" loading="lazy">
+                    <div class="pl-card-overlay"></div>
+                    <div class="pl-card-content">
+                        <h3 class="pl-card-title">SPECIES FIELD GUIDE</h3>
+                        <p class="pl-card-desc">Browse ancient species and learn their stories.</p>
+                        <span class="pl-card-link">VIEW ALL &nbsp;›</span>
+                    </div>
+                </a>
+
+                <!-- 02: GEOLOGIC TIMELINE -->
+                <a href="timescale.html" class="pl-section-card" aria-label="Explore Geologic Timeline">
+                    <img src="assets/images/timeline/zhuluoji.jpg" alt="Jurassic Geologic Landscape" class="pl-card-bg" loading="lazy">
+                    <div class="pl-card-overlay"></div>
+                    <div class="pl-card-content">
+                        <h3 class="pl-card-title">GEOLOGIC TIMELINE</h3>
+                        <p class="pl-card-desc">Travel through deep time and major geologic events.</p>
+                        <span class="pl-card-link">VIEW TIMELINE &nbsp;›</span>
+                    </div>
+                </a>
+
+                <!-- 03: GALLERY -->
+                <a href="gallery.html#gallery-showcase" class="pl-section-card" aria-label="Explore Museum Fossil Gallery">
+                    <img src="assets/images/timeline/baieji.jpg" alt="Cretaceous Prehistoric World" class="pl-card-bg" loading="lazy">
+                    <div class="pl-card-overlay"></div>
+                    <div class="pl-card-content">
+                        <h3 class="pl-card-title">GALLERY</h3>
+                        <p class="pl-card-desc">Explore fossils, skeletons, and prehistoric worlds.</p>
+                        <span class="pl-card-link">VIEW GALLERY &nbsp;›</span>
+                    </div>
+                </a>
+
+                <!-- 04: HYBRID LAB -->
+                <a href="form.html" class="pl-section-card" aria-label="Explore Hybrid DNA Lab">
+                    <img src="assets/images/generated/unknown-hybrid.png" alt="Hybrid DNA Synthesis" class="pl-card-bg" loading="lazy">
+                    <div class="pl-card-overlay"></div>
+                    <div class="pl-card-content">
+                        <h3 class="pl-card-title">HYBRID LAB</h3>
+                        <p class="pl-card-desc">Create your own hybrid species in the lab.</p>
+                        <span class="pl-card-link">CREATE HYBRID &nbsp;›</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- RED CODE ALERT BANNER -->
+            <div class="pl-alert-banner" aria-label="Red Code Alert Notice">
+                <div class="pl-alert-info">
+                    <div class="pl-alert-icon-wrap" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="pl-alert-title">RED CODE ALERT</h3>
+                        <p class="pl-alert-desc">Species are disappearing. View the Red Code List and learn about endangered ancient life.</p>
+                        <button type="button" class="pl-alert-action-btn js-open-alert">VIEW ALERT LIST &nbsp;›</button>
+                    </div>
                 </div>
 
-                <div class="portal-header">
-                    <div class="portal-logo">PALEO<span>LAB</span></div>
-                    <div class="portal-subtitle">OPTIONAL SESSION PROFILE / 可选会话配置</div>
-                </div>
-
-                <form id="loginForm" novalidate>
-                    <div class="form-group">
-                        <label class="form-label" for="username">Operator Name / 操作员代号</label>
-                        <input type="text" id="username" class="form-input" placeholder="ENTER CODENAME / 输入代号..." autocomplete="off">
-                        <div class="error-message" id="usernameError">Name must be at least 3 characters / 代号长度不能少于3个字符</div>
+                <div class="pl-alert-chips">
+                    <div class="pl-chip-item">
+                        <div class="pl-chip-thumb">
+                            <img src="assets/images/originals/triceratop.jpg" alt="Triceratops">
+                            <span class="pl-chip-badge cr">CR</span>
+                        </div>
+                        <span class="pl-chip-name">TRICERATOPS</span>
+                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="accessKey">Access Key / Security Code / 访问密钥</label>
-                        <input type="password" id="accessKey" class="form-input" placeholder="INGEN-XXXXXX..." autocomplete="off">
-                        <div class="error-message" id="keyError">Key format invalid / 密钥格式不匹配 (需符合 INGEN-XXXXXX 格式)</div>
+                    <div class="pl-chip-item">
+                        <div class="pl-chip-thumb">
+                            <img src="assets/images/originals/mammoth.jpg" alt="Woolly Mammoth">
+                            <span class="pl-chip-badge en">EN</span>
+                        </div>
+                        <span class="pl-chip-name">WOOLLY MAMMOTH</span>
+                        <span class="pl-chip-status-text">Endangered</span>
                     </div>
 
-                    <div class="form-group compact-field">
-                        <label class="form-label" for="clearance">Clearance Level / 安全许可等级</label>
-                        <select id="clearance" class="form-select">
-                            <option value="level 1">LEVEL 1 - VISITOR Clearance / 1级许可 - 访客等级</option>
-                            <option value="level 2">LEVEL 2 - FIELD TECH Clearance / 2级许可 - 野外技术员</option>
-                            <option value="level 3">LEVEL 3 - PALEOBIOLOGIST Clearance / 3级许可 - 古生物研究员</option>
-                            <option value="level 4" selected>LEVEL 4 - CLASSIFIED ARCHIVE CLEARANCE / 4级许可 - 机密归档</option>
-                        </select>
+                    <div class="pl-chip-item">
+                        <div class="pl-chip-thumb">
+                            <img src="assets/images/originals/smilodon.jpg" alt="Saber-Toothed Tiger">
+                            <span class="pl-chip-badge vu">VU</span>
+                        </div>
+                        <span class="pl-chip-name">SABER-TOOTHED TIGER</span>
+                        <span class="pl-chip-status-text">Vulnerable</span>
                     </div>
 
-                    <div class="form-group compact-field">
-                        <label class="form-label" for="themeSelect">Terminal Theme Tint / 终端显示色调</label>
-                        <select id="themeSelect" class="form-select" onchange="changeThemeTint(this.value)">
-                            <option value="green">ARCHIVE GOLD (DEFAULT) / 档案金 (默认)</option>
-                            <option value="amber">AMBER TINT (WARNING) / 琥珀黄 (警示)</option>
-                            <option value="red">CRT RED (ALARM) / 警报红 (危机)</option>
-                        </select>
+                    <div class="pl-chip-item">
+                        <div class="pl-chip-thumb">
+                            <img src="assets/images/originals/dodo.jpg" alt="Dodo">
+                            <span class="pl-chip-badge cr">CR</span>
+                        </div>
+                        <span class="pl-chip-name">DODO</span>
+                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
-
-                    <button type="submit" class="submit-btn">INITIATE SESSION / 启动终端</button>
-                </form>
-            </aside>
-
-            <div class="hero-feed" aria-hidden="true">
-                <span>SYSTEM STATUS: ONLINE</span>
-                <span>NEW FOSSIL RECORD: MOROCCO / 2H AGO</span>
-                <span>MARINE SPECIES ANALYZED: TETHYS SEA</span>
-            </div>
-        </section>
-
-        <section class="archive-strip" aria-label="Archive summary">
-            <div class="archive-stat"><strong>128</strong><span>Specimen records / 标本档案</span></div>
-            <div class="archive-stat"><strong>541M</strong><span>Years indexed / 深时跨度</span></div>
-            <div class="archive-stat"><strong>7</strong><span>Creature groups / 生物分类</span></div>
-            <div class="archive-stat"><strong>4</strong><span>Linked modules / 页面模块</span></div>
-        </section>
-
-        <section class="specimen-index" aria-label="Featured specimens">
-            <div class="section-kicker">Specimen Index / 标本索引</div>
-            <div class="section-heading">
-                <h2>Five gateway records.</h2>
-                <a class="inline-link" href="gallery.html">View all entries / 查看全部</a>
-            </div>
-            <div class="specimen-stage">
-                <article class="specimen-tile large">
-                    <img src="assets/images/originals/trex.jpg" alt="Tyrannosaurus rex reconstruction" fetchpriority="high">
-                    <div class="specimen-caption"><b>Tyrannosaurus rex</b><span>Late Cretaceous / Terrestrial apex</span></div>
-                </article>
-                <article class="specimen-tile marine">
-                    <img src="assets/images/originals/mosasaurus.jpg" alt="Mosasaurus reconstruction" loading="lazy" decoding="async">
-                    <div class="specimen-caption"><b>Mosasaurus</b><span>Marine apex file</span></div>
-                </article>
-                <article class="specimen-tile">
-                    <img src="assets/images/originals/Quetzalcoatlus.jpg" alt="Quetzalcoatlus reconstruction" loading="lazy" decoding="async">
-                    <div class="specimen-caption"><b>Quetzalcoatlus</b><span>Azhdarchid giant</span></div>
-                </article>
-                <article class="specimen-tile">
-                    <img src="assets/images/originals/titan.jpg" alt="Titanosaur reconstruction" loading="lazy" decoding="async">
-                    <div class="specimen-caption"><b>Titanosaur</b><span>Sauropod mass record</span></div>
-                </article>
-                <article class="specimen-tile">
-                    <img src="assets/images/originals/smilodon.jpg" alt="Smilodon reconstruction" loading="lazy" decoding="async">
-                    <div class="specimen-caption"><b>Smilodon</b><span>Pleistocene / Saber-toothed apex</span></div>
-                </article>
-            </div>
-        </section>
-
-        <section class="era-console" aria-label="Deep time timeline preview">
-            <div class="section-kicker">Deep-Time Timeline / 年代表</div>
-            <div class="era-panel">
-                <div>
-                    <h2>Navigate by era, not by menu.</h2>
-                    <p>Period cards move from Triassic ignition to Cenozoic recovery, keeping each animal anchored to geological context.</p>
-                    <a class="ghost-btn" href="timescale.html">Open Timeline / 打开年代表</a>
-                </div>
-                <div class="era-track">
-                    <div class="era-card triassic"><span>251-201 Ma</span><b>Triassic / 三叠纪</b></div>
-                    <div class="era-card jurassic active"><span>201-145 Ma</span><b>Jurassic / 侏罗纪</b></div>
-                    <div class="era-card cretaceous"><span>145-66 Ma</span><b>Cretaceous / 白垩纪</b></div>
-                    <div class="era-card cenozoic"><span>66 Ma-Present</span><b>Cenozoic / 新生代</b></div>
                 </div>
             </div>
-        </section>
 
-        <section class="field-panels" aria-label="Archive method">
-            <div class="field-panel">
-                <b>Fossil Record</b>
-                <span>Formation-level notes connect animals to rocks, regions, and evidence.</span>
-            </div>
-            <div class="field-panel">
-                <b>Reconstruction Layer</b>
-                <span>Artwork is treated as interpretation, separate from measured fossil data.</span>
-            </div>
-            <div class="field-panel accent-panel">
-                <b>Simulation Boundary</b>
-                <span>Hybrid and game-inspired entries stay clearly marked as fictional records.</span>
-            </div>
-        </section>
+            <!-- OPTIONAL EXPEDITION PROFILE ACCESS TERMINAL -->
+            <details style="margin-bottom: 60px; background: var(--pl-surface); border: 1px solid var(--pl-border); border-radius: var(--pl-radius-md); padding: 20px 24px;">
+                <summary style="font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 2px; color: var(--pl-gold); cursor: pointer; text-transform: uppercase;">
+                    ▶ FIELD TERMINAL ACCESS / 古生物考查队终端会话配置 (OPTIONAL SESSION PROFILE)
+                </summary>
+                <div style="margin-top: 20px;">
+                    <aside class="portal-container" id="portalContainer" aria-label="Archive access terminal">
+                        <form id="loginForm" novalidate>
+                            <div class="form-group">
+                                <label class="form-label" for="username">Operator Name / 操作员代号</label>
+                                <input type="text" id="username" class="form-input" placeholder="ENTER CODENAME / 输入代号..." autocomplete="off">
+                                <div class="error-message" id="usernameError">Name must be at least 3 characters / 代号长度不能少于3个字符</div>
+                            </div>
 
-        <section class="closing-cta" aria-label="Start exploring">
-            <div class="section-kicker">Begin Field Session / 开始探索</div>
-            <h2>Open the archive before the signal fades.</h2>
-            <div class="hero-actions">
-                <a class="primary-btn" href="gallery.html">Browse Specimens / 浏览标本</a>
-                <a class="ghost-btn" href="form.html">Build Scenario / 创建场景</a>
-            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="accessKey">Access Key / Security Code / 访问密钥</label>
+                                <input type="password" id="accessKey" class="form-input" placeholder="INGEN-XXXXXX..." autocomplete="off">
+                                <div class="error-message" id="keyError">Key format invalid / 密钥格式不匹配 (需符合 INGEN-XXXXXX 格式)</div>
+                            </div>
+
+                            <div class="form-group compact-field">
+                                <label class="form-label" for="clearance">Clearance Level / 安全许可等级</label>
+                                <select id="clearance" class="form-select">
+                                    <option value="level 1">LEVEL 1 - VISITOR Clearance / 1级许可 - 访客等级</option>
+                                    <option value="level 2">LEVEL 2 - FIELD TECH Clearance / 2级许可 - 野外技术员</option>
+                                    <option value="level 3">LEVEL 3 - PALEOBIOLOGIST Clearance / 3级许可 - 古生物研究员</option>
+                                    <option value="level 4" selected>LEVEL 4 - CLASSIFIED ARCHIVE CLEARANCE / 4级许可 - 机密归档</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group compact-field">
+                                <label class="form-label" for="themeSelect">Terminal Theme Tint / 终端显示色调</label>
+                                <select id="themeSelect" class="form-select" onchange="changeThemeTint(this.value)">
+                                    <option value="green">ARCHIVE GOLD (DEFAULT) / 档案金 (默认)</option>
+                                    <option value="amber">AMBER TINT (WARNING) / 琥珀黄 (警示)</option>
+                                    <option value="red">CRT RED (ALARM) / 警报红 (危机)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="submit-btn">INITIATE SESSION / 启动终端</button>
+                        </form>
+                    </aside>
+                </div>
+            </details>
         </section>
     </main>
-</div>
 
-<!-- Booting Overlay screen -->
-<div class="access-overlay" id="accessOverlay">
-    <div class="access-title" id="overlayTitle">ACCESS GRANTED / 准予接入</div>
-    <div class="boot-console" id="bootConsole">
-        <span class="cursor" id="bootCursor"></span>
+    <!-- RED CODE ALERT MODAL -->
+    <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
+        <div class="pl-modal-window">
+            <button type="button" class="pl-modal-close js-close-alert" aria-label="Close Alert Dialog">✕</button>
+            <div class="pl-alert-modal-head">
+                <h2 class="pl-alert-modal-title" id="alertModalTitle">
+                    <span style="color:var(--pl-red-light);">▲</span> RED CODE ALERT
+                </h2>
+                <p class="pl-alert-modal-sub">Ancient species are disappearing. Awareness is the first step to preservation.</p>
+            </div>
+
+            <div class="pl-alert-filter-tabs">
+                <button type="button" class="pl-alert-tab active" data-status="all">ALL STATUSES</button>
+                <button type="button" class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED (CR)</button>
+                <button type="button" class="pl-alert-tab" data-status="en">ENDANGERED (EN)</button>
+                <button type="button" class="pl-alert-tab" data-status="vu">VULNERABLE (VU)</button>
+            </div>
+
+            <div class="pl-alert-cards-grid">
+                <!-- Card 1 -->
+                <div class="pl-threat-card" data-status="cr">
+                    <img src="assets/images/originals/triceratop.jpg" alt="Triceratops" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">TRICERATOPS</h4>
+                        <span class="pl-chip-badge cr">CR</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
+                    <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pl-threat-card" data-status="en">
+                    <img src="assets/images/originals/mammoth.jpg" alt="Woolly Mammoth" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
+                        <span class="pl-chip-badge en">EN</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
+                    <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pl-threat-card" data-status="vu">
+                    <img src="assets/images/originals/smilodon.jpg" alt="Saber-Toothed Tiger" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
+                        <span class="pl-chip-badge vu">VU</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
+                    <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="pl-threat-card" data-status="cr">
+                    <img src="assets/images/originals/dodo.jpg" alt="Dodo" class="pl-threat-img">
+                    <div class="pl-threat-meta">
+                        <h4 class="pl-threat-name">DODO</h4>
+                        <span class="pl-chip-badge cr">CR</span>
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
+                    <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators (rats, pigs, dogs) on Mauritius.</p>
+                </div>
+            </div>
+
+            <!-- WHAT CAN YOU DO? -->
+            <div class="pl-what-can-you-do">
+                <div>
+                    <h3 class="pl-what-title">WHAT CAN YOU DO?</h3>
+                    <p style="font-size:0.78rem; color:var(--pl-text-muted); margin:6px 0 0;">Preserving biodiversity begins with understanding history.</p>
+                </div>
+                <div class="pl-what-steps">
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">1. LEARN</div>
+                        <div class="pl-what-step-desc">Educate yourself and your community on ancient mass extinction triggers.</div>
+                    </div>
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">2. SHARE</div>
+                        <div class="pl-what-step-desc">Promote scientific research and paleobiological conservation studies.</div>
+                    </div>
+                    <div class="pl-what-step">
+                        <div class="pl-what-step-name">3. SUPPORT</div>
+                        <div class="pl-what-step-desc">Support habitat preservation and active ecological restoration worldwide.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="pl-footer">
+        <div class="pl-container">
+            <div class="pl-footer-grid">
+                <!-- Brand Column -->
+                <div class="pl-footer-brand-col">
+                    <a class="pl-brand" href="index.html">
+                        <svg class="pl-brand-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                        <span class="pl-brand-name">PALEOLOGIST</span>
+                    </a>
+                    <p class="pl-footer-tagline">
+                        Unearthing the past.<br>
+                        Understanding the present.<br>
+                        Protecting the future.
+                    </p>
+                    <div class="pl-footer-socials">
+                        <a href="#" class="pl-social-link" aria-label="YouTube">▶</a>
+                        <a href="#" class="pl-social-link" aria-label="Facebook">f</a>
+                        <a href="#" class="pl-social-link" aria-label="Twitter">𝕏</a>
+                        <a href="#" class="pl-social-link" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+
+                <!-- Menu Column -->
+                <div>
+                    <div class="pl-footer-heading">MENU</div>
+                    <ul class="pl-footer-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Species Field Guide</a></li>
+                        <li><a href="timescale.html">Geologic Timeline</a></li>
+                        <li><a href="gallery.html#gallery-showcase">Fossil Gallery</a></li>
+                        <li><a href="form.html">Hybrid Lab</a></li>
+                        <li><a href="#" class="js-open-alert">Red Code Alert</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Column -->
+                <div>
+                    <div class="pl-footer-heading">RESOURCES</div>
+                    <ul class="pl-footer-list">
+                        <li><a href="gallery.html">Field Articles</a></li>
+                        <li><a href="timescale.html">Deep-Time Research</a></li>
+                        <li><a href="#">For Educators</a></li>
+                        <li><a href="#">Specimen Downloads</a></li>
+                        <li><a href="#">Expedition FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- About Column -->
+                <div>
+                    <div class="pl-footer-heading">ABOUT</div>
+                    <ul class="pl-footer-list">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Expedition Team</a></li>
+                        <li><a href="#">Preservation Fund</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Fossil Art Column -->
+                <div class="pl-footer-art-col">
+                    <svg class="pl-footer-skull" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--pl-gold);">
+                        <!-- Stylized Triceratops / Dinosaur skull etching -->
+                        <path d="M75 15 C85 5, 95 10, 90 25 C85 40, 70 45, 60 50 L50 65 L40 68 L30 65 L20 58 L10 50 C5 45, 8 35, 18 30 C28 25, 45 28, 55 22 Z"/>
+                        <path d="M78 12 L88 2"/>
+                        <path d="M68 8 L75 -2"/>
+                        <path d="M35 25 C30 20, 22 25, 25 32 C28 39, 38 35, 35 25 Z"/>
+                        <path d="M42 45 C40 40, 48 38, 52 42 C56 46, 48 50, 42 45 Z"/>
+                        <path d="M15 52 L28 55 L35 62 L22 60 Z"/>
+                        <path d="M22 60 L24 66 L28 62 L32 67 L36 63"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="pl-footer-bottom">
+                <span>© 2024 Paleologist. All rights reserved.</span>
+                <span>Deep-Time Biodiversity & Paleobiology Archive</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booting Overlay screen (preserved for session auth) -->
+    <div class="access-overlay" id="accessOverlay">
+        <div class="access-title" id="overlayTitle">ACCESS GRANTED / 准予接入</div>
+        <div class="boot-console" id="bootConsole">
+            <span class="cursor" id="bootCursor"></span>
+        </div>
+    </div>
 </body>
 </html>
