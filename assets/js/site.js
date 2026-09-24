@@ -2,7 +2,7 @@
   const page = document.documentElement.dataset.page;
   const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
 
-  if (page === 'gallery' || page === 'timescale') {
+  if (page === 'gallery' || page === 'field-guide' || page === 'timescale') {
     (function() {
                 const theme = localStorage.getItem('ingen_theme') || 'green';
                 const root = document.documentElement;
@@ -210,7 +210,7 @@
                 setTimeout(addLine, 350);
             } else {
                 setTimeout(() => {
-                    window.location.href = 'gallery.html';
+                    window.location.href = 'field-guide.html';
                 }, 600);
             }
         }
@@ -349,11 +349,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       card.setAttribute('data-iucn', statusKey);
       card.setAttribute('data-diet', (species.diet || '').toLowerCase());
 
-      const iucnBadge = document.createElement('span');
-      iucnBadge.className = `pl-card-badge ${statusKey}`;
-      iucnBadge.textContent = statusKey.toUpperCase();
-
-      vis.append(img, icon, iucnBadge);
+      vis.append(img, icon);
 
       const cardData = document.createElement('div');
       cardData.className = 'card-data';
@@ -990,11 +986,14 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 sec.classList.toggle('hidden-section', !visible);
             });
             const shown = Math.min(visibleLimit, matchingCards.length);
-            document.getElementById('resultsCount').textContent = `${shown} / ${matchingCards.length} RECORDS / 已显示 ${shown} / ${matchingCards.length} 条`;
-            document.getElementById('resultsHint').textContent = matchingCards.length
+            const rcEl = document.getElementById('resultsCount');
+            if (rcEl) rcEl.textContent = `${shown} / ${matchingCards.length} RECORDS / 已显示 ${shown} / ${matchingCards.length} 条`;
+            const rhEl = document.getElementById('resultsHint');
+            if (rhEl) rhEl.textContent = matchingCards.length
               ? 'SCIENTIFIC RECORDS + MARKED SIMULATION DATA / 科学档案与明确标注的模拟数据'
               : 'NO MATCHING RECORDS / 没有匹配记录';
-            document.getElementById('loadMoreWrap').hidden = shown >= matchingCards.length;
+            const lmEl = document.getElementById('loadMoreWrap');
+            if (lmEl) lmEl.hidden = shown >= matchingCards.length;
         }
         function filterSelection(c) {
             visibleLimit = pageStep;
@@ -1024,9 +1023,12 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             applyVisibilityWindow();
         }
 
-        document.getElementById('searchInput').addEventListener('keyup', function(){
-            runSearch(this.value);
-        });
+        const sInput = document.getElementById('searchInput');
+        if (sInput) {
+            sInput.addEventListener('keyup', function(){
+                runSearch(this.value);
+            });
+        }
 
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -1036,11 +1038,19 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 if (searchInput) {
                     searchInput.value = searchVal;
                     setTimeout(() => runSearch(searchVal), 50);
+                } else if (!document.getElementById('sec-hybrid')) {
+                    window.location.href = `field-guide.html?search=${encodeURIComponent(searchVal)}`;
                 }
+            }
+            const specVal = urlParams.get('specimen');
+            if (specVal && !document.getElementById('sec-hybrid') && window.location.pathname.endsWith('gallery.html')) {
+                window.location.href = `field-guide.html?specimen=${encodeURIComponent(specVal)}`;
             }
         })();
         function sortCards(){
-            const type=document.getElementById('sortSelect').value;
+            const sortEl = document.getElementById('sortSelect');
+            if (!sortEl) return;
+            const type = sortEl.value;
             document.querySelectorAll('.grid').forEach(grid=>{
                 const cards=Array.from(grid.children);
                 cards.sort((a,b)=>{
@@ -1061,10 +1071,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             });
             applyVisibilityWindow();
         }
-        document.getElementById('loadMoreBtn').addEventListener('click', () => {
-            visibleLimit += pageStep;
-            applyVisibilityWindow();
-        });
+        const lmBtn = document.getElementById('loadMoreBtn');
+        if (lmBtn) {
+            lmBtn.addEventListener('click', () => {
+                visibleLimit += pageStep;
+                applyVisibilityWindow();
+            });
+        }
         applyVisibilityWindow();
 
         // ── PALEOLOGIST ADVANCED FILTERS ──
@@ -1406,7 +1419,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
                 return;
             }
             const link = document.createElement('a');
-            link.href = `gallery.html?specimen=${encodeURIComponent(specimen.name)}`;
+            link.href = `field-guide.html?specimen=${encodeURIComponent(specimen.name)}`;
             link.textContent = part;
             link.className = 'archetype-link';
             archetypesEl.appendChild(link);
@@ -1518,7 +1531,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 
     function queryArchive() {
         if (!isPrecambrian) {
-            window.location.href = `gallery.html?search=${currentSelectedSearch}`;
+            window.location.href = `field-guide.html?search=${currentSelectedSearch}`;
         }
     }
 
@@ -2041,7 +2054,7 @@ Object.assign(window, { queryArchive });
 
 }
 
-  const initializers = { index: init_index, gallery: init_gallery, timescale: init_timescale, form: init_form };
+  const initializers = { index: init_index, gallery: init_gallery, 'field-guide': init_gallery, timescale: init_timescale, form: init_form };
   const initialize = () => { if (initializers[page]) initializers[page](); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
   else initialize();

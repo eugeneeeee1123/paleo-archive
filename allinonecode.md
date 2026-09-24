@@ -12,11 +12,11 @@
     <meta property="og:title" content="PALEOLOGIST | Exploring Earth's Ancient Past">
     <meta property="og:description" content="A cinematic museum & field guide experience covering ancient species, deep geologic time, and prehistoric life.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/originals/trex.jpg">
+    <meta property="og:image" content="assets/images/originals/hero-banner.jpg">
     <title>PALEOLOGIST | Discover. Learn. Protect.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="assets/images/originals/trex.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/originals/hero-banner.jpg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="assets/js/site.js" defer></script>
     <link rel="stylesheet" href="assets/css/site.css">
@@ -140,37 +140,29 @@
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge cr">CR</span>
                         </div>
                         <span class="pl-chip-name">TRICERATOPS</span>
-                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge en">EN</span>
                         </div>
                         <span class="pl-chip-name">WOOLLY MAMMOTH</span>
-                        <span class="pl-chip-status-text">Endangered</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge vu">VU</span>
                         </div>
                         <span class="pl-chip-name">SABER-TOOTHED TIGER</span>
-                        <span class="pl-chip-status-text">Vulnerable</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/dodo.webp" alt="Dodo" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge cr">CR</span>
                         </div>
                         <span class="pl-chip-name">DODO</span>
-                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
                 </div>
             </div>
@@ -499,7 +491,7 @@
     </header>
 
 <!-- PAGE WRAP START -->
-<div class="page-wrap" style="padding-top: 100px;">
+<main class="pl-container page-wrap" style="padding-top: 100px; padding-bottom: 80px;">
     <div class="pl-field-guide-header">
         <div class="pl-section-kicker">COMPREHENSIVE SPECIES DATABASE</div>
         <h1 class="pl-section-title" style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 8px;">SPECIES FIELD GUIDE</h1>
@@ -814,7 +806,7 @@
   <div class="breach-pad" id="breachPad">PADDOCK / 对应园区: -</div>
 </div>
 
-</div><!-- /page-wrap -->
+</main><!-- /page-wrap -->
 
     <!-- RED CODE ALERT MODAL -->
     <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
@@ -1149,36 +1141,28 @@
         <div class="pl-threat-card" data-status="cr">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
-            <span class="pl-badge pl-badge-cr">CR</span>
           </div>
-          <div class="pl-threat-status">EXTINCT IN WILD (EW) / 濒危极危</div>
           <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
         </div>
 
         <div class="pl-threat-card" data-status="en">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
-            <span class="pl-badge pl-badge-en">EN</span>
           </div>
-          <div class="pl-threat-status">EXTINCT / 极度濒危灭绝物种</div>
           <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
         </div>
 
         <div class="pl-threat-card" data-status="vu">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
-            <span class="pl-badge pl-badge-vu">VU</span>
           </div>
-          <div class="pl-threat-status">HIGH RISK / 易危物种</div>
           <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
         </div>
 
         <div class="pl-threat-card" data-status="cr">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
-            <span class="pl-badge pl-badge-cr">CR</span>
           </div>
-          <div class="pl-threat-status">HISTORIC EXTINCTION / 历史灭绝典型</div>
           <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
         </div>
       </div>
@@ -1681,36 +1665,28 @@
         <div class="pl-threat-card" data-status="cr">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
-            <span class="pl-badge pl-badge-cr">CR</span>
           </div>
-          <div class="pl-threat-status">EXTINCT IN WILD (EW) / 濒危极危</div>
           <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
         </div>
 
         <div class="pl-threat-card" data-status="en">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
-            <span class="pl-badge pl-badge-en">EN</span>
           </div>
-          <div class="pl-threat-status">EXTINCT / 极度濒危灭绝物种</div>
           <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
         </div>
 
         <div class="pl-threat-card" data-status="vu">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
-            <span class="pl-badge pl-badge-vu">VU</span>
           </div>
-          <div class="pl-threat-status">HIGH RISK / 易危物种</div>
           <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
         </div>
 
         <div class="pl-threat-card" data-status="cr">
           <div class="pl-threat-card-header">
             <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
-            <span class="pl-badge pl-badge-cr">CR</span>
           </div>
-          <div class="pl-threat-status">HISTORIC EXTINCTION / 历史灭绝典型</div>
           <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
         </div>
       </div>
@@ -10274,14 +10250,10 @@ html[data-page="form"] .preview-title{
 }
 
 html[data-page="gallery"] .section-title{
-  width: min(1440px, calc(100vw - 32px));
-  margin: 34px auto 16px !important;
-  padding: 12px 16px !important;
-  border: 1px solid var(--pa-line) !important;
-  border-left: 4px solid currentColor !important;
-  border-radius: 8px !important;
-  background: rgba(23, 19, 14, 0.72) !important;
-  letter-spacing: 1.6px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 34px 0 16px !important;
+  box-sizing: border-box !important;
 }
 
 html[data-page="gallery"] .tools-row{
@@ -11667,31 +11639,33 @@ html[data-page="timescale"] .timeline-node.active{
 
 .pl-hero {
   position: relative;
-  min-height: calc(90vh - 76px);
+  width: 100%;
+  aspect-ratio: 2752 / 1536;
+  min-height: 520px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 24px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 80px 0 54px;
   background:
-    radial-gradient(circle at center 40%, rgba(194, 155, 98, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(13, 12, 10, 0.3) 0%, rgba(13, 12, 10, 0.88) 85%, #0d0c0a 100%),
-    url("../../assets/images/originals/trex.jpg") center 35% / cover no-repeat;
+    linear-gradient(180deg, rgba(13, 12, 10, 0.3) 0%, transparent 14%, transparent 84%, #0d0c0a 100%),
+    url("../../assets/images/originals/hero-banner.jpg") center center / cover no-repeat;
 }
 
 .pl-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 12, 10, 0.45);
-  pointer-events: none;
+  display: none;
 }
 
 .pl-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
+  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
+  padding-left: clamp(16px, 2.5vw, 36px);
+  padding-right: clamp(16px, 2.5vw, 36px);
+  box-sizing: border-box;
+  text-align: left;
   animation: pl-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -11719,7 +11693,8 @@ html[data-page="timescale"] .timeline-node.active{
   letter-spacing: 1px;
   color: var(--pl-text-muted);
   max-width: 620px;
-  margin: 0 auto 36px;
+  margin: 0 0 36px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .pl-btn-gold {
@@ -11754,9 +11729,11 @@ html[data-page="timescale"] .timeline-node.active{
    ========================================================================== */
 
 .pl-container {
-  width: min(1440px, calc(100vw - 64px));
+  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 40px clamp(16px, 2.5vw, 36px);
+  box-sizing: border-box;
 }
 
 .pl-section-head {
@@ -12039,8 +12016,11 @@ html[data-page="timescale"] .timeline-node.active{
 }
 
 .pl-footer-inner {
-  width: min(1440px, calc(100vw - 64px));
+  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 clamp(16px, 2.5vw, 36px);
+  box-sizing: border-box;
 }
 
 .pl-footer-grid {
@@ -12445,7 +12425,482 @@ html[data-page="timescale"] .timeline-node.active{
    ========================================================================== */
 
 .pl-field-guide-header {
-  padding: 50px 0 30px;
+  padding: 16px 0 24px;
+}
+
+html[data-page="gallery"] .page-wrap {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto !important;
+  padding-left: clamp(16px, 2.5vw, 36px) !important;
+  padding-right: clamp(16px, 2.5vw, 36px) !important;
+  box-sizing: border-box !important;
+}
+
+html[data-page="gallery"] .pl-field-guide-header,
+html[data-page="gallery"] .section-wrapper,
+html[data-page="gallery"] .load-more-wrap,
+html[data-page="gallery"] #gallery-showcase {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html[data-page="gallery"] .results-status {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 18px 0 22px !important;
+  padding: 12px 18px !important;
+  box-sizing: border-box !important;
+}
+
+/* Gallery Section Title - flush margins & Museum Cinzel typography */
+html[data-page="gallery"] .section-title {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 36px 0 16px !important;
+  padding: 14px 20px !important;
+  border: 1px solid var(--pl-border) !important;
+  border-left: 4px solid currentColor !important;
+  border-radius: var(--pl-radius-md) !important;
+  background: var(--pl-surface) !important;
+  color: var(--pl-text) !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  box-sizing: border-box !important;
+}
+
+/* Gallery card typography & badges - unified with museum design system */
+html[data-page="gallery"] .spec-name,
+html[data-page="form"] .spec-name {
+  color: var(--pl-text) !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.08rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  line-height: 1.25 !important;
+}
+
+html[data-page="gallery"] .spec-cn,
+html[data-page="form"] .spec-cn {
+  font-family: var(--font-ui) !important;
+  font-size: 0.8rem !important;
+  color: var(--pl-gold) !important;
+  margin-top: 3px !important;
+}
+
+html[data-page="gallery"] .spec-code,
+html[data-page="form"] .spec-code {
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  color: var(--pl-gold-light) !important;
+  letter-spacing: 1px !important;
+}
+
+html[data-page="gallery"] .spec-stats,
+html[data-page="form"] .spec-stats {
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  color: var(--pl-text-muted) !important;
+}
+
+html[data-page="gallery"] .class-icon,
+html[data-page="form"] .class-icon {
+  font-family: var(--font-mono) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 1.5px !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--pl-border) !important;
+  background: rgba(13, 12, 10, 0.88) !important;
+  color: var(--pl-gold) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  padding: 3px 8px !important;
+}
+
+/* Timescale Page - Comprehensive Museum Redesign & Typography Unification */
+html[data-page="timescale"] body {
+  background-color: var(--pl-bg) !important;
+  background-image: none !important;
+  color: var(--pl-text) !important;
+  font-family: var(--font-ui) !important;
+}
+
+html[data-page="timescale"] body::after,
+html[data-page="timescale"] body::before {
+  display: none !important;
+}
+
+html[data-page="timescale"] .timeline-scope-strip {
+  width: 100% !important;
+  margin: 18px 0 0 !important;
+  padding: 8px 0 0 !important;
+  display: flex !important;
+  gap: clamp(16px, 4vw, 44px) !important;
+  border-top: 1px solid var(--pl-border) !important;
+  overflow-x: auto !important;
+}
+
+html[data-page="timescale"] .timeline-scope-strip span {
+  font-family: var(--font-mono) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 2px !important;
+  color: var(--pl-text-muted) !important;
+  padding-bottom: 10px !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: color 0.2s ease !important;
+}
+
+html[data-page="timescale"] .timeline-scope-strip span:hover {
+  color: var(--pl-text) !important;
+}
+
+html[data-page="timescale"] .timeline-scope-strip span.active {
+  color: var(--pl-gold) !important;
+  font-weight: 700 !important;
+}
+
+html[data-page="timescale"] .timeline-scope-strip span.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: var(--pl-gold) !important;
+}
+
+html[data-page="timescale"] .timeline-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 44px !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(340px, 0.4fr) minmax(0, 1fr) !important;
+  align-items: start !important;
+  gap: 28px !important;
+  box-sizing: border-box !important;
+}
+
+html[data-page="timescale"] .timeline-list {
+  max-height: calc(100vh - 180px) !important;
+  padding: 14px !important;
+  display: grid !important;
+  grid-auto-rows: minmax(116px, auto) !important;
+  gap: 12px !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-lg) !important;
+  background: var(--pl-surface) !important;
+  overflow-y: auto !important;
+  scrollbar-color: var(--pl-gold-dim) transparent !important;
+}
+
+html[data-page="timescale"] .timeline-node {
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-md) !important;
+  background: var(--pl-card) !important;
+  padding: 12px 14px !important;
+  display: grid !important;
+  grid-template-columns: 88px 1fr !important;
+  gap: 14px !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html[data-page="timescale"] .timeline-node:hover {
+  border-color: var(--pl-border-hover) !important;
+  background: var(--pl-card-hover) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+html[data-page="timescale"] .timeline-node.active {
+  border-color: var(--pl-gold) !important;
+  background: var(--pl-elevated) !important;
+  box-shadow: 0 0 24px var(--pl-gold-dim), inset 0 0 0 1px var(--pl-gold) !important;
+}
+
+html[data-page="timescale"] .timeline-node::before {
+  content: attr(data-index) !important;
+  position: absolute !important;
+  right: 12px !important;
+  bottom: 8px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--pl-gold-dim) !important;
+  letter-spacing: 1px !important;
+  line-height: 1 !important;
+}
+
+html[data-page="timescale"] .timeline-node.active::before {
+  color: var(--pl-gold) !important;
+}
+
+html[data-page="timescale"] .node-thumb {
+  width: 88px !important;
+  height: 88px !important;
+  min-height: 88px !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+html[data-page="timescale"] .node-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: brightness(0.9) contrast(1.05) !important;
+  transition: transform 0.3s ease !important;
+}
+
+html[data-page="timescale"] .timeline-node:hover .node-thumb img {
+  transform: scale(1.08) !important;
+}
+
+html[data-page="timescale"] .node-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+html[data-page="timescale"] .node-era {
+  font-family: var(--font-mono) !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--pl-gold) !important;
+  margin: 0 !important;
+}
+
+html[data-page="timescale"] .node-name {
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  color: var(--pl-text) !important;
+  margin: 0 !important;
+  line-height: 1.25 !important;
+}
+
+html[data-page="timescale"] .node-span {
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  color: var(--pl-text-muted) !important;
+  margin: 0 !important;
+}
+
+html[data-page="timescale"] .details-sticky {
+  position: sticky !important;
+  top: 96px !important;
+  min-width: 0 !important;
+}
+
+html[data-page="timescale"] .details-panel {
+  background: var(--pl-surface) !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-lg) !important;
+  padding: clamp(20px, 2.5vw, 32px) !important;
+  box-shadow: var(--pl-shadow) !important;
+}
+
+html[data-page="timescale"] .era-visual-frame {
+  position: relative !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-md) !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  min-height: clamp(260px, 32vw, 420px) !important;
+}
+
+html[data-page="timescale"] .era-visual-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: brightness(0.85) contrast(1.05) !important;
+}
+
+html[data-page="timescale"] .era-visual-copy {
+  position: absolute !important;
+  inset-inline: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 12, 10, 0.95) 90%) !important;
+  padding: 24px !important;
+}
+
+html[data-page="timescale"] .details-era {
+  font-family: var(--font-mono) !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 2.5px !important;
+  color: var(--pl-gold) !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+
+html[data-page="timescale"] .details-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  line-height: 1.15 !important;
+  color: var(--pl-text) !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85) !important;
+  margin: 0 0 8px !important;
+}
+
+html[data-page="timescale"] .details-span {
+  font-family: var(--font-mono) !important;
+  font-size: 0.82rem !important;
+  color: var(--pl-gold-light) !important;
+  letter-spacing: 1px !important;
+}
+
+html[data-page="timescale"] .desc-title {
+  font-family: var(--font-display) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: var(--pl-gold) !important;
+  border-left: 3px solid var(--pl-gold) !important;
+  padding-left: 10px !important;
+  margin: 20px 0 8px !important;
+}
+
+html[data-page="timescale"] .desc-text {
+  font-family: var(--font-ui) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.7 !important;
+  color: var(--pl-text) !important;
+  background: var(--pl-card) !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-md) !important;
+  padding: 14px 18px !important;
+  margin-bottom: 16px !important;
+}
+
+html[data-page="timescale"] .archetype-link {
+  color: var(--pl-gold-light) !important;
+  font-family: var(--font-ui) !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  border-bottom: none !important;
+  transition: color 0.2s ease !important;
+}
+
+html[data-page="timescale"] .archetype-link:hover {
+  color: #ffffff !important;
+}
+
+html[data-page="timescale"] .stat-box {
+  background: var(--pl-card) !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-md) !important;
+  padding: 14px 16px !important;
+}
+
+html[data-page="timescale"] .stat-lbl {
+  font-family: var(--font-ui) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 1px !important;
+  color: var(--pl-text-muted) !important;
+  text-transform: uppercase !important;
+}
+
+html[data-page="timescale"] .stat-val {
+  font-family: var(--font-mono) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--pl-gold-light) !important;
+  margin-top: 4px !important;
+}
+
+html[data-page="timescale"] .major-events {
+  background: var(--pl-card) !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-md) !important;
+  padding: 18px !important;
+}
+
+html[data-page="timescale"] .major-events-title {
+  font-family: var(--font-display) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: var(--pl-gold) !important;
+  border-bottom: 1px solid var(--pl-border) !important;
+  padding: 0 0 10px !important;
+  margin-bottom: 12px !important;
+}
+
+html[data-page="timescale"] .major-event-item {
+  font-family: var(--font-ui) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+  color: var(--pl-text-muted) !important;
+}
+
+html[data-page="timescale"] .action-btn,
+html[data-page="timescale"] #queryBtn {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(135deg, var(--pl-gold), #8c6838) !important;
+  color: #0d0c0a !important;
+  border: 1px solid var(--pl-gold-light) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  padding: 14px 28px !important;
+  box-shadow: 0 4px 20px var(--pl-gold-dim) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  margin-top: 20px !important;
+  width: 100% !important;
+}
+
+html[data-page="timescale"] .action-btn:hover,
+html[data-page="timescale"] #queryBtn:hover {
+  background: var(--pl-gold) !important;
+  color: #0d0c0a !important;
+  box-shadow: 0 0 30px var(--pl-gold-glow) !important;
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 980px) {
+  html[data-page="timescale"] .timeline-container {
+    grid-template-columns: 1fr !important;
+  }
+  html[data-page="timescale"] .timeline-list {
+    max-height: none !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: minmax(260px, 300px) !important;
+    grid-template-rows: 1fr !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+  }
+  html[data-page="timescale"] .timeline-node {
+    scroll-snap-align: start !important;
+  }
+  html[data-page="timescale"] .details-sticky {
+    position: static !important;
+  }
+  html[data-page="timescale"] .timeline-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .pl-guide-filter-row {
@@ -13077,7 +13532,14 @@ html[data-page="form"] .error-lbl {
 
 /* Responsive Rules */
 @media (max-width: 1100px) {
-  .pl-header-inner { padding: 0 clamp(14px, 2vw, 20px); }
+  .pl-header-inner,
+  .pl-hero-content,
+  .pl-container,
+  .pl-footer-inner,
+  html[data-page="gallery"] .page-wrap {
+    padding-left: clamp(14px, 2vw, 20px) !important;
+    padding-right: clamp(14px, 2vw, 20px) !important;
+  }
   .pl-nav { display: none; }
   .pl-nav.mobile-open {
     display: flex;

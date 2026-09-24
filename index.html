@@ -7,11 +7,11 @@
     <meta property="og:title" content="PALEOLOGIST | Exploring Earth's Ancient Past">
     <meta property="og:description" content="A cinematic museum & field guide experience covering ancient species, deep geologic time, and prehistoric life.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/originals/trex.jpg">
+    <meta property="og:image" content="assets/images/originals/hero-banner.jpg">
     <title>PALEOLOGIST | Discover. Learn. Protect.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="assets/images/originals/trex.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/originals/hero-banner.jpg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="assets/js/site.js" defer></script>
     <link rel="stylesheet" href="assets/css/site.css">
@@ -32,9 +32,9 @@
 
             <nav class="pl-nav" id="plNav" aria-label="Primary Navigation">
                 <a href="index.html" class="pl-nav-link active">HOME / 首页</a>
-                <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+                <a href="field-guide.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
                 <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
-                <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+                <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
                 <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
             </nav>
 
@@ -72,7 +72,7 @@
 
             <div class="pl-sections-grid">
                 <!-- 01: SPECIES FIELD GUIDE -->
-                <a href="gallery.html" class="pl-section-card" aria-label="Explore Species Field Guide">
+                <a href="field-guide.html" class="pl-section-card" aria-label="Explore Species Field Guide">
                     <img src="assets/images/thumbs/trex.webp" alt="Tyrannosaurus Rex" class="pl-card-bg" loading="lazy" decoding="async">
                     <div class="pl-card-overlay"></div>
                     <div class="pl-card-content">
@@ -94,7 +94,7 @@
                 </a>
 
                 <!-- 03: GALLERY -->
-                <a href="gallery.html#gallery-showcase" class="pl-section-card" aria-label="Explore Museum Fossil Gallery">
+                <a href="gallery.html" class="pl-section-card" aria-label="Explore Museum Fossil Gallery">
                     <img src="assets/images/timeline/thumbs/baieji.webp" alt="Cretaceous Prehistoric World" class="pl-card-bg" loading="lazy" decoding="async">
                     <div class="pl-card-overlay"></div>
                     <div class="pl-card-content">
@@ -135,37 +135,29 @@
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge cr">CR</span>
                         </div>
                         <span class="pl-chip-name">TRICERATOPS</span>
-                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge en">EN</span>
                         </div>
                         <span class="pl-chip-name">WOOLLY MAMMOTH</span>
-                        <span class="pl-chip-status-text">Endangered</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge vu">VU</span>
                         </div>
                         <span class="pl-chip-name">SABER-TOOTHED TIGER</span>
-                        <span class="pl-chip-status-text">Vulnerable</span>
                     </div>
 
                     <div class="pl-chip-item">
                         <div class="pl-chip-thumb">
                             <img src="assets/images/thumbs/dodo.webp" alt="Dodo" loading="lazy" decoding="async">
-                            <span class="pl-chip-badge cr">CR</span>
                         </div>
                         <span class="pl-chip-name">DODO</span>
-                        <span class="pl-chip-status-text">Critically Endangered</span>
                     </div>
                 </div>
             </div>
@@ -241,7 +233,6 @@
                     <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">TRICERATOPS</h4>
-                        <span class="pl-chip-badge cr">CR</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
                     <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
@@ -252,7 +243,6 @@
                     <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
-                        <span class="pl-chip-badge en">EN</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
                     <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
@@ -263,7 +253,6 @@
                     <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
-                        <span class="pl-chip-badge vu">VU</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
                     <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
@@ -274,7 +263,6 @@
                     <img src="assets/images/thumbs/dodo.webp" alt="Dodo" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">DODO</h4>
-                        <span class="pl-chip-badge cr">CR</span>
                     </div>
                     <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
                     <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators (rats, pigs, dogs) on Mauritius.</p>
@@ -335,9 +323,9 @@
                     <div class="pl-footer-heading">MENU</div>
                     <ul class="pl-footer-list">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html">Species Field Guide</a></li>
+                        <li><a href="field-guide.html">Species Field Guide</a></li>
                         <li><a href="timescale.html">Geologic Timeline</a></li>
-                        <li><a href="gallery.html#gallery-showcase">Fossil Gallery</a></li>
+                        <li><a href="gallery.html">Fossil Gallery</a></li>
                         <li><a href="form.html">Hybrid Lab</a></li>
                         <li><a href="#" class="js-open-alert">Red Code Alert</a></li>
                     </ul>
@@ -347,7 +335,7 @@
                 <div>
                     <div class="pl-footer-heading">RESOURCES</div>
                     <ul class="pl-footer-list">
-                        <li><a href="gallery.html">Field Articles</a></li>
+                        <li><a href="field-guide.html">Field Articles</a></li>
                         <li><a href="timescale.html">Deep-Time Research</a></li>
                         <li><a href="#">For Educators</a></li>
                         <li><a href="#">Specimen Downloads</a></li>
