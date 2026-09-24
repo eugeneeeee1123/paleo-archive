@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page="gallery">
+<html lang="en" data-page="gallery">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,14 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trex.jpg">
     <title>PALEOLOGIST | Species Field Guide & Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src="assets/js/species-data.js"></script>
-    <script src="assets/js/site.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="assets/js/species-data.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="pl-shell">
 
 <!-- BOOT -->
 <div id="boot-overlay">
@@ -40,7 +42,7 @@
     <header class="pl-header">
         <div class="pl-header-inner">
             <a href="index.html" class="pl-logo">
-              <svg class="pl-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="pl-logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
                 <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9c3.86 0 7.12-2.44 8.36-5.89-.35.08-.71.13-1.09.13-2.9 0-5.27-2.36-5.27-5.24 0-1.74.85-3.28 2.16-4.23C19.78 8.1 17.98 7 16 7z" fill="#c29b62" opacity="0.6"/>
                 <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
@@ -71,7 +73,7 @@
     </header>
 
 <!-- PAGE WRAP START -->
-<div class="page-wrap">
+<div class="page-wrap" style="padding-top: 100px;">
     <div class="pl-field-guide-header">
         <div class="pl-section-kicker">COMPREHENSIVE SPECIES DATABASE</div>
         <h1 class="pl-section-title" style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 8px;">SPECIES FIELD GUIDE</h1>
@@ -325,7 +327,7 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
             <!-- Fossil 1 -->
             <div class="pl-showcase-item" data-cat="skeletons" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/baieji.jpg" alt="Cretaceous Excavation" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/timeline/thumbs/baieji.webp" alt="Cretaceous Excavation" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Tyrannosaurid Skeleton Specimen</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Museum Hall · Hell Creek Formation</span>
@@ -334,7 +336,7 @@
 
             <!-- Fossil 2 -->
             <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/originals/trilobite.jpg" alt="Trilobite Fossil Matrix" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/thumbs/trilobite.webp" alt="Trilobite Fossil Matrix" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Cambrian Trilobite Matrix</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Fossil Bed · Utah Shale</span>
@@ -343,7 +345,7 @@
 
             <!-- Fossil 3 -->
             <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/zhuluoji.jpg" alt="Jurassic Conifer Valley" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/timeline/thumbs/zhuluoji.webp" alt="Jurassic Conifer Valley" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Jurassic Conifer Floodplain</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Paleoenvironment Reconstruction</span>
@@ -352,7 +354,7 @@
 
             <!-- Fossil 4 -->
             <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/originals/triceratop.jpg" alt="Triceratops in Fern Prairies" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops in Fern Prairies" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triceratops Horridus Portrait</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Expedition Field Artwork</span>
@@ -361,7 +363,7 @@
 
             <!-- Fossil 5 -->
             <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/originals/ammonite.jpg" alt="Sutured Ammonite Shell" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/thumbs/ammonite.webp" alt="Sutured Ammonite Shell" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Pyritized Ammonite Concretion</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Marine Jurassic Locality</span>
@@ -370,7 +372,7 @@
 
             <!-- Fossil 6 -->
             <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/sandieji.jpg" alt="Triassic Red Canyon" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
+                <img src="assets/images/timeline/thumbs/sandieji.webp" alt="Triassic Red Canyon" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
                 <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
                     <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triassic Pangean Rift Valley</span>
                     <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Deep Time Geomorphology</span>
@@ -409,7 +411,7 @@
             <div class="pl-alert-cards-grid">
                 <!-- Card 1 -->
                 <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/originals/triceratop.jpg" alt="Triceratops" class="pl-threat-img">
+                    <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">TRICERATOPS</h4>
                         <span class="pl-chip-badge cr">CR</span>
@@ -420,7 +422,7 @@
 
                 <!-- Card 2 -->
                 <div class="pl-threat-card" data-status="en">
-                    <img src="assets/images/originals/mammoth.jpg" alt="Woolly Mammoth" class="pl-threat-img">
+                    <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
                         <span class="pl-chip-badge en">EN</span>
@@ -431,7 +433,7 @@
 
                 <!-- Card 3 -->
                 <div class="pl-threat-card" data-status="vu">
-                    <img src="assets/images/originals/smilodon.jpg" alt="Saber-Toothed Tiger" class="pl-threat-img">
+                    <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
                         <span class="pl-chip-badge vu">VU</span>
@@ -442,7 +444,7 @@
 
                 <!-- Card 4 -->
                 <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/originals/dodo.jpg" alt="Dodo" class="pl-threat-img">
+                    <img src="assets/images/thumbs/dodo.webp" alt="Dodo" class="pl-threat-img" loading="lazy" decoding="async">
                     <div class="pl-threat-meta">
                         <h4 class="pl-threat-name">DODO</h4>
                         <span class="pl-chip-badge cr">CR</span>

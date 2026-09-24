@@ -1,6 +1,6 @@
 (function () {
   const page = document.documentElement.dataset.page;
-  const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.png';
+  const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
 
   if (page === 'gallery' || page === 'timescale') {
     (function() {
@@ -22,6 +22,55 @@
             })();
   }
 
+  function setupRedCodeModal() {
+    const alertModal = document.getElementById('redCodeModal') || document.querySelector('.pl-modal-backdrop');
+    if (!alertModal) return;
+
+    function openRedAlert(e) {
+      if (e) e.preventDefault();
+      alertModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRedAlert(e) {
+      if (e) e.preventDefault();
+      alertModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.js-open-alert, #openRedAlertBtn').forEach(btn => {
+      btn.addEventListener('click', openRedAlert);
+    });
+    document.querySelectorAll('.js-close-alert, #closeRedAlertModal, #closeRedAlertBtn, .pl-modal-close').forEach(btn => {
+      btn.addEventListener('click', closeRedAlert);
+    });
+
+    alertModal.addEventListener('click', function(e) {
+      if (e.target === alertModal) closeRedAlert();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && alertModal.classList.contains('active')) closeRedAlert();
+    });
+
+    const alertTabs = alertModal.querySelectorAll('.pl-alert-tab');
+    const cards = alertModal.querySelectorAll('.pl-threat-card');
+    alertTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        alertTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const filter = (this.getAttribute('data-status') || 'all').toLowerCase();
+        cards.forEach(card => {
+          const cardStatus = (card.getAttribute('data-status') || '').toLowerCase();
+          card.style.display = (filter === 'all' || cardStatus === filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    window.openRedAlert = openRedAlert;
+    window.closeRedAlert = closeRedAlert;
+  }
+
   function init_index() {
 // Theme Tint changer
     function changeThemeTint(tint) {
@@ -29,18 +78,18 @@
         const container = document.getElementById('portalContainer');
         const overlay = document.getElementById('accessOverlay');
         
-        body.className = '';
-        container.className = 'portal-container';
-        overlay.className = 'access-overlay';
+        body.classList.remove('theme-amber', 'theme-red');
+        if (container) container.className = 'portal-container';
+        if (overlay) overlay.className = 'access-overlay';
         
         if (tint === 'amber') {
             body.classList.add('theme-amber');
-            container.classList.add('theme-amber');
-            overlay.classList.add('theme-amber');
+            if (container) container.classList.add('theme-amber');
+            if (overlay) overlay.classList.add('theme-amber');
         } else if (tint === 'red') {
             body.classList.add('theme-red');
-            container.classList.add('theme-red');
-            overlay.classList.add('theme-red');
+            if (container) container.classList.add('theme-red');
+            if (overlay) overlay.classList.add('theme-red');
         }
     }
 
@@ -170,56 +219,7 @@
     }
 
     // ── PALEOLOGIST RED CODE ALERT & NAVIGATION ──
-    const alertModal = document.getElementById('redCodeModal');
-    const openAlertBtns = document.querySelectorAll('.js-open-alert');
-    const closeAlertBtns = document.querySelectorAll('.js-close-alert');
-
-    function openRedAlert(e) {
-      if (e) e.preventDefault();
-      if (alertModal) {
-        alertModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeRedAlert(e) {
-      if (e) e.preventDefault();
-      if (alertModal) {
-        alertModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    openAlertBtns.forEach(btn => btn.addEventListener('click', openRedAlert));
-    closeAlertBtns.forEach(btn => btn.addEventListener('click', closeRedAlert));
-
-    if (alertModal) {
-      alertModal.addEventListener('click', function(e) {
-        if (e.target === alertModal) closeRedAlert();
-      });
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeRedAlert();
-    });
-
-    // Alert status filter tabs
-    const alertTabs = document.querySelectorAll('.pl-alert-tab');
-    alertTabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        alertTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        const filter = this.getAttribute('data-status');
-        const cards = document.querySelectorAll('.pl-threat-card');
-        cards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-status') === filter) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
+    setupRedCodeModal();
 
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
@@ -416,12 +416,24 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       });
     }
 
-    // ── HABITAT DATA ───────────────────────
-    const habitatData = Object.fromEntries(
-      speciesData
-        .filter(species => species.region && species.site)
-        .map(species => [species.name, { r: species.region, l: species.site }])
-    );
+    // ── SPECIMEN RECORD LOOKUP ─────────────
+    function findSpeciesRecord(name) {
+      const normalizedName = String(name || '').toLowerCase();
+      return speciesData.find(species => species.name.toLowerCase() === normalizedName) || null;
+    }
+
+    function getSpecimenRecord(name, card) {
+      const region = card ? card.getAttribute('data-region') : '';
+      const site = card ? card.getAttribute('data-site') : '';
+      if (card && card.getAttribute('data-custom-record') === 'true' && region && site) {
+        return { region, site };
+      }
+
+      const species = findSpeciesRecord(name);
+      if (species && species.region && species.site) return species;
+
+      return region && site ? { region, site } : null;
+    }
 
     const fossilSiteLookup = [
       { test:/isla nublar/i, lat:9.8, lon:-84.7 },
@@ -504,10 +516,10 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     };
 
     function resolveFossilSite(data) {
-      const location = data.l || '';
+      const location = data.site || '';
       const matchedSite = fossilSiteLookup.find(site => site.test.test(location));
       if (matchedSite) return matchedSite;
-      return fossilRegionFallback[data.r] || fossilRegionFallback.global;
+      return fossilRegionFallback[data.region] || fossilRegionFallback.global;
     }
 
     function projectFossilSite(lat, lon) {
@@ -528,9 +540,9 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       return primaryName.toUpperCase().slice(0, 28);
     }
 
-    function highlightMap(name, classified) {
+    function highlightMap(name, classified, card) {
       document.querySelectorAll('.map-region').forEach(r=>r.classList.remove('active','classified-zone'));
-      const d = habitatData[name];
+      const d = getSpecimenRecord(name, card);
       const cap = document.getElementById('mapCaption');
       const lt = document.getElementById('mapLocText');
       const coordsText = document.getElementById('mapCoordsText');
@@ -541,7 +553,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       const markerLeader = document.getElementById('mapMarkerLeader');
       const markerLabel = document.getElementById('mapMarkerLabel');
       const markerText = document.getElementById('mapMarkerText');
-      if (!d) {
+      if (!d || !d.region || !d.site) {
         lt.textContent='DATA UNAVAILABLE / 暂无地点数据';
         coordsText.textContent='—';
         marker.className.baseVal='fossil-marker';
@@ -550,10 +562,10 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         cap.className='map-site-card';
         return;
       }
-      const reg = d.r;
+      const reg = d.region;
       const regEl = document.getElementById('reg-'+reg);
       const isOrigin = classified || reg === 'isla_nublar';
-      const isRange = reg === 'global' || reg === 'global_ocean' || /^global/i.test(d.l);
+      const isRange = reg === 'global' || reg === 'global_ocean' || /^global/i.test(d.site);
       sectionLabel.textContent = isOrigin
         ? 'RECORD ORIGIN / 记录起源地'
         : isRange
@@ -575,7 +587,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         markerLeader.className.baseVal='map-marker-leader';
         markerLabel.className.baseVal='map-marker-label';
         cap.className='map-site-card';
-        lt.textContent=d.l;
+        lt.textContent=d.site;
         coordsText.textContent='MULTIPLE REGIONS / 多区域分布';
         return;
       }
@@ -601,8 +613,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       markerLeader.className.baseVal='map-marker-leader active';
       markerLabel.setAttribute('transform',`translate(${labelX.toFixed(1)} ${labelY.toFixed(1)})`);
       markerLabel.className.baseVal=`map-marker-label active${isClassified ? ' classified' : ''}`;
-      markerText.textContent=isOrigin ? 'ORIGIN SITE' : formatFossilSiteLabel(d.l);
-      lt.textContent = d.l;
+      markerText.textContent=isOrigin ? 'ORIGIN SITE' : formatFossilSiteLabel(d.site);
+      lt.textContent = d.site;
       coordsText.textContent = formatFossilCoordinates(site.lat, site.lon);
     }
 
@@ -644,6 +656,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         card.setAttribute('data-custom-record', 'true');
         card.setAttribute('data-custom-index', String(index));
         card.setAttribute('data-status', asset.status || 'success');
+        card.setAttribute('data-region', 'isla_nublar');
+        card.setAttribute('data-site', 'ISLA NUBLAR — Sector 4/Lab Custom Gen');
 
         const rarityMap = {
           '1': 'ARCHIVE P1',
@@ -659,7 +673,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const isAlertUnknown = parseInt(asset.agg, 10) >= 4;
         card.classList.toggle('synthesis-alert', isAlertUnknown);
         const safe = {
-          img: escapeHtml(UNKNOWN_HYBRID_IMAGE),
+          img: escapeHtml(asset.img || UNKNOWN_HYBRID_IMAGE),
           name: escapeHtml(asset.name || ''),
           code: escapeHtml(asset.code || ''),
           cn: escapeHtml(asset.cn || ''),
@@ -728,7 +742,6 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
           });
         }
 
-        habitatData[asset.name] = { r: 'isla_nublar', l: 'ISLA NUBLAR — Sector 4/Lab Custom Gen' };
       });
     })();
 
@@ -860,8 +873,19 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       };
       const cardImage = card.querySelector('.card-img');
       lastFocusedCard = card;
-      document.getElementById('mImg').src = cardImage.getAttribute('data-full-src') || cardImage.src;
-      document.getElementById('mImg').alt = `${name} specimen reconstruction`;
+      const modalImg = document.getElementById('mImg');
+      const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
+      modalImg.src = cardImage.src;
+      modalImg.alt = `${name} specimen reconstruction`;
+      if (fullSrc && fullSrc !== cardImage.src) {
+        const hiRes = new Image();
+        hiRes.onload = () => {
+          if (modalImg && lastFocusedCard === card) {
+            modalImg.src = fullSrc;
+          }
+        };
+        hiRes.src = fullSrc;
+      }
       document.getElementById('mName').innerText = name;
       document.getElementById('mCn').innerText = card.getAttribute('data-cn');
       document.getElementById('mPlateName').innerText = name;
@@ -873,7 +897,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       document.getElementById('mPlateEra').innerText = hd.getAttribute('data-era');
       document.getElementById('mLen').innerText = hd.getAttribute('data-len');
       document.getElementById('mWgt').innerText = hd.getAttribute('data-wgt');
-      const recordLocation = habitatData[name] ? habitatData[name].l : 'DATA UNAVAILABLE';
+      const specimenRecord = getSpecimenRecord(name, card);
+      const recordLocation = specimenRecord ? specimenRecord.site : 'DATA UNAVAILABLE';
       document.getElementById('mDesc').innerText = buildFieldSummary(name, cls, hd, recordLocation);
       document.getElementById('mFact').innerText = hd.getAttribute('data-fact');
       document.getElementById('mPlateLocation').innerText = recordLocation;
@@ -894,7 +919,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       if(btn&&ct==='class'){btn.style.borderColor='#d63031';btn.style.color='#ff7675';btn.textContent='SIMULATION RESTRICTED / 模拟受限';}
       else if(btn){btn.style.borderColor='';btn.style.color='';btn.textContent='RUN PADDOCK SIMULATION / 运行园区模拟';}
       // Map
-      highlightMap(name, ct==='class');
+      highlightMap(name, ct==='class', card);
       document.getElementById('modal').classList.add('active');
       document.getElementById('modal').setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
@@ -1096,48 +1121,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         });
 
         // Red Code Alert Modal handlers in gallery
-        const alertModal = document.getElementById('redCodeModal');
-        document.querySelectorAll('.js-open-alert').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (alertModal) {
-                    alertModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-        document.querySelectorAll('.js-close-alert').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (alertModal) {
-                    alertModal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-        if (alertModal) {
-            alertModal.addEventListener('click', (e) => {
-                if (e.target === alertModal) {
-                    alertModal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
-
-        // Alert filter tabs inside gallery
-        document.querySelectorAll('.pl-alert-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                const filter = this.getAttribute('data-status');
-                document.querySelectorAll('.pl-threat-card').forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-status') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
+        setupRedCodeModal();
 
 Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 }
@@ -1440,7 +1424,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
             node.style.setProperty('--node-left-color', periodNodeColors[data.id] || 'rgba(184, 170, 134, 0.44)');
             node.innerHTML = `
                 <div class="node-thumb">
-                    <img src="${data.image || ''}" alt="" loading="lazy" decoding="async">
+                    <img src="${data.thumb || (data.image ? data.image.replace('assets/images/timeline/', 'assets/images/timeline/thumbs/').replace('.jpg', '.webp') : '')}" alt="" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
                 </div>
                 <div class="node-copy">
                     <div class="node-era">${data.era}</div>
@@ -1493,13 +1477,20 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
         }
 
         const eventsEl = document.getElementById('detEvents');
-        eventsEl.innerHTML = '';
-        (data.events || []).forEach((eventText, index) => {
-            const eventNode = document.createElement('div');
-            eventNode.className = 'major-event-item';
-            eventNode.innerHTML = `<span>${String(index + 1).padStart(2, '0')}</span><p>${eventText}</p>`;
-            eventsEl.appendChild(eventNode);
-        });
+        if (eventsEl) {
+            eventsEl.textContent = '';
+            (data.events || []).forEach((eventText, index) => {
+                const eventNode = document.createElement('div');
+                eventNode.className = 'major-event-item';
+                const numSpan = document.createElement('span');
+                numSpan.textContent = String(index + 1).padStart(2, '0');
+                const textP = document.createElement('p');
+                textP.textContent = eventText;
+                eventNode.appendChild(numSpan);
+                eventNode.appendChild(textP);
+                eventsEl.appendChild(eventNode);
+            });
+        }
 
         // Extinction Event warning handler
         const extTitle = document.getElementById('detExtinctionTitle');
@@ -1543,54 +1534,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     });
 
     // Red Code Alert Modal handlers in timescale
-    const alertModal = document.getElementById('redCodeModal');
-    document.querySelectorAll('.js-open-alert').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (alertModal) {
-                alertModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-    document.querySelectorAll('.js-close-alert').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (alertModal) {
-                alertModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    });
-    if (alertModal) {
-        alertModal.addEventListener('click', (e) => {
-            if (e.target === alertModal) {
-                alertModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && alertModal && alertModal.classList.contains('active')) {
-            alertModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Alert filter tabs inside timescale
-    document.querySelectorAll('.pl-alert-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            const filter = this.getAttribute('data-status');
-            document.querySelectorAll('.pl-threat-card').forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-status') === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
+    setupRedCodeModal();
 
     // Mobile menu toggle
     const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
@@ -2037,7 +1981,7 @@ Object.assign(window, { queryArchive });
                 hp: document.getElementById('hp').value.trim(),
                 agg: parseInt(document.getElementById('aggLevel').value),
                 status: document.getElementById('synthesisStatus').value,
-                img: UNKNOWN_HYBRID_IMAGE,
+                img: uploadedImageData || document.getElementById('imgUrl').value.trim() || UNKNOWN_HYBRID_IMAGE,
                 desc: document.getElementById('description').value.trim(),
                 fact: document.getElementById('fact').value.trim()
             };
@@ -2069,6 +2013,8 @@ Object.assign(window, { queryArchive });
     const resetBtn = document.getElementById('resetLabBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
+            form.reset();
+            uploadedImageData = '';
             if (parentASelect && parentBSelect) {
                 parentASelect.selectedIndex = 0;
                 parentBSelect.selectedIndex = Math.min(1, parentBSelect.options.length - 1);
@@ -2082,54 +2028,7 @@ Object.assign(window, { queryArchive });
     }
 
     // Red Code Alert Modal handlers in form
-    const alertModal = document.getElementById('redCodeModal');
-    document.querySelectorAll('.js-open-alert').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (alertModal) {
-                alertModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-    document.querySelectorAll('.js-close-alert').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (alertModal) {
-                alertModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    });
-    if (alertModal) {
-        alertModal.addEventListener('click', (e) => {
-            if (e.target === alertModal) {
-                alertModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && alertModal && alertModal.classList.contains('active')) {
-            alertModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Alert filter tabs inside form
-    document.querySelectorAll('.pl-alert-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.pl-alert-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            const filter = this.getAttribute('data-status');
-            document.querySelectorAll('.pl-threat-card').forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-status') === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
+    setupRedCodeModal();
 
     // Mobile menu toggle
     const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');

@@ -1252,7 +1252,7 @@
       region: 'africa',
       site: 'Elrhaz Formation, Niger',
       thumb: 'assets/images/thumbs/sarco.webp',
-      full: 'assets/images/originals/sarco.png',
+      full: 'assets/images/originals/sarco.webp',
     },
     {
       key: 'purussaurus',
@@ -1340,7 +1340,7 @@
       region: 'south_america',
       site: 'Santa Maria Formation, Rio Grande do Sul, Brazil',
       thumb: 'assets/images/thumbs/prestosuchus.webp',
-      full: 'assets/images/originals/prestosuchus.png',
+      full: 'assets/images/originals/prestosuchus.webp',
     },
     {
       key: 'baurusuchus',
@@ -1362,7 +1362,7 @@
       region: 'south_america',
       site: 'Bauru Group, São Paulo, Brazil',
       thumb: 'assets/images/thumbs/baurusuchus.webp',
-      full: 'assets/images/originals/baurusuchus.png',
+      full: 'assets/images/originals/baurusuchus.webp',
     },
     {
       key: 'kaprosuchus',
@@ -1384,7 +1384,7 @@
       region: 'africa',
       site: 'Kem Kem Formation, Saharan Africa',
       thumb: 'assets/images/thumbs/kapro.webp',
-      full: 'assets/images/originals/kapro.png',
+      full: 'assets/images/originals/kapro.webp',
     },
     {
       key: 'metoposaurus',
@@ -1428,7 +1428,7 @@
       region: 'north_america',
       site: 'Triassic, Eastern North America',
       thumb: 'assets/images/thumbs/rutiodon.webp',
-      full: 'assets/images/originals/rutiodon.png',
+      full: 'assets/images/originals/rutiodon.webp',
     },
     {
       key: 'diplocaulus',
@@ -1450,7 +1450,7 @@
       region: 'north_america',
       site: 'Permian, Texas, USA',
       thumb: 'assets/images/thumbs/diplocaulus.webp',
-      full: 'assets/images/originals/diplocaulus.png',
+      full: 'assets/images/originals/diplocaulus.webp',
     },
     {
       key: 'crassigyrinus',
@@ -1494,7 +1494,7 @@
       region: 'greenland',
       site: 'Devonian, Greenland',
       thumb: 'assets/images/thumbs/Ichthyostega.webp',
-      full: 'assets/images/originals/Ichthyostega.png',
+      full: 'assets/images/originals/Ichthyostega.webp',
     },
     {
       key: 'tiktaalik',
@@ -1560,7 +1560,7 @@
       region: 'europe',
       site: 'Devonian, Latvia',
       thumb: 'assets/images/thumbs/panderichthys.webp',
-      full: 'assets/images/originals/panderichthys.png',
+      full: 'assets/images/originals/panderichthys.webp',
     },
     {
       key: 'postosuchus',
@@ -1736,7 +1736,7 @@
       region: 'north_america',
       site: 'Burgess Shale, British Columbia, Canada',
       thumb: 'assets/images/thumbs/anomalocaris.webp',
-      full: 'assets/images/originals/anomalocaris.png',
+      full: 'assets/images/originals/anomalocaris.webp',
     },
     {
       key: 'livyatan',
@@ -1824,7 +1824,7 @@
       region: 'europe',
       site: 'Callovian, France / England',
       thumb: 'assets/images/thumbs/liopleurodon.webp',
-      full: 'assets/images/originals/liopleurodon.png',
+      full: 'assets/images/originals/liopleurodon.webp',
     },
     {
       key: 'basilosaurus',
@@ -1868,7 +1868,7 @@
       region: 'europe',
       site: 'Late Devonian, Scotland / North America',
       thumb: 'assets/images/thumbs/stethacanthus.webp',
-      full: 'assets/images/originals/stethacanthus.png',
+      full: 'assets/images/originals/stethacanthus.webp',
     },
     {
       key: 'ophthalmosaurus',
@@ -2000,7 +2000,7 @@
       region: 'global_ocean',
       site: 'Global Permian oceans',
       thumb: 'assets/images/thumbs/helicoprion.webp',
-      full: 'assets/images/originals/helicoprion.png',
+      full: 'assets/images/originals/helicoprion.webp',
     },
     {
       key: 'tusoteuthis',
@@ -2066,7 +2066,7 @@
       region: 'north_america',
       site: 'Cleveland Shale, Ohio, USA',
       thumb: 'assets/images/thumbs/cladoselache.webp',
-      full: 'assets/images/originals/cladoselache.png',
+      full: 'assets/images/originals/cladoselache.webp',
     },
     {
       key: 'nothosaurus',
@@ -2110,7 +2110,7 @@
       region: 'global_ocean',
       site: 'Silurian oceans, globally distributed',
       thumb: 'assets/images/thumbs/pterygotus.webp',
-      full: 'assets/images/originals/pterygotus.png',
+      full: 'assets/images/originals/pterygotus.webp',
     },
     {
       key: 'elasmosaurus',
@@ -2374,7 +2374,7 @@
       region: 'south_america',
       site: 'Pleistocene, Argentina / Uruguay',
       thumb: 'assets/images/thumbs/doedicurus.webp',
-      full: 'assets/images/originals/doedicurus.png',
+      full: 'assets/images/originals/doedicurus.webp',
     },
     {
       key: 'mammoth',
@@ -2462,7 +2462,7 @@
       region: 'europe',
       site: 'Paleocene–Eocene, France / Germany',
       thumb: 'assets/images/thumbs/gastornis.webp',
-      full: 'assets/images/originals/gastornis.png',
+      full: 'assets/images/originals/gastornis.webp',
     },
     {
       key: 'chalicotherium',
@@ -2506,7 +2506,7 @@
       region: 'south_america',
       site: 'Cerrejón Formation, Colombia',
       thumb: 'assets/images/thumbs/titanoboa.webp',
-      full: 'assets/images/originals/titanoboa.png',
+      full: 'assets/images/originals/titanoboa.webp',
     },
     {
       key: 'terror_bird',
