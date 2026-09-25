@@ -256,11 +256,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     }
 
     function addBootLine() {
-      if (hasBooted) return;
+      if (hasBooted || !bTextEl || !bOverlay) return;
+      const cursor = document.getElementById('boot-cursor');
+      if (!cursor) return;
       if (bIdx < bootLines.length) {
         const s = document.createElement('span');
         s.className = 'boot-line'; s.textContent = bootLines[bIdx];
-        bTextEl.insertBefore(s, document.getElementById('boot-cursor'));
+        bTextEl.insertBefore(s, cursor);
         bIdx++;
         setTimeout(addBootLine, bIdx < 6 ? 260 : 380);
       } else {
@@ -271,7 +273,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         }, 500);
       }
     }
-    if (!hasBooted) {
+    if (!hasBooted && bTextEl && bOverlay) {
       setTimeout(addBootLine, 300);
     }
 
@@ -347,7 +349,21 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       const r = parseInt(species.rarity) || 3;
       const statusKey = r >= 5 ? 'cr' : r === 4 ? 'en' : r === 3 ? 'vu' : 'lc';
       card.setAttribute('data-iucn', statusKey);
-      card.setAttribute('data-diet', (species.diet || '').toLowerCase());
+      const resolveSpeciesDiet = s => {
+        if (s.diet) return s.diet.toLowerCase();
+        if (s.class === 'herbivore') return 'herbivore';
+        if (s.class === 'carnivore') return 'carnivore';
+        const text = `${s.name} ${s.cn} ${s.fact || ''} ${s.desc || ''}`.toLowerCase();
+        if (/piscivore|食鱼|鱼类/.test(text) || /baryonyx|spinosaurus|suchomimus|pteranodon|dunkleosteus|ichthyosaurus|plesiosaurus|helicoprion/.test(text)) return 'piscivore carnivore';
+        if (/omnivore|杂食|oviraptor|gallimimus|deinocheirus/.test(text)) return 'omnivore';
+        if (/herbivore|植食|草食|树叶|植物|grazer|mammoth|rhino|megatherium|paraceratherium|glyptodon|doedicurus|diprotodon|chalicotherium|deinotherium|megacerops|procoptodon/.test(text)) return 'herbivore';
+        if (s.class === 'pterosaur' || s.class === 'aquatic' || s.class === 'amphibian') return 'carnivore';
+        if (s.class === 'cenozoic') {
+          return /smilodon|titanoboa|wolf|bear|lion|atrox|thylacoleo|andrewsarchus|hyaenodon|megalania|argentavis|borophagus|amphicyon|terror bird/.test(text) ? 'carnivore' : 'herbivore';
+        }
+        return 'carnivore';
+      };
+      card.setAttribute('data-diet', resolveSpeciesDiet(species));
 
       vis.append(img, icon);
 
@@ -406,7 +422,17 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       document.querySelectorAll('.grid[data-species-class]').forEach(grid => {
         grid.textContent = '';
       });
+      const hasCustomIndominus = () => {
+        try {
+          const list = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+          return list.some(item => (item.name || '').toUpperCase() === 'INDOMINUS REX' || item.code === 'HYB-001' || item.code === 'HYB-01');
+        } catch (_) {
+          return false;
+        }
+      };
+      const skipCustomIndominus = hasCustomIndominus();
       speciesData.forEach(species => {
+        if (species.key === 'indominus_rex' && skipCustomIndominus) return;
         const grid = document.querySelector(`#sec-${species.class} .grid`);
         if (grid) grid.appendChild(createSpeciesCard(species));
       });
@@ -654,6 +680,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         card.setAttribute('data-status', asset.status || 'success');
         card.setAttribute('data-region', 'isla_nublar');
         card.setAttribute('data-site', 'ISLA NUBLAR — Sector 4/Lab Custom Gen');
+        const customDiet = asset.diet || (asset.class === 'herbivore' ? 'herbivore' : 'carnivore');
+        card.setAttribute('data-diet', customDiet.toLowerCase());
 
         const rarityMap = {
           '1': 'ARCHIVE P1',
@@ -688,18 +716,17 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
           alertLabel: escapeHtml(isAlertUnknown ? 'ALERT: UNKNOWN' : 'UNKNOWN')
         };
 
-        card.innerHTML = `
-          <div class="card-vis">
-            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} unknown specimen reconstruction">
-            <div class="img-fallback" style="display:none; width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;">
-              <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
-                <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
-              </svg>
-              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
-            </div>
+        const visual = asset.img
+          ? `<div class="card-vis">
+            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} reconstruction">
             <span class="class-icon">${safe.classUpper}</span>
-            <span class="unknown-alert-badge">${safe.alertLabel}</span>
-          </div>
+          </div>`
+          : `<div class="card-vis card-text-file">
+            <span class="class-icon">${safe.classUpper}</span>
+            <p>${safe.fact || safe.desc || 'TEXT FILE / 文字档案'}</p>
+          </div>`;
+        card.innerHTML = `
+          ${visual}
           <div class="card-data">
             <div>
               <div class="spec-code">${safe.code}</div>
@@ -870,17 +897,24 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       const cardImage = card.querySelector('.card-img');
       lastFocusedCard = card;
       const modalImg = document.getElementById('mImg');
-      const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
-      modalImg.src = cardImage.src;
-      modalImg.alt = `${name} specimen reconstruction`;
-      if (fullSrc && fullSrc !== cardImage.src) {
-        const hiRes = new Image();
-        hiRes.onload = () => {
-          if (modalImg && lastFocusedCard === card) {
-            modalImg.src = fullSrc;
+      if (cardImage) {
+        const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
+        if (modalImg) {
+          modalImg.src = cardImage.src;
+          modalImg.alt = `${name} specimen reconstruction`;
+          if (fullSrc && fullSrc !== cardImage.src) {
+            const hiRes = new Image();
+            hiRes.onload = () => {
+              if (modalImg && lastFocusedCard === card) {
+                modalImg.src = fullSrc;
+              }
+            };
+            hiRes.src = fullSrc;
           }
-        };
-        hiRes.src = fullSrc;
+        }
+      } else if (modalImg) {
+        modalImg.src = UNKNOWN_HYBRID_IMAGE;
+        modalImg.alt = `${name} text archive`;
       }
       document.getElementById('mName').innerText = name;
       document.getElementById('mCn').innerText = card.getAttribute('data-cn');
@@ -992,40 +1026,67 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             if (rhEl) rhEl.textContent = matchingCards.length
               ? 'SCIENTIFIC RECORDS + MARKED SIMULATION DATA / 科学档案与明确标注的模拟数据'
               : 'NO MATCHING RECORDS / 没有匹配记录';
+            const emptyEl = document.getElementById('emptyResults');
+            if (emptyEl) emptyEl.hidden = matchingCards.length > 0;
             const lmEl = document.getElementById('loadMoreWrap');
             if (lmEl) lmEl.hidden = shown >= matchingCards.length;
         }
-        function filterSelection(c) {
-            visibleLimit = pageStep;
-            document.querySelectorAll('.filter-btn').forEach(btn => { btn.classList.remove('active'); if(btn.getAttribute('data-val')===c) btn.classList.add('active'); });
+        function activeClassFilter() {
+            const select = document.getElementById('classFilterSelect');
+            if (select) return (select.value || 'all').toLowerCase();
+            return document.querySelector('.filter-btn.active')?.getAttribute('data-val') || 'all';
+        }
+        function eraMatches(era, eraVal) {
+            if (eraVal === 'all') return true;
+            const value = era.toLowerCase();
+            if (value.includes(eraVal)) return true;
+            if (/ingen|classified/.test(value)) return false;
+            if (eraVal === 'mesozoic') {
+                return /triassic|jurassic|cretaceous/.test(value);
+            }
+            if (eraVal === 'paleozoic') {
+                return /cambrian|ordovician|silurian|devonian|carboniferous|permian/.test(value);
+            }
+            if (eraVal === 'cenozoic') {
+                return /paleocene|eocene|oligocene|miocene|pliocene|pleistocene|holocene/.test(value);
+            }
+            return false;
+        }
+        function applyCatalogFilters() {
+            const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+            const eraVal = (document.getElementById('eraFilterSelect')?.value || 'all').toLowerCase();
+            const dietVal = (document.getElementById('dietFilterSelect')?.value || 'all').toLowerCase();
+            const classVal = activeClassFilter();
             document.querySelectorAll('.card').forEach(card => {
-                const cls=card.getAttribute('data-class');
-                card.classList.toggle('hidden', c!=='all'&&cls!==c);
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const cn = (card.getAttribute('data-cn') || '').toLowerCase();
+                const cls = (card.getAttribute('data-class') || '').toLowerCase();
+                const era = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
+                const diet = (card.getAttribute('data-diet') || '').toLowerCase();
+                let match = true;
+                if (query && !(name.includes(query) || cn.includes(query) || cls.includes(query) || era.includes(query))) match = false;
+                if (!eraMatches(era, eraVal)) match = false;
+                if (dietVal !== 'all' && !diet.includes(dietVal)) match = false;
+                if (classVal !== 'all' && cls !== classVal) match = false;
+                card.classList.toggle('hidden', !match);
             });
             applyVisibilityWindow();
         }
-        function runSearch(val) {
+        function filterSelection(c) {
             visibleLimit = pageStep;
-            const valLower = val.toLowerCase().trim();
-            document.querySelectorAll('.card').forEach(card=>{
-                const name = card.getAttribute('data-name').toLowerCase();
-                const cn = card.getAttribute('data-cn')||'';
-                const cls = card.getAttribute('data-class')||'';
-                const hd = card.querySelector('.hidden-data');
-                const era = hd ? (hd.getAttribute('data-era')||'').toLowerCase() : '';
-                
-                if (name.includes(valLower) || cn.toLowerCase().includes(valLower) || cls.includes(valLower) || era.includes(valLower)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-val') === c);
             });
-            applyVisibilityWindow();
+            applyCatalogFilters();
+        }
+        function runSearch() {
+            visibleLimit = pageStep;
+            applyCatalogFilters();
         }
 
         const sInput = document.getElementById('searchInput');
         if (sInput) {
-            sInput.addEventListener('keyup', function(){
+            sInput.addEventListener('input', function(){
                 runSearch(this.value);
             });
         }
@@ -1084,38 +1145,30 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const eraSelect = document.getElementById('eraFilterSelect');
         const dietSelect = document.getElementById('dietFilterSelect');
         const classSelect = document.getElementById('classFilterSelect');
-        const statusSelect = document.getElementById('statusFilterSelect');
 
         function applyAdvancedFilters() {
-            const eraVal = eraSelect ? eraSelect.value.toLowerCase() : 'all';
-            const dietVal = dietSelect ? dietSelect.value.toLowerCase() : 'all';
-            const classVal = classSelect ? classSelect.value.toLowerCase() : 'all';
-            const statusVal = statusSelect ? statusSelect.value.toLowerCase() : 'all';
-
-            document.querySelectorAll('.card').forEach(card => {
-                const cClass = card.getAttribute('data-class') || '';
-                const cEra = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
-                const cDiet = (card.getAttribute('data-diet') || '').toLowerCase();
-                const cIucn = (card.getAttribute('data-iucn') || '').toLowerCase();
-
-                let match = true;
-                if (eraVal !== 'all' && !cEra.includes(eraVal)) match = false;
-                if (dietVal !== 'all' && !cDiet.includes(dietVal)) match = false;
-                if (classVal !== 'all' && cClass !== classVal) match = false;
-                if (statusVal !== 'all' && cIucn !== statusVal) match = false;
-
-                if (match) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-            applyVisibilityWindow();
+            visibleLimit = pageStep;
+            applyCatalogFilters();
         }
 
-        [eraSelect, dietSelect, classSelect, statusSelect].forEach(sel => {
+        [eraSelect, dietSelect, classSelect].forEach(sel => {
             if (sel) sel.addEventListener('change', applyAdvancedFilters);
         });
+
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                if (eraSelect) eraSelect.value = 'all';
+                if (dietSelect) dietSelect.value = 'all';
+                if (classSelect) classSelect.value = 'all';
+                const sortSelect = document.getElementById('sortSelect');
+                if (sortSelect) sortSelect.value = 'default';
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                filterSelection('all');
+                if (typeof sortCards === 'function') sortCards();
+            });
+        }
 
         // Gallery Showcase Category Tabs
         document.querySelectorAll('.pl-gallery-tab').forEach(tab => {
@@ -1430,8 +1483,10 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     function initTimeline() {
         const listEl = document.getElementById('timelineList');
         timescaleData.forEach((data, index) => {
-            const node = document.createElement('div');
+            const node = document.createElement('button');
+            node.type = 'button';
             node.className = `timeline-node ${index === 0 ? 'active' : ''}`;
+            node.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
             node.dataset.period = data.id;
             node.dataset.index = String(index + 1).padStart(2, '0');
             node.style.setProperty('--node-left-color', periodNodeColors[data.id] || 'rgba(184, 170, 134, 0.44)');
@@ -1447,8 +1502,12 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
             `;
             
             node.addEventListener('click', () => {
-                document.querySelectorAll('.timeline-node').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.timeline-node').forEach(n => {
+                    n.classList.remove('active');
+                    n.setAttribute('aria-pressed', 'false');
+                });
                 node.classList.add('active');
+                node.setAttribute('aria-pressed', 'true');
                 displayDetails(data);
             });
             
@@ -1537,14 +1596,6 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 
     // Initialize timescale nodes
     initTimeline();
-
-    // Timeline scope strip interaction
-    document.querySelectorAll('.timeline-scope-strip span').forEach(span => {
-        span.addEventListener('click', function() {
-            document.querySelectorAll('.timeline-scope-strip span').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
 
     // Red Code Alert Modal handlers in timescale
     setupRedCodeModal();
@@ -1714,9 +1765,11 @@ Object.assign(window, { queryArchive });
 
         if (await imageExists(presetPath)) {
             if (requestId !== hybridVisualRequest) return;
-            pCardImg.src = presetPath;
-            pCardImg.alt = `${speciesA.name} and ${speciesB.name} hybrid reconstruction`;
-            pCardImg.style.display = 'block';
+            if (pCardImg) {
+                pCardImg.src = presetPath;
+                pCardImg.alt = `${speciesA.name} and ${speciesB.name} hybrid reconstruction`;
+                pCardImg.style.display = 'block';
+            }
             canvasEl.hidden = true;
             if (mobilePreviewImg) mobilePreviewImg.src = presetPath;
             return;
@@ -1725,7 +1778,7 @@ Object.assign(window, { queryArchive });
         if (requestId !== hybridVisualRequest) return;
         renderCompositeSplice(canvasEl, speciesA.thumb, speciesB.thumb, blendRatioValue);
         canvasEl.hidden = false;
-        pCardImg.style.display = 'none';
+        if (pCardImg) pCardImg.style.display = 'none';
         if (mobilePreviewImg) {
             mobilePreviewImg.src = UNKNOWN_HYBRID_IMAGE;
         }
@@ -1741,6 +1794,19 @@ Object.assign(window, { queryArchive });
         });
         parentASelect.value = selectable.find(species => species.key === 'tyrannosaurus_rex')?.key || selectable[0]?.key || '';
         parentBSelect.value = selectable.find(species => species.key === 'spinosaurus')?.key || selectable[1]?.key || parentASelect.value;
+    }
+
+    function writeParentFile(prefix, species) {
+        const set = (suffix, value) => {
+            const el = document.getElementById(prefix + suffix);
+            if (el) el.textContent = value || '—';
+        };
+        if (!species) return;
+        set('Era', species.era);
+        set('Class', species.class);
+        set('LenText', species.len == null ? '—' : `${species.len}${species.lenUnit || 'm'}`);
+        set('WgtText', species.wgt == null ? '—' : `${Number(species.wgt).toLocaleString()}${species.wgtUnit || 'kg'}`);
+        set('Fact', species.fact);
     }
 
     function applyHybridBlend() {
@@ -1764,10 +1830,13 @@ Object.assign(window, { queryArchive });
         document.getElementById('aggLevel').value = String(Math.max(speciesA.agg || 3, speciesB.agg || 3));
         document.getElementById('description').value = `Hybrid simulation blending ${speciesA.name} mass and field traits with ${speciesB.name} morphology under controlled archive review.`;
         document.getElementById('fact').value = `Genome dominance: ${Math.round(t * 100)}% ${speciesB.name}. This remains a fictional research model.`;
-        document.getElementById('imgUrl').value = '';
+        const imgUrlField = document.getElementById('imgUrl');
+        if (imgUrlField) imgUrlField.value = '';
         uploadedImageData = '';
         if (imgFileInput) imgFileInput.value = '';
         if (blendReadout) blendReadout.textContent = `${Math.round(t * 100)}% Parent B / 亲本 B 显性`;
+        writeParentFile('parentA', speciesA);
+        writeParentFile('parentB', speciesB);
 
         // Update Parent 1 and 2 cards in workbench
         const parentAImg = document.getElementById('parentAImg');
@@ -1820,8 +1889,8 @@ Object.assign(window, { queryArchive });
         const isAlertUnknown = agg >= 4;
 
         // Update basic values
-        pCard.setAttribute('data-class', cls);
-        pCardIcon.textContent = cls.toUpperCase();
+        if (pCard) pCard.setAttribute('data-class', cls);
+        if (pCardIcon) pCardIcon.textContent = cls.toUpperCase();
         pCardCode.textContent = code || 'REF-XXX';
         pCardName.textContent = name || 'SPECIES_NAME';
         pCardCn.textContent = cn || '中文名';
@@ -1834,15 +1903,21 @@ Object.assign(window, { queryArchive });
         const shouldResolveHybridVisual = cls === 'hybrid' && speciesA && speciesB;
         if (!shouldResolveHybridVisual) hybridVisualRequest++;
         if (hybridCanvas) hybridCanvas.hidden = true;
-        pCardImg.src = UNKNOWN_HYBRID_IMAGE;
-        pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
-        pCardImg.style.display = 'block';
-        pCardFallback.style.display = 'none';
-        pCardFallback.classList.toggle('alert-unknown', isAlertUnknown);
-        pCard.classList.toggle('synthesis-alert', isAlertUnknown);
-        pCard.classList.toggle('synthesis-success', synthesisStatus === 'success');
-        pCard.classList.toggle('synthesis-failure', synthesisStatus === 'failure');
-        const unknownStatus = pCardFallback.querySelector('.unknown-status') || pCardFallback.querySelector('span');
+        if (pCardImg) {
+            pCardImg.src = UNKNOWN_HYBRID_IMAGE;
+            pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
+            pCardImg.style.display = 'block';
+        }
+        if (pCardFallback) {
+            pCardFallback.style.display = 'none';
+            pCardFallback.classList.toggle('alert-unknown', isAlertUnknown);
+        }
+        if (pCard) {
+            pCard.classList.toggle('synthesis-alert', isAlertUnknown);
+            pCard.classList.toggle('synthesis-success', synthesisStatus === 'success');
+            pCard.classList.toggle('synthesis-failure', synthesisStatus === 'failure');
+        }
+        const unknownStatus = pCardFallback && (pCardFallback.querySelector('.unknown-status') || pCardFallback.querySelector('span'));
         if (unknownStatus) {
             unknownStatus.textContent = isAlertUnknown
                 ? 'ALERT: UNKNOWN / 警报：未知影像'
@@ -1852,11 +1927,11 @@ Object.assign(window, { queryArchive });
         // Update DNA sequence text mock
         const bases = 'ATCG'; let seq = '';
         for (let i = 0; i < 24; i++) seq += (i > 0 && i % 4 === 0 ? ' ' : '') + bases[Math.floor(Math.random() * 4)];
-        pCardDna.textContent = seq;
+        if (pCardDna) pCardDna.textContent = seq;
 
         // Update containment and badge
         const ct = getContainment(cls, rarity, agg);
-        pCard.setAttribute('data-containment', ct);
+        if (pCard) pCard.setAttribute('data-containment', ct);
 
         // Remove old badge if exists, and insert new
         let badge = pCardInnerData.querySelector('.containment-badge');
@@ -1886,9 +1961,10 @@ Object.assign(window, { queryArchive });
     }
 
     // Bind real-time input fields
-    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'synthesisStatus', 'era', 'length', 'weight', 'atk', 'hp', 'imgUrl', 'aggLevel'];
+    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'synthesisStatus', 'era', 'length', 'weight', 'atk', 'hp', 'aggLevel'];
     inputs.forEach(id => {
         const el = document.getElementById(id);
+        if (!el) return;
         el.addEventListener('input', updatePreview);
         el.addEventListener('change', updatePreview);
     });
@@ -1994,7 +2070,7 @@ Object.assign(window, { queryArchive });
                 hp: document.getElementById('hp').value.trim(),
                 agg: parseInt(document.getElementById('aggLevel').value),
                 status: document.getElementById('synthesisStatus').value,
-                img: uploadedImageData || document.getElementById('imgUrl').value.trim() || UNKNOWN_HYBRID_IMAGE,
+                img: uploadedImageData || document.getElementById('imgUrl')?.value.trim() || '',
                 desc: document.getElementById('description').value.trim(),
                 fact: document.getElementById('fact').value.trim()
             };

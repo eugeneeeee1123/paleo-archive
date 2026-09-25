@@ -80,6 +80,7 @@
         <p style="color:var(--pl-text-muted); font-size:0.95rem; margin:0 0 24px;">Explore detailed profiles of ancient species across deep geological time.</p>
 
         <div class="pl-guide-filter-row">
+            <div class="pl-guide-filter-tools">
             <input type="search" id="searchInput" class="pl-search-input" placeholder="Search species (e.g. Tyrannosaurus, Triceratops, 霸王龙)..." autocomplete="off">
             <select id="eraFilterSelect" class="pl-filter-select" aria-label="Filter by Era">
                 <option value="all">ALL ERAS / 全部年代</option>
@@ -98,28 +99,32 @@
                 <option value="piscivore">PISCIVORE / 食鱼</option>
                 <option value="omnivore">OMNIVORE / 杂食</option>
             </select>
+            <select id="classFilterSelect" class="pl-filter-select" aria-label="Filter by class">
+                <option value="all">ALL CLASSES / 全部分类</option>
+                <option value="hybrid">HYBRIDS / 混种生物</option>
+                <option value="carnivore">CARNIVORES / 肉食恐龙</option>
+                <option value="herbivore">HERBIVORES / 草食恐龙</option>
+                <option value="pterosaur">PTEROSAURS / 翼龙类</option>
+                <option value="amphibian">EARLY TETRAPODS / 早期四足类</option>
+                <option value="aquatic">AQUATIC LIFE / 水生古生物</option>
+                <option value="cenozoic">CENOZOIC / 新生代动物</option>
+            </select>
             <select id="sortSelect" class="pl-filter-select" onchange="sortCards()" aria-label="Sort specimens">
                 <option value="default">DEFAULT / 默认排序</option>
                 <option value="name">NAME (A-Z) / 名称</option>
                 <option value="era">ERA / 地质年代</option>
                 <option value="rarity">ARCHIVE PRIORITY / 优先级</option>
             </select>
-        </div>
-
-        <div class="filter-group" style="margin-top: 16px;">
-            <button class="filter-btn active" data-val="all" onclick="filterSelection('all')">ALL / 全部</button>
-            <button class="filter-btn" data-val="hybrid" onclick="filterSelection('hybrid')">HYBRIDS / 混种生物</button>
-            <button class="filter-btn" data-val="carnivore" onclick="filterSelection('carnivore')">CARNIVORES / 肉食恐龙</button>
-            <button class="filter-btn" data-val="herbivore" onclick="filterSelection('herbivore')">HERBIVORES / 草食恐龙</button>
-            <button class="filter-btn" data-val="pterosaur" onclick="filterSelection('pterosaur')">PTEROSAURS / 翼龙类</button>
-            <button class="filter-btn" data-val="amphibian" onclick="filterSelection('amphibian')">EARLY TETRAPODS / 早期四足类</button>
-            <button class="filter-btn" data-val="aquatic" onclick="filterSelection('aquatic')">AQUATIC LIFE / 水生古生物</button>
-            <button class="filter-btn" data-val="cenozoic" onclick="filterSelection('cenozoic')">CENOZOIC / 新生代动物</button>
-        </div>
+            </div>
     </div>
     <div class="results-status" id="resultsStatus" role="status" aria-live="polite">
         <span id="resultsCount">0 RECORDS / 0 条记录</span>
         <span id="resultsHint">SCIENTIFIC RECORDS + FIELD DISCOVERY FILES</span>
+    </div>
+    <div class="pl-empty-results" id="emptyResults" hidden>
+        <p>No species match these filters.</p>
+        <p>没有符合当前筛选的标本。</p>
+        <button type="button" id="clearFiltersBtn">CLEAR FILTERS / 清除筛选</button>
     </div>
 
     <div class="section-wrapper" id="sec-hybrid">
@@ -201,15 +206,15 @@
             </div>
 
                 <div class="data-grid">
-                    <div class="data-point wide"><label>CLASSIFICATION / 生物分类</label><span id="mClass">...</span></div>
-                    <div class="data-point"><label>ARCHIVE CODE / 档案编号</label><span id="mCode">...</span></div>
-                    <div class="data-point"><label>SIMULATION THREAT / 模拟威胁等级</label><span class="star-rating" id="mAgg">...</span></div>
-                    <div class="data-point wide"><label>GEOLOGICAL ERA / 生存地质年代</label><span id="mEra">...</span></div>
-                    <div class="data-point"><label>BODY LENGTH / 体长或翼展</label><span id="mLen">...</span></div>
-                    <div class="data-point"><label>ESTIMATED MASS / 估计体重</label><span id="mWgt">...</span></div>
-                    <div class="data-point wide"><label>SIMULATION ATTACK INDEX / 模拟攻击指数</label><span class="metric-alert" id="mAtk">...</span></div>
-                    <div class="data-point wide"><label>SIMULATION VITALITY / 模拟生命指数</label><span class="metric-positive" id="mHp">...</span></div>
-                    <div class="data-point wide" id="mSynthStatusWrap"><label>SYNTHESIS RESULT / 合成结果</label><span id="mSynthStatus">VERIFIED RECORD</span></div>
+                    <div class="data-point"><label>CLASS / 分类</label><span id="mClass">...</span></div>
+                    <div class="data-point"><label>CODE / 编号</label><span id="mCode">...</span></div>
+                    <div class="data-point"><label>THREAT / 威胁</label><span class="star-rating" id="mAgg">...</span></div>
+                    <div class="data-point"><label>ERA / 年代</label><span id="mEra">...</span></div>
+                    <div class="data-point"><label>LENGTH / 体长</label><span id="mLen">...</span></div>
+                    <div class="data-point"><label>MASS / 体重</label><span id="mWgt">...</span></div>
+                    <div class="data-point"><label>ATTACK / 攻击</label><span class="metric-alert" id="mAtk">...</span></div>
+                    <div class="data-point"><label>VITALITY / 生命</label><span class="metric-positive" id="mHp">...</span></div>
+                    <div class="data-point" id="mSynthStatusWrap"><label>RECORD / 档案</label><span id="mSynthStatus">VERIFIED RECORD</span></div>
                 </div>
 
                 <div class="dossier-section-label">FIELD SUMMARY / 物种概要</div>
