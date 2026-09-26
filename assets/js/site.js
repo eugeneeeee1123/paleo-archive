@@ -1170,22 +1170,6 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             });
         }
 
-        // Gallery Showcase Category Tabs
-        document.querySelectorAll('.pl-gallery-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.pl-gallery-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                const cat = this.getAttribute('data-cat');
-                document.querySelectorAll('.pl-showcase-item').forEach(item => {
-                    if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
         // Red Code Alert Modal handlers in gallery
         setupRedCodeModal();
 
