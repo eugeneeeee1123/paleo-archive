@@ -71,6 +71,29 @@
     window.closeRedAlert = closeRedAlert;
   }
 
+  function setupMobileMenu() {
+    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
+    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
+    if (!menuToggle || !mainNav) return;
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mainNav.classList.toggle('mobile-open');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!mainNav.contains(e.target) && !menuToggle.contains(e.target) && mainNav.classList.contains('mobile-open')) {
+        mainNav.classList.remove('mobile-open');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mainNav.classList.contains('mobile-open')) {
+        mainNav.classList.remove('mobile-open');
+      }
+    });
+  }
+
   function init_index() {
 // Theme Tint changer
     function changeThemeTint(tint) {
@@ -222,13 +245,7 @@
     setupRedCodeModal();
 
     // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', function() {
-        mainNav.classList.toggle('mobile-open');
-      });
-    }
+    setupMobileMenu();
 
 Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
 }
@@ -667,7 +684,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     }
 
     (function loadCustomAssets() {
-      const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+      let customAssets = [];
+      try {
+        customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+        if (!Array.isArray(customAssets)) customAssets = [];
+      } catch (_) {
+        customAssets = [];
+      }
       customAssets.forEach((asset, index) => {
         const grid = document.querySelector(`#sec-${asset.class} .grid`);
         if (!grid) return;
@@ -761,9 +784,17 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             event.preventDefault();
             event.stopPropagation();
             if (!confirm('Delete this custom archive file?')) return;
-            const savedAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            let savedAssets = [];
+            try {
+              savedAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+              if (!Array.isArray(savedAssets)) savedAssets = [];
+            } catch (_) {
+              savedAssets = [];
+            }
             savedAssets.splice(index, 1);
-            localStorage.setItem('ingen_custom_assets', JSON.stringify(savedAssets));
+            try {
+              localStorage.setItem('ingen_custom_assets', JSON.stringify(savedAssets));
+            } catch (_) {}
             window.location.reload();
           });
         }
@@ -996,7 +1027,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     if (requestedSpecimen) {
       setTimeout(() => {
         const requestedCard = Array.from(document.querySelectorAll('.card')).find(card =>
-          card.getAttribute('data-name').toLowerCase() === requestedSpecimen.toLowerCase()
+          (card.getAttribute('data-name') || '').toLowerCase() === requestedSpecimen.toLowerCase()
         );
         if (requestedCard) openModal(requestedCard);
       }, 100);
@@ -1191,6 +1222,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
 
         // Red Code Alert Modal handlers in gallery
         setupRedCodeModal();
+        setupMobileMenu();
 
 Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 }
@@ -1512,6 +1544,13 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
                 node.classList.add('active');
                 node.setAttribute('aria-pressed', 'true');
                 displayDetails(data);
+
+                if (window.innerWidth <= 980) {
+                    const detailsEl = document.getElementById('detailsPanel');
+                    if (detailsEl) {
+                        detailsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
             });
             
             listEl.appendChild(node);
@@ -1604,13 +1643,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     setupRedCodeModal();
 
     // Mobile menu toggle
-    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
-    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('mobile-open');
-        });
-    }
+    setupMobileMenu();
 
 Object.assign(window, { queryArchive });
 }
@@ -2079,12 +2112,21 @@ Object.assign(window, { queryArchive });
             };
 
             // Read existing custom assets, append, and save
-            const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            let customAssets = [];
+            try {
+                customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+                if (!Array.isArray(customAssets)) customAssets = [];
+            } catch (_) {
+                customAssets = [];
+            }
             customAssets.push(newAsset);
-            localStorage.setItem('ingen_custom_assets', JSON.stringify(customAssets));
-
-            // Display success modal
-            document.getElementById('successOverlay').classList.add('active');
+            try {
+                localStorage.setItem('ingen_custom_assets', JSON.stringify(customAssets));
+                // Display success modal
+                document.getElementById('successOverlay').classList.add('active');
+            } catch (err) {
+                alert('Storage quota exceeded! Unable to save new hybrid sequence to local storage. Please remove older custom assets.');
+            }
         }
     });
 
@@ -2123,13 +2165,7 @@ Object.assign(window, { queryArchive });
     setupRedCodeModal();
 
     // Mobile menu toggle
-    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
-    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('mobile-open');
-        });
-    }
+    setupMobileMenu();
 
 }
 

@@ -4714,7 +4714,8 @@ html[data-page="timescale"] .timeline-node.active{
   top: 0;
   left: 0;
   width: 100%;
-  height: 76px;
+  height: calc(76px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   background: rgba(13, 12, 10, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -4878,6 +4879,10 @@ html[data-page="timescale"] .timeline-node.active{
   border-radius: var(--pl-radius-sm);
   font-family: var(--font-ui);
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .pl-btn-primary,
@@ -4932,13 +4937,14 @@ html[data-page="timescale"] .timeline-node.active{
 
 .pl-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-size: clamp(2.2rem, 7vw, 5.8rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: 6px;
+  letter-spacing: clamp(2px, 1.2vw, 6px);
   color: var(--pl-text);
   margin: 0 0 20px;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+  overflow-wrap: break-word;
 }
 
 .pl-hero-deck {
@@ -5333,8 +5339,8 @@ html[data-page="timescale"] .timeline-node.active{
 }
 
 .pl-social-link {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--pl-border);
   display: flex;
@@ -5496,19 +5502,19 @@ html[data-page="timescale"] .timeline-node.active{
 
 .pl-modal-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: 1px solid var(--pl-border);
   color: var(--pl-text-muted);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   transition: all 0.2s ease;
 }
 
@@ -6569,12 +6575,17 @@ html[data-page="timescale"] #queryBtn:hover {
   background: var(--pl-surface);
   border: 1px solid var(--pl-border);
   border-radius: var(--pl-radius-sm);
-  padding: 4px 8px;
+  padding: 8px 14px;
+  min-height: 44px;
+  min-width: 52px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--pl-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pl-ratio-btn:hover,
@@ -6785,7 +6796,7 @@ html[data-page="timescale"] .timeline-fact-stack {
 
 html[data-page="timescale"] .timeline-container {
   overflow: visible !important;
-  grid-template-columns: minmax(500px, 540px) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(360px, 500px) minmax(0, 1fr) !important;
 }
 
 html[data-page="timescale"] .details-panel {
@@ -6914,21 +6925,21 @@ html[data-page="timescale"] .pl-menu-toggle:focus-visible {
     grid-template-columns: 1fr !important;
   }
 
-  html[data-page="timescale"] .pl-header-inner {
+  .pl-header-inner {
     min-width: 0 !important;
     gap: 8px !important;
   }
 
-  html[data-page="timescale"] .pl-logo {
+  .pl-logo {
     min-width: 0 !important;
   }
 
-  html[data-page="timescale"] .pl-logo-text {
+  .pl-logo-text {
     font-size: 0.82rem !important;
     letter-spacing: 0.08em !important;
   }
 
-  html[data-page="timescale"] .pl-alert-badge-btn {
+  .pl-alert-badge-btn {
     min-height: 44px !important;
     padding: 8px 10px !important;
     font-family: var(--font-ui) !important;
@@ -6937,7 +6948,7 @@ html[data-page="timescale"] .pl-menu-toggle:focus-visible {
     letter-spacing: 0.08em !important;
   }
 
-  html[data-page="timescale"] .pl-menu-toggle {
+  .pl-menu-toggle {
     min-width: 44px !important;
     min-height: 44px !important;
   }
@@ -7136,6 +7147,11 @@ html[data-page="field-guide"] .filter-btn:focus-visible {
   html[data-page="field-guide"] .pl-guide-filter-tools {
     grid-template-columns: 1fr 1fr !important;
   }
+  html[data-page="field-guide"] .pl-search-input {
+    grid-column: 1 / -1 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--pl-border) !important;
+  }
 }
 
 @media (max-width: 560px) {
@@ -7292,6 +7308,16 @@ html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
     flex: none !important;
     border-right: 0 !important;
     border-bottom: 1px solid var(--pl-border) !important;
+  }
+
+  html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 400px) {
+  html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
