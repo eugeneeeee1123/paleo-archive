@@ -122,7 +122,7 @@
     window.addEventListener('pageshow', function(event) {
         const navEntry = performance.getEntriesByType('navigation')[0];
         const referrerFile = document.referrer.split('/').pop().split('?')[0].split('#')[0].toLowerCase();
-        const returnedFromOtherHtml = referrerFile.endsWith('.html') && referrerFile !== 'index.html';
+        const returnedFromOtherHtml = (referrerFile.endsWith('.html') || ['field-guide', 'gallery', 'timescale', 'form'].includes(referrerFile)) && referrerFile !== 'index.html' && referrerFile !== 'index' && referrerFile !== '';
         const returnedFromHistory = event.persisted || (navEntry && navEntry.type === 'back_forward');
         const skipIntro = sessionStorage.getItem('skip_index_intro') === 'true';
         
@@ -323,13 +323,16 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       if (value.includes('Oligocene')) return 'Oligoc.';
       return value || 'Unknown';
     }
-    function createSpeciesCard(species) {
+    function createSpeciesCard(species, defaultIndex = 0) {
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-class', species.class);
       card.setAttribute('data-rarity', species.rarity);
       card.setAttribute('data-name', species.name);
       card.setAttribute('data-cn', species.cn);
+      card.setAttribute('data-code', species.code || '');
+      card.setAttribute('data-key', species.key || '');
+      card.setAttribute('data-default-order', String(defaultIndex));
 
       const vis = document.createElement('div');
       vis.className = 'card-vis';
@@ -431,10 +434,10 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         }
       };
       const skipCustomIndominus = hasCustomIndominus();
-      speciesData.forEach(species => {
+      speciesData.forEach((species, index) => {
         if (species.key === 'indominus_rex' && skipCustomIndominus) return;
         const grid = document.querySelector(`#sec-${species.class} .grid`);
-        if (grid) grid.appendChild(createSpeciesCard(species));
+        if (grid) grid.appendChild(createSpeciesCard(species, index));
       });
     }
 
@@ -1057,14 +1060,24 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             const eraVal = (document.getElementById('eraFilterSelect')?.value || 'all').toLowerCase();
             const dietVal = (document.getElementById('dietFilterSelect')?.value || 'all').toLowerCase();
             const classVal = activeClassFilter();
+            const isTrexQuery = /^(t-?rex|trex)$/i.test(query);
+
             document.querySelectorAll('.card').forEach(card => {
                 const name = (card.getAttribute('data-name') || '').toLowerCase();
                 const cn = (card.getAttribute('data-cn') || '').toLowerCase();
                 const cls = (card.getAttribute('data-class') || '').toLowerCase();
                 const era = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
                 const diet = (card.getAttribute('data-diet') || '').toLowerCase();
+                const code = (card.getAttribute('data-code') || card.querySelector('.spec-code')?.textContent || '').toLowerCase();
+                const key = (card.getAttribute('data-key') || '').toLowerCase().replace(/_/g, ' ');
+
                 let match = true;
-                if (query && !(name.includes(query) || cn.includes(query) || cls.includes(query) || era.includes(query))) match = false;
+                if (query) {
+                    const nameMatch = name.includes(query) || (isTrexQuery && (name.includes('tyrannosaurus') || key.includes('trex')));
+                    if (!(nameMatch || cn.includes(query) || cls.includes(query) || era.includes(query) || code.includes(query) || diet.includes(query) || key.includes(query))) {
+                        match = false;
+                    }
+                }
                 if (!eraMatches(era, eraVal)) match = false;
                 if (dietVal !== 'all' && !diet.includes(dietVal)) match = false;
                 if (classVal !== 'all' && cls !== classVal) match = false;
@@ -1086,8 +1099,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
 
         const sInput = document.getElementById('searchInput');
         if (sInput) {
-            sInput.addEventListener('input', function(){
-                runSearch(this.value);
+            ['input', 'search', 'change'].forEach(evt => {
+                sInput.addEventListener(evt, () => runSearch());
             });
         }
 
@@ -1098,13 +1111,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) {
                     searchInput.value = searchVal;
-                    setTimeout(() => runSearch(searchVal), 50);
+                    setTimeout(() => runSearch(), 50);
                 } else if (!document.getElementById('sec-hybrid')) {
                     window.location.href = `field-guide.html?search=${encodeURIComponent(searchVal)}`;
                 }
             }
             const specVal = urlParams.get('specimen');
-            if (specVal && !document.getElementById('sec-hybrid') && window.location.pathname.endsWith('gallery.html')) {
+            if (specVal && !document.getElementById('sec-hybrid') && (window.location.pathname.endsWith('gallery.html') || window.location.pathname.endsWith('/gallery') || window.location.pathname === '/gallery')) {
                 window.location.href = `field-guide.html?specimen=${encodeURIComponent(specVal)}`;
             }
         })();
@@ -1115,7 +1128,10 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             document.querySelectorAll('.grid').forEach(grid=>{
                 const cards=Array.from(grid.children);
                 cards.sort((a,b)=>{
-                    if(type==='rarity')return b.getAttribute('data-rarity')-a.getAttribute('data-rarity');
+                    if(type==='default'){
+                        return (Number(a.getAttribute('data-default-order')) || 0) - (Number(b.getAttribute('data-default-order')) || 0);
+                    }
+                    if(type==='rarity')return (Number(b.getAttribute('data-rarity')) || 0) - (Number(a.getAttribute('data-rarity')) || 0);
                     if(type==='name')return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
                     if(type==='era'){
                       const eraOrder = ['Precambrian','Cambrian','Ordovician','Silurian','Devonian','Carboniferous','Permian','Triassic','Jurassic','Cretaceous','Paleocene','Eocene','Oligocene','Miocene','Pliocene','Pleistocene','Holocene'];
@@ -1145,6 +1161,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const eraSelect = document.getElementById('eraFilterSelect');
         const dietSelect = document.getElementById('dietFilterSelect');
         const classSelect = document.getElementById('classFilterSelect');
+        const sortSelect = document.getElementById('sortSelect');
 
         function applyAdvancedFilters() {
             visibleLimit = pageStep;
@@ -1154,6 +1171,9 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         [eraSelect, dietSelect, classSelect].forEach(sel => {
             if (sel) sel.addEventListener('change', applyAdvancedFilters);
         });
+        if (sortSelect) {
+            sortSelect.addEventListener('change', sortCards);
+        }
 
         const clearFiltersBtn = document.getElementById('clearFiltersBtn');
         if (clearFiltersBtn) {
@@ -1161,7 +1181,6 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 if (eraSelect) eraSelect.value = 'all';
                 if (dietSelect) dietSelect.value = 'all';
                 if (classSelect) classSelect.value = 'all';
-                const sortSelect = document.getElementById('sortSelect');
                 if (sortSelect) sortSelect.value = 'default';
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) searchInput.value = '';
