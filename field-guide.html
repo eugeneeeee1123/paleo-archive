@@ -21,6 +21,72 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             }
         }
+        /* ponytail: one scroll container for the mobile dossier. */
+        @media (max-width: 760px), (max-width: 980px) and (max-height: 500px) {
+            #modal .modal-window {
+                flex-direction: column !important;
+                width: calc(100vw - 24px) !important;
+                max-height: calc(100dvh - 24px) !important;
+                overflow: auto !important;
+                overscroll-behavior: contain;
+            }
+            #modal .modal-vis,
+            #modal .modal-info {
+                flex: none !important;
+                overflow: visible !important;
+            }
+            #modal .modal-vis {
+                width: auto;
+                border-right: 0 !important;
+                border-bottom: 1px solid var(--pl-border) !important;
+            }
+            #modal .modal-image-frame {
+                max-height: 35dvh;
+            }
+            #modal .modal-img {
+                object-fit: contain !important;
+            }
+            #modal .modal-info {
+                padding: 16px !important;
+            }
+            #modal .modal-heading {
+                padding-right: 0;
+            }
+            #modal .close-btn {
+                position: sticky !important;
+                top: 10px !important;
+                align-self: flex-end;
+                flex: 0 0 44px;
+                width: 44px;
+                height: 44px;
+                margin: 10px 10px -54px 0;
+            }
+            #modal .data-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+            #modal .data-point:nth-child(3n) {
+                border-right: 1px solid var(--pl-border) !important;
+            }
+            #modal .data-point:nth-child(2n),
+            #modal .data-point:last-child {
+                border-right: 0 !important;
+            }
+            #modal .data-point:last-child {
+                grid-column: 1 / -1 !important;
+            }
+            #modal .map-container,
+            #modal #modalMap {
+                min-height: 0;
+            }
+        }
+        #modalMap .map-region {
+            stroke-width: 0;
+        }
+        #modalMap .map-coastline {
+            fill: none;
+            stroke: #6b5a3e;
+            stroke-width: 0.8;
+        }
     </style>
 </head>
 <body class="pl-shell">
@@ -177,6 +243,7 @@
 
     <div class="modal-overlay" id="modal" aria-hidden="true">
         <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="mName">
+            <button class="close-btn" onclick="closeModal()" aria-label="Close specimen dossier / 关闭标本档案" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10;">&times;</button>
             <div class="modal-vis">
                 <div class="modal-image-frame">
                     <img src="" id="mImg" class="modal-img" alt="">
@@ -198,7 +265,6 @@
             </div>
             <div class="modal-info">
                 <div class="modal-heading">
-                    <button class="close-btn" onclick="closeModal()" aria-label="Close specimen dossier / 关闭标本档案" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:10;">&times;</button>
                     <div class="file-kicker">SPECIMEN DOSSIER / 标本档案</div>
                     <div class="file-title" id="mName">NAME</div>
                     <div class="file-subtitle" id="mCn">Chinese Name</div>
@@ -246,42 +312,38 @@
                         <line x1="666.7" y1="0" x2="666.7" y2="400" class="map-grid"/>
                       </g>
                       <!-- North America -->
-                      <path class="map-region" id="reg-north_america" d="M28 78 L48 55 L76 48 L97 55 L116 42 L151 41 L175 50 L196 47 L222 59 L239 73 L262 79 L275 95 L268 110 L249 117 L239 134 L222 145 L211 161 L195 174 L179 181 L165 199 L149 213 L132 204 L119 184 L101 176 L88 158 L72 148 L60 132 L43 119 L35 99 Z M13 94 L29 77 L43 82 L39 105 L24 116 L10 108 Z M268 112 L286 115 L294 126 L282 136 L265 132 Z"/>
+                      <use class="map-region" id="reg-north_america" href="assets/images/world-map.svg#north_america"/>
                       <!-- Greenland -->
-                      <path class="map-region" id="reg-greenland" d="M294 36 L319 17 L350 23 L370 47 L362 76 L343 102 L316 97 L299 72 Z"/>
+                      <use class="map-region" id="reg-greenland" href="assets/images/world-map.svg#greenland"/>
                       <!-- South America -->
-                      <path class="map-region" id="reg-south_america" d="M217 198 L245 184 L279 188 L304 206 L320 230 L316 254 L300 274 L292 301 L276 330 L260 359 L244 349 L238 322 L225 301 L216 273 L202 250 L196 225 Z"/>
+                      <use class="map-region" id="reg-south_america" href="assets/images/world-map.svg#south_america"/>
                       <!-- Europe -->
-                      <path class="map-region" id="reg-europe" d="M377 82 L395 70 L413 76 L427 66 L448 72 L463 85 L458 99 L474 108 L461 122 L444 118 L433 131 L415 124 L402 133 L386 123 L374 108 L363 99 Z M352 91 L363 79 L373 83 L369 96 L357 101 Z M404 54 L414 43 L425 50 L423 65 L411 68 Z"/>
+                      <use class="map-region" id="reg-europe" href="assets/images/world-map.svg#europe"/>
                       <!-- Africa -->
-                      <path class="map-region" id="reg-africa" d="M388 137 L421 126 L459 132 L487 151 L504 180 L500 215 L486 239 L475 270 L453 304 L431 298 L416 274 L405 245 L388 222 L376 188 L379 157 Z M492 264 L507 253 L515 273 L505 294 L494 286 Z"/>
+                      <use class="map-region" id="reg-africa" href="assets/images/world-map.svg#africa"/>
                       <!-- Asia -->
-                      <path class="map-region" id="reg-asia" d="M451 63 L477 48 L510 50 L535 40 L566 51 L595 45 L624 55 L654 49 L686 60 L719 74 L749 92 L770 112 L759 133 L736 141 L720 159 L698 164 L683 183 L657 190 L642 208 L616 211 L594 196 L573 201 L553 185 L529 190 L511 172 L490 168 L482 146 L460 130 L468 111 L452 97 Z M638 216 L657 209 L670 222 L665 243 L649 249 L637 235 Z M705 187 L721 179 L735 189 L728 207 L711 208 Z"/>
+                      <use class="map-region" id="reg-asia" href="assets/images/world-map.svg#asia"/>
                       <!-- Australia -->
-                      <path class="map-region" id="reg-australia" d="M654 276 L682 258 L720 260 L748 278 L763 305 L751 333 L723 350 L689 344 L663 324 L646 300 Z M746 355 L757 349 L764 361 L754 369 Z"/>
+                      <use class="map-region" id="reg-australia" href="assets/images/world-map.svg#australia"/>
                       <!-- Antarctica -->
-                      <path class="map-region" id="reg-antarctica" d="M64 366 L118 357 L174 363 L228 355 L285 365 L341 359 L399 367 L458 358 L519 365 L579 357 L640 365 L704 358 L758 371 L744 392 L676 397 L604 391 L532 398 L459 391 L388 398 L316 390 L244 398 L171 391 L101 397 L55 386 Z"/>
+                      <use class="map-region" id="reg-antarctica" href="assets/images/world-map.svg#antarctica"/>
                       <!-- Isla Nublar -->
-                      <circle class="map-region" id="reg-isla_nublar" cx="190" cy="177" r="4"/>
+                      <circle class="map-region" id="reg-isla_nublar" cx="211.8" cy="178.2" r="3"/>
                       <!-- Internal geographic boundaries -->
                       <g aria-hidden="true">
-                        <path class="map-border" d="M92 158 L126 145 L165 151 L197 174 M151 41 L160 89 L196 121 M222 145 L249 117"/>
-                        <path class="map-border" d="M232 192 L246 225 L238 270 M279 188 L278 237 L300 274"/>
-                        <path class="map-border" d="M402 133 L421 126 L433 99 M444 118 L459 132"/>
-                        <path class="map-border" d="M421 126 L432 173 L405 201 M459 132 L452 191 L486 239"/>
-                        <path class="map-border" d="M490 168 L535 142 L573 163 L616 149 L657 164 M529 190 L553 151 L566 51 M616 211 L624 55 M683 183 L686 60"/>
-                        <path class="map-border" d="M682 258 L690 300 L663 324 M720 260 L713 310 L751 333"/>
+                        <use class="map-border" href="assets/images/world-map.svg#boundaries"/>
+                        <use class="map-coastline" href="assets/images/world-map.svg#coastline"/>
                       </g>
                       <!-- Map labels -->
-                      <text class="map-land-label" x="145" y="125">NORTH AMERICA</text>
-                      <text class="map-land-label" x="260" y="260">SOUTH AMERICA</text>
-                      <text class="map-land-label" x="430" y="180">AFRICA</text>
-                      <text class="map-land-label" x="425" y="99">EUROPE</text>
-                      <text class="map-land-label" x="610" y="125">ASIA</text>
-                      <text class="map-land-label" x="706" y="305">AUSTRALIA</text>
-                      <text class="map-water-label" x="92" y="247">PACIFIC</text>
-                      <text class="map-water-label" x="360" y="228">ATLANTIC</text>
-                      <text class="map-water-label" x="568" y="277">INDIAN OCEAN</text>
+                      <text class="map-land-label" x="166.7" y="100">NORTH AMERICA</text>
+                      <text class="map-land-label" x="266.7" y="233.3">SOUTH AMERICA</text>
+                      <text class="map-land-label" x="444.4" y="195.6">AFRICA</text>
+                      <text class="map-land-label" x="433.3" y="84.4">EUROPE</text>
+                      <text class="map-land-label" x="611.1" y="111.1">ASIA</text>
+                      <text class="map-land-label" x="697.8" y="255.6">AUSTRALIA</text>
+                      <text class="map-water-label" x="88.9" y="222.2">PACIFIC</text>
+                      <text class="map-water-label" x="333.3" y="200">ATLANTIC</text>
+                      <text class="map-water-label" x="566.7" y="255.6">INDIAN OCEAN</text>
                       <!-- Dynamic fossil locality marker -->
                       <g class="fossil-marker" id="fossilMarker" transform="translate(400 200)">
                         <circle class="marker-ring" cx="0" cy="0" r="8"/>
@@ -337,7 +399,7 @@
               An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
             </p>
             <div class="pl-footer-status-pill">
-              <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
+              <span class="pl-pulse-dot" style="background:#aa8c5f;"></span>
               <span>SYSTEM OPERATIONAL · DATABASE V4.8.2</span>
             </div>
           </div>

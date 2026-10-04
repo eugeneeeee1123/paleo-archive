@@ -8,17 +8,17 @@
                 const theme = localStorage.getItem('ingen_theme') || 'green';
                 const root = document.documentElement;
                 if (theme === 'amber') {
-                    root.style.setProperty('--ingen-green', '#ffb300');
-                    root.style.setProperty('--ingen-green-dim', '#805900');
-                    root.style.setProperty('--ingen-green-glow', 'rgba(255,179,0,0.15)');
-                    root.style.setProperty('--ingen-text', '#ffe082');
-                    root.style.setProperty('--ingen-text-dim', '#806000');
+                    root.style.setProperty('--ingen-green', '#a88c62');
+                    root.style.setProperty('--ingen-green-dim', '#65543d');
+                    root.style.setProperty('--ingen-green-glow', 'rgba(168,140,98,0.12)');
+                    root.style.setProperty('--ingen-text', '#c6b38d');
+                    root.style.setProperty('--ingen-text-dim', '#796b55');
                 } else if (theme === 'red') {
-                    root.style.setProperty('--ingen-green', '#ff3333');
-                    root.style.setProperty('--ingen-green-dim', '#800000');
-                    root.style.setProperty('--ingen-green-glow', 'rgba(255,51,51,0.15)');
-                    root.style.setProperty('--ingen-text', '#ff9999');
-                    root.style.setProperty('--ingen-text-dim', '#801a1a');
+                    root.style.setProperty('--ingen-green', '#92554e');
+                    root.style.setProperty('--ingen-green-dim', '#633e3a');
+                    root.style.setProperty('--ingen-green-glow', 'rgba(146,85,78,0.12)');
+                    root.style.setProperty('--ingen-text', '#c5a09a');
+                    root.style.setProperty('--ingen-text-dim', '#755d59');
                 }
             })();
   }
@@ -796,7 +796,7 @@ window.changeThemeTint = changeThemeTint;
             fallback.className = 'img-fallback';
             fallback.style.cssText = "display:flex; width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;";
             fallback.innerHTML = `
-              <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
+              <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation:none;">
                 <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
               </svg>
               <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
@@ -930,15 +930,16 @@ window.changeThemeTint = changeThemeTint;
       const proto=document.getElementById('mProtocol');
       if(proto){proto.className='mi-protocol proto-'+ct;document.getElementById('mProtoLabel').innerText=CT.labels[ct];}
       // Border
-      const clrMap={hybrid:'#e84393',carnivore:'#e74c3c',herbivore:'#27ae60',pterosaur:'#f1c40f',amphibian:'#00d2d3',aquatic:'#0984e3',cenozoic:'#a29bfe'};
+      const clrMap={hybrid:'#76586b',carnivore:'#93564c',herbivore:'#637a63',pterosaur:'#9b7c43',amphibian:'#567b78',aquatic:'#526d81',cenozoic:'#746d82'};
       document.querySelector('.modal-window').style.borderColor=clrMap[cls]||'#444';
       const btn=document.querySelector('.deploy-btn');
-      if(btn&&ct==='class'){btn.style.borderColor='#d63031';btn.style.color='#ff7675';btn.textContent='SIMULATION RESTRICTED / 模拟受限';}
+      if(btn&&ct==='class'){btn.style.borderColor='#94584e';btn.style.color='#c18b84';btn.textContent='SIMULATION RESTRICTED / 模拟受限';}
       else if(btn){btn.style.borderColor='';btn.style.color='';btn.textContent='RUN PADDOCK SIMULATION / 运行园区模拟';}
       // Map
       highlightMap(name, ct==='class', card);
       document.getElementById('modal').classList.add('active');
       document.getElementById('modal').setAttribute('aria-hidden','false');
+      if (page === 'field-guide') document.querySelector('.modal-window').scrollTop = 0;
       document.body.style.overflow='hidden';
       setTimeout(() => document.querySelector('.close-btn').focus(), 0);
     }
@@ -1656,13 +1657,13 @@ Object.assign(window, { queryArchive });
     const badgeLabels = { open:'SIM: OPEN RANGE / 模拟开放区', fence:'SIM: MONITORED / 模拟监控', bunker:'SIM: REINFORCED / 模拟加固', class:'FICTIONAL FILE / 虚构档案' };
 
     const classColors = {
-        hybrid: '#e84393',
-        carnivore: '#e74c3c',
-        herbivore: '#27ae60',
-        pterosaur: '#f1c40f',
-        amphibian: '#00d2d3',
-        aquatic: '#0984e3',
-        cenozoic: '#a29bfe'
+        hybrid: '#76586b',
+        carnivore: '#93564c',
+        herbivore: '#637a63',
+        pterosaur: '#9b7c43',
+        amphibian: '#567b78',
+        aquatic: '#526d81',
+        cenozoic: '#746d82'
     };
 
     function formatWeight(value) {
@@ -1717,9 +1718,9 @@ Object.assign(window, { queryArchive });
             ctx.fillRect(0, 0, width, height);
             ctx.drawImage(imgA, 0, 0, splitX, height, 0, 0, splitX, height);
             ctx.drawImage(imgB, splitX, 0, width - splitX, height, splitX, 0, width - splitX, height);
-            ctx.fillStyle = 'rgba(0, 255, 150, 0.035)';
+            ctx.fillStyle = 'rgba(139, 155, 130, 0.03)';
             for (let y = 0; y < height; y += 5) ctx.fillRect(0, y, width, 1);
-            ctx.fillStyle = 'rgba(232, 67, 147, 0.16)';
+            ctx.fillStyle = 'rgba(118, 88, 107, 0.12)';
             ctx.fillRect(splitX - 2, 0, 4, height);
         }
 
