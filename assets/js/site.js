@@ -3,9 +3,20 @@
   const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
   const CUSTOM_HYBRID_WARNING_IMAGE = 'assets/images/generated/unknown-hybrid-danger.png';
 
+  // ponytail: keep storage failures from aborting page initialization.
+  function storageGet(name, key, fallback = '') {
+    try { return window[name].getItem(key) || fallback; } catch (_) { return fallback; }
+  }
+  function storageSet(name, key, value) {
+    try { window[name].setItem(key, value); } catch (_) {}
+  }
+  function storageRemove(name, key) {
+    try { window[name].removeItem(key); } catch (_) {}
+  }
+
   if (page === 'gallery' || page === 'field-guide' || page === 'timescale' || page === 'about') {
     (function() {
-                const theme = localStorage.getItem('ingen_theme') || 'green';
+                const theme = storageGet('localStorage', 'ingen_theme', 'green');
                 const root = document.documentElement;
                 if (theme === 'amber') {
                     root.style.setProperty('--ingen-green', '#a88c62');
@@ -28,20 +39,28 @@
     const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
     if (!menuToggle || !mainNav) return;
 
+    if (mainNav.id) menuToggle.setAttribute('aria-controls', mainNav.id);
+    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('mobile-open') ? 'true' : 'false');
+    const closeMenu = () => {
+      mainNav.classList.remove('mobile-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
     menuToggle.addEventListener('click', function(e) {
       e.stopPropagation();
-      mainNav.classList.toggle('mobile-open');
+      const isOpen = mainNav.classList.toggle('mobile-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     document.addEventListener('click', function(e) {
       if (!mainNav.contains(e.target) && !menuToggle.contains(e.target) && mainNav.classList.contains('mobile-open')) {
-        mainNav.classList.remove('mobile-open');
+        closeMenu();
       }
     });
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && mainNav.classList.contains('mobile-open')) {
-        mainNav.classList.remove('mobile-open');
+        closeMenu();
       }
     });
   }
@@ -99,11 +118,11 @@
         const referrerFile = document.referrer.split('/').pop().split('?')[0].split('#')[0].toLowerCase();
         const returnedFromOtherHtml = (referrerFile.endsWith('.html') || ['field-guide', 'gallery', 'timescale', 'form'].includes(referrerFile)) && referrerFile !== 'index.html' && referrerFile !== 'index' && referrerFile !== '';
         const returnedFromHistory = event.persisted || (navEntry && navEntry.type === 'back_forward');
-        const skipIntro = sessionStorage.getItem('skip_index_intro') === 'true';
+        const skipIntro = storageGet('sessionStorage', 'skip_index_intro') === 'true';
         
         if (returnedFromOtherHtml || returnedFromHistory || skipIntro) {
             resetIndexIntroState();
-            sessionStorage.removeItem('skip_index_intro');
+            storageRemove('sessionStorage', 'skip_index_intro');
         }
     });
 
@@ -137,9 +156,9 @@
 
         if (isValid) {
             // Save state to localStorage
-            localStorage.setItem('ingen_username', usernameVal);
-            localStorage.setItem('ingen_clearance', clearanceSelect.value);
-            localStorage.setItem('ingen_theme', themeSelect.value);
+            storageSet('localStorage', 'ingen_username', usernameVal);
+            storageSet('localStorage', 'ingen_clearance', clearanceSelect.value);
+            storageSet('localStorage', 'ingen_theme', themeSelect.value);
 
             // Display loading boot screen
             document.getElementById('accessOverlay').classList.add('active');
@@ -220,7 +239,7 @@ window.changeThemeTint = changeThemeTint;
     const bTextEl = document.getElementById('boot-text');
     const bOverlay = document.getElementById('boot-overlay');
 
-    const hasBooted = sessionStorage.getItem('ingen_booted');
+    const hasBooted = storageGet('sessionStorage', 'ingen_booted');
     if (hasBooted && bOverlay) {
       bOverlay.style.display = 'none';
     }
@@ -236,7 +255,7 @@ window.changeThemeTint = changeThemeTint;
         bIdx++;
         setTimeout(addBootLine, bIdx < 6 ? 260 : 380);
       } else {
-        sessionStorage.setItem('ingen_booted', 'true');
+        storageSet('sessionStorage', 'ingen_booted', 'true');
         setTimeout(() => {
           bOverlay.classList.add('fade-out');
           setTimeout(() => bOverlay.style.display='none', 900);
@@ -612,8 +631,8 @@ window.changeThemeTint = changeThemeTint;
 
     // ── OPERATOR DISPLAY ──────────────────
     (function() {
-      const user = localStorage.getItem('ingen_username') || 'GUEST';
-      const clearance = localStorage.getItem('ingen_clearance') || 'LEVEL 1';
+      const user = storageGet('localStorage', 'ingen_username', 'GUEST');
+      const clearance = storageGet('localStorage', 'ingen_clearance', 'LEVEL 1');
       const displayEl = document.getElementById('userClearanceDisplay');
       if (displayEl) {
         displayEl.textContent = `OPERATOR / 操作员: ${user.toUpperCase()} | CLR / 权限: ${clearance.toUpperCase()}`;
@@ -852,7 +871,17 @@ window.changeThemeTint = changeThemeTint;
     });
 
     // ── MODAL ────────────────────────────────
-    let currentPaddock = null, currentCT = null, lastFocusedCard = null;
+    let currentPaddock = null, currentCT = null, lastFocusedCard = null, mapAssetsLoaded = false;
+    const modal = document.getElementById('modal');
+    const modalWindow = modal.querySelector('.modal-window');
+    const modalFocusableSelector = 'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    function loadMapAssets() {
+      if (mapAssetsLoaded) return;
+      document.querySelectorAll('#modalMap [data-map-href]').forEach(element => {
+        element.setAttribute('href', element.dataset.mapHref);
+      });
+      mapAssetsLoaded = true;
+    }
     function buildFieldSummary(name, cls, hd, location) {
       const existing = hd.getAttribute('data-desc') || '';
       if (existing.length >= 72) return existing;
@@ -931,23 +960,27 @@ window.changeThemeTint = changeThemeTint;
       if(proto){proto.className='mi-protocol proto-'+ct;document.getElementById('mProtoLabel').innerText=CT.labels[ct];}
       // Border
       const clrMap={hybrid:'#76586b',carnivore:'#93564c',herbivore:'#637a63',pterosaur:'#9b7c43',amphibian:'#567b78',aquatic:'#526d81',cenozoic:'#746d82'};
-      document.querySelector('.modal-window').style.borderColor=clrMap[cls]||'#444';
+      modalWindow.style.borderColor=clrMap[cls]||'#444';
       const btn=document.querySelector('.deploy-btn');
       if(btn&&ct==='class'){btn.style.borderColor='#94584e';btn.style.color='#c18b84';btn.textContent='SIMULATION RESTRICTED / 模拟受限';}
       else if(btn){btn.style.borderColor='';btn.style.color='';btn.textContent='RUN PADDOCK SIMULATION / 运行园区模拟';}
       // Map
+      loadMapAssets();
       highlightMap(name, ct==='class', card);
-      document.getElementById('modal').classList.add('active');
-      document.getElementById('modal').setAttribute('aria-hidden','false');
-      if (page === 'field-guide') document.querySelector('.modal-window').scrollTop = 0;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden','false');
+      if (page === 'field-guide') modalWindow.scrollTop = 0;
       document.body.style.overflow='hidden';
       setTimeout(() => document.querySelector('.close-btn').focus(), 0);
     }
     function closeModal(){
-      document.getElementById('modal').classList.remove('active');
-      document.getElementById('modal').setAttribute('aria-hidden','true');
+      if (!modal.classList.contains('active')) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden','true');
       document.body.style.overflow='';
-      if (lastFocusedCard) lastFocusedCard.focus();
+      const card = lastFocusedCard;
+      lastFocusedCard = null;
+      if (card) card.focus();
     }
     function deployAsset(){
       const paddockNames={trex:'T-REX KINGDOM / 霸王龙王国',raptor:'RAPTOR PEN B / 迅猛龙收容区B',mosasaur:'MOSASAUR LAGOON / 沧龙潟湖',aviary:'JW AVIARY / 翼龙馆',gyrosphere:'GYROSPHERE VALLEY / 陀螺谷',sector5:'SECTOR 5 CROC BAY / 5区鳄湾',cenozoic:'CENOZOIC SECTOR 7 / 新生代7区',indominus:'INDOMINUS ENCLOSURE / 暴虐霸王龙收容区'};
@@ -975,8 +1008,22 @@ window.changeThemeTint = changeThemeTint;
         }
       });
     });
-    document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+    modal.addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+    modal.addEventListener('keydown', event => {
+      if (event.key !== 'Tab' || !modal.classList.contains('active')) return;
+      const focusable = Array.from(modalWindow.querySelectorAll(modalFocusableSelector)).filter(element => element.getClientRects().length);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+    document.addEventListener('keydown',e=>{if(e.key==='Escape' && modal.classList.contains('active'))closeModal();});
     const requestedSpecimen = new URLSearchParams(window.location.search).get('specimen');
     if (requestedSpecimen) {
       setTimeout(() => {
@@ -1188,7 +1235,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
   function init_timescale() {
 // Theme Tint Applier
     (function() {
-        const theme = localStorage.getItem('ingen_theme') || 'green';
+        const theme = storageGet('localStorage', 'ingen_theme', 'green');
         if (theme === 'amber') {
             document.body.classList.add('theme-amber');
         } else if (theme === 'red') {
@@ -1196,8 +1243,8 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
         }
 
         // Set Operator Label
-        const user = localStorage.getItem('ingen_username') || 'GUEST';
-        const clearance = localStorage.getItem('ingen_clearance') || 'LEVEL 1';
+        const user = storageGet('localStorage', 'ingen_username', 'GUEST');
+        const clearance = storageGet('localStorage', 'ingen_clearance', 'LEVEL 1');
         document.getElementById('operatorLabel').textContent = `OPERATOR / 操作员: ${user.toUpperCase()} | CLR / 权限: ${clearance.toUpperCase()}`;
     })();
 
@@ -1607,7 +1654,7 @@ Object.assign(window, { queryArchive });
   function init_form() {
 // Theme Tint Applier
     (function() {
-        const theme = localStorage.getItem('ingen_theme') || 'green';
+        const theme = storageGet('localStorage', 'ingen_theme', 'green');
         if (theme === 'amber') {
             document.body.classList.add('theme-amber');
         } else if (theme === 'red') {
@@ -1615,8 +1662,8 @@ Object.assign(window, { queryArchive });
         }
 
         // Set Operator Label
-        const user = localStorage.getItem('ingen_username') || 'GUEST';
-        const clearance = localStorage.getItem('ingen_clearance') || 'LEVEL 1';
+        const user = storageGet('localStorage', 'ingen_username', 'GUEST');
+        const clearance = storageGet('localStorage', 'ingen_clearance', 'LEVEL 1');
         document.getElementById('operatorLabel').textContent = `OPERATOR / 操作员: ${user.toUpperCase()} | CLR / 权限: ${clearance.toUpperCase()}`;
     })();
 

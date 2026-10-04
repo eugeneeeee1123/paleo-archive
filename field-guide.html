@@ -133,7 +133,7 @@
             </nav>
 
             <div class="pl-header-actions">
-                <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
+                <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation" aria-controls="plNav" aria-expanded="false">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
                   </svg>
@@ -312,27 +312,27 @@
                         <line x1="666.7" y1="0" x2="666.7" y2="400" class="map-grid"/>
                       </g>
                       <!-- North America -->
-                      <use class="map-region" id="reg-north_america" href="assets/images/world-map.svg#north_america"/>
+                      <use class="map-region" id="reg-north_america" data-map-href="assets/images/world-map.svg#north_america"/>
                       <!-- Greenland -->
-                      <use class="map-region" id="reg-greenland" href="assets/images/world-map.svg#greenland"/>
+                      <use class="map-region" id="reg-greenland" data-map-href="assets/images/world-map.svg#greenland"/>
                       <!-- South America -->
-                      <use class="map-region" id="reg-south_america" href="assets/images/world-map.svg#south_america"/>
+                      <use class="map-region" id="reg-south_america" data-map-href="assets/images/world-map.svg#south_america"/>
                       <!-- Europe -->
-                      <use class="map-region" id="reg-europe" href="assets/images/world-map.svg#europe"/>
+                      <use class="map-region" id="reg-europe" data-map-href="assets/images/world-map.svg#europe"/>
                       <!-- Africa -->
-                      <use class="map-region" id="reg-africa" href="assets/images/world-map.svg#africa"/>
+                      <use class="map-region" id="reg-africa" data-map-href="assets/images/world-map.svg#africa"/>
                       <!-- Asia -->
-                      <use class="map-region" id="reg-asia" href="assets/images/world-map.svg#asia"/>
+                      <use class="map-region" id="reg-asia" data-map-href="assets/images/world-map.svg#asia"/>
                       <!-- Australia -->
-                      <use class="map-region" id="reg-australia" href="assets/images/world-map.svg#australia"/>
+                      <use class="map-region" id="reg-australia" data-map-href="assets/images/world-map.svg#australia"/>
                       <!-- Antarctica -->
-                      <use class="map-region" id="reg-antarctica" href="assets/images/world-map.svg#antarctica"/>
+                      <use class="map-region" id="reg-antarctica" data-map-href="assets/images/world-map.svg#antarctica"/>
                       <!-- Isla Nublar -->
                       <circle class="map-region" id="reg-isla_nublar" cx="211.8" cy="178.2" r="3"/>
                       <!-- Internal geographic boundaries -->
                       <g aria-hidden="true">
-                        <use class="map-border" href="assets/images/world-map.svg#boundaries"/>
-                        <use class="map-coastline" href="assets/images/world-map.svg#coastline"/>
+                        <use class="map-border" data-map-href="assets/images/world-map.svg#boundaries"/>
+                        <use class="map-coastline" data-map-href="assets/images/world-map.svg#coastline"/>
                       </g>
                       <!-- Map labels -->
                       <text class="map-land-label" x="166.7" y="100">NORTH AMERICA</text>
