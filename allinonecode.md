@@ -7,7 +7,7 @@
 <html lang="en" data-page="index">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="PALEOLOGIST | Exploring Earth's ancient past to protect life's future. Deep-time expedition archive, specimen field guide, and prehistoric gallery.">
     <meta property="og:title" content="PALEOLOGIST | Exploring Earth's Ancient Past">
     <meta property="og:description" content="A cinematic museum & field guide experience covering ancient species, deep geologic time, and prehistoric life.">
@@ -37,17 +37,13 @@
 
             <nav class="pl-nav" id="plNav" aria-label="Primary Navigation">
                 <a href="index.html" class="pl-nav-link active">HOME / 首页</a>
-                <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+                <a href="field-guide.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
                 <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
-                <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+                <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
                 <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
             </nav>
 
             <div class="pl-header-actions">
-                <button type="button" class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert System">
-                    <span class="pl-pulse-dot"></span>
-                    <span>RED CODE ALERT</span>
-                </button>
                 <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -77,7 +73,7 @@
 
             <div class="pl-sections-grid">
                 <!-- 01: SPECIES FIELD GUIDE -->
-                <a href="gallery.html" class="pl-section-card" aria-label="Explore Species Field Guide">
+                <a href="field-guide.html" class="pl-section-card" aria-label="Explore Species Field Guide">
                     <img src="assets/images/thumbs/trex.webp" alt="Tyrannosaurus Rex" class="pl-card-bg" loading="lazy" decoding="async">
                     <div class="pl-card-overlay"></div>
                     <div class="pl-card-content">
@@ -99,7 +95,7 @@
                 </a>
 
                 <!-- 03: GALLERY -->
-                <a href="gallery.html#gallery-showcase" class="pl-section-card" aria-label="Explore Museum Fossil Gallery">
+                <a href="gallery.html" class="pl-section-card" aria-label="Explore Museum Fossil Gallery">
                     <img src="assets/images/timeline/thumbs/baieji.webp" alt="Cretaceous Prehistoric World" class="pl-card-bg" loading="lazy" decoding="async">
                     <div class="pl-card-overlay"></div>
                     <div class="pl-card-content">
@@ -119,52 +115,6 @@
                         <span class="pl-card-link">CREATE HYBRID &nbsp;›</span>
                     </div>
                 </a>
-            </div>
-
-            <!-- RED CODE ALERT BANNER -->
-            <div class="pl-alert-banner" aria-label="Red Code Alert Notice">
-                <div class="pl-alert-info">
-                    <div class="pl-alert-icon-wrap" aria-hidden="true">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="pl-alert-title">RED CODE ALERT</h3>
-                        <p class="pl-alert-desc">Species are disappearing. View the Red Code List and learn about endangered ancient life.</p>
-                        <button type="button" class="pl-alert-action-btn js-open-alert">VIEW ALERT LIST &nbsp;›</button>
-                    </div>
-                </div>
-
-                <div class="pl-alert-chips">
-                    <div class="pl-chip-item">
-                        <div class="pl-chip-thumb">
-                            <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" loading="lazy" decoding="async">
-                        </div>
-                        <span class="pl-chip-name">TRICERATOPS</span>
-                    </div>
-
-                    <div class="pl-chip-item">
-                        <div class="pl-chip-thumb">
-                            <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" loading="lazy" decoding="async">
-                        </div>
-                        <span class="pl-chip-name">WOOLLY MAMMOTH</span>
-                    </div>
-
-                    <div class="pl-chip-item">
-                        <div class="pl-chip-thumb">
-                            <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" loading="lazy" decoding="async">
-                        </div>
-                        <span class="pl-chip-name">SABER-TOOTHED TIGER</span>
-                    </div>
-
-                    <div class="pl-chip-item">
-                        <div class="pl-chip-thumb">
-                            <img src="assets/images/thumbs/dodo.webp" alt="Dodo" loading="lazy" decoding="async">
-                        </div>
-                        <span class="pl-chip-name">DODO</span>
-                    </div>
-                </div>
             </div>
 
             <!-- OPTIONAL EXPEDITION PROFILE ACCESS TERMINAL -->
@@ -214,94 +164,6 @@
         </section>
     </main>
 
-    <!-- RED CODE ALERT MODAL -->
-    <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
-        <div class="pl-modal-window">
-            <button type="button" class="pl-modal-close js-close-alert" aria-label="Close Alert Dialog">✕</button>
-            <div class="pl-alert-modal-head">
-                <h2 class="pl-alert-modal-title" id="alertModalTitle">
-                    <span style="color:var(--pl-red-light);">▲</span> RED CODE ALERT
-                </h2>
-                <p class="pl-alert-modal-sub">Ancient species are disappearing. Awareness is the first step to preservation.</p>
-            </div>
-
-            <div class="pl-alert-filter-tabs">
-                <button type="button" class="pl-alert-tab active" data-status="all">ALL STATUSES</button>
-                <button type="button" class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED (CR)</button>
-                <button type="button" class="pl-alert-tab" data-status="en">ENDANGERED (EN)</button>
-                <button type="button" class="pl-alert-tab" data-status="vu">VULNERABLE (VU)</button>
-            </div>
-
-            <div class="pl-alert-cards-grid">
-                <!-- Card 1 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">TRICERATOPS</h4>
-                        <span class="pl-chip-badge cr">CR</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
-                    <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pl-threat-card" data-status="en">
-                    <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
-                        <span class="pl-chip-badge en">EN</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
-                    <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pl-threat-card" data-status="vu">
-                    <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
-                        <span class="pl-chip-badge vu">VU</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
-                    <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/dodo.webp" alt="Dodo" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">DODO</h4>
-                        <span class="pl-chip-badge cr">CR</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
-                    <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators (rats, pigs, dogs) on Mauritius.</p>
-                </div>
-            </div>
-
-            <!-- WHAT CAN YOU DO? -->
-            <div class="pl-what-can-you-do">
-                <div>
-                    <h3 class="pl-what-title">WHAT CAN YOU DO?</h3>
-                    <p style="font-size:0.78rem; color:var(--pl-text-muted); margin:6px 0 0;">Preserving biodiversity begins with understanding history.</p>
-                </div>
-                <div class="pl-what-steps">
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">1. LEARN</div>
-                        <div class="pl-what-step-desc">Educate yourself and your community on ancient mass extinction triggers.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">2. SHARE</div>
-                        <div class="pl-what-step-desc">Promote scientific research and paleobiological conservation studies.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">3. SUPPORT</div>
-                        <div class="pl-what-step-desc">Support habitat preservation and active ecological restoration worldwide.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- GLOBAL FOOTER -->
     <footer class="pl-footer">
         <div class="pl-container">
@@ -319,12 +181,6 @@
                         Understanding the present.<br>
                         Protecting the future.
                     </p>
-                    <div class="pl-footer-socials">
-                        <a href="#" class="pl-social-link" aria-label="YouTube">▶</a>
-                        <a href="#" class="pl-social-link" aria-label="Facebook">f</a>
-                        <a href="#" class="pl-social-link" aria-label="Twitter">𝕏</a>
-                        <a href="#" class="pl-social-link" aria-label="Instagram">📷</a>
-                    </div>
                 </div>
 
                 <!-- Menu Column -->
@@ -332,11 +188,10 @@
                     <div class="pl-footer-heading">MENU</div>
                     <ul class="pl-footer-list">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html">Species Field Guide</a></li>
+                        <li><a href="field-guide.html">Species Field Guide</a></li>
                         <li><a href="timescale.html">Geologic Timeline</a></li>
-                        <li><a href="gallery.html#gallery-showcase">Fossil Gallery</a></li>
+                        <li><a href="gallery.html">Fossil Gallery</a></li>
                         <li><a href="form.html">Hybrid Lab</a></li>
-                        <li><a href="#" class="js-open-alert">Red Code Alert</a></li>
                     </ul>
                 </div>
 
@@ -344,23 +199,8 @@
                 <div>
                     <div class="pl-footer-heading">RESOURCES</div>
                     <ul class="pl-footer-list">
-                        <li><a href="gallery.html">Field Articles</a></li>
+                        <li><a href="field-guide.html">Field Articles</a></li>
                         <li><a href="timescale.html">Deep-Time Research</a></li>
-                        <li><a href="#">For Educators</a></li>
-                        <li><a href="#">Specimen Downloads</a></li>
-                        <li><a href="#">Expedition FAQ</a></li>
-                    </ul>
-                </div>
-
-                <!-- About Column -->
-                <div>
-                    <div class="pl-footer-heading">ABOUT</div>
-                    <ul class="pl-footer-list">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Mission</a></li>
-                        <li><a href="#">Expedition Team</a></li>
-                        <li><a href="#">Preservation Fund</a></li>
-                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
 
@@ -410,23 +250,22 @@
     </div>
 </body>
 </html>
-
 `
 
-## File: gallery.html
+## File: field-guide.html
 
 `html
 <!DOCTYPE html>
-<html lang="en" data-page="gallery">
+<html lang="en" data-page="field-guide">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="PALEOLOGIST | Species Field Guide - Explore detailed profiles of ancient species, geological eras, and fossil discoveries.">
     <meta property="og:title" content="PALEOLOGIST | Species Field Guide">
     <meta property="og:description" content="Comprehensive specimen database and fossil gallery across deep geological time.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/originals/trex.jpg">
-    <title>PALEOLOGIST | Species Field Guide & Gallery</title>
+    <title>PALEOLOGIST | Species Field Guide / 物种图鉴</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -470,17 +309,13 @@
 
             <nav class="pl-nav" id="plNav" aria-label="Primary Navigation">
                 <a href="index.html" class="pl-nav-link">HOME / 首页</a>
-                <a href="gallery.html" class="pl-nav-link active">FIELD GUIDE / 物种图鉴</a>
+                <a href="field-guide.html" class="pl-nav-link active">FIELD GUIDE / 物种图鉴</a>
                 <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
-                <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+                <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
                 <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
             </nav>
 
             <div class="pl-header-actions">
-                <button type="button" class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert System">
-                    <span class="pl-pulse-dot"></span>
-                    <span>RED CODE ALERT</span>
-                </button>
                 <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -498,6 +333,7 @@
         <p style="color:var(--pl-text-muted); font-size:0.95rem; margin:0 0 24px;">Explore detailed profiles of ancient species across deep geological time.</p>
 
         <div class="pl-guide-filter-row">
+            <div class="pl-guide-filter-tools">
             <input type="search" id="searchInput" class="pl-search-input" placeholder="Search species (e.g. Tyrannosaurus, Triceratops, 霸王龙)..." autocomplete="off">
             <select id="eraFilterSelect" class="pl-filter-select" aria-label="Filter by Era">
                 <option value="all">ALL ERAS / 全部年代</option>
@@ -516,12 +352,15 @@
                 <option value="piscivore">PISCIVORE / 食鱼</option>
                 <option value="omnivore">OMNIVORE / 杂食</option>
             </select>
-            <select id="statusFilterSelect" class="pl-filter-select" aria-label="Filter by Conservation Status">
-                <option value="all">ALL STATUSES / 全部保护状态</option>
-                <option value="cr">CRITICALLY ENDANGERED (CR)</option>
-                <option value="en">ENDANGERED (EN)</option>
-                <option value="vu">VULNERABLE (VU)</option>
-                <option value="lc">LEAST CONCERN (LC)</option>
+            <select id="classFilterSelect" class="pl-filter-select" aria-label="Filter by class">
+                <option value="all">ALL CLASSES / 全部分类</option>
+                <option value="hybrid">HYBRIDS / 混种生物</option>
+                <option value="carnivore">CARNIVORES / 肉食恐龙</option>
+                <option value="herbivore">HERBIVORES / 草食恐龙</option>
+                <option value="pterosaur">PTEROSAURS / 翼龙类</option>
+                <option value="amphibian">EARLY TETRAPODS / 早期四足类</option>
+                <option value="aquatic">AQUATIC LIFE / 水生古生物</option>
+                <option value="cenozoic">CENOZOIC / 新生代动物</option>
             </select>
             <select id="sortSelect" class="pl-filter-select" onchange="sortCards()" aria-label="Sort specimens">
                 <option value="default">DEFAULT / 默认排序</option>
@@ -529,22 +368,16 @@
                 <option value="era">ERA / 地质年代</option>
                 <option value="rarity">ARCHIVE PRIORITY / 优先级</option>
             </select>
-        </div>
-
-        <div class="filter-group" style="margin-top: 16px;">
-            <button class="filter-btn active" data-val="all" onclick="filterSelection('all')">ALL / 全部</button>
-            <button class="filter-btn" data-val="hybrid" onclick="filterSelection('hybrid')">HYBRIDS / 混种生物</button>
-            <button class="filter-btn" data-val="carnivore" onclick="filterSelection('carnivore')">CARNIVORES / 肉食恐龙</button>
-            <button class="filter-btn" data-val="herbivore" onclick="filterSelection('herbivore')">HERBIVORES / 草食恐龙</button>
-            <button class="filter-btn" data-val="pterosaur" onclick="filterSelection('pterosaur')">PTEROSAURS / 翼龙类</button>
-            <button class="filter-btn" data-val="amphibian" onclick="filterSelection('amphibian')">EARLY TETRAPODS / 早期四足类</button>
-            <button class="filter-btn" data-val="aquatic" onclick="filterSelection('aquatic')">AQUATIC LIFE / 水生古生物</button>
-            <button class="filter-btn" data-val="cenozoic" onclick="filterSelection('cenozoic')">CENOZOIC / 新生代动物</button>
-        </div>
+            </div>
     </div>
     <div class="results-status" id="resultsStatus" role="status" aria-live="polite">
         <span id="resultsCount">0 RECORDS / 0 条记录</span>
         <span id="resultsHint">SCIENTIFIC RECORDS + FIELD DISCOVERY FILES</span>
+    </div>
+    <div class="pl-empty-results" id="emptyResults" hidden>
+        <p>No species match these filters.</p>
+        <p>没有符合当前筛选的标本。</p>
+        <button type="button" id="clearFiltersBtn">CLEAR FILTERS / 清除筛选</button>
     </div>
 
     <div class="section-wrapper" id="sec-hybrid">
@@ -626,15 +459,15 @@
             </div>
 
                 <div class="data-grid">
-                    <div class="data-point wide"><label>CLASSIFICATION / 生物分类</label><span id="mClass">...</span></div>
-                    <div class="data-point"><label>ARCHIVE CODE / 档案编号</label><span id="mCode">...</span></div>
-                    <div class="data-point"><label>SIMULATION THREAT / 模拟威胁等级</label><span class="star-rating" id="mAgg">...</span></div>
-                    <div class="data-point wide"><label>GEOLOGICAL ERA / 生存地质年代</label><span id="mEra">...</span></div>
-                    <div class="data-point"><label>BODY LENGTH / 体长或翼展</label><span id="mLen">...</span></div>
-                    <div class="data-point"><label>ESTIMATED MASS / 估计体重</label><span id="mWgt">...</span></div>
-                    <div class="data-point wide"><label>SIMULATION ATTACK INDEX / 模拟攻击指数</label><span class="metric-alert" id="mAtk">...</span></div>
-                    <div class="data-point wide"><label>SIMULATION VITALITY / 模拟生命指数</label><span class="metric-positive" id="mHp">...</span></div>
-                    <div class="data-point wide" id="mSynthStatusWrap"><label>SYNTHESIS RESULT / 合成结果</label><span id="mSynthStatus">VERIFIED RECORD</span></div>
+                    <div class="data-point"><label>CLASS / 分类</label><span id="mClass">...</span></div>
+                    <div class="data-point"><label>CODE / 编号</label><span id="mCode">...</span></div>
+                    <div class="data-point"><label>THREAT / 威胁</label><span class="star-rating" id="mAgg">...</span></div>
+                    <div class="data-point"><label>ERA / 年代</label><span id="mEra">...</span></div>
+                    <div class="data-point"><label>LENGTH / 体长</label><span id="mLen">...</span></div>
+                    <div class="data-point"><label>MASS / 体重</label><span id="mWgt">...</span></div>
+                    <div class="data-point"><label>ATTACK / 攻击</label><span class="metric-alert" id="mAtk">...</span></div>
+                    <div class="data-point"><label>VITALITY / 生命</label><span class="metric-positive" id="mHp">...</span></div>
+                    <div class="data-point" id="mSynthStatusWrap"><label>RECORD / 档案</label><span id="mSynthStatus">VERIFIED RECORD</span></div>
                 </div>
 
                 <div class="dossier-section-label">FIELD SUMMARY / 物种概要</div>
@@ -726,78 +559,7 @@
         <button type="button" class="load-more-btn" id="loadMoreBtn">LOAD MORE RECORDS / 加载更多记录</button>
     </div>
 
-    <!-- GALLERY SHOWCASE SECTION (BOARD 4 FROM PROTOTYPE.PNG) -->
-    <section id="gallery-showcase" style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--pl-border);">
-        <div class="pl-section-head">
-            <div class="pl-section-kicker">MUSEUM EXHIBITION ARCHIVE</div>
-            <h2 class="pl-section-title">GALLERY</h2>
-            <p style="color:var(--pl-text-muted); font-size:0.95rem; margin-top:6px;">Explore fossils, skeletons, and prehistoric worlds.</p>
-        </div>
 
-        <div class="pl-alert-filter-tabs" style="margin-bottom: 30px;">
-            <button type="button" class="pl-alert-tab pl-gallery-tab active" data-cat="all">ALL</button>
-            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="fossils">FOSSILS</button>
-            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="skeletons">SKELETONS</button>
-            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="habitats">HABITATS</button>
-            <button type="button" class="pl-alert-tab pl-gallery-tab" data-cat="artwork">ARTWORK</button>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
-            <!-- Fossil 1 -->
-            <div class="pl-showcase-item" data-cat="skeletons" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/thumbs/baieji.webp" alt="Cretaceous Excavation" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Tyrannosaurid Skeleton Specimen</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Museum Hall · Hell Creek Formation</span>
-                </div>
-            </div>
-
-            <!-- Fossil 2 -->
-            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/thumbs/trilobite.webp" alt="Trilobite Fossil Matrix" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Cambrian Trilobite Matrix</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Fossil Bed · Utah Shale</span>
-                </div>
-            </div>
-
-            <!-- Fossil 3 -->
-            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/thumbs/zhuluoji.webp" alt="Jurassic Conifer Valley" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Jurassic Conifer Floodplain</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Paleoenvironment Reconstruction</span>
-                </div>
-            </div>
-
-            <!-- Fossil 4 -->
-            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops in Fern Prairies" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triceratops Horridus Portrait</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Expedition Field Artwork</span>
-                </div>
-            </div>
-
-            <!-- Fossil 5 -->
-            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/thumbs/ammonite.webp" alt="Sutured Ammonite Shell" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Pyritized Ammonite Concretion</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Marine Jurassic Locality</span>
-                </div>
-            </div>
-
-            <!-- Fossil 6 -->
-            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); position: relative; height: 260px;">
-                <img src="assets/images/timeline/thumbs/sandieji.webp" alt="Triassic Red Canyon" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);">
-                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 16px; background: linear-gradient(transparent, rgba(13,12,10,0.92));">
-                    <span style="font-family:var(--font-display); font-size:0.95rem; color:var(--pl-text); font-weight:700;">Triassic Pangean Rift Valley</span>
-                    <span style="display:block; font-size:0.75rem; color:var(--pl-gold);">Deep Time Geomorphology</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
 <!-- BREACH -->
 <div id="ingen-breach">
@@ -807,94 +569,6 @@
 </div>
 
 </main><!-- /page-wrap -->
-
-    <!-- RED CODE ALERT MODAL -->
-    <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
-        <div class="pl-modal-window">
-            <button type="button" class="pl-modal-close js-close-alert" aria-label="Close Alert Dialog">✕</button>
-            <div class="pl-alert-modal-head">
-                <h2 class="pl-alert-modal-title" id="alertModalTitle">
-                    <span style="color:var(--pl-red-light);">▲</span> RED CODE ALERT
-                </h2>
-                <p class="pl-alert-modal-sub">Ancient species are disappearing. Awareness is the first step to preservation.</p>
-            </div>
-
-            <div class="pl-alert-filter-tabs">
-                <button type="button" class="pl-alert-tab active" data-status="all">ALL STATUSES</button>
-                <button type="button" class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED (CR)</button>
-                <button type="button" class="pl-alert-tab" data-status="en">ENDANGERED (EN)</button>
-                <button type="button" class="pl-alert-tab" data-status="vu">VULNERABLE (VU)</button>
-            </div>
-
-            <div class="pl-alert-cards-grid">
-                <!-- Card 1 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">TRICERATOPS</h4>
-                        <span class="pl-chip-badge cr">CR</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
-                    <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pl-threat-card" data-status="en">
-                    <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
-                        <span class="pl-chip-badge en">EN</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
-                    <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pl-threat-card" data-status="vu">
-                    <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
-                        <span class="pl-chip-badge vu">VU</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
-                    <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/dodo.webp" alt="Dodo" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">DODO</h4>
-                        <span class="pl-chip-badge cr">CR</span>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
-                    <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators on Mauritius.</p>
-                </div>
-            </div>
-
-            <!-- WHAT CAN YOU DO? -->
-            <div class="pl-what-can-you-do">
-                <div>
-                    <h3 class="pl-what-title">WHAT CAN YOU DO?</h3>
-                    <p style="font-size:0.78rem; color:var(--pl-text-muted); margin:6px 0 0;">Preserving biodiversity begins with understanding history.</p>
-                </div>
-                <div class="pl-what-steps">
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">1. LEARN</div>
-                        <div class="pl-what-step-desc">Educate yourself and your community on ancient mass extinction triggers.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">2. SHARE</div>
-                        <div class="pl-what-step-desc">Promote scientific research and paleobiological conservation studies.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">3. SUPPORT</div>
-                        <div class="pl-what-step-desc">Support habitat preservation and active ecological restoration worldwide.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- GLOBAL FOOTER -->
     <footer class="pl-footer">
@@ -909,7 +583,7 @@
               <span class="pl-footer-brand-text">PALEOLOGIST</span>
             </div>
             <p class="pl-footer-desc">
-              An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+              An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
             </p>
             <div class="pl-footer-status-pill">
               <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
@@ -921,10 +595,10 @@
             <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
             <div class="pl-footer-links">
               <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
-              <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+              <a href="field-guide.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
               <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
+              <a href="gallery.html" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
               <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
-              <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
             </div>
           </div>
 
@@ -959,7 +633,319 @@
 
 </body>
 </html>
+`
 
+## File: gallery.html
+
+`html
+<!DOCTYPE html>
+<html lang="en" data-page="gallery">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="PALEOLOGIST | Museum Exhibition & Fossil Gallery - Explore authentic fossil matrices, articulated prehistoric skeletons, reconstructed paleoenvironments, and scientific field artwork.">
+    <meta property="og:title" content="PALEOLOGIST | Museum Exhibition & Fossil Gallery">
+    <meta property="og:description" content="Explore fossils, skeletons, and prehistoric worlds across deep geological time in the PALEOLOGIST museum archive.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/timeline/baieji.jpg">
+    <title>PALEOLOGIST | Museum Exhibition & Fossil Gallery / 馆藏化石与古生物展</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="assets/js/species-data.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="pl-shell">
+
+    <!-- GLOBAL HEADER -->
+    <header class="pl-header">
+        <div class="pl-header-inner">
+            <a href="index.html" class="pl-logo">
+              <svg class="pl-logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+                <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9c3.86 0 7.12-2.44 8.36-5.89-.35.08-.71.13-1.09.13-2.9 0-5.27-2.36-5.27-5.24 0-1.74.85-3.28 2.16-4.23C19.78 8.1 17.98 7 16 7z" fill="#c29b62" opacity="0.6"/>
+                <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+              </svg>
+              <span class="pl-logo-text">PALEOLOGIST</span>
+            </a>
+
+            <nav class="pl-nav" id="plNav" aria-label="Primary Navigation">
+                <a href="index.html" class="pl-nav-link">HOME / 首页</a>
+                <a href="field-guide.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+                <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
+                <a href="gallery.html" class="pl-nav-link active">EXHIBITION / 馆藏化石</a>
+                <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
+            </nav>
+
+            <div class="pl-header-actions">
+                <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                  </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GALLERY CONTAINER -->
+    <main class="pl-container page-wrap" style="padding-top: 100px; padding-bottom: 80px;">
+
+        <!-- GALLERY HERO & HEADER -->
+        <div class="pl-field-guide-header" style="margin-bottom: 28px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <span class="pl-section-tag">CURATED EXHIBITIONS / 馆藏精选</span>
+                    <h1 class="pl-section-title" style="font-size: clamp(2rem, 3.8vw, 2.8rem); margin-top: 8px; margin-bottom: 10px;">MUSEUM FOSSIL GALLERY / 馆藏化石展览</h1>
+                    <p style="color:var(--pl-text-muted); font-size:0.95rem; max-width:760px; margin:0; line-height:1.6;">
+                        Explore authentic fossil matrices, articulated prehistoric skeletons, reconstructed paleoenvironments, and scientific field expedition artwork across deep geological time.
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--pl-gold); background: rgba(194, 155, 98, 0.08); border: 1px solid var(--pl-border); padding: 8px 14px; border-radius: var(--pl-radius-sm);">
+                    <span>CURATION: ARCHIVE HALL · WING A</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXHIBIT SHOWCASE GRID -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; margin-top: 24px;">
+
+            <!-- Exhibit 1: Cretaceous Dinosaur Ecosystem Reconstruction -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/timeline/thumbs/baieji.webp" alt="Cretaceous dinosaur ecosystem reconstruction" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Cretaceous Dinosaur Ecosystem Reconstruction / 白垩纪恐龙生态复原图</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 2: Cambrian Trilobite Matrix -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/trilobite.webp" alt="Cambrian Trilobite Limestone Matrix" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Cambrian Trilobite Limestone Matrix / 寒武纪三叶虫化石母岩</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 3: Jurassic Conifer Floodplain -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/timeline/thumbs/zhuluoji.webp" alt="Jurassic Conifer Floodplain Reconstruction" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Jurassic Conifer Floodplain Reconstruction / 侏罗纪针叶林漫滩复原</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 4: Cretaceous Biosphere Panorama Artwork -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/originals/hero-banner.jpg" alt="Cretaceous Riparian Biosphere Panorama" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Cretaceous Riparian Biosphere Panorama / 白垩纪沿岸生态全景画卷</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 5: Dunkleosteus Armor Plate -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/dunk.webp" alt="Dunkleosteus Placoderm Gnathal Plate" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Dunkleosteus Placoderm Gnathal Plate / 邓氏鱼盾皮下颌骨化石</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 6: Smilodon Fatalis Cranium -->
+            <div class="pl-showcase-item" data-cat="skeletons" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/smilodon.webp" alt="Smilodon Fatalis Machairodont Cranium" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Smilodon Fatalis Machairodont Cranium / 致命刃齿虎头骨标本</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 7: Triceratops Horridus Portrait -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops in Fern Prairies" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Triceratops Horridus Portrait / 恐怖三角龙生态肖像</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 8: Pyritized Ammonite Concretion -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/ammonite.webp" alt="Sutured Ammonite Shell" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Pyritized Ammonite Concretion / 黄铁矿化菊石结核</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 9: Triassic Pangean Rift Valley -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/timeline/thumbs/sandieji.webp" alt="Triassic Red Canyon" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Triassic Pangean Rift Valley / 三叠纪盘古大陆裂谷</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 10: Carboniferous Wetland Canopy -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/timeline/thumbs/shitanji.webp" alt="Carboniferous Rainforest" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Carboniferous Meganeura Wetland Canopy / 石炭纪巨脉蜻蜓湿地林冠</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 11: Anomalocaris Burgess Shale Slab -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/thumbs/anomalocaris.webp" alt="Anomalocaris Burgess Shale Slab" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Anomalocaris Frontal Appendage Slab / 伯吉斯页岩奇虾化石</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 12: Quetzalcoatlus Wing Architecture -->
+            <div class="pl-showcase-item" data-cat="skeletons" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/originals/Quetzalcoatlus.jpg" alt="Quetzalcoatlus Northropi Skeleton" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Quetzalcoatlus Pterosaur Wing Architecture / 风神翼龙骨骼装架</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 13: Mesozoic Marine Apex Predators -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/marine-predators-hunt.webp" alt="Mesozoic Marine Apex Predators Hunting Scene" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Mesozoic Marine Apex Predators / 中生代海生巨兽争霸</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 14: Late Triassic River Floodplain -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/triassic-floodplain.webp" alt="Late Triassic Floodplain Forest Habitat" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Late Triassic River Floodplain / 晚三叠世河流漫滩</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 15: Pleistocene Megafauna Migration -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/pleistocene-megafauna.webp" alt="Pleistocene Megafauna Migration across Ice Age Grassland" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Pleistocene Megafauna Migration / 更新世大型动物群迁徙</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 16: Ichthyosaurs in Ancient Kelp Forest -->
+            <div class="pl-showcase-item" data-cat="artwork" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/ichthyosaur-kelp-forest.webp" alt="Ichthyosaurs Swimming in Ancient Kelp Forest" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Ichthyosaurs in Ancient Kelp Forest / 海藻林中的鱼龙</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 17: Ancient Seabed Reef Ecosystem -->
+            <div class="pl-showcase-item" data-cat="fossils" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/ancient-seabed-reef.webp" alt="Ancient Seabed Reef Ecosystem with Ammonites and Corals" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Ancient Seabed Reef Ecosystem / 史前海底珊瑚与菊石群落</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 18: Mosasaur Lagoon Observatory -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/mosasaurus-aquarium.webp" alt="Mosasaur Lagoon Underwater Observatory" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center 40%; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Mosasaur Lagoon Observatory / 沧龙水下观景展区</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 19: Tyrannosaurus Rex Volcanic Roar -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/trex-volcanic-eruption.webp" alt="Tyrannosaurus Rex Roaring During Volcanic Eruption" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center 65%; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Tyrannosaurus Rex Volcanic Roar / 努布拉火山喷发与霸王龙</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 20: Therizinosaurus Forest Sanctuary -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/therizinosaurus-sanctuary.webp" alt="Therizinosaurus in Forest Wetland Sanctuary" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center 40%; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Therizinosaurus Forest Sanctuary / 森林巨爪镰刀龙</h3>
+                </div>
+            </div>
+
+            <!-- Exhibit 21: Distortus Rex (D-Rex) -->
+            <div class="pl-showcase-item" data-cat="habitats" style="border-radius: var(--pl-radius-md); overflow:hidden; border: 1px solid var(--pl-border); background: var(--pl-surface); position: relative; height: 300px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+                <img src="assets/images/gallery/distortus-rex-rebirth.webp" alt="Distortus Rex (D-Rex) - Jurassic World Rebirth Hybrid Dinosaur" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; filter:brightness(0.85); transition: transform 0.4s ease;">
+                <div style="position: absolute; bottom: 0; inset-inline:0; padding: 20px; background: linear-gradient(180deg, transparent 0%, rgba(13,12,10,0.95) 90%);">
+                    <h3 style="font-family:var(--font-display); font-size:1.1rem; color:var(--pl-text); font-weight:700; margin:0; line-height:1.3;">Distortus Rex (D-Rex) / 基因畸变暴龙</h3>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="pl-footer">
+        <div class="pl-footer-inner">
+            <div class="pl-footer-grid">
+                <div class="pl-footer-brand-col">
+                    <div class="pl-footer-brand">
+                        <svg class="pl-footer-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3zm0 24c-6.08 0-11-4.92-11-11s4.92-11 11-11 11 4.92 11 11-4.92 11-11 11z" fill="#c29b62"/>
+                            <circle cx="16" cy="16" r="3.5" fill="#e5b869"/>
+                        </svg>
+                        <span class="pl-footer-brand-text">PALEOLOGIST</span>
+                    </div>
+                    <p class="pl-footer-desc">
+                        An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
+                    </p>
+                    <div class="pl-footer-status-pill">
+                        <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
+                        <span>SYSTEM OPERATIONAL · DATABASE V4.8.2</span>
+                    </div>
+                </div>
+
+                <div class="pl-footer-links-col">
+                    <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
+                    <div class="pl-footer-links">
+                        <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
+                        <a href="field-guide.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+                        <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
+                        <a href="gallery.html" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+                        <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
+                    </div>
+                </div>
+
+                <div class="pl-footer-art-col">
+                    <div class="pl-fossil-art-box">
+                        <svg class="pl-fossil-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 60 Q 50 30, 80 45 T 140 35" stroke="#c29b62" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <path d="M35 55 Q 38 75, 42 90" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M50 48 Q 55 78, 60 98" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M68 44 Q 74 76, 80 102" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M85 45 Q 92 74, 98 96" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M102 44 Q 108 68, 114 85" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M120 40 Q 124 58, 128 72" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M135 36 Q 148 24, 155 35 Q 150 48, 138 42 Z" stroke="#c29b62" stroke-width="1.5" fill="rgba(194, 155, 98, 0.15)"/>
+                            <circle cx="148" cy="32" r="2.5" fill="#e5b869"/>
+                        </svg>
+                        <div class="pl-fossil-art-tag">SPECIMEN #FSL-908 · VERTEBRATE OSTEOLOGY</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pl-footer-bottom">
+                <div class="pl-footer-copy">
+                    &copy; 2026 PALEOLOGIST MUSEUM ARCHIVE. ALL RIGHTS RESERVED. BILINGUAL TAXONOMY &amp; PALEOBIOLOGY DATABASE.
+                </div>
+                <div class="pl-footer-extra">
+                    <span>SECURITY: CLEARANCE LEVEL 4</span>
+                    <span style="opacity:0.3;">|</span>
+                    <span>CURATOR: DR. ALAN GRANT</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
 `
 
 ## File: timescale.html
@@ -969,7 +955,7 @@
 <html lang="en" data-page="timescale">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Navigate the PALEOLOGIST deep-time timeline from the earliest life through the Cenozoic.">
     <meta property="og:title" content="PALEOLOGIST | Geologic Timeline">
     <meta property="og:description" content="A bilingual geological timeline connecting major periods, evolutionary transitions, and representative prehistoric life.">
@@ -1000,17 +986,13 @@
 
     <nav class="pl-nav" id="plNav">
       <a href="index.html" class="pl-nav-link">HOME / 首页</a>
-      <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+      <a href="field-guide.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
       <a href="timescale.html" class="pl-nav-link active">TIMELINE / 地质年代</a>
-      <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+      <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
       <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
     </nav>
 
     <div class="pl-header-actions">
-      <button class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert Modal">
-        <span class="pl-pulse-dot"></span>
-        <span>RED CODE ALERT</span>
-      </button>
       <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -1035,14 +1017,6 @@
       <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--pl-gold); background: rgba(194, 155, 98, 0.08); border: 1px solid var(--pl-border); padding: 8px 14px; border-radius: var(--pl-radius-sm);">
         <span id="operatorLabel">OPERATOR: GUEST | CLR: LEVEL 4</span>
       </div>
-    </div>
-
-    <!-- SCOPE STRIP -->
-    <div class="timeline-scope-strip" aria-label="Timeline scope" style="margin-top: 24px;">
-      <span>EONS / 宙</span>
-      <span>ERAS / 代</span>
-      <span class="active">PERIODS / 纪</span>
-      <span>EPOCHS / 世</span>
     </div>
   </div>
 
@@ -1108,97 +1082,11 @@
           </div>
         </div>
 
-        <button class="action-btn" id="queryBtn" onclick="queryArchive()" style="margin-top: 24px; width: 100%; font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; letter-spacing: 2px;">QUERY ARCHIVES / 查询数据库档案</button>
+        <button class="action-btn" id="queryBtn" onclick="queryArchive()" style="margin-top: 24px; width: 100%;">QUERY ARCHIVES / 查询数据库档案</button>
       </div>
     </div>
   </div>
 </main>
-
-<!-- RED CODE ALERT MODAL -->
-<div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle">
-  <div class="pl-modal-window">
-    <div class="pl-modal-header">
-      <div class="pl-modal-title-wrap">
-        <span class="pl-badge pl-badge-cr">URGENT CALL TO ACTION</span>
-        <h2 class="pl-modal-title" id="modalAlertTitle">RED CODE ALERT / 红色警戒</h2>
-      </div>
-      <button class="pl-modal-close js-close-alert" id="closeRedAlertModal" aria-label="Close modal">×</button>
-    </div>
-
-    <div class="pl-modal-body">
-      <div class="pl-modal-quote">
-        "Extinction is forever. What was once lost in deep time can teach us how to prevent the collapse of our modern biosphere."
-      </div>
-
-      <div class="pl-modal-tabs" id="modalStatusTabs">
-        <button class="pl-alert-tab active" data-status="all">ALL ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="en">ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="vu">VULNERABLE</button>
-      </div>
-
-      <div class="pl-threat-grid" id="modalThreatList">
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
-          </div>
-          <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="en">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
-          </div>
-          <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="vu">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
-          </div>
-          <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
-          </div>
-          <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
-        </div>
-      </div>
-
-      <div class="pl-what-can-you-do">
-        <h3 class="pl-what-title">WHAT CAN YOU DO? / 我们能做什么？</h3>
-        <p class="pl-what-text">
-          Paleontological evidence reveals that Earth's five historical mass extinctions were driven by abrupt carbon emissions, ocean acidification, and habitat loss. Modern anthropogenic climate change is reproducing these same geobiological stresses at ten times the speed.
-        </p>
-        <div class="pl-what-steps">
-          <div class="pl-step-item">
-            <div class="pl-step-num">01</div>
-            <div>
-              <div class="pl-step-bold">Support Habitat Sanctuaries</div>
-              <div class="pl-step-desc">Preserve continuous ecological corridors to prevent genetic bottlenecks.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">02</div>
-            <div>
-              <div class="pl-step-bold">Decarbonize Energy</div>
-              <div class="pl-step-desc">Halt runaway ocean acidification mirroring the end-Permian crisis.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">03</div>
-            <div>
-              <div class="pl-step-bold">Advance Bio-Archiving</div>
-              <div class="pl-step-desc">Support cryogenic genetic banking and museum research collections.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer class="pl-footer">
@@ -1213,7 +1101,7 @@
           <span class="pl-footer-brand-text">PALEOLOGIST</span>
         </div>
         <p class="pl-footer-desc">
-          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
         </p>
         <div class="pl-footer-status-pill">
           <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
@@ -1225,10 +1113,10 @@
         <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
         <div class="pl-footer-links">
           <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
-          <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+          <a href="field-guide.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
           <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
           <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
-          <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+          <a href="gallery.html" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
         </div>
       </div>
 
@@ -1263,8 +1151,6 @@
 
 </body>
 </html>
-
-
 `
 
 ## File: form.html
@@ -1274,7 +1160,7 @@
 <html lang="en" data-page="form">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Document a PALEOLOGIST hybrid research file with genome notes, containment metrics, imagery, and local archive preview.">
     <meta property="og:title" content="PALEOLOGIST | Hybrid Lab">
     <meta property="og:description" content="Build a bilingual hybrid research file and preview it in the PALEOLOGIST archive system.">
@@ -1304,17 +1190,13 @@
 
     <nav class="pl-nav" id="plNav">
       <a href="index.html" class="pl-nav-link">HOME / 首页</a>
-      <a href="gallery.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
+      <a href="field-guide.html" class="pl-nav-link">FIELD GUIDE / 物种图鉴</a>
       <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
-      <a href="gallery.html#gallery-showcase" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
+      <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
       <a href="form.html" class="pl-nav-link active">HYBRID LAB / 基因合成</a>
     </nav>
 
     <div class="pl-header-actions">
-      <button class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert Modal">
-        <span class="pl-pulse-dot"></span>
-        <span>RED CODE ALERT</span>
-      </button>
       <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -1333,7 +1215,7 @@
         <span class="pl-section-tag">GENOME SYNTHESIS / 基因工程与繁育</span>
         <h1 class="pl-section-title" style="margin-top: 8px; margin-bottom: 10px;">HYBRID LAB / 基因合成实验室</h1>
         <p style="color: var(--pl-text-muted); font-size: 0.95rem; max-width: 720px; margin: 0; line-height: 1.6;">
-          Dual-parent genome recombination and phenotypic simulation. Balance parent traits, predict containment hazard ratings, preview real-time spliced morphology, and register custom specimens into the field archive.
+          Dual-parent genome recombination written as a text file. Compare parent records, set dominance, and save the hybrid dossier to the field archive.
         </p>
       </div>
       <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 0.76rem; color: var(--pl-gold); background: rgba(194, 155, 98, 0.08); border: 1px solid var(--pl-border); padding: 8px 14px; border-radius: var(--pl-radius-sm);">
@@ -1354,40 +1236,17 @@
         <label class="form-label" for="parentASelect" style="display:none;">Parent A Genome</label>
         <select id="parentASelect" class="form-select"></select>
       </div>
-      <img src="assets/images/thumbs/trex.webp" id="parentAImg" class="pl-parent-img" alt="Parent A Specimen" loading="lazy" decoding="async">
-      
-      <div class="pl-stat-bar-group">
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">SIZE / 体长</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pALen" style="width: 70%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">WEIGHT / 体重</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAWgt" style="width: 65%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">POWER / 攻击</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAAtk" style="width: 85%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">HEALTH / 生命</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pAHp" style="width: 80%;"></div></div>
-        </div>
-      </div>
+      <dl class="pl-parent-file" id="parentAFile">
+        <div><dt>ERA / 年代</dt><dd id="parentAEra">—</dd></div>
+        <div><dt>CLASS / 分类</dt><dd id="parentAClass">—</dd></div>
+        <div><dt>LENGTH / 体长</dt><dd id="parentALenText">—</dd></div>
+        <div><dt>WEIGHT / 体重</dt><dd id="parentAWgtText">—</dd></div>
+        <div><dt>NOTE / 备注</dt><dd id="parentAFact">—</dd></div>
+      </dl>
     </div>
 
     <!-- HELIX CORE & BLEND SLIDER -->
     <div class="pl-helix-core">
-      <svg class="pl-helix-icon" viewBox="0 0 64 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 10 C 25 30, 45 40, 52 60 C 45 80, 25 90, 12 110" stroke="#c29b62" stroke-width="3" stroke-linecap="round"/>
-        <path d="M52 10 C 39 30, 19 40, 12 60 C 19 80, 39 90, 52 110" stroke="#e5b869" stroke-width="3" stroke-linecap="round"/>
-        <line x1="16" y1="20" x2="48" y2="20" stroke="#c29b62" stroke-width="2" stroke-dasharray="3 3"/>
-        <line x1="22" y1="40" x2="42" y2="40" stroke="#e5b869" stroke-width="2" stroke-dasharray="3 3"/>
-        <line x1="32" y1="60" x2="32" y2="60" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-        <line x1="22" y1="80" x2="42" y2="80" stroke="#c29b62" stroke-width="2" stroke-dasharray="3 3"/>
-        <line x1="16" y1="100" x2="48" y2="100" stroke="#e5b869" stroke-width="2" stroke-dasharray="3 3"/>
-      </svg>
-      
       <div class="pl-blend-control">
         <label class="form-label" for="blendRatio" style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; color: var(--pl-text-muted);">DOMINANCE / 显性比</label>
         <input type="range" id="blendRatio" class="form-input blend-range pl-blend-slider" min="0" max="100" value="50">
@@ -1410,54 +1269,21 @@
         <label class="form-label" for="parentBSelect" style="display:none;">Parent B Genome</label>
         <select id="parentBSelect" class="form-select"></select>
       </div>
-      <img src="assets/images/thumbs/spinosaurus.webp" id="parentBImg" class="pl-parent-img" alt="Parent B Specimen" loading="lazy" decoding="async">
-      
-      <div class="pl-stat-bar-group">
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">SIZE / 体长</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBLen" style="width: 80%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">WEIGHT / 体重</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBWgt" style="width: 75%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">POWER / 攻击</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBAtk" style="width: 90%;"></div></div>
-        </div>
-        <div class="pl-stat-row">
-          <span class="pl-stat-label">HEALTH / 生命</span>
-          <div class="pl-stat-track"><div class="pl-stat-fill" id="pBHp" style="width: 85%;"></div></div>
-        </div>
-      </div>
+      <dl class="pl-parent-file" id="parentBFile">
+        <div><dt>ERA / 年代</dt><dd id="parentBEra">—</dd></div>
+        <div><dt>CLASS / 分类</dt><dd id="parentBClass">—</dd></div>
+        <div><dt>LENGTH / 体长</dt><dd id="parentBLenText">—</dd></div>
+        <div><dt>WEIGHT / 体重</dt><dd id="parentBWgtText">—</dd></div>
+        <div><dt>NOTE / 备注</dt><dd id="parentBFact">—</dd></div>
+      </dl>
     </div>
   </div>
 
   <!-- HYBRID PREVIEW SHOWCASE -->
   <div class="pl-hybrid-preview-box">
-    <div class="pl-hybrid-img-wrap">
-      <div class="card" id="previewCard" data-class="hybrid" data-containment="class" style="width: 100%; height: 100%; border: none; background: transparent; border-radius: 0; box-shadow: none;">
-        <div class="card-vis" style="width: 100%; height: 100%; aspect-ratio: auto; border: none; position: relative;">
-          <!-- Preview image or fallback -->
-          <img src="" id="pCardImg" class="card-img" alt="" style="display:none;">
-          <canvas id="hybridCanvas" class="hybrid-canvas" width="640" height="480" hidden></canvas>
-          <div class="img-fallback" id="pCardFallback">
-            <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--pl-gold); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
-              <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
-            </svg>
-            <span class="unknown-status" style="font-size:0.75rem; color:var(--pl-gold); letter-spacing:1px; margin-top:8px; opacity:0.7;">UNKNOWN: NO_VISUAL</span>
-          </div>
-          <span class="class-icon" id="pCardIcon" style="background: var(--pl-gold); color: #0d0c0a; font-family: var(--font-display); letter-spacing: 1px;">HYBRID</span>
-          <div class="dna-overlay" id="pCardDna" style="color: var(--pl-gold); opacity: 0.35;">AT C G   T T A C   C A T C   G A T C</div>
-        </div>
-        <div class="dna-helix" id="dnaHelix" aria-hidden="true" style="display: none;"></div>
-      </div>
-    </div>
-
-    <!-- SPECIMEN SUMMARY & LIVE DETAILS -->
-    <div>
+    <div id="previewCard" data-class="hybrid" data-containment="class">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <span class="pl-badge" style="background: rgba(194, 155, 98, 0.15); color: var(--pl-gold);">LIVE PREVIEW · 表型预测</span>
+        <span class="pl-badge" style="background: rgba(194, 155, 98, 0.15); color: var(--pl-gold);">TEXT FILE · 文字档案</span>
         <span class="spec-stats" style="border: none; padding: 0;"><b id="pCardRarity" style="font-family: var(--font-mono); color: var(--pl-gold-light); font-size: 0.8rem;">ARCHIVE P5</b></span>
       </div>
 
@@ -1475,14 +1301,6 @@
         Recombinant DNA algorithm balances morphological dominance, musculoskeletal mass, and metabolic stability across simulated generations.
       </p>
 
-      <!-- Mobile preview fallback summary -->
-      <div class="mobile-preview-summary" id="mobilePreviewSummary" style="display:none;">
-        <img src="" id="mobilePreviewImg" alt="" style="display:none;">
-        <div>
-          <b id="mobilePreviewName">INDOMINUS REX</b>
-          <span id="mobilePreviewStats">12.3m / 8,400kg</span>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -1553,7 +1371,7 @@
 
         <div class="pl-form-group">
           <label class="pl-form-label" for="archiveStatus">Archive Status / 档案状态</label>
-          <input type="text" id="archiveStatus" class="form-input" value="UNKNOWN VISUAL LOCKED" readonly>
+          <input type="text" id="archiveStatus" class="form-input" value="TEXT FILE / 文字档案" readonly>
         </div>
 
         <!-- 04: Physical Metrics -->
@@ -1592,13 +1410,6 @@
           </select>
         </div>
 
-        <div class="pl-form-group">
-          <label class="pl-form-label" for="imgUrl">Image URL or Local Upload / 参考图或上传</label>
-          <input type="text" id="imgUrl" class="form-input" placeholder="e.g. assets/images/originals/indominous_rex.jpg" value="assets/images/originals/indominous_rex.jpg">
-          <label class="form-label image-upload-label" for="imgFile" style="font-size: 0.72rem; color: var(--pl-gold); margin-top: 4px; cursor: pointer;">Or Upload Local File / 或上传本地文件</label>
-          <input type="file" id="imgFile" class="form-input image-file-input" accept="image/*" style="padding: 6px 12px !important; font-size: 0.78rem !important;">
-        </div>
-
         <!-- 05: Narrative Fields -->
         <div class="pl-form-group pl-form-full">
           <label class="pl-form-label" for="description">Research Hypothesis / 研究假说</label>
@@ -1614,8 +1425,8 @@
       </div>
 
       <div class="pl-form-actions">
-        <button type="submit" class="pl-btn-primary" style="padding: 14px 32px; font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; letter-spacing: 2px;">CREATE HYBRID / 保存研究档案</button>
-        <button type="button" id="resetLabBtn" class="pl-btn-secondary" style="padding: 14px 28px; font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 2px;">RESET / 重置样本</button>
+        <button type="submit" class="pl-btn-primary" style="padding: 14px 32px;">CREATE HYBRID / 保存研究档案</button>
+        <button type="button" id="resetLabBtn" class="pl-btn-secondary" style="padding: 14px 28px;">RESET / 重置样本</button>
       </div>
     </form>
   </div>
@@ -1631,96 +1442,10 @@
     </div>
     <div class="success-title">RESEARCH FILE SAVED / 研究档案已保存</div>
     <div class="success-text">
-      The hybrid research file and its preview image have been committed to the local <b>PALEOLOGIST</b> collection.<br><br>
-      混种研究档案与预览图片已写入本地 <b>PALEOLOGIST</b> 标本库。您可以在物种图鉴中查看合成档案。
+      The hybrid research file has been saved to the local <b>PALEOLOGIST</b> collection as a text record.<br><br>
+      混种研究档案已以文字记录写入本地 <b>PALEOLOGIST</b> 标本库。您可以在物种图鉴中查看。
     </div>
-    <button class="pl-btn-primary" onclick="window.location.href='gallery.html';" style="padding: 12px 28px; font-family: var(--font-display); letter-spacing: 2px;">VIEW IN FIELD GUIDE / 返回图鉴查看</button>
-  </div>
-</div>
-
-<!-- RED CODE ALERT MODAL -->
-<div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle">
-  <div class="pl-modal-window">
-    <div class="pl-modal-header">
-      <div class="pl-modal-title-wrap">
-        <span class="pl-badge pl-badge-cr">URGENT CALL TO ACTION</span>
-        <h2 class="pl-modal-title" id="modalAlertTitle">RED CODE ALERT / 红色警戒</h2>
-      </div>
-      <button class="pl-modal-close js-close-alert" id="closeRedAlertModal" aria-label="Close modal">×</button>
-    </div>
-
-    <div class="pl-modal-body">
-      <div class="pl-modal-quote">
-        "Extinction is forever. What was once lost in deep time can teach us how to prevent the collapse of our modern biosphere."
-      </div>
-
-      <div class="pl-modal-tabs" id="modalStatusTabs">
-        <button class="pl-alert-tab active" data-status="all">ALL ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="en">ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="vu">VULNERABLE</button>
-      </div>
-
-      <div class="pl-threat-grid" id="modalThreatList">
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
-          </div>
-          <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="en">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
-          </div>
-          <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="vu">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
-          </div>
-          <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
-          </div>
-          <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
-        </div>
-      </div>
-
-      <div class="pl-what-can-you-do">
-        <h3 class="pl-what-title">WHAT CAN YOU DO? / 我们能做什么？</h3>
-        <p class="pl-what-text">
-          Paleontological evidence reveals that Earth's five historical mass extinctions were driven by abrupt carbon emissions, ocean acidification, and habitat loss. Modern anthropogenic climate change is reproducing these same geobiological stresses at ten times the speed.
-        </p>
-        <div class="pl-what-steps">
-          <div class="pl-step-item">
-            <div class="pl-step-num">01</div>
-            <div>
-              <div class="pl-step-bold">Support Habitat Sanctuaries</div>
-              <div class="pl-step-desc">Preserve continuous ecological corridors to prevent genetic bottlenecks.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">02</div>
-            <div>
-              <div class="pl-step-bold">Decarbonize Energy</div>
-              <div class="pl-step-desc">Halt runaway ocean acidification mirroring the end-Permian crisis.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">03</div>
-            <div>
-              <div class="pl-step-bold">Advance Bio-Archiving</div>
-              <div class="pl-step-desc">Support cryogenic genetic banking and museum research collections.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <button class="pl-btn-primary" onclick="window.location.href='field-guide.html';" style="padding: 12px 28px;">VIEW IN FIELD GUIDE / 返回图鉴查看</button>
   </div>
 </div>
 
@@ -1737,7 +1462,7 @@
           <span class="pl-footer-brand-text">PALEOLOGIST</span>
         </div>
         <p class="pl-footer-desc">
-          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
         </p>
         <div class="pl-footer-status-pill">
           <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>
@@ -1749,10 +1474,10 @@
         <div class="pl-footer-col-title">NAVIGATION / 快速导航</div>
         <div class="pl-footer-links">
           <a href="index.html" class="pl-footer-link">Home / 博物馆主页</a>
-          <a href="gallery.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
+          <a href="field-guide.html" class="pl-footer-link">Field Guide / 物种图鉴</a>
           <a href="timescale.html" class="pl-footer-link">Geologic Timeline / 地质年代表</a>
           <a href="form.html" class="pl-footer-link">Hybrid Lab / 基因合成实验室</a>
-          <a href="gallery.html#gallery-showcase" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
+          <a href="gallery.html" class="pl-footer-link">Exhibition Archive / 馆藏化石</a>
         </div>
       </div>
 
@@ -1787,8 +1512,6 @@
 
 </body>
 </html>
-
-
 `
 
 ## File: assets/js/species-data.js
@@ -4639,7 +4362,6 @@
   global.PALEO_SPECIES = SPECIES;
   global.PALEO_SPECIES_BY_KEY = SPECIES_BY_KEY;
 })(window);
-
 `
 
 ## File: assets/js/site.js
@@ -4648,8 +4370,9 @@
 (function () {
   const page = document.documentElement.dataset.page;
   const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
+  const CUSTOM_HYBRID_WARNING_IMAGE = 'assets/images/generated/unknown-hybrid-danger.png';
 
-  if (page === 'gallery' || page === 'timescale') {
+  if (page === 'gallery' || page === 'field-guide' || page === 'timescale') {
     (function() {
                 const theme = localStorage.getItem('ingen_theme') || 'green';
                 const root = document.documentElement;
@@ -4669,53 +4392,27 @@
             })();
   }
 
-  function setupRedCodeModal() {
-    const alertModal = document.getElementById('redCodeModal') || document.querySelector('.pl-modal-backdrop');
-    if (!alertModal) return;
+  function setupMobileMenu() {
+    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
+    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
+    if (!menuToggle || !mainNav) return;
 
-    function openRedAlert(e) {
-      if (e) e.preventDefault();
-      alertModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeRedAlert(e) {
-      if (e) e.preventDefault();
-      alertModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.js-open-alert, #openRedAlertBtn').forEach(btn => {
-      btn.addEventListener('click', openRedAlert);
-    });
-    document.querySelectorAll('.js-close-alert, #closeRedAlertModal, #closeRedAlertBtn, .pl-modal-close').forEach(btn => {
-      btn.addEventListener('click', closeRedAlert);
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mainNav.classList.toggle('mobile-open');
     });
 
-    alertModal.addEventListener('click', function(e) {
-      if (e.target === alertModal) closeRedAlert();
+    document.addEventListener('click', function(e) {
+      if (!mainNav.contains(e.target) && !menuToggle.contains(e.target) && mainNav.classList.contains('mobile-open')) {
+        mainNav.classList.remove('mobile-open');
+      }
     });
 
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && alertModal.classList.contains('active')) closeRedAlert();
+      if (e.key === 'Escape' && mainNav.classList.contains('mobile-open')) {
+        mainNav.classList.remove('mobile-open');
+      }
     });
-
-    const alertTabs = alertModal.querySelectorAll('.pl-alert-tab');
-    const cards = alertModal.querySelectorAll('.pl-threat-card');
-    alertTabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        alertTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        const filter = (this.getAttribute('data-status') || 'all').toLowerCase();
-        cards.forEach(card => {
-          const cardStatus = (card.getAttribute('data-status') || '').toLowerCase();
-          card.style.display = (filter === 'all' || cardStatus === filter) ? 'block' : 'none';
-        });
-      });
-    });
-
-    window.openRedAlert = openRedAlert;
-    window.closeRedAlert = closeRedAlert;
   }
 
   function init_index() {
@@ -4769,7 +4466,7 @@
     window.addEventListener('pageshow', function(event) {
         const navEntry = performance.getEntriesByType('navigation')[0];
         const referrerFile = document.referrer.split('/').pop().split('?')[0].split('#')[0].toLowerCase();
-        const returnedFromOtherHtml = referrerFile.endsWith('.html') && referrerFile !== 'index.html';
+        const returnedFromOtherHtml = (referrerFile.endsWith('.html') || ['field-guide', 'gallery', 'timescale', 'form'].includes(referrerFile)) && referrerFile !== 'index.html' && referrerFile !== 'index' && referrerFile !== '';
         const returnedFromHistory = event.persisted || (navEntry && navEntry.type === 'back_forward');
         const skipIntro = sessionStorage.getItem('skip_index_intro') === 'true';
         
@@ -4857,7 +4554,7 @@
                 setTimeout(addLine, 350);
             } else {
                 setTimeout(() => {
-                    window.location.href = 'gallery.html';
+                    window.location.href = 'field-guide.html';
                 }, 600);
             }
         }
@@ -4865,22 +4562,17 @@
         setTimeout(addLine, 200);
     }
 
-    // ── PALEOLOGIST RED CODE ALERT & NAVIGATION ──
-    setupRedCodeModal();
-
     // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', function() {
-        mainNav.classList.toggle('mobile-open');
-      });
-    }
+    setupMobileMenu();
 
-Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
+window.changeThemeTint = changeThemeTint;
 }
 
   function init_gallery() {
+    if (page === 'gallery') {
+      setupMobileMenu();
+      return;
+    }
     const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
 // ── BOOT ──────────────────────────────
     const bootLines = [
@@ -4903,11 +4595,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     }
 
     function addBootLine() {
-      if (hasBooted) return;
+      if (hasBooted || !bTextEl || !bOverlay) return;
+      const cursor = document.getElementById('boot-cursor');
+      if (!cursor) return;
       if (bIdx < bootLines.length) {
         const s = document.createElement('span');
         s.className = 'boot-line'; s.textContent = bootLines[bIdx];
-        bTextEl.insertBefore(s, document.getElementById('boot-cursor'));
+        bTextEl.insertBefore(s, cursor);
         bIdx++;
         setTimeout(addBootLine, bIdx < 6 ? 260 : 380);
       } else {
@@ -4918,7 +4612,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         }, 500);
       }
     }
-    if (!hasBooted) {
+    if (!hasBooted && bTextEl && bOverlay) {
       setTimeout(addBootLine, 300);
     }
 
@@ -4968,13 +4662,16 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       if (value.includes('Oligocene')) return 'Oligoc.';
       return value || 'Unknown';
     }
-    function createSpeciesCard(species) {
+    function createSpeciesCard(species, defaultIndex = 0) {
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-class', species.class);
       card.setAttribute('data-rarity', species.rarity);
       card.setAttribute('data-name', species.name);
       card.setAttribute('data-cn', species.cn);
+      card.setAttribute('data-code', species.code || '');
+      card.setAttribute('data-key', species.key || '');
+      card.setAttribute('data-default-order', String(defaultIndex));
 
       const vis = document.createElement('div');
       vis.className = 'card-vis';
@@ -4991,16 +4688,23 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       icon.className = 'class-icon';
       icon.textContent = species.class.toUpperCase();
 
-      const r = parseInt(species.rarity) || 3;
-      const statusKey = r >= 5 ? 'cr' : r === 4 ? 'en' : r === 3 ? 'vu' : 'lc';
-      card.setAttribute('data-iucn', statusKey);
-      card.setAttribute('data-diet', (species.diet || '').toLowerCase());
+      const resolveSpeciesDiet = s => {
+        if (s.diet) return s.diet.toLowerCase();
+        if (s.class === 'herbivore') return 'herbivore';
+        if (s.class === 'carnivore') return 'carnivore';
+        const text = `${s.name} ${s.cn} ${s.fact || ''} ${s.desc || ''}`.toLowerCase();
+        if (/piscivore|食鱼|鱼类/.test(text) || /baryonyx|spinosaurus|suchomimus|pteranodon|dunkleosteus|ichthyosaurus|plesiosaurus|helicoprion/.test(text)) return 'piscivore carnivore';
+        if (/omnivore|杂食|oviraptor|gallimimus|deinocheirus/.test(text)) return 'omnivore';
+        if (/herbivore|植食|草食|树叶|植物|grazer|mammoth|rhino|megatherium|paraceratherium|glyptodon|doedicurus|diprotodon|chalicotherium|deinotherium|megacerops|procoptodon/.test(text)) return 'herbivore';
+        if (s.class === 'pterosaur' || s.class === 'aquatic' || s.class === 'amphibian') return 'carnivore';
+        if (s.class === 'cenozoic') {
+          return /smilodon|titanoboa|wolf|bear|lion|atrox|thylacoleo|andrewsarchus|hyaenodon|megalania|argentavis|borophagus|amphicyon|terror bird/.test(text) ? 'carnivore' : 'herbivore';
+        }
+        return 'carnivore';
+      };
+      card.setAttribute('data-diet', resolveSpeciesDiet(species));
 
-      const iucnBadge = document.createElement('span');
-      iucnBadge.className = `pl-card-badge ${statusKey}`;
-      iucnBadge.textContent = statusKey.toUpperCase();
-
-      vis.append(img, icon, iucnBadge);
+      vis.append(img, icon);
 
       const cardData = document.createElement('div');
       cardData.className = 'card-data';
@@ -5057,9 +4761,19 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       document.querySelectorAll('.grid[data-species-class]').forEach(grid => {
         grid.textContent = '';
       });
-      speciesData.forEach(species => {
+      const hasCustomIndominus = () => {
+        try {
+          const list = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+          return list.some(item => (item.name || '').toUpperCase() === 'INDOMINUS REX' || item.code === 'HYB-001' || item.code === 'HYB-01');
+        } catch (_) {
+          return false;
+        }
+      };
+      const skipCustomIndominus = hasCustomIndominus();
+      speciesData.forEach((species, index) => {
+        if (species.key === 'indominus_rex' && skipCustomIndominus) return;
         const grid = document.querySelector(`#sec-${species.class} .grid`);
-        if (grid) grid.appendChild(createSpeciesCard(species));
+        if (grid) grid.appendChild(createSpeciesCard(species, index));
       });
     }
 
@@ -5289,7 +5003,13 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     }
 
     (function loadCustomAssets() {
-      const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+      let customAssets = [];
+      try {
+        customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+        if (!Array.isArray(customAssets)) customAssets = [];
+      } catch (_) {
+        customAssets = [];
+      }
       customAssets.forEach((asset, index) => {
         const grid = document.querySelector(`#sec-${asset.class} .grid`);
         if (!grid) return;
@@ -5305,6 +5025,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         card.setAttribute('data-status', asset.status || 'success');
         card.setAttribute('data-region', 'isla_nublar');
         card.setAttribute('data-site', 'ISLA NUBLAR — Sector 4/Lab Custom Gen');
+        const customDiet = asset.diet || (asset.class === 'herbivore' ? 'herbivore' : 'carnivore');
+        card.setAttribute('data-diet', customDiet.toLowerCase());
 
         const rarityMap = {
           '1': 'ARCHIVE P1',
@@ -5320,7 +5042,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const isAlertUnknown = parseInt(asset.agg, 10) >= 4;
         card.classList.toggle('synthesis-alert', isAlertUnknown);
         const safe = {
-          img: escapeHtml(asset.img || UNKNOWN_HYBRID_IMAGE),
+          img: escapeHtml(asset.img || CUSTOM_HYBRID_WARNING_IMAGE),
           name: escapeHtml(asset.name || ''),
           code: escapeHtml(asset.code || ''),
           cn: escapeHtml(asset.cn || ''),
@@ -5339,18 +5061,17 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
           alertLabel: escapeHtml(isAlertUnknown ? 'ALERT: UNKNOWN' : 'UNKNOWN')
         };
 
-        card.innerHTML = `
-          <div class="card-vis">
-            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} unknown specimen reconstruction">
-            <div class="img-fallback" style="display:none; width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #050708, #101518); border-bottom:2px solid var(--ingen-green-dim); position:relative;">
-              <svg viewBox="0 0 100 100" style="width:50px; height:50px; fill:none; stroke:var(--ingen-green); stroke-width:1.5; opacity:0.65; animation: classFlicker 3s infinite;">
-                <path d="M30,70 Q50,30 70,70 M30,30 Q50,70 70,30 M50,15 L50,85" stroke-dasharray="2 2" />
-              </svg>
-              <span style="font-size:0.7rem; color:var(--ingen-green); letter-spacing:1px; margin-top:8px; opacity:0.6;">UNKNOWN: NO_VISUAL</span>
-            </div>
+        const visual = asset.img || asset.class === 'hybrid'
+          ? `<div class="card-vis">
+            <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} reconstruction">
             <span class="class-icon">${safe.classUpper}</span>
-            <span class="unknown-alert-badge">${safe.alertLabel}</span>
-          </div>
+          </div>`
+          : `<div class="card-vis card-text-file">
+            <span class="class-icon">${safe.classUpper}</span>
+            <p>${safe.fact || safe.desc || 'TEXT FILE / 文字档案'}</p>
+          </div>`;
+        card.innerHTML = `
+          ${visual}
           <div class="card-data">
             <div>
               <div class="spec-code">${safe.code}</div>
@@ -5376,15 +5097,26 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                data-status="${safe.status}"></div>
         `;
         grid.insertBefore(card, grid.firstChild);
+        if (!asset.img && asset.class === 'hybrid') {
+          card.querySelector('.card-img')?.setAttribute('alt', 'Unknown hybrid danger warning');
+        }
         const deleteBtn = card.querySelector('.delete-custom-btn');
         if (deleteBtn) {
           deleteBtn.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
             if (!confirm('Delete this custom archive file?')) return;
-            const savedAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            let savedAssets = [];
+            try {
+              savedAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+              if (!Array.isArray(savedAssets)) savedAssets = [];
+            } catch (_) {
+              savedAssets = [];
+            }
             savedAssets.splice(index, 1);
-            localStorage.setItem('ingen_custom_assets', JSON.stringify(savedAssets));
+            try {
+              localStorage.setItem('ingen_custom_assets', JSON.stringify(savedAssets));
+            } catch (_) {}
             window.location.reload();
           });
         }
@@ -5521,17 +5253,24 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       const cardImage = card.querySelector('.card-img');
       lastFocusedCard = card;
       const modalImg = document.getElementById('mImg');
-      const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
-      modalImg.src = cardImage.src;
-      modalImg.alt = `${name} specimen reconstruction`;
-      if (fullSrc && fullSrc !== cardImage.src) {
-        const hiRes = new Image();
-        hiRes.onload = () => {
-          if (modalImg && lastFocusedCard === card) {
-            modalImg.src = fullSrc;
+      if (cardImage) {
+        const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
+        if (modalImg) {
+          modalImg.src = cardImage.src;
+          modalImg.alt = cardImage.alt || `${name} specimen reconstruction`;
+          if (fullSrc && fullSrc !== cardImage.src) {
+            const hiRes = new Image();
+            hiRes.onload = () => {
+              if (modalImg && lastFocusedCard === card) {
+                modalImg.src = fullSrc;
+              }
+            };
+            hiRes.src = fullSrc;
           }
-        };
-        hiRes.src = fullSrc;
+        }
+      } else if (modalImg) {
+        modalImg.src = UNKNOWN_HYBRID_IMAGE;
+        modalImg.alt = `${name} text archive`;
       }
       document.getElementById('mName').innerText = name;
       document.getElementById('mCn').innerText = card.getAttribute('data-cn');
@@ -5610,7 +5349,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
     if (requestedSpecimen) {
       setTimeout(() => {
         const requestedCard = Array.from(document.querySelectorAll('.card')).find(card =>
-          card.getAttribute('data-name').toLowerCase() === requestedSpecimen.toLowerCase()
+          (card.getAttribute('data-name') || '').toLowerCase() === requestedSpecimen.toLowerCase()
         );
         if (requestedCard) openModal(requestedCard);
       }, 100);
@@ -5637,43 +5376,92 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 sec.classList.toggle('hidden-section', !visible);
             });
             const shown = Math.min(visibleLimit, matchingCards.length);
-            document.getElementById('resultsCount').textContent = `${shown} / ${matchingCards.length} RECORDS / 已显示 ${shown} / ${matchingCards.length} 条`;
-            document.getElementById('resultsHint').textContent = matchingCards.length
+            const rcEl = document.getElementById('resultsCount');
+            if (rcEl) rcEl.textContent = `${shown} / ${matchingCards.length} RECORDS / 已显示 ${shown} / ${matchingCards.length} 条`;
+            const rhEl = document.getElementById('resultsHint');
+            if (rhEl) rhEl.textContent = matchingCards.length
               ? 'SCIENTIFIC RECORDS + MARKED SIMULATION DATA / 科学档案与明确标注的模拟数据'
               : 'NO MATCHING RECORDS / 没有匹配记录';
-            document.getElementById('loadMoreWrap').hidden = shown >= matchingCards.length;
+            const emptyEl = document.getElementById('emptyResults');
+            if (emptyEl) emptyEl.hidden = matchingCards.length > 0;
+            const lmEl = document.getElementById('loadMoreWrap');
+            if (lmEl) lmEl.hidden = shown >= matchingCards.length;
+        }
+        function activeClassFilter() {
+            const select = document.getElementById('classFilterSelect');
+            if (select) return (select.value || 'all').toLowerCase();
+            return document.querySelector('.filter-btn.active')?.getAttribute('data-val') || 'all';
+        }
+        function eraMatches(era, eraVal) {
+            if (eraVal === 'all') return true;
+            const value = era.toLowerCase();
+            if (value.includes(eraVal)) return true;
+            if (/ingen|classified/.test(value)) return false;
+            if (eraVal === 'mesozoic') {
+                return /triassic|jurassic|cretaceous/.test(value);
+            }
+            if (eraVal === 'paleozoic') {
+                return /cambrian|ordovician|silurian|devonian|carboniferous|permian/.test(value);
+            }
+            if (eraVal === 'cenozoic') {
+                return /paleocene|eocene|oligocene|miocene|pliocene|pleistocene|holocene/.test(value);
+            }
+            return false;
+        }
+        function applyCatalogFilters() {
+            const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+            const eraVal = (document.getElementById('eraFilterSelect')?.value || 'all').toLowerCase();
+            const dietVal = (document.getElementById('dietFilterSelect')?.value || 'all').toLowerCase();
+            const classVal = activeClassFilter();
+            const isTrexQuery = /^(t-?rex|trex)$/i.test(query);
+            const periodMatches = {
+                paleogene: /paleocene|eocene|oligocene/,
+                neogene: /miocene|pliocene/,
+                quaternary: /pleistocene|holocene/
+            };
+
+            document.querySelectorAll('.card').forEach(card => {
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const cn = (card.getAttribute('data-cn') || '').toLowerCase();
+                const cls = (card.getAttribute('data-class') || '').toLowerCase();
+                const era = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
+                const diet = (card.getAttribute('data-diet') || '').toLowerCase();
+                const code = (card.getAttribute('data-code') || card.querySelector('.spec-code')?.textContent || '').toLowerCase();
+                const key = (card.getAttribute('data-key') || '').toLowerCase().replace(/_/g, ' ');
+
+                let match = true;
+                if (query) {
+                    const nameMatch = name.includes(query) || (isTrexQuery && (name.includes('tyrannosaurus') || key.includes('trex')));
+                    const periodMatch = periodMatches[query]?.test(era) || false;
+                    if (!(nameMatch || periodMatch || cn.includes(query) || cls.includes(query) || era.includes(query) || code.includes(query) || diet.includes(query) || key.includes(query))) {
+                        match = false;
+                    }
+                }
+                if (!eraMatches(era, eraVal)) match = false;
+                if (dietVal !== 'all' && !diet.includes(dietVal)) match = false;
+                if (classVal !== 'all' && cls !== classVal) match = false;
+                card.classList.toggle('hidden', !match);
+            });
+            applyVisibilityWindow();
         }
         function filterSelection(c) {
             visibleLimit = pageStep;
-            document.querySelectorAll('.filter-btn').forEach(btn => { btn.classList.remove('active'); if(btn.getAttribute('data-val')===c) btn.classList.add('active'); });
-            document.querySelectorAll('.card').forEach(card => {
-                const cls=card.getAttribute('data-class');
-                card.classList.toggle('hidden', c!=='all'&&cls!==c);
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-val') === c);
             });
-            applyVisibilityWindow();
+            applyCatalogFilters();
         }
-        function runSearch(val) {
+        function runSearch() {
             visibleLimit = pageStep;
-            const valLower = val.toLowerCase().trim();
-            document.querySelectorAll('.card').forEach(card=>{
-                const name = card.getAttribute('data-name').toLowerCase();
-                const cn = card.getAttribute('data-cn')||'';
-                const cls = card.getAttribute('data-class')||'';
-                const hd = card.querySelector('.hidden-data');
-                const era = hd ? (hd.getAttribute('data-era')||'').toLowerCase() : '';
-                
-                if (name.includes(valLower) || cn.toLowerCase().includes(valLower) || cls.includes(valLower) || era.includes(valLower)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-            applyVisibilityWindow();
+            applyCatalogFilters();
         }
 
-        document.getElementById('searchInput').addEventListener('keyup', function(){
-            runSearch(this.value);
-        });
+        const sInput = document.getElementById('searchInput');
+        if (sInput) {
+            ['input', 'search', 'change'].forEach(evt => {
+                sInput.addEventListener(evt, () => runSearch());
+            });
+        }
 
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -5682,16 +5470,27 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) {
                     searchInput.value = searchVal;
-                    setTimeout(() => runSearch(searchVal), 50);
+                    setTimeout(() => runSearch(), 50);
+                } else if (!document.getElementById('sec-hybrid')) {
+                    window.location.href = `field-guide.html?search=${encodeURIComponent(searchVal)}`;
                 }
+            }
+            const specVal = urlParams.get('specimen');
+            if (specVal && !document.getElementById('sec-hybrid') && (window.location.pathname.endsWith('gallery.html') || window.location.pathname.endsWith('/gallery') || window.location.pathname === '/gallery')) {
+                window.location.href = `field-guide.html?specimen=${encodeURIComponent(specVal)}`;
             }
         })();
         function sortCards(){
-            const type=document.getElementById('sortSelect').value;
+            const sortEl = document.getElementById('sortSelect');
+            if (!sortEl) return;
+            const type = sortEl.value;
             document.querySelectorAll('.grid').forEach(grid=>{
                 const cards=Array.from(grid.children);
                 cards.sort((a,b)=>{
-                    if(type==='rarity')return b.getAttribute('data-rarity')-a.getAttribute('data-rarity');
+                    if(type==='default'){
+                        return (Number(a.getAttribute('data-default-order')) || 0) - (Number(b.getAttribute('data-default-order')) || 0);
+                    }
+                    if(type==='rarity')return (Number(b.getAttribute('data-rarity')) || 0) - (Number(a.getAttribute('data-rarity')) || 0);
                     if(type==='name')return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
                     if(type==='era'){
                       const eraOrder = ['Precambrian','Cambrian','Ordovician','Silurian','Devonian','Carboniferous','Permian','Triassic','Jurassic','Cretaceous','Paleocene','Eocene','Oligocene','Miocene','Pliocene','Pleistocene','Holocene'];
@@ -5708,67 +5507,48 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             });
             applyVisibilityWindow();
         }
-        document.getElementById('loadMoreBtn').addEventListener('click', () => {
-            visibleLimit += pageStep;
-            applyVisibilityWindow();
-        });
+        const lmBtn = document.getElementById('loadMoreBtn');
+        if (lmBtn) {
+            lmBtn.addEventListener('click', () => {
+                visibleLimit += pageStep;
+                applyVisibilityWindow();
+            });
+        }
         applyVisibilityWindow();
 
         // ── PALEOLOGIST ADVANCED FILTERS ──
         const eraSelect = document.getElementById('eraFilterSelect');
         const dietSelect = document.getElementById('dietFilterSelect');
         const classSelect = document.getElementById('classFilterSelect');
-        const statusSelect = document.getElementById('statusFilterSelect');
+        const sortSelect = document.getElementById('sortSelect');
 
         function applyAdvancedFilters() {
-            const eraVal = eraSelect ? eraSelect.value.toLowerCase() : 'all';
-            const dietVal = dietSelect ? dietSelect.value.toLowerCase() : 'all';
-            const classVal = classSelect ? classSelect.value.toLowerCase() : 'all';
-            const statusVal = statusSelect ? statusSelect.value.toLowerCase() : 'all';
-
-            document.querySelectorAll('.card').forEach(card => {
-                const cClass = card.getAttribute('data-class') || '';
-                const cEra = (card.querySelector('.hidden-data')?.getAttribute('data-era') || '').toLowerCase();
-                const cDiet = (card.getAttribute('data-diet') || '').toLowerCase();
-                const cIucn = (card.getAttribute('data-iucn') || '').toLowerCase();
-
-                let match = true;
-                if (eraVal !== 'all' && !cEra.includes(eraVal)) match = false;
-                if (dietVal !== 'all' && !cDiet.includes(dietVal)) match = false;
-                if (classVal !== 'all' && cClass !== classVal) match = false;
-                if (statusVal !== 'all' && cIucn !== statusVal) match = false;
-
-                if (match) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-            applyVisibilityWindow();
+            visibleLimit = pageStep;
+            applyCatalogFilters();
         }
 
-        [eraSelect, dietSelect, classSelect, statusSelect].forEach(sel => {
+        [eraSelect, dietSelect, classSelect].forEach(sel => {
             if (sel) sel.addEventListener('change', applyAdvancedFilters);
         });
+        if (sortSelect) {
+            sortSelect.addEventListener('change', sortCards);
+        }
 
-        // Gallery Showcase Category Tabs
-        document.querySelectorAll('.pl-gallery-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.pl-gallery-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                const cat = this.getAttribute('data-cat');
-                document.querySelectorAll('.pl-showcase-item').forEach(item => {
-                    if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                if (eraSelect) eraSelect.value = 'all';
+                if (dietSelect) dietSelect.value = 'all';
+                if (classSelect) classSelect.value = 'all';
+                if (sortSelect) sortSelect.value = 'default';
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                filterSelection('all');
+                if (typeof sortCards === 'function') sortCards();
             });
-        });
+        }
 
-        // Red Code Alert Modal handlers in gallery
-        setupRedCodeModal();
+        setupMobileMenu();
 
 Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 }
@@ -6053,7 +5833,7 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
                 return;
             }
             const link = document.createElement('a');
-            link.href = `gallery.html?specimen=${encodeURIComponent(specimen.name)}`;
+            link.href = `field-guide.html?specimen=${encodeURIComponent(specimen.name)}`;
             link.textContent = part;
             link.className = 'archetype-link';
             archetypesEl.appendChild(link);
@@ -6064,8 +5844,10 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     function initTimeline() {
         const listEl = document.getElementById('timelineList');
         timescaleData.forEach((data, index) => {
-            const node = document.createElement('div');
+            const node = document.createElement('button');
+            node.type = 'button';
             node.className = `timeline-node ${index === 0 ? 'active' : ''}`;
+            node.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
             node.dataset.period = data.id;
             node.dataset.index = String(index + 1).padStart(2, '0');
             node.style.setProperty('--node-left-color', periodNodeColors[data.id] || 'rgba(184, 170, 134, 0.44)');
@@ -6081,9 +5863,20 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
             `;
             
             node.addEventListener('click', () => {
-                document.querySelectorAll('.timeline-node').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.timeline-node').forEach(n => {
+                    n.classList.remove('active');
+                    n.setAttribute('aria-pressed', 'false');
+                });
                 node.classList.add('active');
+                node.setAttribute('aria-pressed', 'true');
                 displayDetails(data);
+
+                if (window.innerWidth <= 980) {
+                    const detailsEl = document.getElementById('detailsPanel');
+                    if (detailsEl) {
+                        detailsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
             });
             
             listEl.appendChild(node);
@@ -6165,32 +5958,16 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
 
     function queryArchive() {
         if (!isPrecambrian) {
-            window.location.href = `gallery.html?search=${currentSelectedSearch}`;
+            window.location.href = `field-guide.html?search=${currentSelectedSearch}`;
         }
     }
 
     // Initialize timescale nodes
     initTimeline();
 
-    // Timeline scope strip interaction
-    document.querySelectorAll('.timeline-scope-strip span').forEach(span => {
-        span.addEventListener('click', function() {
-            document.querySelectorAll('.timeline-scope-strip span').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // Red Code Alert Modal handlers in timescale
-    setupRedCodeModal();
 
     // Mobile menu toggle
-    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
-    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('mobile-open');
-        });
-    }
+    setupMobileMenu();
 
 Object.assign(window, { queryArchive });
 }
@@ -6348,9 +6125,11 @@ Object.assign(window, { queryArchive });
 
         if (await imageExists(presetPath)) {
             if (requestId !== hybridVisualRequest) return;
-            pCardImg.src = presetPath;
-            pCardImg.alt = `${speciesA.name} and ${speciesB.name} hybrid reconstruction`;
-            pCardImg.style.display = 'block';
+            if (pCardImg) {
+                pCardImg.src = presetPath;
+                pCardImg.alt = `${speciesA.name} and ${speciesB.name} hybrid reconstruction`;
+                pCardImg.style.display = 'block';
+            }
             canvasEl.hidden = true;
             if (mobilePreviewImg) mobilePreviewImg.src = presetPath;
             return;
@@ -6359,7 +6138,7 @@ Object.assign(window, { queryArchive });
         if (requestId !== hybridVisualRequest) return;
         renderCompositeSplice(canvasEl, speciesA.thumb, speciesB.thumb, blendRatioValue);
         canvasEl.hidden = false;
-        pCardImg.style.display = 'none';
+        if (pCardImg) pCardImg.style.display = 'none';
         if (mobilePreviewImg) {
             mobilePreviewImg.src = UNKNOWN_HYBRID_IMAGE;
         }
@@ -6375,6 +6154,19 @@ Object.assign(window, { queryArchive });
         });
         parentASelect.value = selectable.find(species => species.key === 'tyrannosaurus_rex')?.key || selectable[0]?.key || '';
         parentBSelect.value = selectable.find(species => species.key === 'spinosaurus')?.key || selectable[1]?.key || parentASelect.value;
+    }
+
+    function writeParentFile(prefix, species) {
+        const set = (suffix, value) => {
+            const el = document.getElementById(prefix + suffix);
+            if (el) el.textContent = value || '—';
+        };
+        if (!species) return;
+        set('Era', species.era);
+        set('Class', species.class);
+        set('LenText', species.len == null ? '—' : `${species.len}${species.lenUnit || 'm'}`);
+        set('WgtText', species.wgt == null ? '—' : `${Number(species.wgt).toLocaleString()}${species.wgtUnit || 'kg'}`);
+        set('Fact', species.fact);
     }
 
     function applyHybridBlend() {
@@ -6398,10 +6190,13 @@ Object.assign(window, { queryArchive });
         document.getElementById('aggLevel').value = String(Math.max(speciesA.agg || 3, speciesB.agg || 3));
         document.getElementById('description').value = `Hybrid simulation blending ${speciesA.name} mass and field traits with ${speciesB.name} morphology under controlled archive review.`;
         document.getElementById('fact').value = `Genome dominance: ${Math.round(t * 100)}% ${speciesB.name}. This remains a fictional research model.`;
-        document.getElementById('imgUrl').value = '';
+        const imgUrlField = document.getElementById('imgUrl');
+        if (imgUrlField) imgUrlField.value = '';
         uploadedImageData = '';
         if (imgFileInput) imgFileInput.value = '';
         if (blendReadout) blendReadout.textContent = `${Math.round(t * 100)}% Parent B / 亲本 B 显性`;
+        writeParentFile('parentA', speciesA);
+        writeParentFile('parentB', speciesB);
 
         // Update Parent 1 and 2 cards in workbench
         const parentAImg = document.getElementById('parentAImg');
@@ -6454,8 +6249,8 @@ Object.assign(window, { queryArchive });
         const isAlertUnknown = agg >= 4;
 
         // Update basic values
-        pCard.setAttribute('data-class', cls);
-        pCardIcon.textContent = cls.toUpperCase();
+        if (pCard) pCard.setAttribute('data-class', cls);
+        if (pCardIcon) pCardIcon.textContent = cls.toUpperCase();
         pCardCode.textContent = code || 'REF-XXX';
         pCardName.textContent = name || 'SPECIES_NAME';
         pCardCn.textContent = cn || '中文名';
@@ -6468,15 +6263,21 @@ Object.assign(window, { queryArchive });
         const shouldResolveHybridVisual = cls === 'hybrid' && speciesA && speciesB;
         if (!shouldResolveHybridVisual) hybridVisualRequest++;
         if (hybridCanvas) hybridCanvas.hidden = true;
-        pCardImg.src = UNKNOWN_HYBRID_IMAGE;
-        pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
-        pCardImg.style.display = 'block';
-        pCardFallback.style.display = 'none';
-        pCardFallback.classList.toggle('alert-unknown', isAlertUnknown);
-        pCard.classList.toggle('synthesis-alert', isAlertUnknown);
-        pCard.classList.toggle('synthesis-success', synthesisStatus === 'success');
-        pCard.classList.toggle('synthesis-failure', synthesisStatus === 'failure');
-        const unknownStatus = pCardFallback.querySelector('.unknown-status') || pCardFallback.querySelector('span');
+        if (pCardImg) {
+            pCardImg.src = UNKNOWN_HYBRID_IMAGE;
+            pCardImg.alt = isAlertUnknown ? 'Alert unknown hybrid specimen visual locked' : 'Unknown hybrid specimen visual locked';
+            pCardImg.style.display = 'block';
+        }
+        if (pCardFallback) {
+            pCardFallback.style.display = 'none';
+            pCardFallback.classList.toggle('alert-unknown', isAlertUnknown);
+        }
+        if (pCard) {
+            pCard.classList.toggle('synthesis-alert', isAlertUnknown);
+            pCard.classList.toggle('synthesis-success', synthesisStatus === 'success');
+            pCard.classList.toggle('synthesis-failure', synthesisStatus === 'failure');
+        }
+        const unknownStatus = pCardFallback && (pCardFallback.querySelector('.unknown-status') || pCardFallback.querySelector('span'));
         if (unknownStatus) {
             unknownStatus.textContent = isAlertUnknown
                 ? 'ALERT: UNKNOWN / 警报：未知影像'
@@ -6486,11 +6287,11 @@ Object.assign(window, { queryArchive });
         // Update DNA sequence text mock
         const bases = 'ATCG'; let seq = '';
         for (let i = 0; i < 24; i++) seq += (i > 0 && i % 4 === 0 ? ' ' : '') + bases[Math.floor(Math.random() * 4)];
-        pCardDna.textContent = seq;
+        if (pCardDna) pCardDna.textContent = seq;
 
         // Update containment and badge
         const ct = getContainment(cls, rarity, agg);
-        pCard.setAttribute('data-containment', ct);
+        if (pCard) pCard.setAttribute('data-containment', ct);
 
         // Remove old badge if exists, and insert new
         let badge = pCardInnerData.querySelector('.containment-badge');
@@ -6520,9 +6321,10 @@ Object.assign(window, { queryArchive });
     }
 
     // Bind real-time input fields
-    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'synthesisStatus', 'era', 'length', 'weight', 'atk', 'hp', 'imgUrl', 'aggLevel'];
+    const inputs = ['code', 'name', 'cnName', 'classSelect', 'raritySelect', 'synthesisStatus', 'era', 'length', 'weight', 'atk', 'hp', 'aggLevel'];
     inputs.forEach(id => {
         const el = document.getElementById(id);
+        if (!el) return;
         el.addEventListener('input', updatePreview);
         el.addEventListener('change', updatePreview);
     });
@@ -6583,10 +6385,14 @@ Object.assign(window, { queryArchive });
             const el = document.getElementById(f.id);
             const err = document.getElementById(f.errId);
             el.classList.remove('input-error');
+            el.removeAttribute('aria-invalid');
+            el.removeAttribute('aria-describedby');
             err.style.display = 'none';
 
             if (el.value.trim() === '') {
                 el.classList.add('input-error');
+                el.setAttribute('aria-invalid', 'true');
+                el.setAttribute('aria-describedby', err.id);
                 err.style.display = 'block';
                 isValid = false;
             }
@@ -6596,9 +6402,13 @@ Object.assign(window, { queryArchive });
         const atkEl = document.getElementById('atk');
         const atkErr = document.getElementById('atkErr');
         atkEl.classList.remove('input-error');
+        atkEl.removeAttribute('aria-invalid');
+        atkEl.removeAttribute('aria-describedby');
         atkErr.style.display = 'none';
         if (atkEl.value.trim() === '' || isNaN(atkEl.value) || parseFloat(atkEl.value) <= 0) {
             atkEl.classList.add('input-error');
+            atkEl.setAttribute('aria-invalid', 'true');
+            atkEl.setAttribute('aria-describedby', atkErr.id);
             atkErr.style.display = 'block';
             isValid = false;
         }
@@ -6606,11 +6416,20 @@ Object.assign(window, { queryArchive });
         const hpEl = document.getElementById('hp');
         const hpErr = document.getElementById('hpErr');
         hpEl.classList.remove('input-error');
+        hpEl.removeAttribute('aria-invalid');
+        hpEl.removeAttribute('aria-describedby');
         hpErr.style.display = 'none';
         if (hpEl.value.trim() === '' || isNaN(hpEl.value) || parseFloat(hpEl.value) <= 0) {
             hpEl.classList.add('input-error');
+            hpEl.setAttribute('aria-invalid', 'true');
+            hpEl.setAttribute('aria-describedby', hpErr.id);
             hpErr.style.display = 'block';
             isValid = false;
+        }
+
+        if (!isValid) {
+            form.querySelector('[aria-invalid="true"]')?.focus();
+            return;
         }
 
         if (isValid) {
@@ -6628,18 +6447,27 @@ Object.assign(window, { queryArchive });
                 hp: document.getElementById('hp').value.trim(),
                 agg: parseInt(document.getElementById('aggLevel').value),
                 status: document.getElementById('synthesisStatus').value,
-                img: uploadedImageData || document.getElementById('imgUrl').value.trim() || UNKNOWN_HYBRID_IMAGE,
+                img: uploadedImageData || document.getElementById('imgUrl')?.value.trim() || '',
                 desc: document.getElementById('description').value.trim(),
                 fact: document.getElementById('fact').value.trim()
             };
 
             // Read existing custom assets, append, and save
-            const customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+            let customAssets = [];
+            try {
+                customAssets = JSON.parse(localStorage.getItem('ingen_custom_assets') || '[]');
+                if (!Array.isArray(customAssets)) customAssets = [];
+            } catch (_) {
+                customAssets = [];
+            }
             customAssets.push(newAsset);
-            localStorage.setItem('ingen_custom_assets', JSON.stringify(customAssets));
-
-            // Display success modal
-            document.getElementById('successOverlay').classList.add('active');
+            try {
+                localStorage.setItem('ingen_custom_assets', JSON.stringify(customAssets));
+                // Display success modal
+                document.getElementById('successOverlay').classList.add('active');
+            } catch (err) {
+                alert('Storage quota exceeded! Unable to save new hybrid sequence to local storage. Please remove older custom assets.');
+            }
         }
     });
 
@@ -6656,11 +6484,29 @@ Object.assign(window, { queryArchive });
         });
     });
 
+    form.addEventListener('input', function(event) {
+        const el = event.target;
+        if (!el.matches('[aria-invalid="true"]')) return;
+        const numeric = el.id === 'atk' || el.id === 'hp';
+        if (!el.value.trim() || (numeric && (isNaN(el.value) || parseFloat(el.value) <= 0))) return;
+        const err = document.getElementById(el.getAttribute('aria-describedby'));
+        el.classList.remove('input-error');
+        el.removeAttribute('aria-invalid');
+        el.removeAttribute('aria-describedby');
+        if (err) err.style.display = 'none';
+    });
+
     // Reset button
     const resetBtn = document.getElementById('resetLabBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
             form.reset();
+            form.querySelectorAll('[aria-invalid]').forEach(el => {
+                el.classList.remove('input-error');
+                el.removeAttribute('aria-invalid');
+                el.removeAttribute('aria-describedby');
+            });
+            form.querySelectorAll('.error-lbl').forEach(err => { err.style.display = 'none'; });
             uploadedImageData = '';
             if (parentASelect && parentBSelect) {
                 parentASelect.selectedIndex = 0;
@@ -6674,26 +6520,17 @@ Object.assign(window, { queryArchive });
         });
     }
 
-    // Red Code Alert Modal handlers in form
-    setupRedCodeModal();
 
     // Mobile menu toggle
-    const menuToggle = document.getElementById('plMenuToggle') || document.getElementById('menuToggle');
-    const mainNav = document.getElementById('plNav') || document.getElementById('mainNav');
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('mobile-open');
-        });
-    }
+    setupMobileMenu();
 
 }
 
-  const initializers = { index: init_index, gallery: init_gallery, timescale: init_timescale, form: init_form };
+  const initializers = { index: init_index, gallery: init_gallery, 'field-guide': init_gallery, timescale: init_timescale, form: init_form };
   const initialize = () => { if (initializers[page]) initializers[page](); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
   else initialize();
 })();
-
 `
 
 ## File: assets/css/site.css
@@ -7083,10 +6920,10 @@ html[data-page="index"]{
             border: 1px solid rgba(200, 163, 106, 0.78);
             box-shadow: inset 0 1px 0 rgba(255, 244, 213, 0.08), 0 0 24px rgba(200, 163, 106, 0.14);
             cursor: pointer;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: bold;
-            letter-spacing: 3px;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             transition: filter 0.25s, transform 0.25s;
         }
@@ -7484,14 +7321,14 @@ html[data-page="index"]{
         }
 
 /* ===== GALLERY PAGE ===== */
-html[data-page="gallery"]{
+html:is([data-page="gallery"], [data-page="field-guide"]){
             --bg-deep: #101215;
             --grid-line: rgba(255, 255, 255, 0.03);
             --text-main: #dfe6e9; --card-bg: rgba(20, 22, 26, 0.9); --star-gold: #f1c40f;
         }
 
-        html[data-page="gallery"] *{ box-sizing: border-box; }
-        html[data-page="gallery"] body{
+        html:is([data-page="gallery"], [data-page="field-guide"]) *{ box-sizing: border-box; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) body{
             margin: 0; padding: 0; background-color: var(--bg-deep); color: var(--text-main);
             font-family: 'Share Tech Mono', 'Courier New', monospace;
             min-height: 100vh; overflow-x: hidden;
@@ -7500,65 +7337,65 @@ html[data-page="gallery"]{
         }
 
         /* --- Header --- */
-        html[data-page="gallery"] .console-header{ position: sticky; top: 0; z-index: 100; background: rgba(16, 18, 21, 0.98); border-bottom: 2px solid var(--cls-hybrid); padding: 15px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        html[data-page="gallery"] .back-nav{ margin-bottom: 10px; }
-        html[data-page="gallery"] .back-btn{ text-decoration: none; color: #666; font-size: 0.8rem; letter-spacing: 2px; border: 1px solid #333; padding: 6px 15px; transition: all 0.3s; display: inline-block; text-transform: uppercase; }
-        html[data-page="gallery"] .back-btn:hover{ color: #fff; border-color: var(--cls-hybrid); background: rgba(214, 48, 49, 0.1); }
-        html[data-page="gallery"] .sys-title{ font-size: 1.6rem; letter-spacing: 2px; color: #fff; margin-bottom: 15px;}
-        html[data-page="gallery"] .sys-title span{ color: var(--cls-hybrid); font-weight: bold; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .console-header{ position: sticky; top: 0; z-index: 100; background: rgba(16, 18, 21, 0.98); border-bottom: 2px solid var(--cls-hybrid); padding: 15px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .back-nav{ margin-bottom: 10px; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn{ text-decoration: none; color: #666; font-size: 0.8rem; letter-spacing: 2px; border: 1px solid #333; padding: 6px 15px; transition: all 0.3s; display: inline-block; text-transform: uppercase; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn:hover{ color: #fff; border-color: var(--cls-hybrid); background: rgba(214, 48, 49, 0.1); }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title{ font-size: 1.6rem; letter-spacing: 2px; color: #fff; margin-bottom: 15px;}
+        html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title span{ color: var(--cls-hybrid); font-weight: bold; }
 
-        html[data-page="gallery"] .tools-row{ display: flex; gap: 15px; margin-bottom: 15px; }
-        html[data-page="gallery"] .search-box{ flex: 1; background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff; padding: 10px 15px; font-family: inherit; font-size: 1rem; }
-        html[data-page="gallery"] .sort-select{ background: #000; color: #fff; border: 1px solid #444; padding: 0 15px; font-family: inherit; cursor: pointer; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{ display: flex; gap: 15px; margin-bottom: 15px; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .search-box{ flex: 1; background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff; padding: 10px 15px; font-family: inherit; font-size: 1rem; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select{ background: #000; color: #fff; border: 1px solid #444; padding: 0 15px; font-family: inherit; cursor: pointer; }
         
-        html[data-page="gallery"] .filter-group{ display: flex; gap: 8px; flex-wrap: wrap; }
-        html[data-page="gallery"] .filter-btn{ background: rgba(255,255,255,0.05); border: 1px solid #444; color: #aaa; padding: 6px 14px; font-size: 0.85rem; cursor: pointer; border-radius: 4px; transition: 0.2s; }
-        html[data-page="gallery"] .filter-btn.active{ color: #fff; border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.2); background: #333; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .filter-group{ display: flex; gap: 8px; flex-wrap: wrap; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{ background: rgba(255,255,255,0.05); border: 1px solid #444; color: #aaa; padding: 6px 14px; font-size: 0.85rem; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn.active{ color: #fff; border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.2); background: #333; }
 
         /* --- Sections --- */
-        html[data-page="gallery"] .section-wrapper{ padding: 0 30px 40px 30px; }
-        html[data-page="gallery"] .section-wrapper.hidden-section{ display: none; }
-        html[data-page="gallery"] .section-title{ font-size: 1.4rem; border-left: 5px solid #fff; padding: 10px 15px; margin: 30px 0 20px 0; text-transform: uppercase; background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent); }
-        html[data-page="gallery"] .grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{ padding: 0 30px 40px 30px; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper.hidden-section{ display: none !important; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .section-title{ font-size: 1.4rem; border-left: 5px solid #fff; padding: 10px 15px; margin: 30px 0 20px 0; text-transform: uppercase; background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent); }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 
         /* --- Card Styles --- */
-        html[data-page="gallery"] .card{ background: var(--card-bg); border: 1px solid #333; height: 360px; display: flex; flex-direction: column; cursor: pointer; overflow: hidden; transition: 0.2s; position: relative; }
-        html[data-page="gallery"] .card:hover{ transform: translateY(-5px); border-color: #777; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        html[data-page="gallery"] .card.hidden{ display: none; }
-        html[data-page="gallery"] .card-vis{ height: 60%; background: #000; display: flex; align-items: center; justify-content: center; border-bottom: 4px solid #333; position: relative; }
-        html[data-page="gallery"] .card-img{ width: 100%; height: 100%; object-fit: contain; }
-        html[data-page="gallery"] .class-icon{ position: absolute; top: 0; left: 0; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; border-bottom: 1px solid #fff; border-right: 1px solid #fff; z-index: 2; }
-        html[data-page="gallery"] .card-data{ padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        html[data-page="gallery"] .spec-code{ font-size: 0.7rem; color: #666; }
-        html[data-page="gallery"] .spec-name{ font-size: 1.4rem; color: #fff; font-weight: bold; text-transform: uppercase; line-height: 1; margin: 5px 0; }
-        html[data-page="gallery"] .spec-cn{ font-size: 0.85rem; color: #999; }
-        html[data-page="gallery"] .spec-stats{ display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-size: 0.7rem; color: #aaa; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card{ background: var(--card-bg); border: 1px solid #333; height: 360px; display: flex; flex-direction: column; cursor: pointer; overflow: hidden; transition: 0.2s; position: relative; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover{ transform: translateY(-5px); border-color: #777; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card.hidden{ display: none !important; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis{ height: 60%; background: #000; display: flex; align-items: center; justify-content: center; border-bottom: 4px solid #333; position: relative; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card-img{ width: 100%; height: 100%; object-fit: contain; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .class-icon{ position: absolute; top: 0; left: 0; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; border-bottom: 1px solid #fff; border-right: 1px solid #fff; z-index: 2; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card-data{ padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .spec-code{ font-size: 0.7rem; color: #666; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name{ font-size: 1.4rem; color: #fff; font-weight: bold; text-transform: uppercase; line-height: 1; margin: 5px 0; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn{ font-size: 0.85rem; color: #999; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats{ display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-size: 0.7rem; color: #aaa; }
 
         /* --- Footer (Page Number) --- */
-        html[data-page="gallery"] .page-footer{ position: fixed; bottom: 20px; right: 30px; font-size: 0.85rem; color: #444; letter-spacing: 2px; z-index: 50; pointer-events: none; text-transform: uppercase; }
-        html[data-page="gallery"] .page-footer span{ color: #888; font-weight: bold; margin-left: 8px; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .page-footer{ position: fixed; bottom: 20px; right: 30px; font-size: 0.85rem; color: #444; letter-spacing: 2px; z-index: 50; pointer-events: none; text-transform: uppercase; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .page-footer span{ color: #888; font-weight: bold; margin-left: 8px; }
 
         /* --- Modal & Alert --- */
-        html[data-page="gallery"] .modal-overlay{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 1000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-        html[data-page="gallery"] .modal-overlay.active{ display: flex; }
-        html[data-page="gallery"] .modal-window{ width: 1000px; max-height: 90vh; background: #0a0a0a; border: 1px solid #444; display: flex; overflow: hidden; position: relative; }
-        html[data-page="gallery"] .modal-vis{ flex: 4; background: #000; display: flex; align-items: center; justify-content: center; border-right: 1px solid #333; }
-        html[data-page="gallery"] .modal-img{ width: 100%; height: 100%; object-fit: contain; }
-        html[data-page="gallery"] .modal-info{ flex: 3; padding: 40px; overflow-y: auto; }
-        html[data-page="gallery"] .alert-screen{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(214, 48, 49, 0.95); z-index: 2000; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; animation: gallery-flashRed 1s infinite; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-overlay{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 1000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-overlay.active{ display: flex; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{ width: 1000px; max-height: 90vh; background: #0a0a0a; border: 1px solid #444; display: flex; overflow: hidden; position: relative; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis{ flex: 4; background: #000; display: flex; align-items: center; justify-content: center; border-right: 1px solid #333; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img{ width: 100%; height: 100%; object-fit: contain; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info{ flex: 3; padding: 40px; overflow-y: auto; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .alert-screen{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(214, 48, 49, 0.95); z-index: 2000; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; animation: gallery-flashRed 1s infinite; }
         @keyframes gallery-flashRed { 0%, 100% { background: rgba(214, 48, 49, 0.9); } 50% { background: rgba(100, 0, 0, 0.9); } }
 
         /* Class Colors Application */
-        html[data-page="gallery"] .card[data-class="hybrid"]{ border-top: 3px solid var(--cls-hybrid); } html[data-page="gallery"] .card[data-class="hybrid"] .class-icon{ background: var(--cls-hybrid); color: #fff; }
-        html[data-page="gallery"] .card[data-class="carnivore"]{ border-top: 3px solid var(--cls-carnivore); } html[data-page="gallery"] .card[data-class="carnivore"] .class-icon{ background: var(--cls-carnivore); color: #fff; }
-        html[data-page="gallery"] .card[data-class="herbivore"]{ border-top: 3px solid var(--cls-herbivore); } html[data-page="gallery"] .card[data-class="herbivore"] .class-icon{ background: var(--cls-herbivore); color: #fff; }
-        html[data-page="gallery"] .card[data-class="pterosaur"]{ border-top: 3px solid var(--cls-pterosaur); } html[data-page="gallery"] .card[data-class="pterosaur"] .class-icon{ background: var(--cls-pterosaur); color: #000; }
-        html[data-page="gallery"] .card[data-class="amphibian"]{ border-top: 3px solid var(--cls-amphibian); } html[data-page="gallery"] .card[data-class="amphibian"] .class-icon{ background: var(--cls-amphibian); color: #000; }
-        html[data-page="gallery"] .card[data-class="aquatic"]{ border-top: 3px solid var(--cls-aquatic); } html[data-page="gallery"] .card[data-class="aquatic"] .class-icon{ background: var(--cls-aquatic); color: #fff; }
-        html[data-page="gallery"] .card[data-class="cenozoic"]{ border-top: 3px solid var(--cls-cenozoic); } html[data-page="gallery"] .card[data-class="cenozoic"] .class-icon{ background: var(--cls-cenozoic); color: #000; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="hybrid"]{ border-top: 3px solid var(--cls-hybrid); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="hybrid"] .class-icon{ background: var(--cls-hybrid); color: #fff; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="carnivore"]{ border-top: 3px solid var(--cls-carnivore); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="carnivore"] .class-icon{ background: var(--cls-carnivore); color: #fff; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="herbivore"]{ border-top: 3px solid var(--cls-herbivore); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="herbivore"] .class-icon{ background: var(--cls-herbivore); color: #fff; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="pterosaur"]{ border-top: 3px solid var(--cls-pterosaur); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="pterosaur"] .class-icon{ background: var(--cls-pterosaur); color: #000; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="amphibian"]{ border-top: 3px solid var(--cls-amphibian); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="amphibian"] .class-icon{ background: var(--cls-amphibian); color: #000; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="aquatic"]{ border-top: 3px solid var(--cls-aquatic); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="aquatic"] .class-icon{ background: var(--cls-aquatic); color: #fff; }
+        html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="cenozoic"]{ border-top: 3px solid var(--cls-cenozoic); } html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-class="cenozoic"] .class-icon{ background: var(--cls-cenozoic); color: #000; }
 
     /* ── INGEN TERMINAL REDESIGN ──────────────────── */
-    html[data-page="gallery"]{
+    html:is([data-page="gallery"], [data-page="field-guide"]){
       --ingen-green: var(--ingen-green);
       --ingen-green-dim: var(--ingen-green-dim);
       --ingen-green-glow: var(--ingen-green-glow);
@@ -7572,122 +7409,122 @@ html[data-page="gallery"]{
     }
 
     /* CRT scanlines */
-    html[data-page="gallery"] body::after{
+    html:is([data-page="gallery"], [data-page="field-guide"]) body::after{
       content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
       background:repeating-linear-gradient(0deg,rgba(0,0,0,0.15) 0,rgba(0,0,0,0.15) 1px,transparent 1px,transparent 3px);
     }
-    html[data-page="gallery"] body::before{
+    html:is([data-page="gallery"], [data-page="field-guide"]) body::before{
       content:''; position:fixed; inset:0; z-index:9998; pointer-events:none;
       background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
     }
 
     /* Boot overlay */
-    html[data-page="gallery"] #boot-overlay{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #boot-overlay{
       position:fixed; inset:0; z-index:8000; background:#000;
       display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
       padding:80px; transition:opacity 0.8s;
     }
-    html[data-page="gallery"] #boot-overlay.fade-out{ opacity:0; pointer-events:none; }
-    html[data-page="gallery"] .boot-logo{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #boot-overlay.fade-out{ opacity:0; pointer-events:none; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .boot-logo{
       font-family:'Orbitron',sans-serif; font-size:2.4rem; font-weight:900;
       color:var(--ingen-green); letter-spacing:4px; margin-bottom:36px;
       text-shadow:0 0 30px var(--ingen-green-glow);
     }
-    html[data-page="gallery"] .boot-logo span{ color:#fff; }
-    html[data-page="gallery"] #boot-text{ font-size:0.85rem; color:var(--ingen-green); line-height:2.2; max-width:600px; }
-    html[data-page="gallery"] .boot-line{ display:block; opacity:0; animation:gallery-bootFade 0.1s forwards; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .boot-logo span{ color:#fff; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) #boot-text{ font-size:0.85rem; color:var(--ingen-green); line-height:2.2; max-width:600px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .boot-line{ display:block; opacity:0; animation:gallery-bootFade 0.1s forwards; }
     @keyframes gallery-bootFade { to { opacity:1; } }
-    html[data-page="gallery"] #boot-cursor{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #boot-cursor{
       display:inline-block; width:9px; height:1em; background:var(--ingen-green);
       vertical-align:middle; margin-left:4px; animation:gallery-cursorBlink 0.6s infinite;
     }
     @keyframes gallery-cursorBlink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
 
     /* CLEARANCE BANNER */
-    html[data-page="gallery"] .clearance-banner{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner{
       background:repeating-linear-gradient(45deg,#1a0000 0,#1a0000 8px,#2a0000 8px,#2a0000 16px);
       border-bottom:2px solid #d63031; padding:6px 30px;
       display:flex; align-items:center; justify-content:space-between;
     }
-    html[data-page="gallery"] .clearance-text{ font-size:0.7rem; letter-spacing:3px; color:#d63031; font-weight:bold; }
-    html[data-page="gallery"] .clearance-id{ font-size:0.7rem; color:#7a2222; letter-spacing:2px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-text{ font-size:0.7rem; letter-spacing:3px; color:#d63031; font-weight:bold; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-id{ font-size:0.7rem; color:#7a2222; letter-spacing:2px; }
 
     /* PADDOCK STATUS SIDEBAR */
-    html[data-page="gallery"] #paddock-board{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #paddock-board{
       position:fixed; right:0; top:0; width:220px; height:100vh;
       background:rgba(5,7,8,0.98); border-left:1px solid #0d1f0d;
       z-index:400; display:flex; flex-direction:column; overflow:hidden;
     }
-    html[data-page="gallery"] .paddock-header{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-header{
       background:var(--ingen-green-glow); border-bottom:1px solid var(--ingen-green-dim);
       padding:12px 14px; font-family:'Orbitron',sans-serif;
       font-size: 0.7rem; font-weight:700; color:var(--ingen-green); letter-spacing:2px;
     }
-    html[data-page="gallery"] .paddock-header .ph-sub{ font-size:0.7rem; color:#3a5a3a; margin-top:3px; }
-    html[data-page="gallery"] .paddock-list{ flex:1; overflow-y:auto; padding:6px 0; }
-    html[data-page="gallery"] .paddock-list::-webkit-scrollbar{ width:3px; }
-    html[data-page="gallery"] .paddock-list::-webkit-scrollbar-thumb{ background:var(--ingen-green-dim); }
-    html[data-page="gallery"] .paddock-item{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-header .ph-sub{ font-size:0.7rem; color:#3a5a3a; margin-top:3px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-list{ flex:1; overflow-y:auto; padding:6px 0; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-list::-webkit-scrollbar{ width:3px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-list::-webkit-scrollbar-thumb{ background:var(--ingen-green-dim); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-item{
       padding:9px 14px; border-bottom:1px solid var(--ingen-green-glow); transition:background 0.3s;
     }
-    html[data-page="gallery"] .paddock-item.breach{ animation:gallery-breachPulse 1s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-item.breach{ animation:gallery-breachPulse 1s infinite; }
     @keyframes gallery-breachPulse { 0%,100%{background:rgba(214,48,49,0.08)} 50%{background:rgba(214,48,49,0.2)} }
-    html[data-page="gallery"] .pi-top{ display:flex; align-items:center; gap:8px; margin-bottom:3px; }
-    html[data-page="gallery"] .pi-led{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .pi-top{ display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .pi-led{
       width:7px; height:7px; border-radius:50%;
       background:var(--ingen-green); box-shadow:0 0 6px var(--ingen-green); flex-shrink:0;
       transition:all 0.3s;
     }
-    html[data-page="gallery"] .paddock-item.breach .pi-led{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-item.breach .pi-led{
       background:#d63031; box-shadow:0 0 8px #d63031;
       animation:gallery-ledFlash 0.5s infinite;
     }
     @keyframes gallery-ledFlash { 0%,100%{opacity:1} 50%{opacity:0.2} }
-    html[data-page="gallery"] .pi-name{ font-size:0.7rem; color:#a8d5a8; letter-spacing:1px; line-height:1.3; }
-    html[data-page="gallery"] .pi-status{ font-size:0.7rem; letter-spacing:2px; color:var(--ingen-green); padding-left:15px; }
-    html[data-page="gallery"] .paddock-item.breach .pi-status{ color:#d63031; font-weight:bold; }
-    html[data-page="gallery"] .paddock-time{ font-size: 0.7rem; color:#3a5a3a; letter-spacing:1px; padding-left:15px; margin-top:2px; }
-    html[data-page="gallery"] .paddock-footer{ border-top:1px solid var(--ingen-green-dim); padding:10px 14px; }
-    html[data-page="gallery"] .system-clock{ font-size:0.7rem; color:#3a5a3a; letter-spacing:1px; text-align:center; }
-    html[data-page="gallery"] .system-clock span{ color:var(--ingen-green); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .pi-name{ font-size:0.7rem; color:#a8d5a8; letter-spacing:1px; line-height:1.3; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .pi-status{ font-size:0.7rem; letter-spacing:2px; color:var(--ingen-green); padding-left:15px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-item.breach .pi-status{ color:#d63031; font-weight:bold; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-time{ font-size: 0.7rem; color:#3a5a3a; letter-spacing:1px; padding-left:15px; margin-top:2px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .paddock-footer{ border-top:1px solid var(--ingen-green-dim); padding:10px 14px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .system-clock{ font-size:0.7rem; color:#3a5a3a; letter-spacing:1px; text-align:center; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .system-clock span{ color:var(--ingen-green); }
 
     /* PAGE WRAP */
-    html[data-page="gallery"] .page-wrap{ margin-right:220px; }
-    @media(max-width:1100px){ html[data-page="gallery"] #paddock-board{display:none;} html[data-page="gallery"] .page-wrap{margin-right:0;} }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap{ margin-right:220px; }
+    @media(max-width:1100px){ html:is([data-page="gallery"], [data-page="field-guide"]) #paddock-board{display:none;} html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap{margin-right:0;} }
 
     /* CONTAINMENT BADGES on cards */
-    html[data-page="gallery"] .containment-badge{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .containment-badge{
       display:inline-block; font-size: 0.7rem; letter-spacing:1px;
       padding:2px 7px; border:1px solid; margin-top:5px; border-radius:2px;
     }
-    html[data-page="gallery"] .ct-open{ color:#27ae60; border-color:#27ae60; background:rgba(39,174,96,0.07); }
-    html[data-page="gallery"] .ct-fence{ color:#f1c40f; border-color:#f1c40f; background:rgba(241,196,15,0.07); }
-    html[data-page="gallery"] .ct-bunker{ color:#e67e22; border-color:#e67e22; background:rgba(230,126,34,0.07); }
-    html[data-page="gallery"] .ct-class{ color:#d63031; border-color:#d63031; background:rgba(214,48,49,0.07); animation:gallery-classFlicker 3s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .ct-open{ color:#27ae60; border-color:#27ae60; background:rgba(39,174,96,0.07); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .ct-fence{ color:#f1c40f; border-color:#f1c40f; background:rgba(241,196,15,0.07); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .ct-bunker{ color:#e67e22; border-color:#e67e22; background:rgba(230,126,34,0.07); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .ct-class{ color:#d63031; border-color:#d63031; background:rgba(214,48,49,0.07); animation:gallery-classFlicker 3s infinite; }
     @keyframes gallery-classFlicker { 0%,93%,100%{opacity:1} 95%,99%{opacity:0.5} }
 
     /* DNA scan hover */
-    html[data-page="gallery"] .dna-overlay{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .dna-overlay{
       position:absolute; bottom:0; left:0; right:0; padding:5px 8px;
       font-size: 0.7rem; color:var(--ingen-green-glow); letter-spacing:1px; line-height:1.8;
       background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
       opacity:0; transition:opacity 0.35s; pointer-events:none; word-break:break-all;
     }
-    html[data-page="gallery"] .card:hover .dna-overlay{ opacity:1; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover .dna-overlay{ opacity:1; }
 
     /* CARD enhancements */
-    html[data-page="gallery"] .card[data-containment="open"]{ border-top-color:#27ae60; }
-    html[data-page="gallery"] .card[data-containment="fence"]{ border-top-color:#f1c40f; }
-    html[data-page="gallery"] .card[data-containment="bunker"]{ border-top-color:#e67e22; }
-    html[data-page="gallery"] .card[data-containment="class"]{ border-top-color:#d63031; animation:gallery-cardThreat 4s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-containment="open"]{ border-top-color:#27ae60; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-containment="fence"]{ border-top-color:#f1c40f; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-containment="bunker"]{ border-top-color:#e67e22; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card[data-containment="class"]{ border-top-color:#d63031; animation:gallery-cardThreat 4s infinite; }
     @keyframes gallery-cardThreat { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 15px rgba(214,48,49,0.18)} }
-    html[data-page="gallery"] .card:hover[data-containment="open"]{ box-shadow:0 8px 25px rgba(39,174,96,0.12); }
-    html[data-page="gallery"] .card:hover[data-containment="fence"]{ box-shadow:0 8px 25px rgba(241,196,15,0.12); }
-    html[data-page="gallery"] .card:hover[data-containment="bunker"]{ box-shadow:0 8px 25px rgba(230,126,34,0.12); }
-    html[data-page="gallery"] .card:hover[data-containment="class"]{ box-shadow:0 8px 25px rgba(214,48,49,0.22); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover[data-containment="open"]{ box-shadow:0 8px 25px rgba(39,174,96,0.12); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover[data-containment="fence"]{ box-shadow:0 8px 25px rgba(241,196,15,0.12); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover[data-containment="bunker"]{ box-shadow:0 8px 25px rgba(230,126,34,0.12); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover[data-containment="class"]{ box-shadow:0 8px 25px rgba(214,48,49,0.22); }
 
     /* Modal scan beam */
-    html[data-page="gallery"] .modal-window::before{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window::before{
       content:''; position:absolute; top:0; left:-100%; right:100%; height:2px;
       background:linear-gradient(90deg,transparent,var(--ingen-green),transparent);
       animation:gallery-scanBeam 3s linear infinite; z-index:5;
@@ -7695,81 +7532,81 @@ html[data-page="gallery"]{
     @keyframes gallery-scanBeam { 0%{left:-100%;right:100%} 100%{left:100%;right:-100%} }
 
     /* Modal containment protocol strip */
-    html[data-page="gallery"] .mi-protocol{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol{
       border:1px solid; padding:8px 14px; margin-bottom:18px;
       display:flex; align-items:center; gap:12px;
     }
-    html[data-page="gallery"] .mi-protocol-dot{ width:10px; height:10px; border-radius:50%; flex-shrink:0; animation:gallery-ledFlash 1.5s infinite; }
-    html[data-page="gallery"] .mi-protocol-label{ font-size:0.7rem; font-weight:700; letter-spacing:2px; }
-    html[data-page="gallery"] .proto-open{ border-color:#27ae60; color:#27ae60; }
-    html[data-page="gallery"] .proto-open   .mi-protocol-dot{ background:#27ae60; box-shadow:0 0 8px #27ae60; }
-    html[data-page="gallery"] .proto-fence{ border-color:#f1c40f; color:#f1c40f; }
-    html[data-page="gallery"] .proto-fence  .mi-protocol-dot{ background:#f1c40f; box-shadow:0 0 8px #f1c40f; }
-    html[data-page="gallery"] .proto-bunker{ border-color:#e67e22; color:#e67e22; }
-    html[data-page="gallery"] .proto-bunker .mi-protocol-dot{ background:#e67e22; box-shadow:0 0 8px #e67e22; }
-    html[data-page="gallery"] .proto-class{ border-color:#d63031; color:#d63031; animation:gallery-classFlicker 2s infinite; }
-    html[data-page="gallery"] .proto-class  .mi-protocol-dot{ background:#d63031; box-shadow:0 0 8px #d63031; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-dot{ width:10px; height:10px; border-radius:50%; flex-shrink:0; animation:gallery-ledFlash 1.5s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-label{ font-size:0.7rem; font-weight:700; letter-spacing:2px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-open{ border-color:#27ae60; color:#27ae60; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-open   .mi-protocol-dot{ background:#27ae60; box-shadow:0 0 8px #27ae60; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-fence{ border-color:#f1c40f; color:#f1c40f; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-fence  .mi-protocol-dot{ background:#f1c40f; box-shadow:0 0 8px #f1c40f; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-bunker{ border-color:#e67e22; color:#e67e22; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-bunker .mi-protocol-dot{ background:#e67e22; box-shadow:0 0 8px #e67e22; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-class{ border-color:#d63031; color:#d63031; animation:gallery-classFlicker 2s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .proto-class  .mi-protocol-dot{ background:#d63031; box-shadow:0 0 8px #d63031; }
 
     /* Habitat map */
-    html[data-page="gallery"] .mi-map-section{ margin-bottom:16px; }
-    html[data-page="gallery"] .mi-map-label{ font-size:0.7rem; color:#3a5a3a; letter-spacing:2px; margin-bottom:6px; }
-    html[data-page="gallery"] .map-container{ background:#000d0d; border:1px solid var(--ingen-green-dim); padding:6px; position:relative; }
-    html[data-page="gallery"] #modalMap{ width:100%; height:auto; display:block; }
-    html[data-page="gallery"] .map-ocean{ fill:#020e0e; }
-    html[data-page="gallery"] .map-region{ fill:#091a09; stroke:#0d2a0d; stroke-width:0.8; transition:fill 0.5s,stroke 0.5s; }
-    html[data-page="gallery"] .map-region.active{ fill:var(--ingen-green-glow); stroke:var(--ingen-green); }
-    html[data-page="gallery"] .map-region.classified-zone{ fill:rgba(214,48,49,0.32); stroke:#d63031; animation:gallery-classFlicker 2s infinite; }
-    html[data-page="gallery"] .map-grid{ stroke:var(--ingen-green-glow); stroke-width:0.5; fill:none; }
-    html[data-page="gallery"] .map-dot{ fill:var(--ingen-green); opacity:0; transition:opacity 0.5s; }
-    html[data-page="gallery"] .map-dot.active{ opacity:1; animation:gallery-dotPulse 2s infinite; }
-    html[data-page="gallery"] .map-dot.classified{ fill:#d63031; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-map-section{ margin-bottom:16px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-map-label{ font-size:0.7rem; color:#3a5a3a; letter-spacing:2px; margin-bottom:6px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-container{ background:#000d0d; border:1px solid var(--ingen-green-dim); padding:6px; position:relative; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) #modalMap{ width:100%; height:auto; display:block; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-ocean{ fill:#020e0e; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region{ fill:#091a09; stroke:#0d2a0d; stroke-width:0.8; transition:fill 0.5s,stroke 0.5s; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region.active{ fill:var(--ingen-green-glow); stroke:var(--ingen-green); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region.classified-zone{ fill:rgba(214,48,49,0.32); stroke:#d63031; animation:gallery-classFlicker 2s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-grid{ stroke:var(--ingen-green-glow); stroke-width:0.5; fill:none; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-dot{ fill:var(--ingen-green); opacity:0; transition:opacity 0.5s; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-dot.active{ opacity:1; animation:gallery-dotPulse 2s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-dot.classified{ fill:#d63031; }
     @keyframes gallery-dotPulse { 0%,100%{r:3;opacity:1} 50%{r:6;opacity:0.5} }
-    html[data-page="gallery"] .map-caption{ font-size:0.7rem; color:#3a5a3a; letter-spacing:1px; margin-top:5px; text-align:center; }
-    html[data-page="gallery"] .map-caption span{ color:var(--ingen-green); }
-    html[data-page="gallery"] .map-caption.cls-cap span{ color:#d63031; animation:gallery-classFlicker 2s infinite; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-caption{ font-size:0.7rem; color:#3a5a3a; letter-spacing:1px; margin-top:5px; text-align:center; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-caption span{ color:var(--ingen-green); }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-caption.cls-cap span{ color:#d63031; animation:gallery-classFlicker 2s infinite; }
 
     /* Breach alert */
-    html[data-page="gallery"] #ingen-breach{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #ingen-breach{
       position:fixed; inset:0; z-index:5000;
       background:rgba(80,0,0,0.96);
       display:none; flex-direction:column;
       justify-content:center; align-items:center; text-align:center;
       animation:gallery-breachFlash 0.8s infinite;
     }
-    html[data-page="gallery"] #ingen-breach.active{ display:flex; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) #ingen-breach.active{ display:flex; }
     @keyframes gallery-breachFlash { 0%,100%{background:rgba(80,0,0,0.96)} 50%{background:rgba(20,0,0,0.96)} }
-    html[data-page="gallery"] .breach-title{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .breach-title{
       font-family:'Orbitron',sans-serif; font-size:3rem; font-weight:900;
       color:#d63031; letter-spacing:4px; text-shadow:0 0 30px #d63031; margin-bottom:14px;
     }
-    html[data-page="gallery"] .breach-sub{ font-size:0.95rem; color:#ff7070; letter-spacing:3px; margin-bottom:8px; }
-    html[data-page="gallery"] .breach-pad{ font-size:0.75rem; color:#888; letter-spacing:2px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .breach-sub{ font-size:0.95rem; color:#ff7070; letter-spacing:3px; margin-bottom:8px; }
+    html:is([data-page="gallery"], [data-page="field-guide"]) .breach-pad{ font-size:0.75rem; color:#888; letter-spacing:2px; }
 
     /* Paleo full-site redesign */
-    html[data-page="gallery"] body{
+    html:is([data-page="gallery"], [data-page="field-guide"]) body{
       background:
         radial-gradient(circle at 20% 0%, rgba(0, 200, 83, 0.09), transparent 34%),
         linear-gradient(135deg, #07090a 0%, #101412 48%, #050606 100%);
     }
-    html[data-page="gallery"] #paddock-board{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #paddock-board{
       display: none;
     }
-    html[data-page="gallery"] .page-wrap{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap{
       margin-right: 0;
     }
-    html[data-page="gallery"] #boot-overlay{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #boot-overlay{
       background:
         radial-gradient(circle at 25% 30%, rgba(0, 200, 83, 0.12), transparent 32%),
         #020303;
     }
-    html[data-page="gallery"] .boot-logo{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .boot-logo{
       color: #fff;
       letter-spacing: 3px;
     }
-    html[data-page="gallery"] .boot-logo span{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .boot-logo span{
       color: var(--ingen-green);
     }
-    html[data-page="gallery"] .clearance-banner{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner{
       max-width: 1360px;
       margin: 18px auto 0 auto;
       border: 1px solid rgba(168, 213, 168, 0.16);
@@ -7777,13 +7614,13 @@ html[data-page="gallery"]{
       background: rgba(0, 0, 0, 0.32);
       padding: 10px 18px;
     }
-    html[data-page="gallery"] .clearance-text{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-text{
       color: var(--ingen-green);
     }
-    html[data-page="gallery"] .clearance-id{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-id{
       color: #73867b;
     }
-    html[data-page="gallery"] .console-header{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .console-header{
       max-width: 1360px;
       margin: 18px auto 24px auto;
       border: 1px solid rgba(168, 213, 168, 0.18);
@@ -7792,53 +7629,53 @@ html[data-page="gallery"]{
       backdrop-filter: blur(12px);
       box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
     }
-    html[data-page="gallery"] .back-btn{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn{
       color: var(--ingen-text);
       border-color: rgba(168, 213, 168, 0.22);
       background: rgba(0, 0, 0, 0.28);
     }
-    html[data-page="gallery"] .back-btn:hover{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn:hover{
       border-color: var(--ingen-green);
       background: var(--ingen-green-glow);
     }
-    html[data-page="gallery"] .sys-title{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title{
       font-size: 1.25rem !important;
       color: #fff !important;
     }
-    html[data-page="gallery"] .tools-row{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{
       gap: 10px;
     }
-    html[data-page="gallery"] .search-box,
-    html[data-page="gallery"] .sort-select{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .search-box,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select{
       border-color: rgba(168, 213, 168, 0.2);
       background: rgba(0, 0, 0, 0.38);
     }
-    html[data-page="gallery"] .filter-btn{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{
       border-color: rgba(168, 213, 168, 0.18);
       background: rgba(0, 0, 0, 0.25);
     }
-    html[data-page="gallery"] .filter-btn.active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn.active{
       border-color: var(--ingen-green);
       background: var(--ingen-green-glow);
       box-shadow: 0 0 18px var(--ingen-green-glow);
     }
-    html[data-page="gallery"] .section-wrapper{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{
       max-width: 1360px;
       margin: 0 auto;
       padding: 0 18px 34px 18px;
     }
-    html[data-page="gallery"] .section-title{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .section-title{
       border-left-width: 3px;
       background: rgba(255, 255, 255, 0.035);
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
     }
-    html[data-page="gallery"] .grid{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 16px;
       align-items: start;
     }
-    html[data-page="gallery"] .card{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card{
       height: auto;
       min-height: 0;
       align-self: start;
@@ -7846,12 +7683,12 @@ html[data-page="gallery"]{
       background: rgba(8, 11, 12, 0.88);
       border-color: rgba(168, 213, 168, 0.14);
     }
-    html[data-page="gallery"] .card:hover{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover{
       transform: translateY(-4px);
       border-color: var(--ingen-green);
       box-shadow: 0 18px 36px rgba(0, 0, 0, 0.42);
     }
-    html[data-page="gallery"] .card-vis{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis{
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
@@ -7859,7 +7696,7 @@ html[data-page="gallery"]{
       overflow: hidden;
       border-bottom: 1px solid rgba(168, 213, 168, 0.15);
     }
-    html[data-page="gallery"] .card-img{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card-img{
       display: block;
       width: 100%;
       height: 100%;
@@ -7867,21 +7704,21 @@ html[data-page="gallery"]{
       object-position: center;
       filter: saturate(0.92) contrast(1.05);
     }
-    html[data-page="gallery"] .card-data{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card-data{
       height: 150px;
       min-height: 150px;
       flex: 0 0 150px;
     }
-    html[data-page="gallery"] .spec-name{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name{
       font-family: 'Orbitron', sans-serif;
       font-size: 1.05rem;
       letter-spacing: 0;
       overflow-wrap: anywhere;
     }
-    html[data-page="gallery"] .spec-name.taxonomic-name{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name.taxonomic-name{
       font-style: italic;
     }
-    html[data-page="gallery"] .sr-only{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .sr-only{
       position: absolute;
       width: 1px;
       height: 1px;
@@ -7892,7 +7729,7 @@ html[data-page="gallery"]{
       white-space: nowrap;
       border: 0;
     }
-    html[data-page="gallery"] .results-status{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .results-status{
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -7904,17 +7741,17 @@ html[data-page="gallery"]{
       font-size: 0.78rem;
       letter-spacing: 1px;
     }
-    html[data-page="gallery"] .results-status[hidden],
-    html[data-page="gallery"] .load-more-wrap[hidden]{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .results-status[hidden],
+    html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-wrap[hidden]{
       display: none;
     }
-    html[data-page="gallery"] .load-more-wrap{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-wrap{
       max-width: 1360px;
       margin: 0 auto 38px;
       padding: 0 18px;
       text-align: center;
     }
-    html[data-page="gallery"] .load-more-btn{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn{
       min-width: 240px;
       padding: 12px 18px;
       border: 1px solid var(--ingen-green);
@@ -7925,82 +7762,82 @@ html[data-page="gallery"]{
       letter-spacing: 1px;
       cursor: pointer;
     }
-    html[data-page="gallery"] .load-more-btn:active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn:active{
       transform: translateY(1px);
     }
-    html[data-page="gallery"] .card.page-hidden{
-      display: none;
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card.page-hidden{
+      display: none !important;
     }
-    html[data-page="gallery"] .card:focus-visible,
-    html[data-page="gallery"] .filter-btn:focus-visible,
-    html[data-page="gallery"] .load-more-btn:focus-visible,
-    html[data-page="gallery"] .close-btn:focus-visible,
-    html[data-page="gallery"] .deploy-btn:focus-visible{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .card:focus-visible,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn:focus-visible,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn:focus-visible,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .close-btn:focus-visible,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .deploy-btn:focus-visible{
       outline: 2px solid var(--ingen-green);
       outline-offset: 3px;
     }
-    html[data-page="gallery"] .modal-window{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
       width: min(1100px, calc(100vw - 32px));
       border-radius: 6px;
       border-color: rgba(168, 213, 168, 0.22);
     }
-    html[data-page="gallery"] .page-footer{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .page-footer{
       display: none;
     }
     @media (max-width: 760px){
-      html[data-page="gallery"] .clearance-banner,
-      html[data-page="gallery"] .console-header{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .console-header{
         margin-left: 12px;
         margin-right: 12px;
       }
-      html[data-page="gallery"] .tools-row{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{
         flex-direction: column;
       }
-      html[data-page="gallery"] .sort-select{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select{
         min-height: 42px;
       }
-      html[data-page="gallery"] .modal-window{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
         flex-direction: column;
         max-height: 92vh;
       }
-      html[data-page="gallery"] .modal-info{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info{
         padding: 24px;
       }
     }
     @media (max-width: 680px){
-      html[data-page="gallery"] .back-nav{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .back-nav{
         flex-direction: column !important;
         align-items: stretch !important;
       }
-      html[data-page="gallery"] .back-nav > div{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .back-nav > div{
         width: 100%;
       }
-      html[data-page="gallery"] .back-nav > div:last-child{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .back-nav > div:last-child{
         flex-direction: column;
       }
-      html[data-page="gallery"] .back-btn{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn{
         width: 100%;
         text-align: center;
         white-space: normal;
         line-height: 1.4;
         box-sizing: border-box;
       }
-      html[data-page="gallery"] #userClearanceDisplay{
+      html:is([data-page="gallery"], [data-page="field-guide"]) #userClearanceDisplay{
         display: block !important;
         margin: 10px 0 0 0 !important;
         padding-left: 0 !important;
         border-left: 0 !important;
         white-space: normal;
       }
-      html[data-page="gallery"] .clearance-id{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-id{
         display: none;
       }
-      html[data-page="gallery"] .sys-title{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title{
         font-size: 1.25rem !important;
         line-height: 1.35;
         overflow-wrap: anywhere;
       }
-      html[data-page="gallery"] .filter-group{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .filter-group{
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -8008,20 +7845,20 @@ html[data-page="gallery"]{
         scrollbar-width: thin;
         padding-bottom: 6px;
       }
-      html[data-page="gallery"] .filter-btn{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{
         width: auto;
         min-width: max-content;
         white-space: nowrap;
       }
-      html[data-page="gallery"] .section-title{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .section-title{
         font-size: 0.95rem;
         line-height: 1.4;
         word-break: break-word;
         overflow-wrap: anywhere;
       }
-      html[data-page="gallery"] .clearance-banner,
-      html[data-page="gallery"] .console-header,
-      html[data-page="gallery"] .section-wrapper{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .console-header,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{
         width: calc(100vw - 24px);
         max-width: calc(100vw - 24px);
         margin-left: 12px;
@@ -8029,57 +7866,57 @@ html[data-page="gallery"]{
         box-sizing: border-box;
         overflow: hidden;
       }
-      html[data-page="gallery"] .section-wrapper{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{
         width: auto;
         max-width: none;
         padding: 0 0 34px;
       }
-      html[data-page="gallery"] .sys-title span{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title span{
         display: block;
       }
-      html[data-page="gallery"] .grid{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
         grid-template-columns: 1fr;
         gap: 10px;
       }
-      html[data-page="gallery"] .card-img{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .card-img{
         object-fit: contain;
       }
-      html[data-page="gallery"] .card{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .card{
         min-height: 0;
       }
-      html[data-page="gallery"] .card-data{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .card-data{
         height: 146px;
         min-height: 146px;
         flex-basis: 146px;
         padding: 12px 10px;
       }
-      html[data-page="gallery"] .spec-name{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name{
         font-size: 0.82rem;
         line-height: 1.2;
       }
-      html[data-page="gallery"] .spec-cn,
-      html[data-page="gallery"] .spec-stats{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats{
         font-size: 0.72rem;
       }
-      html[data-page="gallery"] .results-status{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .results-status{
         flex-direction: column;
         align-items: flex-start;
         margin-top: 0;
         padding: 0 12px;
       }
-      html[data-page="gallery"] #resultsHint{
+      html:is([data-page="gallery"], [data-page="field-guide"]) #resultsHint{
         display: none;
       }
-      html[data-page="gallery"] #sec-hybrid .section-title{
+      html:is([data-page="gallery"], [data-page="field-guide"]) #sec-hybrid .section-title{
         font-size: 0.78rem;
       }
     }
 
     /* Detailed specimen dossier modal */
-    html[data-page="gallery"] .modal-window::before{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window::before{
       display: none;
     }
-    html[data-page="gallery"] .modal-window{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
       width: min(1240px, calc(100vw - 36px));
       max-height: 92vh;
       border-radius: 8px;
@@ -8087,7 +7924,7 @@ html[data-page="gallery"]{
       background: #070b0b;
       box-shadow: 0 28px 90px rgba(0, 0, 0, 0.72);
     }
-    html[data-page="gallery"] .modal-vis{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis{
       flex: 0 0 42%;
       align-self: stretch;
       min-width: 0;
@@ -8104,7 +7941,7 @@ html[data-page="gallery"]{
         #020404;
       border-right: 1px solid rgba(120, 164, 139, 0.2);
     }
-    html[data-page="gallery"] .modal-vis::after{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis::after{
       content: 'PALEO ARCHIVE  /  SPECIMEN PLATE 01';
       position: absolute;
       left: 22px;
@@ -8114,7 +7951,7 @@ html[data-page="gallery"]{
       letter-spacing: 2px;
       pointer-events: none;
     }
-    html[data-page="gallery"] .modal-image-frame{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-image-frame{
       width: 100%;
       aspect-ratio: 4 / 3;
       display: flex;
@@ -8124,7 +7961,7 @@ html[data-page="gallery"]{
       border: 1px solid rgba(120, 164, 139, 0.18);
       background: #010303;
     }
-    html[data-page="gallery"] .modal-img{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img{
       width: 100%;
       height: 100%;
       max-height: none;
@@ -8132,24 +7969,24 @@ html[data-page="gallery"]{
       object-position: center;
       filter: saturate(0.92) contrast(1.04);
     }
-    html[data-page="gallery"] .plate-meta{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta{
       margin-top: 14px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       border-top: 1px solid rgba(120, 164, 139, 0.16);
       border-left: 1px solid rgba(120, 164, 139, 0.16);
     }
-    html[data-page="gallery"] .plate-meta-item{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item{
       min-width: 0;
       padding: 11px 12px;
       border-right: 1px solid rgba(120, 164, 139, 0.16);
       border-bottom: 1px solid rgba(120, 164, 139, 0.16);
       background: rgba(0, 0, 0, 0.22);
     }
-    html[data-page="gallery"] .plate-meta-item.wide{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item.wide{
       grid-column: 1 / -1;
     }
-    html[data-page="gallery"] .plate-meta-item span{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item span{
       display: block;
       margin-bottom: 5px;
       color: #53685c;
@@ -8157,7 +7994,7 @@ html[data-page="gallery"]{
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
-    html[data-page="gallery"] .plate-meta-item strong{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item strong{
       display: block;
       color: #b8c8bf;
       font-size: 0.7rem;
@@ -8165,7 +8002,7 @@ html[data-page="gallery"]{
       line-height: 1.45;
       overflow-wrap: anywhere;
     }
-    html[data-page="gallery"] .modal-info{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info{
       flex: 1;
       min-width: 0;
       padding: 30px 34px 38px;
@@ -8175,7 +8012,7 @@ html[data-page="gallery"]{
         #080c0c;
       scrollbar-color: var(--ingen-green-dim) transparent;
     }
-    html[data-page="gallery"] .close-btn{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .close-btn{
       width: 38px;
       height: 38px;
       top: 14px !important;
@@ -8189,18 +8026,18 @@ html[data-page="gallery"]{
       line-height: 1;
       z-index: 50 !important;
     }
-    html[data-page="gallery"] .modal-heading{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .modal-heading{
       padding-right: 46px;
       margin-bottom: 18px;
     }
-    html[data-page="gallery"] .file-kicker{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .file-kicker{
       color: var(--ingen-green);
       font-size: 0.7rem;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 7px;
     }
-    html[data-page="gallery"] .file-title{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .file-title{
       font-family: 'Orbitron', sans-serif;
       color: #f4f7f5;
       font-size: clamp(1.7rem, 2.6vw, 2.65rem);
@@ -8209,28 +8046,28 @@ html[data-page="gallery"]{
       text-transform: uppercase;
       overflow-wrap: anywhere;
     }
-    html[data-page="gallery"] .file-subtitle{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .file-subtitle{
       margin-top: 6px;
       color: #9aaba1;
       font-size: 1.05rem;
       letter-spacing: 1px;
     }
-    html[data-page="gallery"] .mi-protocol{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol{
       margin-bottom: 18px;
       padding: 10px 13px;
       background: rgba(255, 255, 255, 0.025);
       border-left-width: 3px;
     }
-    html[data-page="gallery"] .mi-protocol-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-label{
       line-height: 1.45;
     }
-    html[data-page="gallery"] .data-grid{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid{
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 9px;
       margin-bottom: 20px;
     }
-    html[data-page="gallery"] .data-point{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point{
       min-width: 0;
       min-height: 76px;
       padding: 11px 12px;
@@ -8241,41 +8078,41 @@ html[data-page="gallery"]{
       border: 1px solid rgba(120, 164, 139, 0.16);
       background: rgba(0, 0, 0, 0.24);
     }
-    html[data-page="gallery"] .data-point.wide{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point.wide{
       grid-column: span 2;
     }
-    html[data-page="gallery"] .data-point label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point label{
       color: #61766a;
       font-size: 0.7rem;
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
-    html[data-page="gallery"] .data-point span{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point span{
       color: #edf3ef;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.86rem;
       line-height: 1.25;
       overflow-wrap: anywhere;
     }
-    html[data-page="gallery"] .data-point .metric-alert{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point .metric-alert{
       color: #f06a62;
     }
-    html[data-page="gallery"] .data-point .metric-positive{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .data-point .metric-positive{
       color: #53d98a;
     }
-    html[data-page="gallery"] .star-rating{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .star-rating{
       color: #f2c94c !important;
       letter-spacing: 2px;
       white-space: nowrap;
     }
-    html[data-page="gallery"] .dossier-section-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .dossier-section-label{
       color: #61766a;
       font-size: 0.7rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 7px;
     }
-    html[data-page="gallery"] .species-summary{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .species-summary{
       margin: 0 0 16px;
       padding: 14px 15px;
       color: #c8d2cc;
@@ -8283,7 +8120,7 @@ html[data-page="gallery"]{
       background: rgba(255,255,255,0.025);
       border-left: 2px solid var(--ingen-green-dim);
     }
-    html[data-page="gallery"] .fact-box{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box{
       margin: 0 0 20px;
       padding: 14px 15px 14px 40px;
       position: relative;
@@ -8292,7 +8129,7 @@ html[data-page="gallery"]{
       border: 1px solid rgba(120, 164, 139, 0.18);
       background: rgba(0, 200, 83, 0.035);
     }
-    html[data-page="gallery"] .fact-box::before{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box::before{
       content: 'i';
       position: absolute;
       left: 14px;
@@ -8305,58 +8142,58 @@ html[data-page="gallery"]{
       border: 1px solid var(--ingen-green-dim);
       font-size: 0.7rem;
     }
-    html[data-page="gallery"] .mi-map-section{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-map-section{
       margin: 0 0 18px;
     }
-    html[data-page="gallery"] .mi-map-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .mi-map-label{
       color: #8fa399;
       font-size: 0.7rem;
       margin-bottom: 8px;
     }
-    html[data-page="gallery"] .map-container{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-container{
       padding: 0;
       overflow: hidden;
       border: 1px solid rgba(120, 164, 139, 0.24);
       background: #020909;
     }
-    html[data-page="gallery"] #modalMap{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #modalMap{
       width: 100%;
       aspect-ratio: 2 / 1;
       display: block;
       background: #020909;
     }
-    html[data-page="gallery"] .map-ocean{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-ocean{
       fill: #020909;
     }
-    html[data-page="gallery"] .map-grid{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-grid{
       stroke: rgba(94, 134, 113, 0.14);
       stroke-width: 0.7;
       fill: none;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .map-region{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region{
       fill: #0b1b16;
       stroke: #285142;
       stroke-width: 0.9;
       transition: fill 0.35s, stroke 0.35s;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .map-region.active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region.active{
       fill: rgba(0, 200, 83, 0.11);
       stroke: #4fa979;
     }
-    html[data-page="gallery"] .map-region.classified-zone{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-region.classified-zone{
       fill: rgba(214, 48, 49, 0.18);
       stroke: #d65a54;
     }
-    html[data-page="gallery"] .map-border{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-border{
       fill: none;
       stroke: rgba(111, 151, 131, 0.2);
       stroke-width: 0.55;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .map-water-label,
-    html[data-page="gallery"] .map-land-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-water-label,
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-land-label{
       fill: rgba(133, 165, 148, 0.33);
       font-family: 'Share Tech Mono', monospace;
       font-size: 8px;
@@ -8364,89 +8201,89 @@ html[data-page="gallery"]{
       text-anchor: middle;
       pointer-events: none;
     }
-    html[data-page="gallery"] .map-land-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-land-label{
       fill: rgba(168, 198, 181, 0.44);
       font-size: 7px;
     }
-    html[data-page="gallery"] .fossil-marker{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .fossil-marker{
       opacity: 0;
       transition: opacity 0.25s;
       filter: drop-shadow(0 0 5px rgba(0, 200, 83, 0.75));
     }
-    html[data-page="gallery"] .fossil-marker.active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .fossil-marker.active{
       opacity: 1;
     }
-    html[data-page="gallery"] .fossil-marker.classified{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .fossil-marker.classified{
       filter: drop-shadow(0 0 5px rgba(214, 48, 49, 0.8));
     }
-    html[data-page="gallery"] .marker-ring{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .marker-ring{
       fill: rgba(0, 200, 83, 0.08);
       stroke: var(--ingen-green);
       stroke-width: 1.4;
       vector-effect: non-scaling-stroke;
       animation: gallery-fossilPulse 2s ease-out infinite;
     }
-    html[data-page="gallery"] .classified .marker-ring{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .classified .marker-ring{
       fill: rgba(214, 48, 49, 0.1);
       stroke: #e65d57;
     }
-    html[data-page="gallery"] .marker-core{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .marker-core{
       fill: #dfffea;
       stroke: var(--ingen-green);
       stroke-width: 1.5;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .classified .marker-core{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .classified .marker-core{
       stroke: #e65d57;
     }
-    html[data-page="gallery"] .marker-cross{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .marker-cross{
       stroke: rgba(146, 255, 190, 0.72);
       stroke-width: 0.8;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .classified .marker-cross{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .classified .marker-cross{
       stroke: rgba(255, 143, 136, 0.82);
     }
-    html[data-page="gallery"] .map-marker-leader{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-leader{
       opacity: 0;
       stroke: rgba(120, 224, 163, 0.64);
       stroke-width: 0.8;
       vector-effect: non-scaling-stroke;
       transition: opacity 0.25s;
     }
-    html[data-page="gallery"] .map-marker-leader.active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-leader.active{
       opacity: 1;
     }
-    html[data-page="gallery"] .map-marker-label{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label{
       opacity: 0;
       transition: opacity 0.25s;
     }
-    html[data-page="gallery"] .map-marker-label.active{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label.active{
       opacity: 1;
     }
-    html[data-page="gallery"] .map-marker-label rect{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label rect{
       fill: rgba(2, 12, 9, 0.94);
       stroke: rgba(120, 224, 163, 0.48);
       stroke-width: 0.8;
       vector-effect: non-scaling-stroke;
     }
-    html[data-page="gallery"] .map-marker-label text{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label text{
       fill: #bce8cd;
       font-family: 'Share Tech Mono', monospace;
       font-size: 7px;
       letter-spacing: 0.8px;
     }
-    html[data-page="gallery"] .map-marker-label.classified rect{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label.classified rect{
       stroke: rgba(230, 93, 87, 0.7);
     }
-    html[data-page="gallery"] .map-marker-label.classified text{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-marker-label.classified text{
       fill: #ffaaa5;
     }
     @keyframes gallery-fossilPulse {
       0% { r: 8; opacity: 0.9; }
       70%, 100% { r: 18; opacity: 0; }
     }
-    html[data-page="gallery"] .map-site-card{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-site-card{
       padding: 12px 14px 13px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -8454,38 +8291,38 @@ html[data-page="gallery"]{
       border-top: 1px solid rgba(120, 164, 139, 0.18);
       background: #06100d;
     }
-    html[data-page="gallery"] .map-site-kicker{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .map-site-kicker{
       grid-column: 1 / -1;
       color: #61766a;
       font-size: 0.7rem;
       letter-spacing: 1.8px;
       text-transform: uppercase;
     }
-    html[data-page="gallery"] #mapLocText{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #mapLocText{
       color: #dce8e0;
       font-size: 0.74rem;
       line-height: 1.45;
     }
-    html[data-page="gallery"] #mapCoordsText{
+    html:is([data-page="gallery"], [data-page="field-guide"]) #mapCoordsText{
       color: var(--ingen-green);
       font-size: 0.7rem;
       white-space: nowrap;
       align-self: center;
     }
-    html[data-page="gallery"] .deploy-btn{
+    html:is([data-page="gallery"], [data-page="field-guide"]) .deploy-btn{
       margin-top: 4px !important;
       border-color: rgba(120, 164, 139, 0.34) !important;
       background: rgba(0, 200, 83, 0.045) !important;
       color: #dce8e0 !important;
     }
     @media (max-width: 860px){
-      html[data-page="gallery"] .modal-window{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
         width: calc(100vw - 24px);
         max-width: calc(100vw - 24px);
         flex-direction: column;
         max-height: 94vh;
       }
-      html[data-page="gallery"] .modal-vis{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis{
         flex: 0 0 auto;
         width: 100%;
         min-height: 0;
@@ -8493,40 +8330,40 @@ html[data-page="gallery"]{
         border-right: 0;
         border-bottom: 1px solid rgba(120, 164, 139, 0.2);
       }
-      html[data-page="gallery"] .modal-vis::after{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis::after{
         left: 18px;
         bottom: 12px;
       }
-      html[data-page="gallery"] .modal-img{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img{
         max-height: none;
       }
-      html[data-page="gallery"] .plate-meta{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta{
         margin-bottom: 14px;
       }
-      html[data-page="gallery"] .modal-info{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info{
         padding: 23px 20px 28px;
       }
-      html[data-page="gallery"] .data-grid{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      html[data-page="gallery"] .map-site-card{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .map-site-card{
         grid-template-columns: 1fr;
       }
-      html[data-page="gallery"] #mapCoordsText{
+      html:is([data-page="gallery"], [data-page="field-guide"]) #mapCoordsText{
         white-space: normal;
       }
     }
     @media (prefers-reduced-motion: reduce){
-      html[data-page="gallery"] *, html[data-page="gallery"] *::before, html[data-page="gallery"] *::after{
+      html:is([data-page="gallery"], [data-page="field-guide"]) *, html:is([data-page="gallery"], [data-page="field-guide"]) *::before, html:is([data-page="gallery"], [data-page="field-guide"]) *::after{
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      html[data-page="gallery"] .marker-ring,
-      html[data-page="gallery"] .mi-protocol-dot,
-      html[data-page="gallery"] .proto-class,
-      html[data-page="gallery"] .modal-window{
+      html:is([data-page="gallery"], [data-page="field-guide"]) .marker-ring,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-dot,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .proto-class,
+      html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
         animation: none !important;
       }
     }
@@ -9291,7 +9128,7 @@ html[data-page="form"]{
         }
 
 /* ===== PALEO ARCHIVE VISUAL REWORK ===== */
-html[data-page="gallery"],
+html:is([data-page="gallery"], [data-page="field-guide"]),
 html[data-page="timescale"],
 html[data-page="form"]{
   --pa-bg: #050806;
@@ -9314,7 +9151,7 @@ html[data-page="form"]{
   --ingen-text: var(--pa-green-strong);
 }
 
-html[data-page="gallery"] body,
+html:is([data-page="gallery"], [data-page="field-guide"]) body,
 html[data-page="timescale"] body,
 html[data-page="form"] body{
   color: var(--pa-text);
@@ -9327,13 +9164,13 @@ html[data-page="form"] body{
   background-attachment: fixed;
 }
 
-html[data-page="gallery"] body::after,
+html:is([data-page="gallery"], [data-page="field-guide"]) body::after,
 html[data-page="timescale"] body::after,
 html[data-page="form"] body::after{
   opacity: 0.18;
 }
 
-html[data-page="gallery"] body::before,
+html:is([data-page="gallery"], [data-page="field-guide"]) body::before,
 html[data-page="timescale"] body::before,
 html[data-page="form"] body::before{
   background:
@@ -9341,25 +9178,25 @@ html[data-page="form"] body::before{
     radial-gradient(ellipse at center, transparent 54%, rgba(0,0,0,0.6) 100%);
 }
 
-html[data-page="gallery"] #boot-overlay,
-html[data-page="gallery"] #paddock-board{
+html:is([data-page="gallery"], [data-page="field-guide"]) #boot-overlay,
+html:is([data-page="gallery"], [data-page="field-guide"]) #paddock-board{
   display: none !important;
 }
 
-html[data-page="gallery"] .page-wrap{
+html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap{
   margin-right: 0 !important;
 }
 
-html[data-page="gallery"] a,
+html:is([data-page="gallery"], [data-page="field-guide"]) a,
 html[data-page="timescale"] a,
 html[data-page="form"] a,
-html[data-page="gallery"] button,
+html:is([data-page="gallery"], [data-page="field-guide"]) button,
 html[data-page="timescale"] button,
 html[data-page="form"] button,
-html[data-page="gallery"] input,
+html:is([data-page="gallery"], [data-page="field-guide"]) input,
 html[data-page="timescale"] input,
 html[data-page="form"] input,
-html[data-page="gallery"] select,
+html:is([data-page="gallery"], [data-page="field-guide"]) select,
 html[data-page="timescale"] select,
 html[data-page="form"] select,
 html[data-page="form"] textarea{
@@ -9367,16 +9204,16 @@ html[data-page="form"] textarea{
   transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-html[data-page="gallery"] a:focus-visible,
+html:is([data-page="gallery"], [data-page="field-guide"]) a:focus-visible,
 html[data-page="timescale"] a:focus-visible,
 html[data-page="form"] a:focus-visible,
-html[data-page="gallery"] button:focus-visible,
+html:is([data-page="gallery"], [data-page="field-guide"]) button:focus-visible,
 html[data-page="timescale"] button:focus-visible,
 html[data-page="form"] button:focus-visible,
-html[data-page="gallery"] input:focus-visible,
+html:is([data-page="gallery"], [data-page="field-guide"]) input:focus-visible,
 html[data-page="timescale"] input:focus-visible,
 html[data-page="form"] input:focus-visible,
-html[data-page="gallery"] select:focus-visible,
+html:is([data-page="gallery"], [data-page="field-guide"]) select:focus-visible,
 html[data-page="timescale"] select:focus-visible,
 html[data-page="form"] select:focus-visible,
 html[data-page="form"] textarea:focus-visible{
@@ -9384,7 +9221,7 @@ html[data-page="form"] textarea:focus-visible{
   outline-offset: 3px;
 }
 
-html[data-page="gallery"] .console-header,
+html:is([data-page="gallery"], [data-page="field-guide"]) .console-header,
 html[data-page="timescale"] .console-header,
 html[data-page="form"] .console-header{
   width: min(1440px, calc(100vw - 32px));
@@ -9397,28 +9234,28 @@ html[data-page="form"] .console-header{
   backdrop-filter: blur(16px);
 }
 
-html[data-page="gallery"] .sys-title,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title,
 html[data-page="timescale"] .sys-title,
 html[data-page="form"] .sys-title{
   color: var(--pa-text) !important;
-  font-family: 'Orbitron', 'Share Tech Mono', sans-serif !important;
-  letter-spacing: 1.5px !important;
+  font-family: var(--font-display) !important;
+  letter-spacing: 2px !important;
   text-shadow: none !important;
 }
 
-html[data-page="gallery"] .sys-title,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title,
 html[data-page="timescale"] .sys-title,
 html[data-page="form"] .sys-title{
   font-size: clamp(1.05rem, 2vw, 1.45rem) !important;
 }
 
-html[data-page="gallery"] .sys-title span,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title span,
 html[data-page="timescale"] .sys-title span,
 html[data-page="form"] .sys-title span{
   color: var(--pa-green-strong) !important;
 }
 
-html[data-page="gallery"] .back-btn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn,
 html[data-page="timescale"] .back-btn,
 html[data-page="form"] .back-btn,
 html[data-page="form"] .ghost-btn{
@@ -9428,7 +9265,7 @@ html[data-page="form"] .ghost-btn{
   box-shadow: none !important;
 }
 
-html[data-page="gallery"] .back-btn:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn:hover,
 html[data-page="timescale"] .back-btn:hover,
 html[data-page="form"] .back-btn:hover,
 html[data-page="form"] .ghost-btn:hover{
@@ -9437,8 +9274,8 @@ html[data-page="form"] .ghost-btn:hover{
   background: rgba(121, 200, 147, 0.1) !important;
 }
 
-html[data-page="gallery"] .file-kicker,
-html[data-page="gallery"] .dossier-section-label,
+html:is([data-page="gallery"], [data-page="field-guide"]) .file-kicker,
+html:is([data-page="gallery"], [data-page="field-guide"]) .dossier-section-label,
 html[data-page="timescale"] .details-era,
 html[data-page="form"] .form-section-title,
 html[data-page="form"] .preview-title{
@@ -9448,8 +9285,8 @@ html[data-page="form"] .preview-title{
 
 html[data-page="form"] .action-btn,
 html[data-page="timescale"] .action-btn,
-html[data-page="gallery"] .load-more-btn,
-html[data-page="gallery"] .deploy-btn{
+html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .deploy-btn{
   background: linear-gradient(180deg, rgba(168, 227, 187, 0.92), rgba(97, 171, 122, 0.92)) !important;
   border-color: rgba(168, 227, 187, 0.62) !important;
   color: #06110a !important;
@@ -9458,15 +9295,15 @@ html[data-page="gallery"] .deploy-btn{
 
 html[data-page="form"] .action-btn:hover,
 html[data-page="timescale"] .action-btn:hover,
-html[data-page="gallery"] .load-more-btn:hover,
-html[data-page="gallery"] .deploy-btn:hover{
+html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .deploy-btn:hover{
   transform: translateY(-1px);
   box-shadow: 0 16px 36px rgba(78, 150, 101, 0.28) !important;
 }
 
-html[data-page="gallery"] .card,
-html[data-page="gallery"] .results-status,
-html[data-page="gallery"] .modal-window,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card,
+html:is([data-page="gallery"], [data-page="field-guide"]) .results-status,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window,
 html[data-page="timescale"] .details-panel,
 html[data-page="form"] .synthesis-card,
 html[data-page="form"] .preview-sticky,
@@ -9477,13 +9314,13 @@ html[data-page="form"] .card{
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.26);
 }
 
-html[data-page="gallery"] .card-img,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-img,
 html[data-page="form"] .card-img{
   object-fit: cover !important;
   filter: saturate(0.88) contrast(1.08) brightness(0.82);
 }
-html[data-page="gallery"] .search-box,
-html[data-page="gallery"] .sort-select,
+html:is([data-page="gallery"], [data-page="field-guide"]) .search-box,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select,
 html[data-page="form"] .form-input,
 html[data-page="form"] .form-select,
 html[data-page="form"] .form-textarea{
@@ -9493,8 +9330,8 @@ html[data-page="form"] .form-textarea{
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
 }
 
-html[data-page="gallery"] .search-box:focus,
-html[data-page="gallery"] .sort-select:focus,
+html:is([data-page="gallery"], [data-page="field-guide"]) .search-box:focus,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select:focus,
 html[data-page="form"] .form-input:focus,
 html[data-page="form"] .form-select:focus,
 html[data-page="form"] .form-textarea:focus{
@@ -9502,57 +9339,58 @@ html[data-page="form"] .form-textarea:focus{
   box-shadow: 0 0 0 3px rgba(121, 200, 147, 0.1) !important;
 }
 
-html[data-page="gallery"] .clearance-banner{
+html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner{
   display: none !important;
 }
 
-html[data-page="gallery"] .tools-row{
+html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{
   align-items: stretch;
 }
 
-html[data-page="gallery"] .filter-group{
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-group{
   gap: 8px;
 }
 
-html[data-page="gallery"] .filter-btn{
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{
   border-radius: 4px !important;
   border-color: rgba(141, 190, 158, 0.18) !important;
   background: rgba(255,255,255,0.025) !important;
   color: var(--pa-muted, #a99a7e) !important;
 }
 
-html[data-page="gallery"] .filter-btn.active,
-html[data-page="gallery"] .filter-btn:hover{
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn.active,
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn:hover{
   color: #06110a !important;
   border-color: rgba(168, 227, 187, 0.55) !important;
   background: rgba(168, 227, 187, 0.86) !important;
   box-shadow: none !important;
 }
 
-html[data-page="gallery"] .section-wrapper{
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{
   width: min(1440px, calc(100vw - 32px));
   max-width: none;
   padding: 0 0 26px !important;
 }
 
-html[data-page="gallery"] .section-title{
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-title{
   margin: 24px 0 14px !important;
   padding: 0 0 10px 0 !important;
   border-left: 0 !important;
   border-bottom: 1px solid var(--pa-line-soft) !important;
   background: transparent !important;
   color: var(--pa-text) !important;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem !important;
-  letter-spacing: 1.2px;
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px;
 }
 
-html[data-page="gallery"] .grid{
+html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
   gap: 14px !important;
 }
 
-html[data-page="gallery"] .card{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card{
   overflow: hidden;
   min-height: 346px !important;
   transform: translateZ(0);
@@ -9560,24 +9398,24 @@ html[data-page="gallery"] .card{
   contain-intrinsic-size: 300px 360px;
 }
 
-html[data-page="gallery"] .card:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover,
 html[data-page="form"] .card:hover{
   transform: translateY(-4px);
   border-color: rgba(168, 227, 187, 0.48) !important;
 }
 
-html[data-page="gallery"] .card-vis{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis{
   border-bottom: 1px solid rgba(141, 190, 158, 0.16) !important;
   aspect-ratio: 4 / 3;
 }
 
-html[data-page="gallery"] .card-data{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-data{
   height: auto !important;
   min-height: 136px !important;
   padding: 14px !important;
 }
 
-html[data-page="gallery"] .class-icon,
+html:is([data-page="gallery"], [data-page="field-guide"]) .class-icon,
 html[data-page="form"] .class-icon{
   top: 10px !important;
   left: 10px !important;
@@ -9588,27 +9426,28 @@ html[data-page="form"] .class-icon{
   backdrop-filter: blur(8px);
 }
 
-html[data-page="gallery"] .spec-name,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name,
 html[data-page="form"] .spec-name{
   color: var(--pa-text) !important;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.04rem !important;
-  letter-spacing: 0.6px;
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
 }
 
-html[data-page="gallery"] .spec-code,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-code,
 html[data-page="form"] .spec-code{
   color: var(--pa-green-strong) !important;
 }
 
-html[data-page="gallery"] .spec-cn,
-html[data-page="gallery"] .spec-stats,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats,
 html[data-page="form"] .spec-cn,
 html[data-page="form"] .spec-stats{
   color: var(--pa-muted, #a99a7e) !important;
 }
 
-html[data-page="gallery"] .containment-badge,
+html:is([data-page="gallery"], [data-page="field-guide"]) .containment-badge,
 html[data-page="form"] .containment-badge{
   border-radius: 3px !important;
   color: #d8e4dc !important;
@@ -9616,22 +9455,22 @@ html[data-page="form"] .containment-badge{
   background: rgba(255,255,255,0.035) !important;
 }
 
-html[data-page="gallery"] .modal-overlay{
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-overlay{
   background: rgba(1, 4, 3, 0.86) !important;
 }
 
-html[data-page="gallery"] .modal-window{
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window{
   border-color: rgba(168, 227, 187, 0.28) !important;
   background: #07100b !important;
 }
 
-html[data-page="gallery"] .modal-vis,
-html[data-page="gallery"] .modal-info,
-html[data-page="gallery"] .map-container,
-html[data-page="gallery"] .map-site-card,
-html[data-page="gallery"] .data-point,
-html[data-page="gallery"] .species-summary,
-html[data-page="gallery"] .fact-box{
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info,
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-container,
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-site-card,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point,
+html:is([data-page="gallery"], [data-page="field-guide"]) .species-summary,
+html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box{
   background-color: rgba(4, 8, 6, 0.72) !important;
 }
 
@@ -9657,8 +9496,10 @@ html[data-page="timescale"] .node-era{
 
 html[data-page="timescale"] .node-name{
   color: var(--pa-text) !important;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.02rem !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
   line-height: 1.25 !important;
 }
 
@@ -9777,25 +9618,25 @@ html[data-page="form"] #pCardDna{
 }
 
 @media (max-width: 680px){
-  html[data-page="gallery"] .console-header,
+  html:is([data-page="gallery"], [data-page="field-guide"]) .console-header,
   html[data-page="timescale"] .console-header,
   html[data-page="form"] .console-header,
-  html[data-page="gallery"] .section-wrapper,
+  html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper,
   html[data-page="timescale"] .timeline-container,
   html[data-page="form"] .workspace-grid{
     width: calc(100vw - 24px) !important;
   }
-  html[data-page="gallery"] .grid{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
     grid-template-columns: 1fr !important;
   }
-  html[data-page="gallery"] .tools-row{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{
     flex-direction: column !important;
   }
-  html[data-page="gallery"] .filter-group{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .filter-group{
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  html[data-page="gallery"] .filter-btn{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{
     width: 100%;
     min-width: 0;
     padding: 9px 8px !important;
@@ -9803,7 +9644,7 @@ html[data-page="form"] #pCardDna{
     white-space: normal;
     line-height: 1.35;
   }
-  html[data-page="gallery"] .spec-stats,
+  html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats,
   html[data-page="form"] .spec-stats{
     flex-wrap: wrap;
     gap: 6px;
@@ -9817,38 +9658,6 @@ html[data-page="form"] #pCardDna{
 /* ===== TIMESCALE PROTOTYPE IMAGE ATLAS ===== */
 html[data-page="timescale"] .console-header{
   position: relative !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip{
-  display: flex;
-  gap: 28px;
-  margin-top: 18px;
-  border-top: 1px solid var(--pa-line-soft);
-  padding-top: 13px;
-  color: var(--pa-muted, #a99a7e);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span{
-  position: relative;
-  padding-bottom: 8px;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span.active{
-  color: var(--pa-green-strong);
-}
-
-html[data-page="timescale"] .timeline-scope-strip span.active::after{
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--pa-green-strong);
 }
 
 html[data-page="timescale"] .timeline-container{
@@ -9977,10 +9786,12 @@ html[data-page="timescale"] .details-title{
   max-width: 780px !important;
   margin: 0 0 16px !important;
   color: #f2ead7 !important;
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 5.8rem) !important;
-  line-height: 0.92 !important;
-  text-shadow: 0 22px 70px rgba(0, 0, 0, 0.78) !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 3.8vw, 3.2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  line-height: 1.15 !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85) !important;
 }
 
 html[data-page="timescale"] .details-span{
@@ -10054,11 +9865,12 @@ html[data-page="timescale"] .major-events{
 html[data-page="timescale"] .major-events-title{
   padding: 14px 16px;
   border-bottom: 1px solid var(--pa-line-soft);
-  color: var(--pa-green-strong);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
+  color: var(--pl-gold) !important;
+  font-family: var(--font-display) !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
 }
 
 html[data-page="timescale"] .major-events-list{
@@ -10127,12 +9939,6 @@ html[data-page="timescale"] .action-btn{
 }
 
 @media (max-width: 680px){
-  html[data-page="timescale"] .timeline-scope-strip{
-    gap: 14px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
   html[data-page="timescale"] .era-visual-frame{
     min-height: 440px;
   }
@@ -10147,7 +9953,7 @@ html[data-page="timescale"] .action-btn{
 }
 
 /* ===== PROTOTYPE PALETTE UNIFICATION ===== */
-html[data-page="gallery"],
+html:is([data-page="gallery"], [data-page="field-guide"]),
 html[data-page="timescale"],
 html[data-page="form"]{
   --pa-bg: #11100d;
@@ -10172,7 +9978,7 @@ html[data-page="form"]{
   --error-glow: rgba(169, 58, 44, 0.28);
 }
 
-html[data-page="gallery"] body,
+html:is([data-page="gallery"], [data-page="field-guide"]) body,
 html[data-page="timescale"] body,
 html[data-page="form"] body{
   color: var(--pa-text) !important;
@@ -10184,7 +9990,7 @@ html[data-page="form"] body{
   background-attachment: fixed;
 }
 
-html[data-page="gallery"] body::before,
+html:is([data-page="gallery"], [data-page="field-guide"]) body::before,
 html[data-page="timescale"] body::before,
 html[data-page="form"] body::before{
   background:
@@ -10194,13 +10000,13 @@ html[data-page="form"] body::before{
   opacity: 0.16 !important;
 }
 
-html[data-page="gallery"] body::after,
+html:is([data-page="gallery"], [data-page="field-guide"]) body::after,
 html[data-page="timescale"] body::after,
 html[data-page="form"] body::after{
   opacity: 0.12 !important;
 }
 
-html[data-page="gallery"] .console-header,
+html:is([data-page="gallery"], [data-page="field-guide"]) .console-header,
 html[data-page="timescale"] .console-header,
 html[data-page="form"] .console-header{
   width: min(1440px, calc(100vw - 32px));
@@ -10214,14 +10020,14 @@ html[data-page="form"] .console-header{
   backdrop-filter: blur(16px);
 }
 
-html[data-page="gallery"] .clearance-banner{
+html:is([data-page="gallery"], [data-page="field-guide"]) .clearance-banner{
   border-color: rgba(169, 58, 44, 0.36) !important;
   background: linear-gradient(90deg, rgba(169, 58, 44, 0.26), rgba(28, 20, 14, 0.78)) !important;
   color: #f2d5aa !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
 }
 
-html[data-page="gallery"] .back-btn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn,
 html[data-page="timescale"] .back-btn,
 html[data-page="form"] .back-btn{
   border-color: var(--pa-line) !important;
@@ -10231,7 +10037,7 @@ html[data-page="form"] .back-btn{
   box-shadow: inset 0 0 0 1px rgba(255, 244, 213, 0.035) !important;
 }
 
-html[data-page="gallery"] .back-btn:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .back-btn:hover,
 html[data-page="timescale"] .back-btn:hover,
 html[data-page="form"] .back-btn:hover{
   background: rgba(200, 163, 106, 0.12) !important;
@@ -10239,29 +10045,29 @@ html[data-page="form"] .back-btn:hover{
   color: #fff1c8 !important;
 }
 
-html[data-page="gallery"] .sys-title,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sys-title,
 html[data-page="timescale"] .sys-title,
 html[data-page="form"] .sys-title,
-html[data-page="gallery"] .section-title,
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-title,
 html[data-page="form"] .form-section-title,
 html[data-page="form"] .preview-title{
   color: var(--pa-green-strong) !important;
   text-shadow: 0 0 18px rgba(200, 163, 106, 0.18) !important;
 }
 
-html[data-page="gallery"] .section-title{
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-title{
   width: 100% !important;
   max-width: 100% !important;
   margin: 34px 0 16px !important;
   box-sizing: border-box !important;
 }
 
-html[data-page="gallery"] .tools-row{
+html:is([data-page="gallery"], [data-page="field-guide"]) .tools-row{
   gap: 12px !important;
 }
 
-html[data-page="gallery"] .search-box,
-html[data-page="gallery"] .sort-select,
+html:is([data-page="gallery"], [data-page="field-guide"]) .search-box,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select,
 html[data-page="timescale"] .search-box,
 html[data-page="timescale"] .sort-select,
 html[data-page="form"] .form-input,
@@ -10274,8 +10080,8 @@ html[data-page="form"] .form-textarea{
   box-shadow: inset 0 0 0 1px rgba(255, 244, 213, 0.025) !important;
 }
 
-html[data-page="gallery"] .search-box:focus,
-html[data-page="gallery"] .sort-select:focus,
+html:is([data-page="gallery"], [data-page="field-guide"]) .search-box:focus,
+html:is([data-page="gallery"], [data-page="field-guide"]) .sort-select:focus,
 html[data-page="form"] .form-input:focus,
 html[data-page="form"] .form-select:focus,
 html[data-page="form"] .form-textarea:focus{
@@ -10283,69 +10089,69 @@ html[data-page="form"] .form-textarea:focus{
   box-shadow: 0 0 0 3px rgba(200, 163, 106, 0.12) !important;
 }
 
-html[data-page="gallery"] .filter-btn{
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn{
   border-color: var(--pa-line-soft) !important;
   border-radius: 999px !important;
   background: rgba(18, 14, 10, 0.56) !important;
   color: var(--pa-muted, #a99a7e) !important;
 }
 
-html[data-page="gallery"] .filter-btn:hover,
-html[data-page="gallery"] .filter-btn.active{
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .filter-btn.active{
   border-color: rgba(227, 195, 126, 0.54) !important;
   background: rgba(200, 163, 106, 0.14) !important;
   color: #fff1c8 !important;
 }
 
-html[data-page="gallery"] .section-wrapper{
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper{
   width: min(1440px, calc(100vw - 32px));
 }
 
-html[data-page="gallery"] .grid{
+html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
   gap: 18px !important;
 }
 
-html[data-page="gallery"] .card,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card,
 html[data-page="form"] .card,
 html[data-page="timescale"] .details-panel,
 html[data-page="timescale"] .stat-box,
 html[data-page="timescale"] .desc-text,
 html[data-page="form"] .synthesis-card,
 html[data-page="form"] .preview-sticky,
-html[data-page="gallery"] .results-status,
-html[data-page="gallery"] .modal-window,
-html[data-page="gallery"] .modal-vis,
-html[data-page="gallery"] .modal-info,
-html[data-page="gallery"] .map-container,
-html[data-page="gallery"] .map-site-card,
-html[data-page="gallery"] .data-point,
-html[data-page="gallery"] .species-summary,
-html[data-page="gallery"] .fact-box{
+html:is([data-page="gallery"], [data-page="field-guide"]) .results-status,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info,
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-container,
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-site-card,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point,
+html:is([data-page="gallery"], [data-page="field-guide"]) .species-summary,
+html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box{
   border: 1px solid var(--pa-line) !important;
   border-radius: 8px !important;
   background: linear-gradient(180deg, rgba(42, 35, 25, 0.88), rgba(23, 19, 14, 0.88)) !important;
   box-shadow: 0 20px 54px rgba(0, 0, 0, 0.42) !important;
 }
 
-html[data-page="gallery"] .card:hover{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover{
   border-color: rgba(227, 195, 126, 0.54) !important;
   background: linear-gradient(180deg, rgba(55, 44, 30, 0.94), rgba(25, 20, 14, 0.92)) !important;
   transform: translateY(-3px);
 }
 
-html[data-page="gallery"] .card-vis,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis,
 html[data-page="form"] .card-vis{
   border-bottom: 1px solid var(--pa-line-soft) !important;
   background: rgba(14, 11, 8, 0.48) !important;
 }
 
-html[data-page="gallery"] .card-img,
-html[data-page="gallery"] .modal-img,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-img,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img,
 html[data-page="form"] .card-img{
   filter: sepia(0.18) saturate(0.86) brightness(0.9) contrast(1.08) !important;
 }
 
-html[data-page="gallery"] .spec-name,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name,
 html[data-page="form"] .spec-name,
 html[data-page="timescale"] .node-name,
 html[data-page="timescale"] .details-title{
@@ -10353,7 +10159,7 @@ html[data-page="timescale"] .details-title{
   letter-spacing: 0 !important;
 }
 
-html[data-page="gallery"] .spec-code,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-code,
 html[data-page="form"] .spec-code,
 html[data-page="timescale"] .node-era,
 html[data-page="timescale"] .stat-val,
@@ -10361,8 +10167,8 @@ html[data-page="timescale"] .desc-title{
   color: var(--pa-green-strong) !important;
 }
 
-html[data-page="gallery"] .spec-cn,
-html[data-page="gallery"] .spec-stats,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats,
 html[data-page="form"] .spec-cn,
 html[data-page="form"] .spec-stats,
 html[data-page="timescale"] .node-span,
@@ -10372,16 +10178,16 @@ html[data-page="form"] .form-label{
   color: var(--pa-muted, #a99a7e) !important;
 }
 
-html[data-page="gallery"] .class-icon,
+html:is([data-page="gallery"], [data-page="field-guide"]) .class-icon,
 html[data-page="form"] .class-icon,
-html[data-page="gallery"] .containment-badge{
+html:is([data-page="gallery"], [data-page="field-guide"]) .containment-badge{
   border-color: rgba(255, 244, 213, 0.24) !important;
   border-radius: 4px !important;
   background: rgba(14, 11, 8, 0.72) !important;
   color: #f0d8a1 !important;
 }
 
-html[data-page="gallery"] .load-more-btn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-btn,
 html[data-page="timescale"] .action-btn,
 html[data-page="form"] .action-btn{
   border-color: rgba(227, 195, 126, 0.54) !important;
@@ -10391,7 +10197,7 @@ html[data-page="form"] .action-btn{
   box-shadow: 0 16px 38px rgba(0, 0, 0, 0.34) !important;
 }
 
-html[data-page="gallery"] .modal-overlay{
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-overlay{
   background: rgba(8, 7, 5, 0.88) !important;
 }
 
@@ -10430,16 +10236,16 @@ html[data-page="form"] .img-fallback{
 }
 
 @media (max-width: 680px){
-  html[data-page="gallery"] .console-header,
+  html:is([data-page="gallery"], [data-page="field-guide"]) .console-header,
   html[data-page="timescale"] .console-header,
   html[data-page="form"] .console-header,
-  html[data-page="gallery"] .section-wrapper,
+  html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper,
   html[data-page="timescale"] .timeline-container,
   html[data-page="form"] .workspace-grid{
     width: calc(100vw - 24px) !important;
   }
 
-  html[data-page="gallery"] .grid{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .grid{
     grid-template-columns: 1fr !important;
   }
 }
@@ -10732,26 +10538,6 @@ html[data-page="timescale"] .sys-title{
   margin: 10px 0 14px !important;
 }
 
-html[data-page="timescale"] .timeline-scope-strip{
-  width: 100% !important;
-  margin: 14px 0 0 !important;
-  padding: 10px 0 0 !important;
-  display: flex !important;
-  justify-content: flex-start !important;
-  gap: clamp(18px, 5vw, 72px) !important;
-  border-top: 1px solid rgba(207, 174, 112, 0.14) !important;
-  overflow-x: auto !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span{
-  flex: 0 0 auto !important;
-  padding: 0 0 12px !important;
-  font-size: clamp(0.7rem, 1vw, 0.88rem) !important;
-  line-height: 1 !important;
-  letter-spacing: 0.22em !important;
-  color: var(--pa-muted, #a99a7e) !important;
-}
-
 html[data-page="timescale"] .timeline-container{
   width: min(1440px, calc(100vw - 32px)) !important;
   margin: 0 auto 44px !important;
@@ -10827,10 +10613,11 @@ html[data-page="timescale"] .node-era{
 
 html[data-page="timescale"] .node-name{
   color: var(--pa-text) !important;
-  font-family: 'Orbitron', sans-serif !important;
-  font-size: clamp(0.9rem, 1.1vw, 1.08rem) !important;
-  line-height: 1.18 !important;
-  letter-spacing: 0 !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 1px !important;
 }
 
 html[data-page="timescale"] .node-span{
@@ -10958,10 +10745,6 @@ html[data-page="timescale"] .major-event-item{
     width: calc(100vw - 24px) !important;
   }
 
-  html[data-page="timescale"] .timeline-scope-strip{
-    gap: 28px !important;
-  }
-
   html[data-page="timescale"] .era-visual-frame{
     min-height: 360px !important;
   }
@@ -10986,23 +10769,23 @@ html[data-page="index"] .submit-btn:focus-visible{
   box-shadow: 0 0 0 4px rgba(200, 163, 106, 0.18);
 }
 
-html[data-page="gallery"] .dna-overlay{
+html:is([data-page="gallery"], [data-page="field-guide"]) .dna-overlay{
   opacity: 0 !important;
   transform: translateY(8px);
   transition: opacity 0.2s, transform 0.2s;
 }
 
-html[data-page="gallery"] .card:hover .dna-overlay,
-html[data-page="gallery"] .card:focus-visible .dna-overlay{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card:hover .dna-overlay,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card:focus-visible .dna-overlay{
   opacity: 1 !important;
   transform: translateY(0);
 }
 
-html[data-page="gallery"] .map-container{
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-container{
   min-height: 300px;
 }
 
-html[data-page="gallery"] #modalMap{
+html:is([data-page="gallery"], [data-page="field-guide"]) #modalMap{
   min-height: 300px;
 }
 
@@ -11040,7 +10823,7 @@ html[data-page="form"] .hybrid-blend-group{
 html[data-page="form"] .blend-range{
   padding: 0 !important;
   min-height: 32px !important;
-  accent-color: var(--cls-hybrid);
+  accent-color: var(--pl-gold);
 }
 
 html[data-page="form"] .blend-readout{
@@ -11171,15 +10954,15 @@ html[data-page="form"] .mobile-preview-summary{
 }
 
 /* ===== GALLERY HEADER + UNCROPPED IMAGES ===== */
-html[data-page="gallery"]{
+html:is([data-page="gallery"], [data-page="field-guide"]){
   --gallery-header-space: 88px;
 }
 
-html[data-page="gallery"] .page-wrap{
+html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap{
   padding-top: var(--gallery-header-space, 88px) !important;
 }
 
-html[data-page="gallery"] .console-header{
+html:is([data-page="gallery"], [data-page="field-guide"]) .console-header{
   position: relative !important;
   top: auto !important;
   left: auto !important;
@@ -11190,12 +10973,12 @@ html[data-page="gallery"] .console-header{
   z-index: 10 !important;
 }
 
-html[data-page="gallery"] .card-vis{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis{
   overflow: hidden !important;
 }
 
-html[data-page="gallery"] .card-img,
-html[data-page="gallery"] .modal-img{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-img,
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img{
   object-fit: contain !important;
   object-position: center center !important;
 }
@@ -11249,7 +11032,7 @@ html[data-page="form"] #previewCard #pCardImg{
   background: #000;
 }
 
-html[data-page="gallery"] .synthesis-status{
+html:is([data-page="gallery"], [data-page="field-guide"]) .synthesis-status{
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -11263,22 +11046,22 @@ html[data-page="gallery"] .synthesis-status{
   letter-spacing: 1.5px;
 }
 
-html[data-page="gallery"] .synthesis-status.status-success{
+html:is([data-page="gallery"], [data-page="field-guide"]) .synthesis-status.status-success{
   border-color: rgba(0, 200, 83, 0.38);
   color: #7cff9b;
 }
 
-html[data-page="gallery"] .synthesis-status.status-failure{
+html:is([data-page="gallery"], [data-page="field-guide"]) .synthesis-status.status-failure{
   border-color: rgba(255, 51, 51, 0.48);
   color: #ff7676;
 }
 
-html[data-page="gallery"] .card.synthesis-alert{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card.synthesis-alert{
   border-color: rgba(255, 51, 51, 0.5);
   box-shadow: 0 0 18px rgba(255, 51, 51, 0.1);
 }
 
-html[data-page="gallery"] .unknown-alert-badge{
+html:is([data-page="gallery"], [data-page="field-guide"]) .unknown-alert-badge{
   position: absolute;
   right: 12px;
   top: 14px;
@@ -11292,12 +11075,12 @@ html[data-page="gallery"] .unknown-alert-badge{
   letter-spacing: 1.4px;
 }
 
-html[data-page="gallery"] .card.synthesis-alert .unknown-alert-badge{
+html:is([data-page="gallery"], [data-page="field-guide"]) .card.synthesis-alert .unknown-alert-badge{
   border-color: rgba(255, 51, 51, 0.56);
   color: #ff7676;
 }
 
-html[data-page="gallery"] .delete-custom-btn{
+html:is([data-page="gallery"], [data-page="field-guide"]) .delete-custom-btn{
   width: fit-content;
   margin-top: 10px;
   padding: 6px 9px;
@@ -11311,24 +11094,24 @@ html[data-page="gallery"] .delete-custom-btn{
   cursor: pointer;
 }
 
-html[data-page="gallery"] .delete-custom-btn:hover,
-html[data-page="gallery"] .delete-custom-btn:focus-visible{
+html:is([data-page="gallery"], [data-page="field-guide"]) .delete-custom-btn:hover,
+html:is([data-page="gallery"], [data-page="field-guide"]) .delete-custom-btn:focus-visible{
   background: rgba(255, 51, 51, 0.16);
   box-shadow: 0 0 14px rgba(255, 51, 51, 0.16);
 }
 
 @media (max-width: 1100px){
-  html[data-page="gallery"]{
+  html:is([data-page="gallery"], [data-page="field-guide"]){
     --gallery-header-space: 88px;
   }
 }
 
 @media (max-width: 680px){
-  html[data-page="gallery"]{
+  html:is([data-page="gallery"], [data-page="field-guide"]){
     --gallery-header-space: 84px;
   }
 
-  html[data-page="gallery"] .console-header{
+  html:is([data-page="gallery"], [data-page="field-guide"]) .console-header{
     top: auto !important;
     width: calc(100vw - 24px) !important;
   }
@@ -11370,10 +11153,11 @@ html[data-page="timescale"] .timeline-node::before{
   border: 0 !important;
   background: transparent !important;
   color: rgba(227, 195, 126, 0.22) !important;
-  font-family: 'Orbitron', sans-serif !important;
-  font-size: 1.4rem !important;
+  font-family: var(--font-mono) !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
   line-height: 1 !important;
-  letter-spacing: 0 !important;
+  letter-spacing: 1px !important;
   box-shadow: none !important;
 }
 
@@ -11438,10 +11222,6 @@ html[data-page="timescale"] .timeline-node.active{
   --pl-text-muted: #a39b8f;
   --pl-text-dim: #6e675b;
 
-  --badge-cr: #dc2626;
-  --badge-en: #ea580c;
-  --badge-vu: #d97706;
-  --badge-lc: #16a34a;
 
   --pl-radius-sm: 4px;
   --pl-radius-md: 8px;
@@ -11468,7 +11248,8 @@ html[data-page="timescale"] .timeline-node.active{
   top: 0;
   left: 0;
   width: 100%;
-  height: 76px;
+  height: calc(76px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   background: rgba(13, 12, 10, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -11573,39 +11354,6 @@ html[data-page="timescale"] .timeline-node.active{
   transform-origin: left;
 }
 
-.pl-alert-btn,
-.pl-alert-badge-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(185, 28, 28, 0.22);
-  border: 1px solid var(--pl-red-border);
-  color: #fca5a5;
-  padding: 8px 16px;
-  border-radius: var(--pl-radius-pill);
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 16px rgba(185, 28, 28, 0.2);
-}
-
-.pl-alert-btn:hover,
-.pl-alert-badge-btn:hover {
-  background: var(--pl-red);
-  color: #ffffff;
-  border-color: var(--pl-red-light);
-  box-shadow: 0 0 24px var(--pl-red-glow);
-  transform: translateY(-1px);
-}
-
-.pl-alert-pulse,
 .pl-pulse-dot {
   width: 8px;
   height: 8px;
@@ -11630,7 +11378,21 @@ html[data-page="timescale"] .timeline-node.active{
   color: var(--pl-gold);
   padding: 8px 12px;
   border-radius: var(--pl-radius-sm);
+  font-family: var(--font-ui);
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pl-btn-primary,
+.pl-btn-secondary {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -11649,7 +11411,7 @@ html[data-page="timescale"] .timeline-node.active{
   padding: 80px 0 54px;
   background:
     linear-gradient(180deg, rgba(13, 12, 10, 0.3) 0%, transparent 14%, transparent 84%, #0d0c0a 100%),
-    url("../../assets/images/originals/hero-banner.jpg") center center / cover no-repeat;
+    url("../images/originals/hero-banner.jpg") center center / cover no-repeat;
 }
 
 .pl-hero::before {
@@ -11676,13 +11438,14 @@ html[data-page="timescale"] .timeline-node.active{
 
 .pl-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-size: clamp(2.2rem, 7vw, 5.8rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: 6px;
+  letter-spacing: clamp(2px, 1.2vw, 6px);
   color: var(--pl-text);
   margin: 0 0 20px;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+  overflow-wrap: break-word;
 }
 
 .pl-hero-deck {
@@ -11852,158 +11615,6 @@ html[data-page="timescale"] .timeline-node.active{
 }
 
 /* ==========================================================================
-   RED CODE ALERT BANNER (HOME)
-   ========================================================================== */
-
-.pl-alert-banner {
-  background: linear-gradient(135deg, rgba(185, 28, 28, 0.14) 0%, rgba(20, 18, 16, 0.88) 100%);
-  border: 1px solid var(--pl-red-border);
-  border-radius: var(--pl-radius-lg);
-  padding: 36px 44px;
-  margin-bottom: 72px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 40px;
-  align-items: center;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-}
-
-.pl-alert-info {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.pl-alert-icon-wrap {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--pl-red-dim);
-  border: 1px solid var(--pl-red-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--pl-red-light);
-  flex-shrink: 0;
-  box-shadow: 0 0 16px var(--pl-red-glow);
-}
-
-.pl-alert-title {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #fca5a5;
-  margin: 0 0 8px;
-}
-
-.pl-alert-desc {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--pl-text-muted);
-  margin: 0 0 16px;
-  max-width: 520px;
-}
-
-.pl-alert-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  border: 1px solid var(--pl-red-border);
-  color: #fca5a5;
-  padding: 8px 18px;
-  border-radius: var(--pl-radius-sm);
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.pl-alert-action-btn:hover {
-  background: var(--pl-red);
-  color: #fff;
-  border-color: var(--pl-red-light);
-  box-shadow: 0 0 20px var(--pl-red-glow);
-}
-
-.pl-alert-chips {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.pl-chip-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.pl-chip-thumb {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  position: relative;
-  border: 2px solid rgba(194, 155, 98, 0.2);
-  overflow: visible;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.pl-chip-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.pl-chip-badge {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  padding: 2px 6px;
-  border-radius: var(--pl-radius-pill);
-  font-family: var(--font-ui);
-  font-size: 0.62rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-.pl-chip-badge.cr { background: var(--badge-cr); }
-.pl-chip-badge.en { background: var(--badge-en); }
-.pl-chip-badge.vu { background: var(--badge-vu); }
-
-.pl-chip-name {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--pl-text);
-  max-width: 90px;
-  line-height: 1.2;
-}
-
-.pl-chip-status-text {
-  font-family: var(--font-ui);
-  font-size: 0.65rem;
-  color: var(--pl-text-muted);
-}
-
-.pl-chip-item:hover .pl-chip-thumb {
-  transform: scale(1.08);
-  border-color: var(--pl-gold);
-}
-
-/* ==========================================================================
    GLOBAL FOOTER
    ========================================================================== */
 
@@ -12028,6 +11639,12 @@ html[data-page="timescale"] .timeline-node.active{
   grid-template-columns: 1.8fr 1fr 1fr 1fr 1.4fr;
   gap: 48px;
   margin-bottom: 48px;
+}
+
+@media (min-width: 1101px) {
+  html[data-page="index"] .pl-footer-grid {
+    grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+  }
 }
 
 .pl-footer-brand-col {
@@ -12085,44 +11702,22 @@ html[data-page="timescale"] .timeline-node.active{
   width: fit-content;
 }
 
-.pl-footer-socials {
-  display: flex;
-  gap: 14px;
-  margin-top: 8px;
-}
-
-.pl-social-link {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--pl-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--pl-text-muted);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.pl-social-link:hover {
-  color: var(--pl-gold);
-  border-color: var(--pl-gold);
-  background: var(--pl-gold-dim);
-}
-
 .pl-footer-links-col {
   display: flex;
   flex-direction: column;
+  min-width: 220px;
 }
 
 .pl-footer-col-title,
 .pl-footer-heading {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
   color: var(--pl-text);
   margin-bottom: 20px;
+  word-break: keep-all;
 }
 
 .pl-footer-links,
@@ -12208,219 +11803,6 @@ html[data-page="timescale"] .timeline-node.active{
 }
 
 /* ==========================================================================
-   RED CODE ALERT MODAL
-   ========================================================================== */
-
-.pl-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(8, 7, 6, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.pl-modal-backdrop.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.pl-modal-window {
-  background: #141210;
-  border: 1px solid var(--pl-red-border);
-  border-radius: var(--pl-radius-lg);
-  width: min(1080px, 94vw);
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(185, 28, 28, 0.2);
-  padding: 36px 40px;
-  position: relative;
-  transform: translateY(20px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pl-modal-backdrop.active .pl-modal-window {
-  transform: translateY(0);
-}
-
-.pl-modal-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  background: none;
-  border: 1px solid var(--pl-border);
-  color: var(--pl-text-muted);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: all 0.2s ease;
-}
-
-.pl-modal-close:hover {
-  color: #fff;
-  border-color: var(--pl-red-light);
-  background: var(--pl-red-dim);
-}
-
-.pl-alert-modal-head {
-  margin-bottom: 28px;
-}
-
-.pl-alert-modal-title {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: #fca5a5;
-  letter-spacing: 2.5px;
-  margin: 0 0 8px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.pl-alert-modal-sub {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  color: var(--pl-text-muted);
-  margin: 0;
-}
-
-.pl-alert-filter-tabs {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0 28px;
-  flex-wrap: wrap;
-}
-
-.pl-alert-tab {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--pl-border);
-  color: var(--pl-text-muted);
-  padding: 8px 18px;
-  border-radius: var(--pl-radius-pill);
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.pl-alert-tab.active,
-.pl-alert-tab:hover {
-  background: var(--pl-red-dim);
-  border-color: var(--pl-red-border);
-  color: #fca5a5;
-}
-
-.pl-alert-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  margin-bottom: 36px;
-}
-
-.pl-threat-card {
-  background: var(--pl-surface);
-  border: 1px solid var(--pl-border);
-  border-radius: var(--pl-radius-md);
-  padding: 20px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.pl-threat-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--pl-red-border);
-}
-
-.pl-threat-img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: var(--pl-radius-sm);
-  margin-bottom: 14px;
-}
-
-.pl-threat-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.pl-threat-name {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--pl-text);
-  margin: 0;
-}
-
-.pl-threat-cause {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  color: var(--pl-text-muted);
-  line-height: 1.4;
-  margin: 6px 0 0;
-}
-
-.pl-what-can-you-do {
-  background: rgba(194, 155, 98, 0.06);
-  border: 1px solid var(--pl-border);
-  border-radius: var(--pl-radius-md);
-  padding: 24px 28px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 24px;
-  align-items: center;
-}
-
-.pl-what-title {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--pl-gold);
-  letter-spacing: 1.5px;
-  margin: 0;
-}
-
-.pl-what-steps {
-  display: flex;
-  gap: 20px;
-}
-
-.pl-what-step {
-  flex: 1;
-}
-
-.pl-what-step-name {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--pl-text);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-
-.pl-what-step-desc {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  color: var(--pl-text-muted);
-  line-height: 1.4;
-}
-
-/* ==========================================================================
    SPECIES FIELD GUIDE & GALLERY STYLES (GALLERY.HTML)
    ========================================================================== */
 
@@ -12428,7 +11810,7 @@ html[data-page="timescale"] .timeline-node.active{
   padding: 16px 0 24px;
 }
 
-html[data-page="gallery"] .page-wrap {
+html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto !important;
@@ -12437,10 +11819,10 @@ html[data-page="gallery"] .page-wrap {
   box-sizing: border-box !important;
 }
 
-html[data-page="gallery"] .pl-field-guide-header,
-html[data-page="gallery"] .section-wrapper,
-html[data-page="gallery"] .load-more-wrap,
-html[data-page="gallery"] #gallery-showcase {
+html:is([data-page="gallery"], [data-page="field-guide"]) .pl-field-guide-header,
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper,
+html:is([data-page="gallery"], [data-page="field-guide"]) .load-more-wrap,
+html:is([data-page="gallery"], [data-page="field-guide"]) #gallery-showcase {
   max-width: 100% !important;
   width: 100% !important;
   margin-left: 0 !important;
@@ -12450,7 +11832,7 @@ html[data-page="gallery"] #gallery-showcase {
   box-sizing: border-box !important;
 }
 
-html[data-page="gallery"] .results-status {
+html:is([data-page="gallery"], [data-page="field-guide"]) .results-status {
   max-width: 100% !important;
   width: 100% !important;
   margin: 18px 0 22px !important;
@@ -12459,16 +11841,16 @@ html[data-page="gallery"] .results-status {
 }
 
 /* Gallery Section Title - flush margins & Museum Cinzel typography */
-html[data-page="gallery"] .section-title {
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-title {
   width: 100% !important;
   max-width: 100% !important;
   margin: 36px 0 16px !important;
   padding: 14px 20px !important;
   border: 1px solid var(--pl-border) !important;
-  border-left: 4px solid currentColor !important;
   border-radius: var(--pl-radius-md) !important;
   background: var(--pl-surface) !important;
-  color: var(--pl-text) !important;
+  color: var(--pl-gold) !important;
+  text-shadow: none !important;
   font-family: var(--font-display) !important;
   font-size: 1.05rem !important;
   font-weight: 700 !important;
@@ -12478,7 +11860,7 @@ html[data-page="gallery"] .section-title {
 }
 
 /* Gallery card typography & badges - unified with museum design system */
-html[data-page="gallery"] .spec-name,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name,
 html[data-page="form"] .spec-name {
   color: var(--pl-text) !important;
   font-family: var(--font-display) !important;
@@ -12488,7 +11870,7 @@ html[data-page="form"] .spec-name {
   line-height: 1.25 !important;
 }
 
-html[data-page="gallery"] .spec-cn,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn,
 html[data-page="form"] .spec-cn {
   font-family: var(--font-ui) !important;
   font-size: 0.8rem !important;
@@ -12496,7 +11878,7 @@ html[data-page="form"] .spec-cn {
   margin-top: 3px !important;
 }
 
-html[data-page="gallery"] .spec-code,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-code,
 html[data-page="form"] .spec-code {
   font-family: var(--font-mono) !important;
   font-size: 0.72rem !important;
@@ -12504,14 +11886,14 @@ html[data-page="form"] .spec-code {
   letter-spacing: 1px !important;
 }
 
-html[data-page="gallery"] .spec-stats,
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-stats,
 html[data-page="form"] .spec-stats {
   font-family: var(--font-mono) !important;
   font-size: 0.72rem !important;
   color: var(--pl-text-muted) !important;
 }
 
-html[data-page="gallery"] .class-icon,
+html:is([data-page="gallery"], [data-page="field-guide"]) .class-icon,
 html[data-page="form"] .class-icon {
   font-family: var(--font-mono) !important;
   font-size: 0.68rem !important;
@@ -12537,53 +11919,13 @@ html[data-page="timescale"] body::before {
   display: none !important;
 }
 
-html[data-page="timescale"] .timeline-scope-strip {
-  width: 100% !important;
-  margin: 18px 0 0 !important;
-  padding: 8px 0 0 !important;
-  display: flex !important;
-  gap: clamp(16px, 4vw, 44px) !important;
-  border-top: 1px solid var(--pl-border) !important;
-  overflow-x: auto !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span {
-  font-family: var(--font-mono) !important;
-  font-size: 0.78rem !important;
-  letter-spacing: 2px !important;
-  color: var(--pl-text-muted) !important;
-  padding-bottom: 10px !important;
-  cursor: pointer !important;
-  position: relative !important;
-  transition: color 0.2s ease !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span:hover {
-  color: var(--pl-text) !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span.active {
-  color: var(--pl-gold) !important;
-  font-weight: 700 !important;
-}
-
-html[data-page="timescale"] .timeline-scope-strip span.active::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 2px !important;
-  background: var(--pl-gold) !important;
-}
-
 html[data-page="timescale"] .timeline-container {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 0 44px !important;
   padding: 0 !important;
   display: grid !important;
-  grid-template-columns: minmax(340px, 0.4fr) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(500px, 540px) minmax(0, 1fr) !important;
   align-items: start !important;
   gap: 28px !important;
   box-sizing: border-box !important;
@@ -12854,10 +12196,10 @@ html[data-page="timescale"] .major-event-item {
 
 html[data-page="timescale"] .action-btn,
 html[data-page="timescale"] #queryBtn {
-  font-family: var(--font-display) !important;
-  font-weight: 700 !important;
-  font-size: 0.92rem !important;
-  letter-spacing: 2px !important;
+  font-family: var(--font-ui) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   background: linear-gradient(135deg, var(--pl-gold), #8c6838) !important;
   color: #0d0c0a !important;
@@ -12994,18 +12336,7 @@ html[data-page="timescale"] #queryBtn:hover {
 }
 
 .pl-card-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  padding: 4px 8px;
-  border-radius: var(--pl-radius-sm);
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
-  z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  display: none !important;
 }
 
 .pl-card-body {
@@ -13376,12 +12707,17 @@ html[data-page="timescale"] #queryBtn:hover {
   background: var(--pl-surface);
   border: 1px solid var(--pl-border);
   border-radius: var(--pl-radius-sm);
-  padding: 4px 8px;
+  padding: 8px 14px;
+  min-height: 44px;
+  min-width: 52px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--pl-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pl-ratio-btn:hover,
@@ -13536,7 +12872,7 @@ html[data-page="form"] .error-lbl {
   .pl-hero-content,
   .pl-container,
   .pl-footer-inner,
-  html[data-page="gallery"] .page-wrap {
+  html:is([data-page="gallery"], [data-page="field-guide"]) .page-wrap {
     padding-left: clamp(14px, 2vw, 20px) !important;
     padding-right: clamp(14px, 2vw, 20px) !important;
   }
@@ -13566,15 +12902,757 @@ html[data-page="form"] .error-lbl {
 }
 
 @media (max-width: 768px) {
+  .pl-hero { aspect-ratio: auto; min-height: 480px; padding: 90px 0 40px; }
+  html[data-page="index"] .pl-hero {
+    background: linear-gradient(180deg, rgba(13, 12, 10, 0.38) 0%, rgba(13, 12, 10, 0.55) 32%, rgba(13, 12, 10, 0.88) 68%, #0d0c0a 100%),
+      url("../images/originals/hero-banner.jpg") center center / cover no-repeat;
+  }
+  html[data-page="index"] .pl-hero-deck {
+    color: var(--pl-text);
+    font-weight: 400;
+  }
   .pl-sections-grid { grid-template-columns: 1fr; }
-  .pl-alert-banner { grid-template-columns: 1fr; padding: 24px; }
-  .pl-what-can-you-do { grid-template-columns: 1fr; }
-  .pl-what-steps { flex-direction: column; }
   .pl-footer-grid { grid-template-columns: 1fr; }
   .pl-event-item { grid-template-columns: 1fr; gap: 8px; }
   .pl-form-grid { grid-template-columns: 1fr; }
 }
 
+/* Timescale overflow: side-rail stats, query button margins, narrow nodes */
+html[data-page="timescale"] .pl-container,
+html[data-page="timescale"] .timeline-container,
+html[data-page="timescale"] .timeline-list,
+html[data-page="timescale"] .details-sticky,
+html[data-page="timescale"] .details-panel,
+html[data-page="timescale"] .timeline-detail-grid,
+html[data-page="timescale"] .timeline-copy-stack,
+html[data-page="timescale"] .timeline-fact-stack {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
 
+html[data-page="timescale"] .timeline-container {
+  overflow: visible !important;
+  grid-template-columns: minmax(360px, 500px) minmax(0, 1fr) !important;
+}
+
+html[data-page="timescale"] .details-panel {
+  overflow: visible !important;
+}
+
+html[data-page="timescale"] .timeline-copy-stack,
+html[data-page="timescale"] .timeline-fact-stack {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+html[data-page="timescale"] .timeline-detail-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) !important;
+}
+
+html[data-page="timescale"] .stat-grid {
+  grid-template-columns: 1fr !important;
+}
+
+html[data-page="timescale"] .stat-box,
+html[data-page="timescale"] .stat-lbl,
+html[data-page="timescale"] .stat-val,
+html[data-page="timescale"] .major-events,
+html[data-page="timescale"] .major-events-title,
+html[data-page="timescale"] .major-event-item,
+html[data-page="timescale"] .major-event-item p,
+html[data-page="timescale"] .desc-text,
+html[data-page="timescale"] .details-title,
+html[data-page="timescale"] .details-span,
+html[data-page="timescale"] .node-era,
+html[data-page="timescale"] .node-name,
+html[data-page="timescale"] .node-span {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+
+html[data-page="timescale"] .stat-box {
+  padding: 12px 14px !important;
+}
+
+html[data-page="timescale"] .stat-val {
+  font-size: 0.98rem !important;
+  line-height: 1.35 !important;
+}
+
+html[data-page="timescale"] .era-visual-frame {
+  min-height: clamp(220px, 32vw, 420px) !important;
+}
+
+html[data-page="timescale"] .era-visual-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html[data-page="timescale"] .era-visual-copy {
+  left: 0 !important;
+  right: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+html[data-page="timescale"] .action-btn,
+html[data-page="timescale"] #queryBtn {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 20px 0 0 !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.4 !important;
+  min-height: 48px !important;
+}
+
+html[data-page="timescale"] .timeline-node {
+  width: 100% !important;
+  font-family: var(--font-ui) !important;
+  color: inherit !important;
+  text-align: left !important;
+  appearance: none !important;
+}
+
+html[data-page="timescale"] .timeline-node:focus-visible,
+html[data-page="timescale"] #queryBtn:focus-visible,
+html[data-page="timescale"] .pl-menu-toggle:focus-visible {
+  outline: 2px solid var(--pl-gold-light) !important;
+  outline-offset: 2px !important;
+}
+
+@media (max-width: 980px) {
+  html[data-page="timescale"] .timeline-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html[data-page="timescale"] .stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  html[data-page="timescale"] .timeline-list {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  html[data-page="timescale"] .timeline-node {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 92px auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  html[data-page="timescale"] .node-thumb {
+    width: 100% !important;
+    height: 92px !important;
+    min-height: 92px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html[data-page="timescale"] .stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pl-header-inner {
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  .pl-logo {
+    min-width: 0 !important;
+  }
+
+  .pl-logo-text {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+
+  .pl-menu-toggle {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  html[data-page="timescale"] .details-title {
+    font-size: clamp(1.35rem, 7vw, 2rem) !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+@media (max-width: 980px) {
+  html[data-page="timescale"] .timeline-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+html[data-page="timescale"] .era-visual-frame::before {
+  display: none !important;
+}
+
+html[data-page="timescale"] .era-visual-image {
+  filter: none !important;
+  transform: none !important;
+}
+
+html[data-page="timescale"] .era-visual-copy {
+  background: linear-gradient(180deg, rgba(8, 7, 6, 0) 0%, rgba(8, 7, 6, 0.78) 100%) !important;
+}
+
+@media (min-width: 981px) {
+  html[data-page="timescale"] .timeline-list {
+    grid-auto-rows: minmax(156px, auto) !important;
+  }
+
+  html[data-page="timescale"] .timeline-node {
+    min-height: 156px !important;
+    padding: 18px 18px !important;
+    grid-template-columns: 116px minmax(0, 1fr) !important;
+  }
+
+  html[data-page="timescale"] .node-thumb {
+    width: 116px !important;
+    height: 116px !important;
+    min-height: 116px !important;
+  }
+
+  html[data-page="timescale"] .node-copy {
+    gap: 8px !important;
+    padding-right: 36px !important;
+  }
+}
+
+html[data-page="form"] .pl-parent-file {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+html[data-page="form"] .pl-parent-file div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--pl-border);
+}
+
+html[data-page="form"] .pl-parent-file dt {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--pl-text-muted);
+}
+
+html[data-page="form"] .pl-parent-file dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  color: var(--pl-text);
+}
+
+html[data-page="form"] .pl-hybrid-preview-box {
+  grid-template-columns: 1fr !important;
+}
+
+html[data-page="field-guide"] .card-text-file,
+html[data-page="form"] .card-text-file {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  min-height: 140px;
+  padding: 16px;
+  background: #100e0c;
+}
+
+html[data-page="field-guide"] .card-text-file p {
+  margin: 0;
+  color: var(--pl-text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+html[data-page="field-guide"] .pl-guide-filter-row {
+  display: block;
+  margin-top: 8px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-border);
+  border-radius: var(--pl-radius-md);
+}
+
+html[data-page="field-guide"] .pl-guide-filter-tools {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.8fr) repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+html[data-page="field-guide"] .pl-search-input,
+html[data-page="field-guide"] .pl-filter-select {
+  min-height: 52px;
+  width: 100%;
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  border-right: 1px solid var(--pl-border) !important;
+  background: transparent !important;
+  color: var(--pl-text) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: none !important;
+}
+
+html[data-page="field-guide"] .pl-guide-filter-tools > :last-child {
+  border-right: 0 !important;
+}
+
+
+
+html[data-page="field-guide"] .pl-search-input:focus,
+html[data-page="field-guide"] .pl-filter-select:focus {
+  border-color: var(--pl-gold) !important;
+  outline: 2px solid var(--pl-gold-light);
+  outline-offset: 2px;
+}
+
+html[data-page="field-guide"] .filter-group {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px !important;
+  margin: 0 !important;
+  padding-top: 12px;
+  border-top: 1px solid var(--pl-border);
+}
+
+html[data-page="field-guide"] .filter-btn {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px !important;
+  text-align: center;
+  border-radius: var(--pl-radius-sm) !important;
+  border: 1px solid var(--pl-border) !important;
+  background: transparent !important;
+  color: var(--pl-text-muted) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase;
+  box-shadow: none !important;
+}
+
+html[data-page="field-guide"] .filter-btn:hover {
+  border-color: var(--pl-border-hover) !important;
+  background: rgba(194, 155, 98, 0.1) !important;
+  color: var(--pl-text) !important;
+}
+
+html[data-page="field-guide"] .filter-btn.active {
+  background: var(--pl-gold) !important;
+  border-color: var(--pl-gold) !important;
+  color: #0d0c0a !important;
+}
+
+html[data-page="field-guide"] .filter-btn:focus-visible {
+  outline: 2px solid var(--pl-gold-light) !important;
+  outline-offset: 2px !important;
+}
+
+@media (max-width: 900px) {
+  html[data-page="field-guide"] .pl-guide-filter-tools {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  html[data-page="field-guide"] .pl-search-input {
+    grid-column: 1 / -1 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--pl-border) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  html[data-page="field-guide"] .pl-guide-filter-tools {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+html[data-page="field-guide"] .pl-empty-results {
+  margin: 8px 0 36px;
+  padding: 28px 24px;
+  border: 1px solid var(--pl-border);
+  border-radius: var(--pl-radius-md);
+  background: var(--pl-surface);
+  color: var(--pl-text-muted);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+
+html[data-page="field-guide"] .pl-empty-results p {
+  margin: 0 0 6px;
+}
+
+html[data-page="field-guide"] .pl-empty-results button {
+  margin-top: 14px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--pl-gold);
+  border-radius: var(--pl-radius-sm);
+  background: transparent;
+  color: var(--pl-text);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+html[data-page="field-guide"] .pl-empty-results button:hover {
+  background: var(--pl-gold);
+  color: #0d0c0a;
+}
+
+html[data-page="field-guide"] .results-status {
+  margin: 14px 0 8px !important;
+  padding: 0 2px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--pl-text-muted) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.06em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window {
+  flex-direction: row !important;
+  width: min(1080px, calc(100vw - 32px)) !important;
+  max-height: 86vh !important;
+  overflow: hidden !important;
+  background: #14110e !important;
+  border-color: var(--pl-border) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis {
+  flex: 0 0 42% !important;
+  min-width: 0 !important;
+  padding: 16px !important;
+  border-right: 1px solid var(--pl-border) !important;
+  border-bottom: 0 !important;
+  background: #100e0c !important;
+  overflow: auto !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis::after {
+  color: var(--pl-gold) !important;
+  letter-spacing: 0.12em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-image-frame {
+  aspect-ratio: 16 / 10 !important;
+  border-color: var(--pl-border) !important;
+  background: #0d0c0a !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-img {
+  object-fit: cover !important;
+  filter: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  padding: 22px 22px 28px !important;
+  overflow: auto !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .file-kicker,
+html:is([data-page="gallery"], [data-page="field-guide"]) .dossier-section-label {
+  color: var(--pl-gold) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.12em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .file-title {
+  font-family: var(--font-display) !important;
+  color: var(--pl-text) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .file-subtitle {
+  color: var(--pl-gold) !important;
+  font-family: var(--font-ui) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .close-btn {
+  color: var(--pl-gold) !important;
+  border-color: var(--pl-border) !important;
+  background: #100e0c !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol {
+  border: 1px solid var(--pl-border) !important;
+  border-left-width: 1px !important;
+  background: transparent !important;
+  color: var(--pl-gold) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-dot {
+  animation: none !important;
+  box-shadow: none !important;
+  background: var(--pl-gold) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-label {
+  color: var(--pl-gold) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.08em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+@media (max-width: 760px) {
+  html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window {
+    flex-direction: column !important;
+    overflow: auto !important;
+  }
+
+  html:is([data-page="gallery"], [data-page="field-guide"]) .modal-vis {
+    flex: none !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--pl-border) !important;
+  }
+
+  html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 400px) {
+  html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point.wide {
+  grid-column: auto !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  border: 1px solid var(--pl-border) !important;
+  box-shadow: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point label {
+  color: var(--pl-text-muted) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.06em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point span,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point .metric-alert,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point .metric-positive {
+  color: var(--pl-text) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .species-summary,
+html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box,
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item {
+  background: transparent !important;
+  border-color: var(--pl-border) !important;
+  box-shadow: none !important;
+  color: var(--pl-text-muted) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item strong {
+  color: var(--pl-text) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .deploy-btn {
+  background: transparent !important;
+  border: 1px solid var(--pl-gold) !important;
+  color: var(--pl-text) !important;
+  font-family: var(--font-ui) !important;
+  letter-spacing: 0.08em !important;
+}
+
+html[data-page="field-guide"] .section-title {
+  margin: 28px 0 12px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .grid {
+  align-items: stretch;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .card {
+  height: auto !important;
+  min-height: 0 !important;
+  display: flex;
+  flex-direction: column !important;
+  content-visibility: visible !important;
+  contain-intrinsic-size: auto !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .card.hidden,
+html:is([data-page="gallery"], [data-page="field-guide"]) .card.page-hidden {
+  display: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .section-wrapper.hidden-section {
+  display: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-vis {
+  height: auto !important;
+  flex: 0 0 auto !important;
+  aspect-ratio: 4 / 3 !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .card-data {
+  height: auto !important;
+  min-height: 292px !important;
+  flex: 1 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-name {
+  min-height: calc(1.25em * 3);
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .spec-cn {
+  min-height: calc(1.4em * 2);
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .containment-badge {
+  min-height: calc(1.35em * 2);
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .pl-card-action {
+  margin-top: auto;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .modal-window::before {
+  display: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol.proto-open,
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol.proto-fence,
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol.proto-bunker,
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol.proto-class {
+  border-color: var(--pl-border) !important;
+  color: var(--pl-gold) !important;
+  animation: none !important;
+  box-shadow: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-protocol-dot {
+  background: var(--pl-gold) !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-grid {
+  gap: 0 !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  overflow: hidden;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point,
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point.wide {
+  border: 0 !important;
+  border-right: 1px solid var(--pl-border) !important;
+  border-bottom: 1px solid var(--pl-border) !important;
+  border-radius: 0 !important;
+  padding: 12px 14px !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .data-point:nth-child(3n) {
+  border-right: 0 !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta {
+  margin-top: 12px !important;
+  border: 1px solid var(--pl-border) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  overflow: hidden;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item,
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item.wide {
+  background: transparent !important;
+  border-color: var(--pl-border) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .plate-meta-item span,
+html:is([data-page="gallery"], [data-page="field-guide"]) .mi-map-label {
+  color: var(--pl-text-muted) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.08em !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .species-summary,
+html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box {
+  border: 1px solid var(--pl-border) !important;
+  border-left-width: 1px !important;
+  border-radius: var(--pl-radius-sm) !important;
+  padding: 14px 16px !important;
+  color: var(--pl-text) !important;
+  font-family: var(--font-ui) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .fact-box::before {
+  display: none !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-container,
+html:is([data-page="gallery"], [data-page="field-guide"]) #modalMap {
+  border-color: var(--pl-border) !important;
+  border-radius: var(--pl-radius-sm) !important;
+  background: #100e0c !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-ocean {
+  fill: #100e0c !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-region {
+  fill: #2a241c !important;
+  stroke: #6b5a3e !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .map-region.active {
+  fill: rgba(194, 155, 98, 0.38) !important;
+  stroke: var(--pl-gold) !important;
+}
+
+html:is([data-page="gallery"], [data-page="field-guide"]) .star-rating {
+  color: var(--pl-gold) !important;
+}
 `
 

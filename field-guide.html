@@ -59,10 +59,6 @@
             </nav>
 
             <div class="pl-header-actions">
-                <button type="button" class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert System">
-                    <span class="pl-pulse-dot"></span>
-                    <span>RED CODE ALERT</span>
-                </button>
                 <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -317,90 +313,6 @@
 
 </main><!-- /page-wrap -->
 
-    <!-- RED CODE ALERT MODAL -->
-    <div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
-        <div class="pl-modal-window">
-            <button type="button" class="pl-modal-close js-close-alert" aria-label="Close Alert Dialog">✕</button>
-            <div class="pl-alert-modal-head">
-                <h2 class="pl-alert-modal-title" id="alertModalTitle">
-                    <span style="color:var(--pl-red-light);">▲</span> RED CODE ALERT
-                </h2>
-                <p class="pl-alert-modal-sub">Ancient species are disappearing. Awareness is the first step to preservation.</p>
-            </div>
-
-            <div class="pl-alert-filter-tabs">
-                <button type="button" class="pl-alert-tab active" data-status="all">ALL STATUSES</button>
-                <button type="button" class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED (CR)</button>
-                <button type="button" class="pl-alert-tab" data-status="en">ENDANGERED (EN)</button>
-                <button type="button" class="pl-alert-tab" data-status="vu">VULNERABLE (VU)</button>
-            </div>
-
-            <div class="pl-alert-cards-grid">
-                <!-- Card 1 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/triceratop.webp" alt="Triceratops" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">TRICERATOPS</h4>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Late Cretaceous · ~68–66 Mya</p>
-                    <p class="pl-threat-cause">Extreme environmental collapse following the Chicxulub bolide impact. Global wildfire and thermal radiation.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pl-threat-card" data-status="en">
-                    <img src="assets/images/thumbs/mammoth.webp" alt="Woolly Mammoth" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">WOOLLY MAMMOTH</h4>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~400–4 kya</p>
-                    <p class="pl-threat-cause">Post-glacial warming causing loss of mammoth steppe habitat, compounded by human hunting pressure.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pl-threat-card" data-status="vu">
-                    <img src="assets/images/thumbs/smilodon.webp" alt="Saber-Toothed Tiger" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">SABER-TOOTHED TIGER</h4>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Pleistocene · ~2.5 Mya–10 kya</p>
-                    <p class="pl-threat-cause">Extinction of large herbivore prey base and competitive exclusion during quaternary climate shifts.</p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="pl-threat-card" data-status="cr">
-                    <img src="assets/images/thumbs/dodo.webp" alt="Dodo" class="pl-threat-img" loading="lazy" decoding="async">
-                    <div class="pl-threat-meta">
-                        <h4 class="pl-threat-name">DODO</h4>
-                    </div>
-                    <p style="font-size:0.75rem; color:var(--pl-gold); margin:0 0 6px;">Holocene · ~1681 AD Extinct</p>
-                    <p class="pl-threat-cause">Direct human predation and introduction of invasive nest predators on Mauritius.</p>
-                </div>
-            </div>
-
-            <!-- WHAT CAN YOU DO? -->
-            <div class="pl-what-can-you-do">
-                <div>
-                    <h3 class="pl-what-title">WHAT CAN YOU DO?</h3>
-                    <p style="font-size:0.78rem; color:var(--pl-text-muted); margin:6px 0 0;">Preserving biodiversity begins with understanding history.</p>
-                </div>
-                <div class="pl-what-steps">
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">1. LEARN</div>
-                        <div class="pl-what-step-desc">Educate yourself and your community on ancient mass extinction triggers.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">2. SHARE</div>
-                        <div class="pl-what-step-desc">Promote scientific research and paleobiological conservation studies.</div>
-                    </div>
-                    <div class="pl-what-step">
-                        <div class="pl-what-step-name">3. SUPPORT</div>
-                        <div class="pl-what-step-desc">Support habitat preservation and active ecological restoration worldwide.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- GLOBAL FOOTER -->
     <footer class="pl-footer">
       <div class="pl-footer-inner">
@@ -414,7 +326,7 @@
               <span class="pl-footer-brand-text">PALEOLOGIST</span>
             </div>
             <p class="pl-footer-desc">
-              An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+              An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
             </p>
             <div class="pl-footer-status-pill">
               <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>

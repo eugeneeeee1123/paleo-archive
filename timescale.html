@@ -40,10 +40,6 @@
     </nav>
 
     <div class="pl-header-actions">
-      <button class="pl-alert-badge-btn js-open-alert" id="openRedAlertBtn" aria-label="Open Red Code Alert Modal">
-        <span class="pl-pulse-dot"></span>
-        <span>RED CODE ALERT</span>
-      </button>
       <button class="pl-menu-toggle" id="plMenuToggle" aria-label="Toggle navigation">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -139,92 +135,6 @@
   </div>
 </main>
 
-<!-- RED CODE ALERT MODAL -->
-<div class="pl-modal-backdrop" id="redCodeModal" role="dialog" aria-modal="true" aria-labelledby="modalAlertTitle">
-  <div class="pl-modal-window">
-    <div class="pl-modal-header">
-      <div class="pl-modal-title-wrap">
-        <span class="pl-badge pl-badge-cr">URGENT CALL TO ACTION</span>
-        <h2 class="pl-modal-title" id="modalAlertTitle">RED CODE ALERT / 红色警戒</h2>
-      </div>
-      <button class="pl-modal-close js-close-alert" id="closeRedAlertModal" aria-label="Close modal">×</button>
-    </div>
-
-    <div class="pl-modal-body">
-      <div class="pl-modal-quote">
-        "Extinction is forever. What was once lost in deep time can teach us how to prevent the collapse of our modern biosphere."
-      </div>
-
-      <div class="pl-modal-tabs" id="modalStatusTabs">
-        <button class="pl-alert-tab active" data-status="all">ALL ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="cr">CRITICALLY ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="en">ENDANGERED</button>
-        <button class="pl-alert-tab" data-status="vu">VULNERABLE</button>
-      </div>
-
-      <div class="pl-threat-grid" id="modalThreatList">
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Triceratops Prorsus / 普氏三角龙</span>
-          </div>
-          <p class="pl-threat-desc">Late Cretaceous herbivore vulnerable to abrupt thermal swings and floral collapse during the K-Pg boundary event.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="en">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Mammuthus Primigenius / 真猛犸象</span>
-          </div>
-          <p class="pl-threat-desc">Pleistocene megafauna devastated by rapid Holocene warming, loss of mammoth steppe biome, and early human hunting pressures.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="vu">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Smilodon Fatalis / 毁灭剑齿虎</span>
-          </div>
-          <p class="pl-threat-desc">Specialized apex predator that faced steep decline as large herbivorous prey collapsed at the end of the Last Glacial Maximum.</p>
-        </div>
-
-        <div class="pl-threat-card" data-status="cr">
-          <div class="pl-threat-card-header">
-            <span class="pl-threat-name">Raphus Cucullatus / 渡渡鸟</span>
-          </div>
-          <p class="pl-threat-desc">Flightless island endemic destroyed within decades of human arrival due to hunting and invasive nest predation.</p>
-        </div>
-      </div>
-
-      <div class="pl-what-can-you-do">
-        <h3 class="pl-what-title">WHAT CAN YOU DO? / 我们能做什么？</h3>
-        <p class="pl-what-text">
-          Paleontological evidence reveals that Earth's five historical mass extinctions were driven by abrupt carbon emissions, ocean acidification, and habitat loss. Modern anthropogenic climate change is reproducing these same geobiological stresses at ten times the speed.
-        </p>
-        <div class="pl-what-steps">
-          <div class="pl-step-item">
-            <div class="pl-step-num">01</div>
-            <div>
-              <div class="pl-step-bold">Support Habitat Sanctuaries</div>
-              <div class="pl-step-desc">Preserve continuous ecological corridors to prevent genetic bottlenecks.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">02</div>
-            <div>
-              <div class="pl-step-bold">Decarbonize Energy</div>
-              <div class="pl-step-desc">Halt runaway ocean acidification mirroring the end-Permian crisis.</div>
-            </div>
-          </div>
-          <div class="pl-step-item">
-            <div class="pl-step-num">03</div>
-            <div>
-              <div class="pl-step-bold">Advance Bio-Archiving</div>
-              <div class="pl-step-desc">Support cryogenic genetic banking and museum research collections.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer class="pl-footer">
   <div class="pl-footer-inner">
@@ -238,7 +148,7 @@
           <span class="pl-footer-brand-text">PALEOLOGIST</span>
         </div>
         <p class="pl-footer-desc">
-          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and biosphere conservation.
+          An interactive deep-time digital museum and field expedition catalog dedicated to Earth's evolutionary heritage, prehistoric taxonomy, and museum research.
         </p>
         <div class="pl-footer-status-pill">
           <span class="pl-pulse-dot" style="background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,0.6);"></span>

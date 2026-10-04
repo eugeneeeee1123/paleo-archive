@@ -1,6 +1,7 @@
 (function () {
   const page = document.documentElement.dataset.page;
   const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
+  const CUSTOM_HYBRID_WARNING_IMAGE = 'assets/images/generated/unknown-hybrid-danger.png';
 
   if (page === 'gallery' || page === 'field-guide' || page === 'timescale') {
     (function() {
@@ -20,55 +21,6 @@
                     root.style.setProperty('--ingen-text-dim', '#801a1a');
                 }
             })();
-  }
-
-  function setupRedCodeModal() {
-    const alertModal = document.getElementById('redCodeModal') || document.querySelector('.pl-modal-backdrop');
-    if (!alertModal) return;
-
-    function openRedAlert(e) {
-      if (e) e.preventDefault();
-      alertModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeRedAlert(e) {
-      if (e) e.preventDefault();
-      alertModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.js-open-alert, #openRedAlertBtn').forEach(btn => {
-      btn.addEventListener('click', openRedAlert);
-    });
-    document.querySelectorAll('.js-close-alert, #closeRedAlertModal, #closeRedAlertBtn, .pl-modal-close').forEach(btn => {
-      btn.addEventListener('click', closeRedAlert);
-    });
-
-    alertModal.addEventListener('click', function(e) {
-      if (e.target === alertModal) closeRedAlert();
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && alertModal.classList.contains('active')) closeRedAlert();
-    });
-
-    const alertTabs = alertModal.querySelectorAll('.pl-alert-tab');
-    const cards = alertModal.querySelectorAll('.pl-threat-card');
-    alertTabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        alertTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        const filter = (this.getAttribute('data-status') || 'all').toLowerCase();
-        cards.forEach(card => {
-          const cardStatus = (card.getAttribute('data-status') || '').toLowerCase();
-          card.style.display = (filter === 'all' || cardStatus === filter) ? 'block' : 'none';
-        });
-      });
-    });
-
-    window.openRedAlert = openRedAlert;
-    window.closeRedAlert = closeRedAlert;
   }
 
   function setupMobileMenu() {
@@ -241,16 +193,17 @@
         setTimeout(addLine, 200);
     }
 
-    // ── PALEOLOGIST RED CODE ALERT & NAVIGATION ──
-    setupRedCodeModal();
-
     // Mobile menu toggle
     setupMobileMenu();
 
-Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
+window.changeThemeTint = changeThemeTint;
 }
 
   function init_gallery() {
+    if (page === 'gallery') {
+      setupMobileMenu();
+      return;
+    }
     const speciesData = Array.isArray(window.PALEO_SPECIES) ? window.PALEO_SPECIES : [];
 // ── BOOT ──────────────────────────────
     const bootLines = [
@@ -366,9 +319,6 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
       icon.className = 'class-icon';
       icon.textContent = species.class.toUpperCase();
 
-      const r = parseInt(species.rarity) || 3;
-      const statusKey = r >= 5 ? 'cr' : r === 4 ? 'en' : r === 3 ? 'vu' : 'lc';
-      card.setAttribute('data-iucn', statusKey);
       const resolveSpeciesDiet = s => {
         if (s.diet) return s.diet.toLowerCase();
         if (s.class === 'herbivore') return 'herbivore';
@@ -723,7 +673,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const isAlertUnknown = parseInt(asset.agg, 10) >= 4;
         card.classList.toggle('synthesis-alert', isAlertUnknown);
         const safe = {
-          img: escapeHtml(asset.img || UNKNOWN_HYBRID_IMAGE),
+          img: escapeHtml(asset.img || CUSTOM_HYBRID_WARNING_IMAGE),
           name: escapeHtml(asset.name || ''),
           code: escapeHtml(asset.code || ''),
           cn: escapeHtml(asset.cn || ''),
@@ -742,7 +692,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
           alertLabel: escapeHtml(isAlertUnknown ? 'ALERT: UNKNOWN' : 'UNKNOWN')
         };
 
-        const visual = asset.img
+        const visual = asset.img || asset.class === 'hybrid'
           ? `<div class="card-vis">
             <img src="${safe.img}" data-full-src="${safe.img}" class="card-img" loading="lazy" decoding="async" alt="${safe.name} reconstruction">
             <span class="class-icon">${safe.classUpper}</span>
@@ -778,6 +728,9 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                data-status="${safe.status}"></div>
         `;
         grid.insertBefore(card, grid.firstChild);
+        if (!asset.img && asset.class === 'hybrid') {
+          card.querySelector('.card-img')?.setAttribute('alt', 'Unknown hybrid danger warning');
+        }
         const deleteBtn = card.querySelector('.delete-custom-btn');
         if (deleteBtn) {
           deleteBtn.addEventListener('click', event => {
@@ -935,7 +888,7 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
         const fullSrc = cardImage.getAttribute('data-full-src') || cardImage.src;
         if (modalImg) {
           modalImg.src = cardImage.src;
-          modalImg.alt = `${name} specimen reconstruction`;
+          modalImg.alt = cardImage.alt || `${name} specimen reconstruction`;
           if (fullSrc && fullSrc !== cardImage.src) {
             const hiRes = new Image();
             hiRes.onload = () => {
@@ -1092,6 +1045,11 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             const dietVal = (document.getElementById('dietFilterSelect')?.value || 'all').toLowerCase();
             const classVal = activeClassFilter();
             const isTrexQuery = /^(t-?rex|trex)$/i.test(query);
+            const periodMatches = {
+                paleogene: /paleocene|eocene|oligocene/,
+                neogene: /miocene|pliocene/,
+                quaternary: /pleistocene|holocene/
+            };
 
             document.querySelectorAll('.card').forEach(card => {
                 const name = (card.getAttribute('data-name') || '').toLowerCase();
@@ -1105,7 +1063,8 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
                 let match = true;
                 if (query) {
                     const nameMatch = name.includes(query) || (isTrexQuery && (name.includes('tyrannosaurus') || key.includes('trex')));
-                    if (!(nameMatch || cn.includes(query) || cls.includes(query) || era.includes(query) || code.includes(query) || diet.includes(query) || key.includes(query))) {
+                    const periodMatch = periodMatches[query]?.test(era) || false;
+                    if (!(nameMatch || periodMatch || cn.includes(query) || cls.includes(query) || era.includes(query) || code.includes(query) || diet.includes(query) || key.includes(query))) {
                         match = false;
                     }
                 }
@@ -1220,8 +1179,6 @@ Object.assign(window, { changeThemeTint, openRedAlert, closeRedAlert });
             });
         }
 
-        // Red Code Alert Modal handlers in gallery
-        setupRedCodeModal();
         setupMobileMenu();
 
 Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
@@ -1639,8 +1596,6 @@ Object.assign(window, { closeModal, deployAsset, filterSelection, sortCards });
     // Initialize timescale nodes
     initTimeline();
 
-    // Red Code Alert Modal handlers in timescale
-    setupRedCodeModal();
 
     // Mobile menu toggle
     setupMobileMenu();
@@ -2061,10 +2016,14 @@ Object.assign(window, { queryArchive });
             const el = document.getElementById(f.id);
             const err = document.getElementById(f.errId);
             el.classList.remove('input-error');
+            el.removeAttribute('aria-invalid');
+            el.removeAttribute('aria-describedby');
             err.style.display = 'none';
 
             if (el.value.trim() === '') {
                 el.classList.add('input-error');
+                el.setAttribute('aria-invalid', 'true');
+                el.setAttribute('aria-describedby', err.id);
                 err.style.display = 'block';
                 isValid = false;
             }
@@ -2074,9 +2033,13 @@ Object.assign(window, { queryArchive });
         const atkEl = document.getElementById('atk');
         const atkErr = document.getElementById('atkErr');
         atkEl.classList.remove('input-error');
+        atkEl.removeAttribute('aria-invalid');
+        atkEl.removeAttribute('aria-describedby');
         atkErr.style.display = 'none';
         if (atkEl.value.trim() === '' || isNaN(atkEl.value) || parseFloat(atkEl.value) <= 0) {
             atkEl.classList.add('input-error');
+            atkEl.setAttribute('aria-invalid', 'true');
+            atkEl.setAttribute('aria-describedby', atkErr.id);
             atkErr.style.display = 'block';
             isValid = false;
         }
@@ -2084,11 +2047,20 @@ Object.assign(window, { queryArchive });
         const hpEl = document.getElementById('hp');
         const hpErr = document.getElementById('hpErr');
         hpEl.classList.remove('input-error');
+        hpEl.removeAttribute('aria-invalid');
+        hpEl.removeAttribute('aria-describedby');
         hpErr.style.display = 'none';
         if (hpEl.value.trim() === '' || isNaN(hpEl.value) || parseFloat(hpEl.value) <= 0) {
             hpEl.classList.add('input-error');
+            hpEl.setAttribute('aria-invalid', 'true');
+            hpEl.setAttribute('aria-describedby', hpErr.id);
             hpErr.style.display = 'block';
             isValid = false;
+        }
+
+        if (!isValid) {
+            form.querySelector('[aria-invalid="true"]')?.focus();
+            return;
         }
 
         if (isValid) {
@@ -2143,11 +2115,29 @@ Object.assign(window, { queryArchive });
         });
     });
 
+    form.addEventListener('input', function(event) {
+        const el = event.target;
+        if (!el.matches('[aria-invalid="true"]')) return;
+        const numeric = el.id === 'atk' || el.id === 'hp';
+        if (!el.value.trim() || (numeric && (isNaN(el.value) || parseFloat(el.value) <= 0))) return;
+        const err = document.getElementById(el.getAttribute('aria-describedby'));
+        el.classList.remove('input-error');
+        el.removeAttribute('aria-invalid');
+        el.removeAttribute('aria-describedby');
+        if (err) err.style.display = 'none';
+    });
+
     // Reset button
     const resetBtn = document.getElementById('resetLabBtn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
             form.reset();
+            form.querySelectorAll('[aria-invalid]').forEach(el => {
+                el.classList.remove('input-error');
+                el.removeAttribute('aria-invalid');
+                el.removeAttribute('aria-describedby');
+            });
+            form.querySelectorAll('.error-lbl').forEach(err => { err.style.display = 'none'; });
             uploadedImageData = '';
             if (parentASelect && parentBSelect) {
                 parentASelect.selectedIndex = 0;
@@ -2161,8 +2151,6 @@ Object.assign(window, { queryArchive });
         });
     }
 
-    // Red Code Alert Modal handlers in form
-    setupRedCodeModal();
 
     // Mobile menu toggle
     setupMobileMenu();
