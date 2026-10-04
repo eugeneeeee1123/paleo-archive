@@ -3,7 +3,7 @@
   const UNKNOWN_HYBRID_IMAGE = 'assets/images/generated/unknown-hybrid.webp';
   const CUSTOM_HYBRID_WARNING_IMAGE = 'assets/images/generated/unknown-hybrid-danger.png';
 
-  if (page === 'gallery' || page === 'field-guide' || page === 'timescale') {
+  if (page === 'gallery' || page === 'field-guide' || page === 'timescale' || page === 'about') {
     (function() {
                 const theme = localStorage.getItem('ingen_theme') || 'green';
                 const root = document.documentElement;
@@ -2157,7 +2157,11 @@ Object.assign(window, { queryArchive });
 
 }
 
-  const initializers = { index: init_index, gallery: init_gallery, 'field-guide': init_gallery, timescale: init_timescale, form: init_form };
+  function init_about() {
+    setupMobileMenu();
+  }
+
+  const initializers = { index: init_index, gallery: init_gallery, 'field-guide': init_gallery, timescale: init_timescale, form: init_form, about: init_about };
   const initialize = () => { if (initializers[page]) initializers[page](); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
   else initialize();

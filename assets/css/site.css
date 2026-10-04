@@ -5235,6 +5235,7 @@ html[data-page="timescale"] .timeline-node.active{
 }
 
 .pl-footer-skull {
+  display: none;
   width: 100%;
   max-width: 220px;
   opacity: 0.45;

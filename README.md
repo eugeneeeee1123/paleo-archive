@@ -8,6 +8,7 @@ A bilingual prehistoric-life archive built with static HTML, CSS, and JavaScript
 - `gallery.html`: specimen gallery and locality dossiers
 - `timescale.html`: geological timeline
 - `form.html`: custom specimen record builder
+- `about.html`: project documentation, architecture, and data sources
 
 ## Assets
 

@@ -15,6 +15,13 @@
     <script src="assets/js/species-data.js" defer></script>
     <script src="assets/js/site.js" defer></script>
     <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        @media (max-width: 680px) {
+            html[data-page="field-guide"] .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+        }
+    </style>
 </head>
 <body class="pl-shell">
 
@@ -56,6 +63,7 @@
                 <a href="timescale.html" class="pl-nav-link">TIMELINE / 地质年代</a>
                 <a href="gallery.html" class="pl-nav-link">EXHIBITION / 馆藏化石</a>
                 <a href="form.html" class="pl-nav-link">HYBRID LAB / 基因合成</a>
+                <a href="about.html" class="pl-nav-link">ABOUT / 关于本站</a>
             </nav>
 
             <div class="pl-header-actions">
@@ -345,22 +353,6 @@
             </div>
           </div>
 
-          <div class="pl-footer-art-col">
-            <div class="pl-fossil-art-box">
-              <svg class="pl-fossil-svg" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 60 Q 50 30, 80 45 T 140 35" stroke="#c29b62" stroke-width="2" stroke-linecap="round" fill="none"/>
-                <path d="M35 55 Q 38 75, 42 90" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M50 48 Q 55 78, 60 98" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M68 44 Q 74 76, 80 102" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M85 45 Q 92 74, 98 96" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M102 44 Q 108 68, 114 85" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M120 40 Q 124 58, 128 72" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M135 36 Q 148 24, 155 35 Q 150 48, 138 42 Z" stroke="#c29b62" stroke-width="1.5" fill="rgba(194, 155, 98, 0.15)"/>
-                <circle cx="148" cy="32" r="2.5" fill="#e5b869"/>
-              </svg>
-              <div class="pl-fossil-art-tag">SPECIMEN #FSL-908 · VERTEBRATE OSTEOLOGY</div>
-            </div>
-          </div>
         </div>
 
         <div class="pl-footer-bottom">
